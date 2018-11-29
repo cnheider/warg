@@ -3,7 +3,7 @@ from setuptools import find_packages
 from version import get_version
 
 
-class DraugrPackage:
+class WargPackage:
 
   @property
   def test_dependencies(self) -> list:
@@ -14,11 +14,11 @@ class DraugrPackage:
 
   @property
   def package_name(self) -> str:
-    return 'Draugr'
+    return 'Warg'
 
   @property
   def url(self) -> str:
-    return 'https://github.com/cnheider/draugr'
+    return 'https://github.com/cnheider/warg'
 
   @property
   def download_url(self):
@@ -104,7 +104,7 @@ class DraugrPackage:
 
   @property
   def description(self):
-    return 'A package for plotting directly in your terminal'
+    return 'A package for easing return of multiple values'
 
   @property
   def readme(self):

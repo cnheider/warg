@@ -1,5 +1,8 @@
-# Draugr
+# Warg
+Vargr
 
-A package for plotting directly in your terminal
+Takes and Eats everything
 
-https://en.wikipedia.org/wiki/Draugr
+A package for easing return of multiple values
+
+https://en.wikipedia.org/wiki/Warg

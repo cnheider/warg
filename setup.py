@@ -11,7 +11,7 @@ def python_version_check():
 
 python_version_check()
 
-from DraugrPackage import DraugrPackage
+from WargPackage import WargPackage
 
 __author__ = 'cnheider'
 
@@ -19,7 +19,7 @@ from setuptools import setup
 
 if __name__ == '__main__':
 
-  pkg = DraugrPackage()
+  pkg = WargPackage()
 
   setup(
       name=pkg.package_name,
