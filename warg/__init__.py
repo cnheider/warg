@@ -4,4 +4,4 @@
 
 __author__ = 'cnheider'
 
-from .named_ordered_dict import *
+from .named_ordered_dictionary import *

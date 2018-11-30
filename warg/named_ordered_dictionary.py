@@ -5,7 +5,7 @@ from typing import Any, Collection, Iterable
 __author__ = 'cnheider'
 
 
-class NamedOrderedDict:
+class NamedOrderedDictionary:
   '''
 
   Usage:
@@ -17,6 +17,13 @@ class NamedOrderedDict:
           nodict.paramB = 10
           assert nodict.paramA == 'myparam'
           assert nodict.paramB == 10
+
+
+      .. code-block:: python
+
+          nodict = NamedOrderedDict()
+          nodict['paramA'] = 10
+          assert nodict.paramA == 10
 
       .. code-block:: python
 
@@ -90,6 +97,12 @@ class NamedOrderedDict:
   def __setattr__(self, key, value):
     self.__dict__[key] = value
 
+  def __getitem__(self, item):
+    return self.__dict__[item]
+
+  def __setitem__(self, key, value):
+    self.__dict__[key] = value
+
   def __iter__(self):
     for key, value in self.__dict__.items():
       yield key, value
@@ -124,38 +137,42 @@ class NamedOrderedDict:
 
 if __name__ == '__main__':
 
-  nodict = NamedOrderedDict()
+  nodict = NamedOrderedDictionary()
   nodict.paramA = 'myparam'
   nodict.paramB = 10
   assert nodict.paramA == 'myparam'
   assert nodict.paramB == 10
 
-  nodict = NamedOrderedDict({'paramA':'myparam', 'paramB':10})
+  nodict = NamedOrderedDictionary({'paramA':'myparam', 'paramB':10})
   assert nodict.paramA == 'myparam'
   assert nodict.paramB == 10
 
-  nodict = NamedOrderedDict()
+  nodict = NamedOrderedDictionary()
   nodict.update({'paramA':20, 'paramB':'otherparam', 'paramC':5.0})
   nodict.paramA = 10
   assert nodict.paramA == 10
   assert nodict.paramB == 'otherparam'
 
-  nodict = NamedOrderedDict('myparam', 10)
+  nodict = NamedOrderedDictionary()
+  nodict['paramA'] = 10
+  assert nodict.paramA == 10
+
+  nodict = NamedOrderedDictionary('myparam', 10)
   nodict.update(arg1=20, arg0='otherparam')
   assert nodict.arg0 == 'otherparam'
   assert nodict.arg1 == 20
 
-  nodict = NamedOrderedDict('myparam', 10)
+  nodict = NamedOrderedDictionary('myparam', 10)
   nodict.update({'arg1':20, 'arg0':'otherparam'})
   assert nodict.arg0 == 'otherparam'
   assert nodict.arg1 == 20
 
-  nodict = NamedOrderedDict(paramA='myparam', paramB=10)
+  nodict = NamedOrderedDictionary(paramA='myparam', paramB=10)
   nodict.update(20, 'otherparam')
   assert nodict.paramB == 'otherparam'
   assert nodict.paramA == 20
 
-  arg0, arg1 = NamedOrderedDict('myparam', 10).as_list()
+  arg0, arg1 = NamedOrderedDictionary('myparam', 10).as_list()
   assert arg0 == 'myparam'
   assert arg1 == 10
 
