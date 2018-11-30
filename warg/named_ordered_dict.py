@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Any
+from typing import Any, Collection, Iterable
 
 __author__ = 'cnheider'
 
@@ -72,6 +72,8 @@ class NamedOrderedDict:
     else:
       i = 0
       args_dict = {}
+      if len(args) == 1 and isinstance(args[0], Iterable):
+        args = args[0]
       for arg in args:
         args_dict[f'arg{i}'] = arg
         i += 1
@@ -80,7 +82,7 @@ class NamedOrderedDict:
     self.update(args_dict or {})
 
   def as_list(self):
-    return self.__dict__.values()
+    return list(self.__dict__.values())
 
   def __getattr__(self, item):
     return self.__dict__[item]
