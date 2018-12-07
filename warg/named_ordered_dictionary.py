@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Any, Collection, Iterable
-from warnings import warn
+from typing import Any, Iterable
 
 __author__ = 'cnheider'
 
@@ -111,6 +110,12 @@ class NamedOrderedDictionary(dict):
   def __setitem__(self, key, value):
     self.__dict__[key] = value
 
+  def keys(self):
+    return self.__dict__.keys()
+
+  def __contains__(self, item):
+    return item in self.__dict__
+
   def __iter__(self):
     for key, value in self.__dict__.items():
       yield key, value
@@ -165,6 +170,13 @@ if __name__ == '__main__':
   nodict['paramA'] = 10
   assert nodict.paramA == 10
 
+  vals=(1,3,5)
+  nodict = NamedOrderedDictionary(10,val2=2,*vals)
+  assert nodict['arg0'] == 10
+  assert nodict.val2 == 2
+  assert nodict.arg1 == vals[0]
+  print(f'Success! Lnodict: {nodict.as_tuple()}')
+
   nodict = NamedOrderedDictionary('str_parameter', 10)
   nodict.update(arg1=20, arg0='otherparam')
   assert nodict.arg0 == 'otherparam'
@@ -180,6 +192,11 @@ if __name__ == '__main__':
   assert nodict.paramB == 'otherparam'
   assert nodict.paramA == 20
   assert nodict.get('paramC') == None
+
+  nodict = NamedOrderedDictionary(paramC='str_parameter', **nodict)
+  assert nodict.paramB == 'otherparam'
+  assert nodict.paramA == 20
+  assert nodict.get('paramC') != None
 
   arg0, arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
   assert arg0 == 'str_parameter'
