@@ -155,13 +155,6 @@ class NamedOrderedDictionary(Mapping):
 
     self.__dict__.update(args_dict)
 
-
-
-
-
-
-
-
 if __name__ == '__main__':
 
   nodict = NamedOrderedDictionary()
