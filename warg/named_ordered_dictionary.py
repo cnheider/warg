@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+from collections import Mapping
+from functools import partial, wraps
 from typing import Any, Iterable
+
+from sorcery import dict_of
 
 __author__ = 'cnheider'
 
 
-class NamedOrderedDictionary(dict):
+class NamedOrderedDictionary(Mapping):
   '''
 
   Usage:
@@ -74,7 +79,7 @@ class NamedOrderedDictionary(dict):
   '''
 
   def __init__(self, *args: Any, **kwargs: Any):
-    super().__init__(**kwargs)
+    # super().__init__(**kwargs)
     if len(args) == 1 and type(args[0]) is dict:
       args_dict = args[0]
     else:
@@ -100,6 +105,9 @@ class NamedOrderedDictionary(dict):
 
   def __getattr__(self, item):
     return self.__dict__[item]
+
+  def __len__(self):
+    return len(self.__dict__)
 
   def __setattr__(self, key, value):
     self.__dict__[key] = value
@@ -148,6 +156,12 @@ class NamedOrderedDictionary(dict):
     self.__dict__.update(args_dict)
 
 
+
+
+
+
+
+
 if __name__ == '__main__':
 
   nodict = NamedOrderedDictionary()
@@ -170,12 +184,17 @@ if __name__ == '__main__':
   nodict['paramA'] = 10
   assert nodict.paramA == 10
 
-  vals=(1,3,5)
-  nodict = NamedOrderedDictionary(10,val2=2,*vals)
+  vals = (1, 3, 5)
+  nodict = NamedOrderedDictionary(10, val2=2, *vals)
   assert nodict['arg0'] == 10
   assert nodict.val2 == 2
-  assert nodict.arg1 == vals[0]
+  assert (nodict.arg1, nodict.arg2, nodict.arg3) == vals
   print(f'Success! Lnodict: {nodict.as_tuple()}')
+
+  nodict = NamedOrderedDictionary('str_parameter', 10)
+  odict = {**nodict}
+  print(odict)
+  assert nodict.arg1 == odict['arg1']
 
   nodict = NamedOrderedDictionary('str_parameter', 10)
   nodict.update(arg1=20, arg0='otherparam')
@@ -189,6 +208,7 @@ if __name__ == '__main__':
 
   nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
   nodict.update(20, 'otherparam')
+  print(nodict)
   assert nodict.paramB == 'otherparam'
   assert nodict.paramA == 20
   assert nodict.get('paramC') == None
@@ -201,5 +221,12 @@ if __name__ == '__main__':
   arg0, arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
   assert arg0 == 'str_parameter'
   assert arg1 == 10
+
+  columns = dict_of(arg1, aræa=arg0)
+  assert columns['arg1'] == arg1
+  assert columns['aræa'] == arg0
+  print(columns)
+
+
 
   print(f'Success! Last is nodict: {nodict.as_tuple()}')
