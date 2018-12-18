@@ -5,7 +5,7 @@ from collections import Mapping
 from functools import partial, wraps
 from typing import Any, Iterable
 
-from sorcery import dict_of
+import sorcery
 
 __author__ = 'cnheider'
 
@@ -102,6 +102,49 @@ class NamedOrderedDictionary(Mapping):
 
   def as_tuple(self):
     return tuple(self.as_list())
+
+  @sorcery.spell
+  def dict_of(frame_info, *args, **kwargs):
+    """
+    Instead of:
+
+        {'foo': foo, 'bar': bar, 'spam': thing()}
+
+    or:
+
+        dict(foo=foo, bar=bar, spam=thing())
+
+    write:
+
+        dict_of(foo, bar, spam=thing())
+
+    In other words, returns a dictionary with an item for each argument,
+    where positional arguments use their names as keys,
+    and keyword arguments do the same as in the usual dict constructor.
+
+    The positional arguments can be any of:
+
+      - plain variables,
+      - attributes, or
+      - subscripts (square bracket access) with string literal keys
+
+    So the following:
+
+        dict_of(spam, x.foo, y['bar'])
+
+    is equivalent to:
+
+        dict(spam=spam, foo=x.foo, bar=y['bar'])
+
+    *args are not allowed.
+
+    To give your own functions the ability to turn positional argments into
+    keyword arguments, use the decorator magic_kwargs.
+
+    """
+
+    result = sorcery.dict_of.at(frame_info)(*args,**kwargs)
+    return NamedOrderedDictionary(result)
 
   def __getattr__(self, item):
     return self.__dict__[item]
@@ -215,11 +258,9 @@ if __name__ == '__main__':
   assert arg0 == 'str_parameter'
   assert arg1 == 10
 
-  columns = dict_of(arg1, aræa=arg0)
+  columns = NamedOrderedDictionary.dict_of(arg1, aræa=arg0)
   assert columns['arg1'] == arg1
   assert columns['aræa'] == arg0
   print(columns)
-
-
 
   print(f'Success! Last is nodict: {nodict.as_tuple()}')
