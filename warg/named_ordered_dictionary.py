@@ -143,7 +143,7 @@ class NamedOrderedDictionary(Mapping):
 
     """
 
-    result = sorcery.dict_of.at(frame_info)(*args,**kwargs)
+    result = sorcery.dict_of.at(frame_info)(*args, **kwargs)
     return NamedOrderedDictionary(result)
 
   def __getattr__(self, item):
@@ -197,6 +197,9 @@ class NamedOrderedDictionary(Mapping):
     args_dict.update(kwargs)
 
     self.__dict__.update(args_dict)
+
+
+NOD = NamedOrderedDictionary
 
 if __name__ == '__main__':
 
