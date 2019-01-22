@@ -73,14 +73,10 @@ if __name__ == '__main__':
   assert yes.arg0 == 4
   assert yes.arg0 == yes.as_list()[0]
 
-
-
   no = auto_nod_return.hot()
   print(no)
   assert no.a == 2
   assert no.s == 7
-
-
 
   maybe = auto_nod_return.luke_warm(2, 8)
   print(maybe)
