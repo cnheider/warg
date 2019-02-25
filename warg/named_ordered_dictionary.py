@@ -227,6 +227,23 @@ class NamedOrderedDictionary(Mapping):
       self.add_unnamed_arg(other)
     return self.__dict__
 
+  def __sub__(self, other):
+    if isinstance(other, NamedOrderedDictionary):
+      for k in other.keys():
+        if k in self.__dict__:
+          self.__dict__[k] -= other.__dict__[k]
+    else:
+      raise ArithmeticError(f'Can not subtract {type(other)} from {type(self)}')
+
+  def __truediv__(self, other):
+    if isinstance(other, str):
+      return self.get(other)
+    else:
+      raise ArithmeticError(f'Can not access with {type(other)} in {type(self)}')
+
+  def __floordiv__(self, other):
+    return self.__truediv__(other)
+
 
 NOD = NamedOrderedDictionary
 
@@ -291,8 +308,11 @@ if __name__ == '__main__':
   columns = NamedOrderedDictionary.dict_of(arg1, aræa=arg0)
   assert columns['arg1'] == arg1
   assert columns['aræa'] == arg0
+  assert columns / 'aræa' == arg0
 
   a = NamedOrderedDictionary(4,2)
   b = a+a
   assert a.list()== [8,4]
+
+
 
