@@ -307,6 +307,7 @@ if __name__ == '__main__':
 
   columns = NamedOrderedDictionary.dict_of(arg1, aræa=arg0)
   assert columns['arg1'] == arg1
+  assert columns.arg1 == arg1
   assert columns['aræa'] == arg0
   assert columns / 'aræa' == arg0
 
