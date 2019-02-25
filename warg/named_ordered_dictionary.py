@@ -4,7 +4,7 @@
 from collections import Mapping
 from functools import partial, wraps
 from typing import Any, Iterable
-
+import time
 import sorcery
 
 __author__ = 'cnheider'
@@ -78,30 +78,45 @@ class NamedOrderedDictionary(Mapping):
 
   '''
 
+  #__slots__ = ('_unnamed_arg_i','__dict__')
+
+  #_unnamed_arg_i = 0
+
   def __init__(self, *args: Any, **kwargs: Any):
     # super().__init__(**kwargs)
+
     if len(args) == 1 and type(args[0]) is dict:
       args_dict = args[0]
     else:
-      i = 0
       args_dict = {}
       if len(args) == 1 and isinstance(args[0], Iterable):
         args = args[0]
       for arg in args:
-        args_dict[f'arg{i}'] = arg
-        i += 1
+        args_dict[f'arg{id(arg)}'] = arg
 
     args_dict.update(kwargs)
     self.update(args_dict or {})
 
+  def list(self):
+    return self.as_list()
+
   def as_list(self):
     return list(self.__dict__.values())
+
+  def dict(self):
+    return self.as_dict()
 
   def as_dict(self):
     return self.__dict__
 
+  def tuple(self):
+    return self.as_tuple()
+
   def as_tuple(self):
     return tuple(self.as_list())
+
+  def add_unnamed_arg(self, arg):
+    self.__dict__[f'arg{id(arg)}'] = arg
 
   @sorcery.spell
   def dict_of(frame_info, *args, **kwargs):
@@ -198,6 +213,20 @@ class NamedOrderedDictionary(Mapping):
 
     self.__dict__.update(args_dict)
 
+  def __add__(self, other):
+    if isinstance(other, NamedOrderedDictionary):
+      for k in other.keys():
+        if k in self.__dict__:
+          self.__dict__[k] += other.__dict__[k]
+        else:
+          self.__dict__[k] = other.__dict__[k]
+    elif isinstance(other, Iterable):
+      for arg in other:
+        self.add_unnamed_arg(arg)
+    else:
+      self.add_unnamed_arg(other)
+    return self.__dict__
+
 
 NOD = NamedOrderedDictionary
 
@@ -223,17 +252,16 @@ if __name__ == '__main__':
   nodict['paramA'] = 10
   assert nodict.paramA == 10
 
-  vals = (1, 3, 5)
+  vals = [1, 3, 5]
   nodict = NamedOrderedDictionary(10, val2=2, *vals)
-  assert nodict['arg0'] == 10
+  nolist = nodict.as_list()
+  assert nolist[0] == 10
   assert nodict.val2 == 2
-  assert (nodict.arg1, nodict.arg2, nodict.arg3) == vals
-  print(f'Success! Lnodict: {nodict.as_tuple()}')
+  assert nolist[-2] == vals[-1]
 
   nodict = NamedOrderedDictionary('str_parameter', 10)
   odict = {**nodict}
-  print(odict)
-  assert nodict.arg1 == odict['arg1']
+  assert nodict.as_list()[0] == list(odict.values())[0]
 
   nodict = NamedOrderedDictionary('str_parameter', 10)
   nodict.update(arg1=20, arg0='otherparam')
@@ -247,7 +275,6 @@ if __name__ == '__main__':
 
   nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
   nodict.update(20, 'otherparam')
-  print(nodict)
   assert nodict.paramB == 'otherparam'
   assert nodict.paramA == 20
   assert nodict.get('paramC') == None
@@ -264,6 +291,8 @@ if __name__ == '__main__':
   columns = NamedOrderedDictionary.dict_of(arg1, aræa=arg0)
   assert columns['arg1'] == arg1
   assert columns['aræa'] == arg0
-  print(columns)
 
-  print(f'Success! Last is nodict: {nodict.as_tuple()}')
+  a = NamedOrderedDictionary(4,2)
+  b = a+a
+  assert a.list()== [8,4]
+
