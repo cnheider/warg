@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3307fb6-e876-42b7-9a4f-320f5b148f2d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/warg/named_ordered_dictionary.py" beforeDir="false" afterPath="$PROJECT_DIR$/warg/named_ordered_dictionary.py" afterDir="false" />
-    </list>
+    <list default="true" id="e3307fb6-e876-42b7-9a4f-320f5b148f2d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,12 +170,12 @@
       <option name="presentableId" value="Default" />
       <updated>1551016231872</updated>
       <workItem from="1551016233529" duration="634000" />
-      <workItem from="1551042121186" duration="3252000" />
+      <workItem from="1551042121186" duration="3417000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3886000" />
+    <option name="totallyTimeSpent" value="4051000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="25" y="0" width="1870" height="1059" extended-state="6" />
@@ -210,7 +204,7 @@
       <window_info anchor="right" id="Data View" order="6" />
       <window_info anchor="right" id="Inspection Results" order="7" sideWeight="0.48046875" weight="0.29226667" />
       <window_info anchor="right" id="Debug" order="8" sideWeight="0.7289157" weight="0.32089552" />
-      <window_info active="true" anchor="right" id="Run" order="9" sideWeight="0.6799591" visible="true" weight="0.26725084" />
+      <window_info anchor="right" id="Run" order="9" sideWeight="0.6799591" weight="0.26725084" />
       <window_info anchor="right" id="SciView" order="10" sideWeight="0.51083815" weight="0.2866423" />
       <window_info anchor="right" id="Terminal" order="11" sideWeight="0.6379056" side_tool="true" weight="0.23792124" />
       <window_info anchor="right" id="Event Log" order="12" sideWeight="0.5618557" side_tool="true" weight="0.19857378" />

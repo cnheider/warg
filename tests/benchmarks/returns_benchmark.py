@@ -1,8 +1,7 @@
-import time
 from collections import namedtuple
 
 import sorcery
-
+from benchmark_func import benchmark_func
 from warg import NOD
 
 
@@ -36,14 +35,6 @@ def returns_benchmark():
 
   def namedtuple_return():
     return RandomABC(a, b, c)
-
-  def benchmark_func(func, times=10000):
-    start = time.time()
-    result = None
-    for _ in range(times):
-      result = func()
-    end = time.time()
-    return end - start, result
 
   for func in (implicit_return,
                list_return,
