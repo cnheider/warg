@@ -82,7 +82,7 @@ class NamedOrderedDictionary(Mapping):
 
   #_unnamed_arg_i = 0
 
-  def __init__(self, *args: Any, **kwargs: Any):
+  def __init__(self, *args: Any, **kwargs: Any)->None:
     # super().__init__(**kwargs)
 
     if len(args) == 1 and type(args[0]) is dict:
@@ -119,7 +119,7 @@ class NamedOrderedDictionary(Mapping):
     self.__dict__[f'arg{id(arg)}'] = arg
 
   @sorcery.spell
-  def dict_of(frame_info, *args, **kwargs):
+  def dict_of(frame_info, *args: Any, **kwargs: Any):
     """
     Instead of:
 
@@ -155,6 +155,7 @@ class NamedOrderedDictionary(Mapping):
 
     To give your own functions the ability to turn positional argments into
     keyword arguments, use the decorator magic_kwargs.
+    :rtype: object
 
     """
 
@@ -187,9 +188,11 @@ class NamedOrderedDictionary(Mapping):
       yield key, value
 
   def __repr__(self):
-    print_str = ''
+    print_str = f'{self.__class__.__name__}('
     for key, value in self:
-      print_str += f'{key}: {value}\n'
+      print_str += f'\'{key}\': {value}, '
+    print_str = print_str[:-2]
+    print_str += ')'
     return print_str
 
   def update(self, *args: Any, **kwargs: Any) -> None:
