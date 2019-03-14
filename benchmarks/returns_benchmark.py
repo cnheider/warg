@@ -1,7 +1,8 @@
 from collections import namedtuple
 
 import sorcery
-from benchmark_func import benchmark_func
+
+from benchmarks.benchmark_func import benchmark_func
 from warg import NOD
 
 

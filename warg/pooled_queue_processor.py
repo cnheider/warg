@@ -1,29 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from abc import abstractmethod
 
 __author__ = 'cnheider'
 
 import multiprocessing as mp
 import queue
-import traceback
-
-import numpy as np
 
 
 class PooledQueueTask(object):
 
-  def task(self, i):
-    return (np.zeros((999, 999)), i)
+  def __call__(self, *args, **kwargs):
+    return self.call(*args, **kwargs)
 
-  def generate_batch(self, batch_size):
-    try:
-      batch = [self.task(i) for i in range(batch_size)]
-      imgs = np.array([i[0] for i in batch], dtype=np.float32)
-      ground_truth = np.array([i[1] for i in batch], dtype=np.float32)
-      return (imgs, ground_truth)
-    except Exception as inst:
-      traceback.print_exc()
-      return inst
+  @abstractmethod
+  def call(self, *args, **kwargs):
+    raise NotImplemented
 
 
 class PooledQueueProcessor(object):
@@ -54,21 +46,38 @@ class PooledQueueProcessor(object):
     self._pool.terminate()
     self._pool.join()
 
+  @property
+  def kwargs(self):
+    return self._kwargs
+
+  @kwargs.setter
+  def kwargs(self, value):
+    self._kwargs = value
+
+  @property
+  def args(self):
+    return self.args
+
+  @args.setter
+  def args(self, value):
+    self._args = value
+
   def maybe_fill(self):
     if self.queue_size < self._max_size:
-      self._pool.apply_async(self._func, self._args, self._kwargs, self.put)
+      self._pool.apply_async(self._func, self._args, self._kwargs, self.put, self.error)
 
   @property
   def queue_size(self):
     return self._queue.qsize()
 
-  def put(self, *args, **kwargs):
-    if isinstance(args[0], Exception):
-      raise args[0]
-    self._queue.put(*args, **kwargs)
+  def put(self, res):
+    self._queue.put(res)
 
-  def get(self, *args, **kwargs):
-    res = self._queue.get(*args, **kwargs)
+  def error(self, error):
+    raise error
+
+  def get(self):
+    res = self._queue.get()
     self.maybe_fill()
     return res
 
@@ -83,13 +92,26 @@ class PooledQueueProcessor(object):
 
 
 if __name__ == '__main__':
-  from functools import partial
 
-  pqt = PooledQueueTask()
+  class Square(PooledQueueTask):
 
-  batch_size = 64
-  bas = partial(pqt.generate_batch, batch_size)
+    def call(self, i, *args, **kwargs):
+      return i * 2
 
-  df = PooledQueueProcessor(bas)
+
+  class Exc(PooledQueueTask):
+
+    def call(self, *args, **kwargs):
+      raise NotImplementedError
+
+
+  task = Square()
+
+  df = PooledQueueProcessor(task, 2)
+  for a, _ in zip(df, range(30)):
+    print(a)
+
+  df.args = [4]
+
   for a, _ in zip(df, range(30)):
     print(a)
