@@ -6,7 +6,7 @@ __author__ = 'cnheider'
 import time
 
 
-def benchmark_func(func, times=10000):
+def benchmark_func(func, times=100000):
   start = time.time()
   result = None
   for _ in range(times):

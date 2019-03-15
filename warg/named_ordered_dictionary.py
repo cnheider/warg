@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from collections import Mapping
-from functools import partial, wraps
 from typing import Any, Iterable
-import time
+
 import sorcery
 
 __author__ = 'cnheider'
@@ -78,11 +77,11 @@ class NamedOrderedDictionary(Mapping):
 
   '''
 
-  #__slots__ = ('_unnamed_arg_i','__dict__')
+  # __slots__ = ('_unnamed_arg_i','__dict__')
 
-  #_unnamed_arg_i = 0
+  # _unnamed_arg_i = 0
 
-  def __init__(self, *args: Any, **kwargs: Any)->None:
+  def __init__(self, *args: Any, **kwargs: Any) -> None:
     # super().__init__(**kwargs)
 
     if len(args) == 1 and type(args[0]) is dict:
@@ -97,20 +96,11 @@ class NamedOrderedDictionary(Mapping):
     args_dict.update(kwargs)
     self.update(args_dict or {})
 
-  def list(self):
-    return self.as_list()
-
   def as_list(self):
     return list(self.__dict__.values())
 
-  def dict(self):
-    return self.as_dict()
-
   def as_dict(self):
     return self.__dict__
-
-  def tuple(self):
-    return self.as_tuple()
 
   def as_tuple(self):
     return tuple(self.as_list())
@@ -119,7 +109,7 @@ class NamedOrderedDictionary(Mapping):
     self.__dict__[f'arg{id(arg)}'] = arg
 
   @sorcery.spell
-  def dict_of(frame_info, *args: Any, **kwargs: Any):
+  def dict_of(frame_info, *args: Any, **kwargs: Any) -> Any:
     """
     Instead of:
 
@@ -171,7 +161,7 @@ class NamedOrderedDictionary(Mapping):
   def __setattr__(self, key, value):
     self.__dict__[key] = value
 
-  def __getitem__(self, item):
+  def __getitem__(self, item) -> Any:
     return self.__dict__[item]
 
   def __setitem__(self, key, value):
@@ -313,10 +303,12 @@ if __name__ == '__main__':
   assert columns.arg1 == arg1
   assert columns['aræa'] == arg0
   assert columns / 'aræa' == arg0
+  assert id(columns / 'aræa') == id(columns['aræa'])
 
-  a = NamedOrderedDictionary(4,2)
-  b = a+a
-  assert a.list()== [8,4]
+  a = NamedOrderedDictionary(4, 2)
+  a.list = 'a'
+  assert a.list == 'a'
 
-
-
+  a = NamedOrderedDictionary(4, 2)
+  b = a + a
+  assert a.as_list() == [8, 4]

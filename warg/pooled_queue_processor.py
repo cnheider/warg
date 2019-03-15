@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import multiprocessing
+import sys
+import time
 from abc import abstractmethod
+from typing import Iterable, Mapping
 
 __author__ = 'cnheider'
 
@@ -26,16 +30,30 @@ class PooledQueueProcessor(object):
       This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
   '''
 
-  def __init__(self, func, *args, max_size=6, n_proc=2, max_tasks_per_child=3, **kwargs):
-    self._max_size = max_size
+  def __init__(self, func,
+               args: Iterable = (),
+               kwargs: Mapping = {},
+               max_queue_size=100,
+               n_proc=4,
+               max_tasks_per_child=None,
+               fill_at_construction=True,
+               blocking=True):
+    self._max_queue_size = max_queue_size
     self._func = func
-    self._args = args
-    self._kwargs = kwargs
+    self.args = args
+    self.kwargs = kwargs
+    self.blocking = blocking
+    if max_tasks_per_child is None:
+      max_tasks_per_child = max_queue_size//4
 
-    self._queue = queue.Queue(maxsize=max_size)
+    self._queue = queue.Queue(maxsize=max_queue_size)
     self._pool = mp.Pool(n_proc, maxtasksperchild=max_tasks_per_child)
 
-    for i in range(max_size):
+    if fill_at_construction:
+      self.fill()
+
+  def fill(self):
+    for i in range(self._max_queue_size):
       self.maybe_fill()
 
   def close(self):
@@ -46,25 +64,9 @@ class PooledQueueProcessor(object):
     self._pool.terminate()
     self._pool.join()
 
-  @property
-  def kwargs(self):
-    return self._kwargs
-
-  @kwargs.setter
-  def kwargs(self, value):
-    self._kwargs = value
-
-  @property
-  def args(self):
-    return self.args
-
-  @args.setter
-  def args(self, value):
-    self._args = value
-
   def maybe_fill(self):
-    if self.queue_size < self._max_size:
-      self._pool.apply_async(self._func, self._args, self._kwargs, self.put, self.error)
+    if self.queue_size < self._max_queue_size:# and not self._queue.full():
+      self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.error)
 
   @property
   def queue_size(self):
@@ -77,7 +79,15 @@ class PooledQueueProcessor(object):
     raise error
 
   def get(self):
-    res = self._queue.get()
+
+    if self.queue_size < 1:#self._queue.empty():
+      if len(multiprocessing.active_children()) == 0:
+        if self.blocking:
+          self.maybe_fill()
+        else:
+          raise StopIteration
+
+    res = self._queue.get(self.blocking)
     self.maybe_fill()
     return res
 
@@ -107,11 +117,12 @@ if __name__ == '__main__':
 
   task = Square()
 
-  df = PooledQueueProcessor(task, 2)
-  for a, _ in zip(df, range(30)):
+  processor = PooledQueueProcessor(task, [2], fill_at_construction=True,max_queue_size=100)
+  for a, _ in zip(processor, range(30)):
     print(a)
 
-  df.args = [4]
-
-  for a, _ in zip(df, range(30)):
+  processor.blocking=True
+  processor.args = [4]
+  time.sleep(3)
+  for a in processor:
     print(a)

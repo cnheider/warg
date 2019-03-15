@@ -1,47 +1,61 @@
 import time
-from functools import partial
+
 import numpy as np
 
 from benchmarks.benchmark_func import benchmark_func
 from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
 
 
+class Zeroes(PooledQueueTask):
+  def call(self, batch_size, *args, tensor_size=(9, 9, 9, 9), **kwargs):
+    batch = [(np.zeros(tensor_size), i) for i in range(batch_size)]
+    imgs = np.array([i[0] for i in batch], dtype=np.float32)
+    ground_truth = np.array([i[1] for i in batch], dtype=np.float32)
+    return (imgs, ground_truth)
+
+
+Lamb = lambda a, tensor_size:f'{a, tensor_size}'
+
+
+def Func(a, tensor_size):
+  return f'{a, tensor_size}'
+
+
 def pqp_benchmark():
-  class Zeroes(PooledQueueTask):
+  task = Zeroes()
+  # task = Lamb #Error: cant be pickled
+  # task = Func
+  batch_size = 16
+  tensor_size = (9, 9, 9, 9, 9)
+  wait_time = 0.1
+  samples = 100
 
-    def call(self, batch_size, *args, **kwargs):
-      batch = [(np.zeros((99, 99)), i) for i in range(batch_size)]
-      imgs = np.array([i[0] for i in batch], dtype=np.float32)
-      ground_truth = np.array([i[1] for i in batch], dtype=np.float32)
-      return (imgs, ground_truth)
+  df = PooledQueueProcessor(task,
+                            args=[batch_size],
+                            kwargs={'tensor_size':tensor_size},
+                            max_queue_size=samples)
 
-  pqt = Zeroes()
-
-  batch_size = 12
-
-  bas = partial(pqt, batch_size)
-  df = PooledQueueProcessor(bas, max_size=batch_size)
-
-  def d():
+  def get():
     return df.get()
 
-  def c():
-    time.sleep(0.1)
+  def wait_get():
+    time.sleep(wait_time)
     return df.get()
 
-  def a():
-    return pqt(batch_size)
+  def generate():
+    return task(batch_size, tensor_size=tensor_size)
 
-  def aa():
-    time.sleep(0.1)
-    return pqt(batch_size)
+  def wait_generate():
+    time.sleep(wait_time)
+    return task(batch_size, tensor_size=tensor_size)
 
-  for func in (d,
-               c,
-               a,
-               aa):
-    t, res = benchmark_func(func, 10)
-    print(f'{func.__name__}: {t} seconds')
+  for func, discount in zip((get,
+                             wait_get,
+                             generate,
+                             wait_generate), (0, samples * wait_time, 0, samples * wait_time)):
+    t, res = benchmark_func(func, samples)
+    print(f'{func.__name__}: {t - discount} seconds')
+
 
 if __name__ == '__main__':
   pqp_benchmark()
