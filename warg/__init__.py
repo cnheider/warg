@@ -2,6 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-__author__ = 'cnheider'
+__author__ = "cnheider"
 
 from .named_ordered_dictionary import *

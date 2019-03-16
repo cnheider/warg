@@ -6,123 +6,121 @@ import time
 from abc import abstractmethod
 from typing import Iterable, Mapping
 
-__author__ = 'cnheider'
+__author__ = "cnheider"
 
 import multiprocessing as mp
 import queue
 
 
 class PooledQueueTask(object):
+    def __call__(self, *args, **kwargs):
+        return self.call(*args, **kwargs)
 
-  def __call__(self, *args, **kwargs):
-    return self.call(*args, **kwargs)
-
-  @abstractmethod
-  def call(self, *args, **kwargs):
-    raise NotImplemented
+    @abstractmethod
+    def call(self, *args, **kwargs):
+        raise NotImplemented
 
 
 class PooledQueueProcessor(object):
-  '''
+    """
       This is a workaround of Pythons extremely slow interprocess communication pipes.
       The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
       limited.
       This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
-  '''
+  """
 
-  def __init__(self, func,
-               args: Iterable = (),
-               kwargs: Mapping = {},
-               max_queue_size=100,
-               n_proc=4,
-               max_tasks_per_child=None,
-               fill_at_construction=True,
-               blocking=True):
-    self._max_queue_size = max_queue_size
-    self._func = func
-    self.args = args
-    self.kwargs = kwargs
-    self.blocking = blocking
-    if max_tasks_per_child is None:
-      max_tasks_per_child = max_queue_size//4
+    def __init__(
+        self,
+        func,
+        args: Iterable = (),
+        kwargs: Mapping = {},
+        max_queue_size=100,
+        n_proc=4,
+        max_tasks_per_child=None,
+        fill_at_construction=True,
+        blocking=True,
+    ):
+        self._max_queue_size = max_queue_size
+        self._func = func
+        self.args = args
+        self.kwargs = kwargs
+        self.blocking = blocking
+        if max_tasks_per_child is None:
+            max_tasks_per_child = max_queue_size // 4
 
-    self._queue = queue.Queue(maxsize=max_queue_size)
-    self._pool = mp.Pool(n_proc, maxtasksperchild=max_tasks_per_child)
+        self._queue = queue.Queue(maxsize=max_queue_size)
+        self._pool = mp.Pool(n_proc, maxtasksperchild=max_tasks_per_child)
 
-    if fill_at_construction:
-      self.fill()
+        if fill_at_construction:
+            self.fill()
 
-  def fill(self):
-    for i in range(self._max_queue_size):
-      self.maybe_fill()
+    def fill(self):
+        for i in range(self._max_queue_size):
+            self.maybe_fill()
 
-  def close(self):
-    self._pool.close()
-    self._pool.join()
+    def close(self):
+        self._pool.close()
+        self._pool.join()
 
-  def terminate(self):
-    self._pool.terminate()
-    self._pool.join()
+    def terminate(self):
+        self._pool.terminate()
+        self._pool.join()
 
-  def maybe_fill(self):
-    if self.queue_size < self._max_queue_size:# and not self._queue.full():
-      self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.error)
+    def maybe_fill(self):
+        if self.queue_size < self._max_queue_size:  # and not self._queue.full():
+            self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.error)
 
-  @property
-  def queue_size(self):
-    return self._queue.qsize()
+    @property
+    def queue_size(self):
+        return self._queue.qsize()
 
-  def put(self, res):
-    self._queue.put(res)
+    def put(self, res):
+        self._queue.put(res)
 
-  def error(self, error):
-    raise error
+    def error(self, error):
+        raise error
 
-  def get(self):
+    def get(self):
 
-    if self.queue_size < 1:#self._queue.empty():
-      if len(multiprocessing.active_children()) == 0:
-        if self.blocking:
-          self.maybe_fill()
-        else:
-          raise StopIteration
+        if self.queue_size < 1:  # self._queue.empty():
+            if len(multiprocessing.active_children()) == 0:
+                if self.blocking:
+                    self.maybe_fill()
+                else:
+                    raise StopIteration
 
-    res = self._queue.get(self.blocking)
-    self.maybe_fill()
-    return res
+        res = self._queue.get(self.blocking)
+        self.maybe_fill()
+        return res
 
-  def __len__(self):
-    return self.queue_size
+    def __len__(self):
+        return self.queue_size
 
-  def __iter__(self):
-    return self
+    def __iter__(self):
+        return self
 
-  def __next__(self):
-    return self.get()
-
-
-if __name__ == '__main__':
-
-  class Square(PooledQueueTask):
-
-    def call(self, i, *args, **kwargs):
-      return i * 2
+    def __next__(self):
+        return self.get()
 
 
-  class Exc(PooledQueueTask):
+if __name__ == "__main__":
 
-    def call(self, *args, **kwargs):
-      raise NotImplementedError
+    class Square(PooledQueueTask):
+        def call(self, i, *args, **kwargs):
+            return i * 2
 
+    class Exc(PooledQueueTask):
+        def call(self, *args, **kwargs):
+            raise NotImplementedError
 
-  task = Square()
+    task = Square()
 
-  processor = PooledQueueProcessor(task, [2], fill_at_construction=True,max_queue_size=100)
-  for a, _ in zip(processor, range(30)):
-    print(a)
+    processor = PooledQueueProcessor(task, [2], fill_at_construction=True, max_queue_size=100)
+    for a, _ in zip(processor, range(30)):
+        print(a)
 
-  processor.blocking=True
-  processor.args = [4]
-  time.sleep(3)
-  for a in processor:
-    print(a)
+    processor.blocking = True
+    processor.args = [4]
+    time.sleep(3)
+    for a in processor:
+        print(a)
