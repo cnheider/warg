@@ -1,7 +1,7 @@
 # Warg
 ```Old-Norse: Varg``` 
 
-![warg](.github/images/warg.svg)
+![warg](.github/images/warg.svg) ![warg](.github/images/python.svg)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 ___
