@@ -12,5 +12,5 @@ This package is a selection of generalised  small utilities classes for many use
 
 - A class for easing return of multiple values, implicit handling of args and kwargs and more. 
 
-- A class for executing any 'heavy' function asynchronously any storing results in a bounded queue. 
+- A class for executing any 'heavy' function asynchronously storing any results in a bounded queue. 
 Note: communication and organisation is costly, intended for heavy processing functions and general queuing.
