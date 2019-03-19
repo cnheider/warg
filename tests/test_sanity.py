@@ -10,7 +10,7 @@ def test_sanity():
 
 def test_print(capsys):
     """Correct my_name argument prints"""
-    text = "hellow"
+    text = "hello"
     err = "world"
     print(text)
     sys.stderr.write("world")
