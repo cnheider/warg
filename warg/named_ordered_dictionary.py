@@ -8,6 +8,14 @@ import sorcery
 
 __author__ = "cnheider"
 
+locals = ("as_list", "as_dict", "as_tuple", "add_unnamed_arg", "dict_of", "keys", "update", "__serattr__")
+
+
+class IllegalAttributeKey(Exception):
+    def __init__(self, key, type):
+        msg = f'Overwritting of attribute "{key}" on type "{type}" is not allowed'
+        Exception.__init__(self, msg)
+
 
 class NamedOrderedDictionary(Mapping):
     """
@@ -159,6 +167,9 @@ class NamedOrderedDictionary(Mapping):
         return len(self.__dict__)
 
     def __setattr__(self, key, value):
+        if key in locals:
+            raise IllegalAttributeKey(key, type=NamedOrderedDictionary.__name__)
+
         self.__dict__[key] = value
 
     def __getitem__(self, item) -> Any:
@@ -203,6 +214,10 @@ class NamedOrderedDictionary(Mapping):
                 args_dict[key] = arg
 
         args_dict.update(kwargs)
+
+        for key in args_dict:
+            if key in locals:
+                raise IllegalAttributeKey(key, type=NamedOrderedDictionary.__name__)
 
         self.__dict__.update(args_dict)
 

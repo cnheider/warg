@@ -41,6 +41,8 @@ class PooledQueueProcessor(object):
         blocking=True,
     ):
         self._max_queue_size = max_queue_size
+        if isinstance(func, type):
+            func = func()
         self._func = func
         self.args = args
         self.kwargs = kwargs
@@ -68,7 +70,7 @@ class PooledQueueProcessor(object):
 
     def maybe_fill(self):
         if self.queue_size < self._max_queue_size:  # and not self._queue.full():
-            self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.error)
+            self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.raise_error)
 
     @property
     def queue_size(self):
@@ -77,11 +79,19 @@ class PooledQueueProcessor(object):
     def put(self, res):
         self._queue.put(res)
 
-    def error(self, error):
-        raise error
+    def raise_error(self, excptn):
+        self._pool.terminate()
+        self._pool.close()
+        # print(excptn.__cause__)
+        # sys.exit(1)
+        # exc_type, exc_obj, exc_tb = sys.exc_info()
+        raise excptn
 
     def get(self):
+        """
 
+      :return:
+      """
         if self.queue_size < 1:  # self._queue.empty():
             if len(multiprocessing.active_children()) == 0:
                 if self.blocking:
@@ -101,6 +111,17 @@ class PooledQueueProcessor(object):
 
     def __next__(self):
         return self.get()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self._pool.terminate()
+        self._pool.close()
+        if exc_type:
+            # print(exc_type, exc_val, exc_tb) # trace_back
+            raise exc_type(exc_val)
+            # sys.exit()
 
 
 if __name__ == "__main__":
@@ -124,3 +145,5 @@ if __name__ == "__main__":
     time.sleep(3)
     for a in processor:
         print(a)
+        if a == 8:
+            break
