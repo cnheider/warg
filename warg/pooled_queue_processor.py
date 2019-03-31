@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import multiprocessing
-import sys
+import pickle
 import time
-from abc import abstractmethod
-from typing import Iterable, Mapping
+from abc import abstractmethod, ABC
+from typing import Iterable, Mapping, Any
+
+from cloudpickle import cloudpickle
 
 __author__ = "cnheider"
 
@@ -12,7 +14,26 @@ import multiprocessing as mp
 import queue
 
 
-class PooledQueueTask(object):
+class CloudPickleBase(object):
+    """
+    Uses cloudpickle to serialize contents (otherwise multiprocessing tries to use pickle)
+  :param x: (Any) the variable you wish to wrap for pickling with cloudpickle
+  """
+
+    def __init__(self, x: Any):
+        self._x = x
+
+    def __getstate__(self):
+        return cloudpickle.dumps(self._x)
+
+    def __setstate__(self, x):
+        self._x = pickle.loads(x)
+
+    def __call__(self, *args, **kwargs):
+        return self._x(*args, **kwargs)
+
+
+class PooledQueueTask(ABC):
     def __call__(self, *args, **kwargs):
         return self.call(*args, **kwargs)
 
@@ -23,11 +44,11 @@ class PooledQueueTask(object):
 
 class PooledQueueProcessor(object):
     """
-      This is a workaround of Pythons extremely slow interprocess communication pipes.
-      The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
-      limited.
-      This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
-  """
+    This is a workaround of Pythons extremely slow interprocess communication pipes.
+    The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
+    limited.
+    This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
+"""
 
     def __init__(
         self,
@@ -43,7 +64,7 @@ class PooledQueueProcessor(object):
         self._max_queue_size = max_queue_size
         if isinstance(func, type):
             func = func()
-        self._func = func
+        self._func = CloudPickleBase(func)
         self.args = args
         self.kwargs = kwargs
         self.blocking = blocking
@@ -92,8 +113,8 @@ class PooledQueueProcessor(object):
     def get(self):
         """
 
-      :return:
-      """
+  :return:
+  """
         if self.queue_size < 1:  # self._queue.empty():
             if len(multiprocessing.active_children()) == 0:
                 if self.blocking:
