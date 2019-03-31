@@ -35,7 +35,7 @@ class PooledQueueProcessor(object):
         args: Iterable = (),
         kwargs: Mapping = {},
         max_queue_size=100,
-        n_proc=4,
+        n_proc=None,
         max_tasks_per_child=None,
         fill_at_construction=True,
         blocking=True,
@@ -49,6 +49,8 @@ class PooledQueueProcessor(object):
         self.blocking = blocking
         if max_tasks_per_child is None:
             max_tasks_per_child = max_queue_size // 4
+        if n_proc is None:
+            n_proc = multiprocessing.cpu_count()
 
         self._queue = queue.Queue(maxsize=max_queue_size)
         self._pool = mp.Pool(n_proc, maxtasksperchild=max_tasks_per_child)
