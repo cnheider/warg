@@ -40,7 +40,6 @@ def test_integration_func():
             print(a)
 
 
-@pytest.mark.slow
 def test_lambda_func():
     task = lambda x: x
 
@@ -49,7 +48,6 @@ def test_lambda_func():
             print(a)
 
 
-# @pytest.mark.slow
 def test_integration_except():
     task = Exc()
 
@@ -73,3 +71,7 @@ def test_integration_except_ctx():
                 print(a)
 
     assert exc_info.type is NotImplementedError
+
+
+if __name__ == "__main__":
+    test_lambda_func()
