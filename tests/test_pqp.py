@@ -40,6 +40,15 @@ def test_integration_func():
             print(a)
 
 
+@pytest.mark.slow
+def test_lambda_func():
+    task = lambda x: x
+
+    with PooledQueueProcessor(task, [2], max_queue_size=10) as processor:
+        for a, _ in zip(processor, range(30)):
+            print(a)
+
+
 # @pytest.mark.slow
 def test_integration_except():
     task = Exc()

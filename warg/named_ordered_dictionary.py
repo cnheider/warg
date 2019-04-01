@@ -92,7 +92,7 @@ class NamedOrderedDictionary(Mapping):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         # super().__init__(**kwargs)
 
-        if len(args) == 1 and type(args[0]) is dict:
+        if len(args) == 1 and isinstance(args[0], dict):
             args_dict = args[0]
         else:
             args_dict = {}
@@ -205,7 +205,7 @@ class NamedOrderedDictionary(Mapping):
         items (dict): Python dictionary containing updated values.
     """
 
-        if len(args) == 1 and type(args[0]) is dict:
+        if len(args) == 1 and isinstance(args[0], dict):
             args_dict = args[0]
         else:
             args_dict = {}
