@@ -15,13 +15,13 @@ def test_attribute_assignment():
     assert nodict.paramB == 10
 
 
-def test_16():
+def test_dict_arg_construction():
     nodict = NamedOrderedDictionary({"paramA": "str_parameter", "paramB": 10})
     assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
 
 
-def test_15():
+def test_update_and_set_attr_update():
     nodict = NamedOrderedDictionary()
     nodict.update({"paramA": 20, "paramB": "otherparam", "paramC": 5.0})
     nodict.paramA = 10
@@ -29,13 +29,13 @@ def test_15():
     assert nodict.paramB == "otherparam"
 
 
-def test_11():
+def test_set_item_update():
     nodict = NamedOrderedDictionary()
     nodict["paramA"] = 10
     assert nodict.paramA == 10
 
 
-def test_14():
+def test_as_list_args_and_kwargs():
     vals = [1, 3, 5]
     nodict = NamedOrderedDictionary(10, val2=2, *vals)
     nolist = nodict.as_list()
@@ -44,20 +44,20 @@ def test_14():
     assert nolist[-2] == vals[-1]
 
 
-def test_1():
+def test_kv_unmap():
     nodict = NamedOrderedDictionary("str_parameter", 10)
     odict = {**nodict}
     assert nodict.as_list()[0] == list(odict.values())[0]
 
 
-def test_13():
+def test_update_attr_with_kwargs():
     nodict = NamedOrderedDictionary("str_parameter", 10)
     nodict.update(arg1=20, arg0="otherparam")
     assert nodict.arg0 == "otherparam"
     assert nodict.arg1 == 20
 
 
-def test_12():
+def test_update_attr_with_dict_arg():
     nodict = NamedOrderedDictionary("str_parameter", 10)
     nodict.update({"arg1": 20, "arg0": "otherparam"})
     assert nodict.arg0 == "otherparam"
