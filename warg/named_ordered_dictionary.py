@@ -20,70 +20,70 @@ class IllegalAttributeKey(Exception):
 class NamedOrderedDictionary(Mapping):
     """
 
-  Usage:
+Usage:
 
-      .. code-block:: python
+    .. code-block:: python
 
-          nodict = NamedOrderedDictionary()
-          nodict.paramA = 'str_parameter'
-          nodict.paramB = 10
-          assert nodict.paramA == 'str_parameter'
-          assert nodict.paramB == 10
+        nodict = NamedOrderedDictionary()
+        nodict.paramA = 'str_parameter'
+        nodict.paramB = 10
+        assert nodict.paramA == 'str_parameter'
+        assert nodict.paramB == 10
 
 
-      .. code-block:: python
+    .. code-block:: python
 
-          nodict = NamedOrderedDictionary()
-          nodict['paramA'] = 10
-          assert nodict.paramA == 10
+        nodict = NamedOrderedDictionary()
+        nodict['paramA'] = 10
+        assert nodict.paramA == 10
 
-      .. code-block:: python
+    .. code-block:: python
 
-          nodict = NamedOrderedDictionary({'paramA': 'str_parameter', 'paramB': 10})
-          assert nodict.paramA == 'str_parameter'
-          assert nodict.paramB == 10
+        nodict = NamedOrderedDictionary({'paramA': 'str_parameter', 'paramB': 10})
+        assert nodict.paramA == 'str_parameter'
+        assert nodict.paramB == 10
 
-      .. code-block:: python
+    .. code-block:: python
 
-          nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
-          assert nodict.paramA == 'str_parameter'
-          assert nodict.paramB == 10
+        nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
+        assert nodict.paramA == 'str_parameter'
+        assert nodict.paramB == 10
 
-      .. code-block:: python
+    .. code-block:: python
 
-          nodict = NamedOrderedDictionary('str_parameter', 10)
-          assert nodict.arg0 == 'str_parameter'
-          assert nodict.arg1 == 10
+        nodict = NamedOrderedDictionary('str_parameter', 10)
+        assert nodict.arg0 == 'str_parameter'
+        assert nodict.arg1 == 10
 
-      .. code-block:: python
+    .. code-block:: python
 
-          arg0,arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
-          assert arg0 == 'str_parameter'
-          assert arg1 == 10
+        arg0,arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
+        assert arg0 == 'str_parameter'
+        assert arg1 == 10
 
-      As with dictionaries you can use the `update()` method.
+    As with dictionaries you can use the `update()` method.
 
-      .. code-block:: python
-          nodict = NamedOrderedDictionary()
-          nodict.update({'paramA': 20, 'paramB': 'otherparam', 'paramC': 5.0})
-          assert nodict.paramA == 20
-          assert nodict.paramB == 'otherparam'
+    .. code-block:: python
+        nodict = NamedOrderedDictionary()
+        nodict.update({'paramA': 20, 'paramB': 'otherparam', 'paramC': 5.0})
+        assert nodict.paramA == 20
+        assert nodict.paramB == 'otherparam'
 
-      .. code-block:: python
+    .. code-block:: python
 
-          nodict = NamedOrderedDictionary('str_parameter', 10)
-          nodict.update({'arg1': 20, 'arg0': 'otherparam'})
-          assert nodict.arg0 == 'otherparam'
-          assert nodict.arg1 == 20
+        nodict = NamedOrderedDictionary('str_parameter', 10)
+        nodict.update({'arg1': 20, 'arg0': 'otherparam'})
+        assert nodict.arg0 == 'otherparam'
+        assert nodict.arg1 == 20
 
-      .. code-block:: python
+    .. code-block:: python
 
-          nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
-          nodict.update(20,'otherparam')
-          assert nodict.paramB == 'otherparam'
-          assert nodict.paramA == 20
+        nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
+        nodict.update(20,'otherparam')
+        assert nodict.paramB == 'otherparam'
+        assert nodict.paramA == 20
 
-  """
+"""
 
     # __slots__ = ('_unnamed_arg_i','__dict__')
 
@@ -119,43 +119,43 @@ class NamedOrderedDictionary(Mapping):
     @sorcery.spell
     def dict_of(frame_info, *args: Any, **kwargs: Any) -> Any:
         """
-    Instead of:
+Instead of:
 
-        {'foo': foo, 'bar': bar, 'spam': thing()}
+    {'foo': foo, 'bar': bar, 'spam': thing()}
 
-    or:
+or:
 
-        dict(foo=foo, bar=bar, spam=thing())
+    dict(foo=foo, bar=bar, spam=thing())
 
-    write:
+write:
 
-        dict_of(foo, bar, spam=thing())
+    dict_of(foo, bar, spam=thing())
 
-    In other words, returns a dictionary with an item for each argument,
-    where positional arguments use their names as keys,
-    and keyword arguments do the same as in the usual dict constructor.
+In other words, returns a dictionary with an item for each argument,
+where positional arguments use their names as keys,
+and keyword arguments do the same as in the usual dict constructor.
 
-    The positional arguments can be any of:
+The positional arguments can be any of:
 
-      - plain variables,
-      - attributes, or
-      - subscripts (square bracket access) with string literal keys
+  - plain variables,
+  - attributes, or
+  - subscripts (square bracket access) with string literal keys
 
-    So the following:
+So the following:
 
-        dict_of(spam, x.foo, y['bar'])
+    dict_of(spam, x.foo, y['bar'])
 
-    is equivalent to:
+is equivalent to:
 
-        dict(spam=spam, foo=x.foo, bar=y['bar'])
+    dict(spam=spam, foo=x.foo, bar=y['bar'])
 
-    *args are not allowed.
+*args are not allowed.
 
-    To give your own functions the ability to turn positional argments into
-    keyword arguments, use the decorator magic_kwargs.
-    :rtype: object
+To give your own functions the ability to turn positional argments into
+keyword arguments, use the decorator magic_kwargs.
+:rtype: object
 
-    """
+"""
 
         result = sorcery.dict_of.at(frame_info)(*args, **kwargs)
         return NamedOrderedDictionary(result)
@@ -198,12 +198,12 @@ class NamedOrderedDictionary(Mapping):
 
     def update(self, *args: Any, **kwargs: Any) -> None:
         """
-    Merge two attributes, overriding any repeated keys from
-    the `items` parameter.
+Merge two attributes, overriding any repeated keys from
+the `items` parameter.
 
-    Args:
-        items (dict): Python dictionary containing updated values.
-    """
+Args:
+    items (dict): Python dictionary containing updated values.
+"""
 
         if len(args) == 1 and isinstance(args[0], dict):
             args_dict = args[0]

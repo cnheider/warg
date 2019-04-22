@@ -28,7 +28,8 @@ def test_integration_success():
 
     with PooledQueueProcessor(task, [2], fill_at_construction=True, max_queue_size=10) as processor:
         for a, _ in zip(processor, range(30)):
-            print(a)
+            pass
+            # print(a)
 
 
 @pytest.mark.slow
@@ -37,7 +38,8 @@ def test_integration_func():
 
     with PooledQueueProcessor(task, [2], max_queue_size=10) as processor:
         for a, _ in zip(processor, range(30)):
-            print(a)
+            pass
+            # print(a)
 
 
 def test_lambda_func():
@@ -45,7 +47,8 @@ def test_lambda_func():
 
     with PooledQueueProcessor(task, [2], max_queue_size=10) as processor:
         for a, _ in zip(processor, range(30)):
-            print(a)
+            pass
+            # print(a)
 
 
 def test_integration_except():
@@ -55,7 +58,8 @@ def test_integration_except():
         task()  # TODO: MP does not work in pytest
         processor = PooledQueueProcessor(task, [2], max_queue_size=10, blocking=True)
         for a, _ in zip(processor, range(30)):
-            print(a)
+            pass
+            # print(a)
 
     assert exc_info.type is NotImplementedError
 
@@ -68,7 +72,8 @@ def test_integration_except_ctx():
         task()  # TODO: MP does not work in pytest
         with PooledQueueProcessor(task, [2], max_queue_size=10) as processor:
             for a, _ in zip(processor, range(30)):
-                print(a)
+                pass
+                # print(a)
 
     assert exc_info.type is NotImplementedError
 
