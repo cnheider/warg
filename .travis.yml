@@ -1,5 +1,10 @@
 dist: xenial
 language: python
+addons:
+  apt:
+    packages:
+      - libdbus-1-dev
+
 python:
   - '3.6'
 #  - '3.7'
@@ -7,6 +12,7 @@ python:
 install:
   - pip install -r requirements_dev.txt
   - pip install -e .
+  - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then travis_retry pip install dbus-python; fi
 #  - pip install -r requirements.txt
 script:
   - pytest --cov=warg
