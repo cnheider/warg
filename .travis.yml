@@ -3,6 +3,7 @@ language: python
 addons:
   apt:
     packages:
+      - python3-dbus
       - python3-gi
       - libdbus-1-dev
 
