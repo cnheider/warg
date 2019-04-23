@@ -1,9 +1,10 @@
 from functools import partial, wraps
 from inspect import signature
-from typing import Callable, Mapping, Iterable
+from typing import Callable, Iterable, Mapping
+
+from sorcery import dict_of
 
 from warg import NamedOrderedDictionary
-from sorcery import dict_of
 
 
 def dict_of_func(func: callable = None) -> callable:

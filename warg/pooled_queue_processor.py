@@ -3,8 +3,8 @@
 import multiprocessing
 import pickle
 import time
-from abc import abstractmethod, ABC
-from typing import Iterable, Mapping, Any
+from abc import ABC, abstractmethod
+from typing import Any, Iterable, Mapping
 
 from cloudpickle import cloudpickle
 
@@ -16,9 +16,9 @@ import queue
 
 class CloudPickleBase(object):
     """
-    Uses cloudpickle to serialize contents (otherwise multiprocessing tries to use pickle)
-  :param x: (Any) the variable you wish to wrap for pickling with cloudpickle
-  """
+  Uses cloudpickle to serialize contents (otherwise multiprocessing tries to use pickle)
+:param x: (Any) the variable you wish to wrap for pickling with cloudpickle
+"""
 
     def __init__(self, x: Any):
         self._x = x
@@ -44,10 +44,10 @@ class PooledQueueTask(ABC):
 
 class PooledQueueProcessor(object):
     """
-    This is a workaround of Pythons extremely slow interprocess communication pipes.
-    The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
-    limited.
-    This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
+  This is a workaround of Pythons extremely slow interprocess communication pipes.
+  The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
+  limited.
+  This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
 """
 
     def __init__(
@@ -113,8 +113,8 @@ class PooledQueueProcessor(object):
     def get(self):
         """
 
-  :return:
-  """
+:return:
+"""
         if self.queue_size < 1:  # self._queue.empty():
             if len(multiprocessing.active_children()) == 0:
                 if self.blocking:
