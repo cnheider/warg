@@ -3,5 +3,5 @@ six==1.12.0
 sorcery==0.1.0
 pytest==4.4.1
 cloudpickle==0.8.1
-dbus-python
+#dbus-python
 
