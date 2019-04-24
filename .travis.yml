@@ -1,11 +1,11 @@
 dist: xenial
 language: python
-addons:
-  apt:
-    packages:
+#addons:
+#  apt:
+#    packages:
       #- python3-dbus
       #- python3-gi
-      - libdbus-1-dev
+      #- libdbus-1-dev
 
 python:
   - '3.6'
