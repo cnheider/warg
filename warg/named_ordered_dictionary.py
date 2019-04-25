@@ -110,8 +110,11 @@ Usage:
     def as_dict(self):
         return self.__dict__
 
-    def as_tuple(self):
-        return tuple(self.as_list())
+    def as_tuples(self):
+        return [(k, v) for (k, v) in self.__dict__.items()]
+
+    def as_flat_tuples(self):
+        return [(k, *v) for (k, v) in self.__dict__.items()]
 
     def add_unnamed_arg(self, arg):
         self.__dict__[f"arg{id(arg)}"] = arg
