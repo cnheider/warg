@@ -65,22 +65,22 @@ Usage:
 
     .. code-block:: python
         nodict = NamedOrderedDictionary()
-        nodict.update({'paramA': 20, 'paramB': 'otherparam', 'paramC': 5.0})
+        nodict.update({'paramA': 20, 'paramB': 'other_param', 'paramC': 5.0})
         assert nodict.paramA == 20
-        assert nodict.paramB == 'otherparam'
+        assert nodict.paramB == 'other_param'
 
     .. code-block:: python
 
         nodict = NamedOrderedDictionary('str_parameter', 10)
-        nodict.update({'arg1': 20, 'arg0': 'otherparam'})
-        assert nodict.arg0 == 'otherparam'
+        nodict.update({'arg1': 20, 'arg0': 'other_param'})
+        assert nodict.arg0 == 'other_param'
         assert nodict.arg1 == 20
 
     .. code-block:: python
 
         nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
-        nodict.update(20,'otherparam')
-        assert nodict.paramB == 'otherparam'
+        nodict.update(20,'other_param')
+        assert nodict.paramB == 'other_param'
         assert nodict.paramA == 20
 
 """
@@ -271,46 +271,46 @@ if __name__ == "__main__":
     assert nodict.paramB == 10
 
     nodict = NamedOrderedDictionary()
-    nodict.update({"paramA": 20, "paramB": "otherparam", "paramC": 5.0})
+    nodict.update({"paramA": 20, "paramB": "other_param", "paramC": 5.0})
     nodict.paramA = 10
     assert nodict.paramA == 10
-    assert nodict.paramB == "otherparam"
+    assert nodict.paramB == "other_param"
 
     nodict = NamedOrderedDictionary()
     nodict["paramA"] = 10
     assert nodict.paramA == 10
 
-    vals = [1, 3, 5]
-    nodict = NamedOrderedDictionary(10, val2=2, *vals)
+    values = [1, 3, 5]
+    nodict = NamedOrderedDictionary(10, val2=2, *values)
     nolist = nodict.as_list()
     assert nolist[0] == 10
     assert nodict.val2 == 2
-    assert nolist[-2] == vals[-1]
+    assert nolist[-2] == values[-1]
 
     nodict = NamedOrderedDictionary("str_parameter", 10)
     odict = {**nodict}
     assert nodict.as_list()[0] == list(odict.values())[0]
 
     nodict = NamedOrderedDictionary("str_parameter", 10)
-    nodict.update(arg1=20, arg0="otherparam")
-    assert nodict.arg0 == "otherparam"
+    nodict.update(arg1=20, arg0="other_param")
+    assert nodict.arg0 == "other_param"
     assert nodict.arg1 == 20
 
     nodict = NamedOrderedDictionary("str_parameter", 10)
-    nodict.update({"arg1": 20, "arg0": "otherparam"})
-    assert nodict.arg0 == "otherparam"
+    nodict.update({"arg1": 20, "arg0": "other_param"})
+    assert nodict.arg0 == "other_param"
     assert nodict.arg1 == 20
 
     nodict = NamedOrderedDictionary(paramA="str_parameter", paramB=10)
-    nodict.update(20, "otherparam")
-    assert nodict.paramB == "otherparam"
+    nodict.update(20, "other_param")
+    assert nodict.paramB == "other_param"
     assert nodict.paramA == 20
-    assert nodict.get("paramC") == None
+    assert nodict.get("paramC") is None
 
     nodict = NamedOrderedDictionary(paramC="str_parameter", **nodict)
-    assert nodict.paramB == "otherparam"
+    assert nodict.paramB == "other_param"
     assert nodict.paramA == 20
-    assert nodict.get("paramC") != None
+    assert nodict.get("paramC") is not None
 
     arg0, arg1 = NamedOrderedDictionary("str_parameter", 10).as_list()
     assert arg0 == "str_parameter"

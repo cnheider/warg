@@ -23,10 +23,10 @@ def test_dict_arg_construction():
 
 def test_update_and_set_attr_update():
     nodict = NamedOrderedDictionary()
-    nodict.update({"paramA": 20, "paramB": "otherparam", "paramC": 5.0})
+    nodict.update({"paramA": 20, "paramB": "other_param", "paramC": 5.0})
     nodict.paramA = 10
     assert nodict.paramA == 10
-    assert nodict.paramB == "otherparam"
+    assert nodict.paramB == "other_param"
 
 
 def test_set_item_update():
@@ -52,33 +52,33 @@ def test_kv_unmap():
 
 def test_update_attr_with_kwargs():
     nodict = NamedOrderedDictionary("str_parameter", 10)
-    nodict.update(arg1=20, arg0="otherparam")
-    assert nodict.arg0 == "otherparam"
+    nodict.update(arg1=20, arg0="other_param")
+    assert nodict.arg0 == "other_param"
     assert nodict.arg1 == 20
 
 
 def test_update_attr_with_dict_arg():
     nodict = NamedOrderedDictionary("str_parameter", 10)
-    nodict.update({"arg1": 20, "arg0": "otherparam"})
-    assert nodict.arg0 == "otherparam"
+    nodict.update({"arg1": 20, "arg0": "other_param"})
+    assert nodict.arg0 == "other_param"
     assert nodict.arg1 == 20
 
 
 def test_no_existing_attr():
     nodict = NamedOrderedDictionary(paramA="str_parameter", paramB=10)
-    nodict.update(20, "otherparam")
-    assert nodict.paramB == "otherparam"
+    nodict.update(20, "other_param")
+    assert nodict.paramB == "other_param"
     assert nodict.paramA == 20
-    assert nodict.get("paramC") == None
+    assert nodict.get("paramC") is None
 
 
 def test_existing_map_unpacking():
     nodict = NamedOrderedDictionary(paramA="str_parameter", paramB=10)
-    nodict.update(20, "otherparam")
+    nodict.update(20, "other_param")
     nodict = NamedOrderedDictionary(paramC="str_parameter", **nodict)
-    assert nodict.paramB == "otherparam"
+    assert nodict.paramB == "other_param"
     assert nodict.paramA == 20
-    assert nodict.get("paramC") != None
+    assert nodict.get("paramC") is not None
 
 
 def test_as_list():

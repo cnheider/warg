@@ -14,3 +14,14 @@ This package is a selection of generalised  small utilities classes for many use
 
 - A class for executing any 'heavy' function asynchronously storing any results in a bounded queue. 
 Note: communication and organisation is costly, intended for heavy processing functions and general queuing.
+
+- A class for displaying GTK toasts (Notifications, Dialogs...)
+
+- A set of utility functions for parsing/sanitising python config files, and presenting attributes using common python conventions and practices.
+
+# Disclaimer
+Use warg with caution, some features might break as python naturally evolves.
+Warg uses some advanced feature of python and sometimes abuses notation/syntax, with some pretty hard assumptions on input and interaction.
+___
+> With great power comes great responsibility
+___
