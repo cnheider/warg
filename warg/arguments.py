@@ -7,6 +7,19 @@ from warnings import warn
 __author__ = "cnheider"
 
 
+class UpperAttrMetaclass(type):
+    def __new__(cls, clsname, bases, dct):
+
+        uppercase_attr = {}
+        for name, val in dct.items():
+            if not name.startswith("__"):
+                uppercase_attr[name.upper()] = val
+            else:
+                uppercase_attr[name] = val
+
+        return super(UpperAttrMetaclass, cls).__new__(cls, clsname, bases, uppercase_attr)
+
+
 class ConfigObject(object):
     pass
 
@@ -125,7 +138,7 @@ def add_bool_arg(parser, name, *, dest=None, default=False, **kwargs):
     parser.set_defaults(**{dest: default})
 
 
-def __check_for_duplicates_in_args(**kwargs) -> None:
+def check_for_duplicates_in_args(**kwargs) -> None:
     for key, value in kwargs.items():
 
         occur = 0
