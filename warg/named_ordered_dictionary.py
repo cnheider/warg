@@ -32,66 +32,66 @@ class NamedOrderedDictionary(Mapping):
 
 Usage:
 
-  .. code-block:: python
+.. code-block:: python
 
-      nodict = NamedOrderedDictionary()
-      nodict.paramA = 'str_parameter'
-      nodict.paramB = 10
-      assert nodict.paramA == 'str_parameter'
-      assert nodict.paramB == 10
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = 'str_parameter'
+    nodict.paramB = 10
+    assert nodict.paramA == 'str_parameter'
+    assert nodict.paramB == 10
 
 
-  .. code-block:: python
+.. code-block:: python
 
-      nodict = NamedOrderedDictionary()
-      nodict['paramA'] = 10
-      assert nodict.paramA == 10
+    nodict = NamedOrderedDictionary()
+    nodict['paramA'] = 10
+    assert nodict.paramA == 10
 
-  .. code-block:: python
+.. code-block:: python
 
-      nodict = NamedOrderedDictionary({'paramA': 'str_parameter', 'paramB': 10})
-      assert nodict.paramA == 'str_parameter'
-      assert nodict.paramB == 10
+    nodict = NamedOrderedDictionary({'paramA': 'str_parameter', 'paramB': 10})
+    assert nodict.paramA == 'str_parameter'
+    assert nodict.paramB == 10
 
-  .. code-block:: python
+.. code-block:: python
 
-      nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
-      assert nodict.paramA == 'str_parameter'
-      assert nodict.paramB == 10
+    nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
+    assert nodict.paramA == 'str_parameter'
+    assert nodict.paramB == 10
 
-  .. code-block:: python
+.. code-block:: python
 
-      nodict = NamedOrderedDictionary('str_parameter', 10)
-      assert nodict.arg0 == 'str_parameter'
-      assert nodict.arg1 == 10
+    nodict = NamedOrderedDictionary('str_parameter', 10)
+    assert nodict.arg0 == 'str_parameter'
+    assert nodict.arg1 == 10
 
-  .. code-block:: python
+.. code-block:: python
 
-      arg0,arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
-      assert arg0 == 'str_parameter'
-      assert arg1 == 10
+    arg0,arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
+    assert arg0 == 'str_parameter'
+    assert arg1 == 10
 
-  As with dictionaries you can use the `update()` method.
+As with dictionaries you can use the `update()` method.
 
-  .. code-block:: python
-      nodict = NamedOrderedDictionary()
-      nodict.update({'paramA': 20, 'paramB': 'other_param', 'paramC': 5.0})
-      assert nodict.paramA == 20
-      assert nodict.paramB == 'other_param'
+.. code-block:: python
+    nodict = NamedOrderedDictionary()
+    nodict.update({'paramA': 20, 'paramB': 'other_param', 'paramC': 5.0})
+    assert nodict.paramA == 20
+    assert nodict.paramB == 'other_param'
 
-  .. code-block:: python
+.. code-block:: python
 
-      nodict = NamedOrderedDictionary('str_parameter', 10)
-      nodict.update({'arg1': 20, 'arg0': 'other_param'})
-      assert nodict.arg0 == 'other_param'
-      assert nodict.arg1 == 20
+    nodict = NamedOrderedDictionary('str_parameter', 10)
+    nodict.update({'arg1': 20, 'arg0': 'other_param'})
+    assert nodict.arg0 == 'other_param'
+    assert nodict.arg1 == 20
 
-  .. code-block:: python
+.. code-block:: python
 
-      nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
-      nodict.update(20,'other_param')
-      assert nodict.paramB == 'other_param'
-      assert nodict.paramA == 20
+    nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
+    nodict.update(20,'other_param')
+    assert nodict.paramB == 'other_param'
+    assert nodict.paramA == 20
 
 """
 
@@ -130,7 +130,7 @@ Usage:
         self.__dict__[f"arg{id(arg)}"] = arg
 
     @sorcery.spell
-    def dict_of(frame_info, *args: Any, **kwargs: Any) -> Any:
+    def dict_of(frame_info, *args, **kwargs):
         """
 Instead of:
 
@@ -142,9 +142,9 @@ dict(foo=foo, bar=bar, spam=thing())
 
 write:
 
-dict_of(foo, bar, spam=thing())
+NOD.dict_of(foo, bar, spam=thing())
 
-In other words, returns a dictionary with an item for each argument,
+In other words, returns a NamedOrderedDictionary with an item for each argument,
 where positional arguments use their names as keys,
 and keyword arguments do the same as in the usual dict constructor.
 
@@ -156,16 +156,14 @@ The positional arguments can be any of:
 
 So the following:
 
-dict_of(spam, x.foo, y['bar'])
+NOD.dict_of(spam, x.foo, y['bar'])
 
 is equivalent to:
 
-dict(spam=spam, foo=x.foo, bar=y['bar'])
+NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
 *args are not allowed.
 
-To give your own functions the ability to turn positional argments into
-keyword arguments, use the decorator magic_kwargs.
 :rtype: object
 
 """
