@@ -6,17 +6,9 @@ __doc__ = ""
 from warg import app_path
 
 _app_name = "MyApp"
-_app_author = "MyCompany"
+_app_author = __author__
 
-props = (
-    "user_data_dir",
-    "user_config_dir",
-    "user_cache_dir",
-    "user_state_dir",
-    "user_log_dir",
-    "site_data_dir",
-    "site_config_dir",
-)
+props = ("user_data", "user_config", "user_cache", "user_state", "user_log", "site_data", "site_config")
 
 
 def test_all():

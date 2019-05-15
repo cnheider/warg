@@ -442,7 +442,7 @@ class AppPath(object):
 
 if __name__ == "__main__":
     _app_name = "MyApp"
-    _app_author = "MyCompany"
+    _app_author = __author__
 
     props = ("user_data", "user_config", "user_cache", "user_state", "user_log", "site_data", "site_config")
 
