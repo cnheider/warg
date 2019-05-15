@@ -3,7 +3,7 @@
 
 __author__ = "cnheider"
 __doc__ = ""
-import app_path
+from warg import app_path
 
 _app_name = "MyApp"
 _app_author = "MyCompany"
