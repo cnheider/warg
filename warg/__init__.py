@@ -12,3 +12,4 @@ Created on 27/04/2019
 
 from .named_ordered_dictionary import *
 from .arguments import *
+from .app_path import AppPath
