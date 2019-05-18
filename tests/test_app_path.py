@@ -13,7 +13,7 @@ props = ("user_data", "user_config", "user_cache", "user_state", "user_log", "si
 
 def test_all():
     print("-- app dirs (with optional 'version')")
-    dirs = app_path.AppPath(_app_name, _app_author, version="1.0")
+    dirs = app_path.AppPath(_app_name, _app_author, app_version="1.0")
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
 
