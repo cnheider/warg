@@ -13,27 +13,27 @@ props = ("user_data", "user_config", "user_cache", "user_state", "user_log", "si
 
 def test_all():
     print("-- app dirs (with optional 'version')")
-    dirs = app_path.AppPath(_app_name, _app_author, app_version="1.0")
+    dirs = app_path.AppPath(_app_name, _app_author, app_version="1.0", ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
 
 
 def test_no_ver():
     print("\n-- app dirs (without optional 'version')")
-    dirs = app_path.AppPath(_app_name, _app_author)
+    dirs = app_path.AppPath(_app_name, _app_author, ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
 
 
 def test_author():
     print("\n-- app dirs (without optional '_app_author')")
-    dirs = app_path.AppPath(_app_name)
+    dirs = app_path.AppPath(_app_name, ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
 
 
 def test_no_author():
     print("\n-- app dirs (with disabled '_app_author')")
-    dirs = app_path.AppPath(_app_name, app_author=False)
+    dirs = app_path.AppPath(_app_name, app_author=False, ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))

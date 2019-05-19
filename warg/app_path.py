@@ -37,7 +37,7 @@ AppPath class for easing cross platform access to proper app data directories
                 out.mkdir(parents=True)
 
     @property
-    def user_data(self):
+    def user_data(self) -> pathlib.Path:
         out = self.user_data_path(
             self._app_name, self._app_author, version=self._app_version, roaming=self._roaming
         )
@@ -46,7 +46,7 @@ AppPath class for easing cross platform access to proper app data directories
         return out
 
     @property
-    def site_data(self):
+    def site_data(self) -> pathlib.Path:
         out = self.site_data_path(
             self._app_name, self._app_author, version=self._app_version, multi_path=self._multi_path
         )
@@ -56,7 +56,7 @@ AppPath class for easing cross platform access to proper app data directories
         return out
 
     @property
-    def user_config(self):
+    def user_config(self) -> pathlib.Path:
         out = self.user_config_path(
             self._app_name, self._app_author, version=self._app_version, roaming=self._roaming
         )
@@ -64,7 +64,7 @@ AppPath class for easing cross platform access to proper app data directories
         return out
 
     @property
-    def site_config(self):
+    def site_config(self) -> pathlib.Path:
         out = self.site_config_path(
             self._app_name, self._app_author, version=self._app_version, multi_path=self._multi_path
         )
@@ -72,25 +72,25 @@ AppPath class for easing cross platform access to proper app data directories
         return out
 
     @property
-    def user_cache(self):
+    def user_cache(self) -> pathlib.Path:
         out = self.user_cache_path(self._app_name, self._app_author, version=self._app_version)
         self.ensure_existence(self._ensure_existence, out)
         return out
 
     @property
-    def user_state(self):
+    def user_state(self) -> pathlib.Path:
         out = self.user_state_path(self._app_name, self._app_author, version=self._app_version)
         self.ensure_existence(self._ensure_existence, out)
         return out
 
     @property
-    def user_log(self):
+    def user_log(self) -> pathlib.Path:
         out = self.user_log_path(self._app_name, self._app_author, version=self._app_version)
         self.ensure_existence(self._ensure_existence, out)
         return out
 
     @staticmethod
-    def user_data_path(app_name=None, app_author=None, version=None, roaming=False):
+    def user_data_path(app_name=None, app_author=None, version=None, roaming=False) -> pathlib.Path:
         r"""Return full path to the user-specific data dir for this application.
 
     "app_name" is the name of application.
@@ -154,7 +154,7 @@ That means, by default "~/.local/share/<AppName>".
         return path
 
     @staticmethod
-    def site_data_path(app_name=None, app_author=None, version=None, multi_path=False):
+    def site_data_path(app_name=None, app_author=None, version=None, multi_path=False) -> pathlib.Path:
         r"""Return full path to the user-shared data dir for this application.
 
     "app_name" is the name of application.
@@ -221,7 +221,7 @@ WARNING: Do not use this on Windows. See the Vista-Fail note above for why.
         return path
 
     @staticmethod
-    def user_config_path(app_name=None, app_author=None, version=None, roaming=False):
+    def user_config_path(app_name=None, app_author=None, version=None, roaming=False) -> pathlib.Path:
         r"""Return full path to the user-specific config dir for this application.
 
     "app_name" is the name of application.
@@ -265,7 +265,7 @@ That means, by default "~/.config/<AppName>".
         return path
 
     @staticmethod
-    def site_config_path(app_name=None, app_author=None, version=None, multi_path=False):
+    def site_config_path(app_name=None, app_author=None, version=None, multi_path=False) -> pathlib.Path:
         r"""Return full path to the user-shared data dir for this application.
 
     "app_name" is the name of application.
@@ -322,7 +322,7 @@ WARNING: Do not use this on Windows. See the Vista-Fail note above for why.
         return path
 
     @staticmethod
-    def user_cache_path(app_name=None, app_author=None, version=None, opinion=True):
+    def user_cache_path(app_name=None, app_author=None, version=None, opinion=True) -> pathlib.Path:
         r"""Return full path to the user-specific cache dir for this application.
 
     "appname" is the name of application.
@@ -380,7 +380,7 @@ This can be disabled with the `opinion=False` option.
         return path
 
     @staticmethod
-    def user_state_path(app_name=None, app_author=None, version=None, roaming=False):
+    def user_state_path(app_name=None, app_author=None, version=None, roaming=False) -> pathlib.Path:
         r"""Return full path to the user-specific state dir for this application.
 
     "app_name" is the name of application.
@@ -422,7 +422,7 @@ That means, by default "~/.local/state/<AppName>".
         return path
 
     @staticmethod
-    def user_log_path(app_name=None, app_author=None, version=None, opinion=True):
+    def user_log_path(app_name=None, app_author=None, version=None, opinion=True) -> pathlib.Path:
         r"""Return full path to the user-specific log dir for this application.
 
     "app_name" is the name of application.
@@ -478,24 +478,22 @@ if __name__ == "__main__":
 
     props = ("user_data", "user_config", "user_cache", "user_state", "user_log", "site_data", "site_config")
 
-    print("-- app dirs %s --" % __version__)
-
     print("-- app dirs (with optional 'version')")
-    dirs = AppPath(_app_name, _app_author, app_version="1.0")
+    dirs = AppPath(_app_name, _app_author, app_version="1.0", ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
 
     print("\n-- app dirs (without optional 'version')")
-    dirs = AppPath(_app_name, _app_author)
+    dirs = AppPath(_app_name, _app_author, ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
 
     print("\n-- app dirs (without optional '_app_author')")
-    dirs = AppPath(_app_name)
+    dirs = AppPath(_app_name, ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
 
     print("\n-- app dirs (with disabled '_app_author')")
-    dirs = AppPath(_app_name, app_author=False)
+    dirs = AppPath(_app_name, app_author=False, ensure_existence=False)
     for prop in props:
         print("%s: %s" % (prop, getattr(dirs, prop)))
