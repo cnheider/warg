@@ -5,7 +5,7 @@ import os
 from warnings import warn
 
 __author__ = "cnheider"
-__version__ = "0.1.6"
+__version__ = "0.1.8"
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 __doc__ = """
 Created on 27/04/2019
