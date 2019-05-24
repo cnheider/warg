@@ -25,7 +25,7 @@ class WargPackage:
 
     @property
     def url(self) -> str:
-        return "https://github.com/cnheider/warg"
+        return "https://github.com/aivclab/warg"
 
     @property
     def download_url(self):
