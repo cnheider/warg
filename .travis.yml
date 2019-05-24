@@ -1,31 +1,20 @@
 dist: xenial
 language: python
-#addons:
-#  apt:
-#    packages:
-      #- python3-dbus
-      #- python3-gi
-      #- libdbus-1-dev
-
 python:
-  - '3.6'
-#  - '3.7'
-#  - '3.8'
+- '3.6'
 install:
-  - pip install -r requirements.txt
-  - pip install -r requirements_dev.txt
-  - pip install -e .
-#  - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then travis_retry pip install dbus-python; fi
+- pip install -r requirements.txt
+- pip install -r requirements_dev.txt
+- pip install -e .
 script:
-  - pytest --cov=warg --ignore=tests/test_toaster.py
-  - coveralls
-  - black --check warg
-
+- pytest --cov=warg --ignore=tests/test_toaster.py
+- coveralls
+- black --check warg
 deploy:
   provider: pypi
-  user: ""
-  password: #travis encrypt your-password-here --add deploy.password
-    secure: "Your encrypted password"
+  user: cnheider
+  password:
+    secure: S8v+Mdr10+sPIPIFl546s0ebiuIDakqS3xtDMsMp02Jx8e6ONOGYtVaDAXgCYtLLebW1Xj+XWOv0KpqOi9uo5e6Na/FCmcFOlq7sEsPiDoi+bJLGFcTEVbbXY9fFAl2Q+N5Xka7USldzE9q6A0cjvX4a3eqGXvDkFb4LQWmnFtrNuXsxzCMYvxeYiAI4DX0tn9AU9UZiY5x7T3d08jandt/fzWjTumhQSYc6DVQSxGTcrl+avTYHBuIpX70a4wvMaKexJffqYL5I0k4WQBziKHc8sahR7GiKQYRQ/bD4ni0OdbbT51dEFL4n/mx6E4PVxguL/PbPMYRvQNPOBMQcBDtPstx2fi881C/nlCMHUMYV6U2pz9r4JK/ge6fczcpAN2AIGf4CLwAO8J8Mtuabo7sYyrzJN2SU6YBIUOPhG3OR0rCsiT7h8AMVG2PYA+2vEGz9hv4mSCVM5fDfFR6abdWVBqaHXeQ8GwOZ/000jGmjcUJm5t+qeew+tYMsErtIA/vyE84xIR23XaYj9Wy+fkQq2qRlpyo4wStCgs2Vj18GICiXUlUIdZMwkXl+nFPhNW/NDRM5nLiSsLUSHlVdEIugcgwnBB488pr5Gz0JV9L2aVRClcefscwYW1GO0CLIO8xHC0ZrCYi/deIfUur+PU2WDOsJby4rcqZRiscI0DU=
   on:
     tags: true
   #server: https://mypackageindex.com/index
