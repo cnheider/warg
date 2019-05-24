@@ -4,7 +4,7 @@ from typing import Callable, Iterable, Mapping
 
 from sorcery import dict_of
 
-from warg import NamedOrderedDictionary
+from warg.named_ordered_dictionary import NOD
 
 
 def dict_of_func(func: callable = None) -> callable:
@@ -16,18 +16,18 @@ def dict_of_func(func: callable = None) -> callable:
     def wrapper(*args, **kwargs):
         if func.__name__ is not "__init__":
             return_value = func(*args, **kwargs)
-            if isinstance(return_value, NamedOrderedDictionary):
+            if isinstance(return_value, NOD):
                 return return_value
             elif isinstance(return_value, Mapping):
-                return NamedOrderedDictionary(**return_value)
+                return NOD(**return_value)
             elif isinstance(return_value, Iterable):
-                return NamedOrderedDictionary(*return_value)
-            return NamedOrderedDictionary(return_value)
+                return NOD(*return_value)
+            return NOD(return_value)
         else:
             return func(*args, **kwargs)
 
     sig = signature(func)
-    sig = sig.replace(return_annotation=NamedOrderedDictionary)
+    sig = sig.replace(return_annotation=NOD)
     func.__signature__ = sig
     wrapper.__signature__ = sig
 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     class NodReturnExampleClass(AutoNodReturns):
         def cool(self, agkjas):
             slfs = 4 + agkjas
-            return NamedOrderedDictionary(4, **dict_of(slfs))
+            return NOD(4, **dict_of(slfs))
 
         def hot(self):
             s = 7

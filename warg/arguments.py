@@ -4,6 +4,8 @@ import argparse
 from pathlib import Path, PosixPath
 from warnings import warn
 
+import wrapt
+
 __author__ = "cnheider"
 
 
@@ -163,3 +165,12 @@ def check_for_duplicates_in_args(**kwargs) -> None:
 
         if occur > 1:
             warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
+
+
+def namedtuple_args(n_tuple):
+    @wrapt.decorator(adapter=n_tuple)
+    def wrapper(wrapped, instance, args, kwargs):
+        n = n_tuple(*args, **kwargs)
+        return wrapped(n)
+
+    return wrapper

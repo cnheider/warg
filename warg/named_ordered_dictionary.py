@@ -34,64 +34,64 @@ Usage:
 
 .. code-block:: python
 
-    nodict = NamedOrderedDictionary()
-    nodict.paramA = 'str_parameter'
-    nodict.paramB = 10
-    assert nodict.paramA == 'str_parameter'
-    assert nodict.paramB == 10
+  nodict = NamedOrderedDictionary()
+  nodict.paramA = 'str_parameter'
+  nodict.paramB = 10
+  assert nodict.paramA == 'str_parameter'
+  assert nodict.paramB == 10
 
 
 .. code-block:: python
 
-    nodict = NamedOrderedDictionary()
-    nodict['paramA'] = 10
-    assert nodict.paramA == 10
+  nodict = NamedOrderedDictionary()
+  nodict['paramA'] = 10
+  assert nodict.paramA == 10
 
 .. code-block:: python
 
-    nodict = NamedOrderedDictionary({'paramA': 'str_parameter', 'paramB': 10})
-    assert nodict.paramA == 'str_parameter'
-    assert nodict.paramB == 10
+  nodict = NamedOrderedDictionary({'paramA': 'str_parameter', 'paramB': 10})
+  assert nodict.paramA == 'str_parameter'
+  assert nodict.paramB == 10
 
 .. code-block:: python
 
-    nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
-    assert nodict.paramA == 'str_parameter'
-    assert nodict.paramB == 10
+  nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
+  assert nodict.paramA == 'str_parameter'
+  assert nodict.paramB == 10
 
 .. code-block:: python
 
-    nodict = NamedOrderedDictionary('str_parameter', 10)
-    assert nodict.arg0 == 'str_parameter'
-    assert nodict.arg1 == 10
+  nodict = NamedOrderedDictionary('str_parameter', 10)
+  assert nodict.arg0 == 'str_parameter'
+  assert nodict.arg1 == 10
 
 .. code-block:: python
 
-    arg0,arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
-    assert arg0 == 'str_parameter'
-    assert arg1 == 10
+  arg0,arg1 = NamedOrderedDictionary('str_parameter', 10).as_list()
+  assert arg0 == 'str_parameter'
+  assert arg1 == 10
 
 As with dictionaries you can use the `update()` method.
 
 .. code-block:: python
-    nodict = NamedOrderedDictionary()
-    nodict.update({'paramA': 20, 'paramB': 'other_param', 'paramC': 5.0})
-    assert nodict.paramA == 20
-    assert nodict.paramB == 'other_param'
+  nodict = NamedOrderedDictionary()
+  nodict.update({'paramA': 20, 'paramB': 'other_param', 'paramC': 5.0})
+  assert nodict.paramA == 20
+  assert nodict.paramB == 'other_param'
 
 .. code-block:: python
 
-    nodict = NamedOrderedDictionary('str_parameter', 10)
-    nodict.update({'arg1': 20, 'arg0': 'other_param'})
-    assert nodict.arg0 == 'other_param'
-    assert nodict.arg1 == 20
+  nodict = NamedOrderedDictionary('str_parameter', 10)
+  nodict.update({'arg1': 20, 'arg0': 'other_param'})
+  assert nodict.arg0 == 'other_param'
+  assert nodict.arg1 == 20
 
 .. code-block:: python
 
-    nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
-    nodict.update(20,'other_param')
-    assert nodict.paramB == 'other_param'
-    assert nodict.paramA == 20
+  nodict = NamedOrderedDictionary(paramA='str_parameter', paramB=10)
+  nodict.update(20,'other_param')
+  assert nodict.paramB == 'other_param'
+  assert nodict.paramA == 20
 
 """
 
