@@ -21,3 +21,15 @@ script:
   - coveralls
   - black --check warg
 
+deploy:
+  provider: pypi
+  user: ""
+  password: #travis encrypt your-password-here --add deploy.password
+    secure: "Your encrypted password"
+  on:
+    tags: true
+  #server: https://mypackageindex.com/index
+  #skip_existing: true
+  #skip_cleanup: true
+#after_deploy:
+#  - ./after_deploy_1.sh

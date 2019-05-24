@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from warg import NamedOrderedDictionary, IllegalAttributeKey
+from warg.named_ordered_dictionary import NOD, IllegalAttributeKey
 
 __author__ = "cnheider"
 
