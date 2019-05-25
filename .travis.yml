@@ -13,8 +13,7 @@ script:
 deploy:
   provider: pypi
   user: aivclab
-  password:
-    secure: Q2Iuzn4/ur7VccVM7sr/YKIWO6ntF03evxL1s05XHqic3p14e0THSsoCMzQeCVLo23DNurmLHqHbiYT5w86ytpN0k1ItwvmCaf/MiN2QF/sqFv+QIBA+LB62rYDCW9kpBtZy3eW1bv+qlqtuyBPbjCwkmpTlteV5r9ysHDBbzVRYFXvm7jgFqmeyQNXkkMCg4uJzgRTn7zwyf/MGaTnaO8z+ueDVI3/G3YHzo+GwhkYuNl3H+HyWF06Sc1xzKGrCNzvIgWJCM3SPgxrrDRImPZMwnJEvOLRgaTCN80TX676b5Dnpe3k6Ke4qsZ5b+8/fbaNykWa2R5ifERPjv17/Ifo0r0a2LE0/VaztFgfv3K9EQeH1aXksw9D/FXmpwNPU4l3mcGRl7LjTBBp9obJaomt51i+QHh+zNtMjObK86zbVdZfMz3lf8pS8dzEbj0qtlcbibS+KCVxExJzw1b4LTEHgwOXxOc3IzuJGwixNow/q3FLkjO2eMJEQSm1sdruvv+H6qrdlvLuomOCvQGkKATr6Hjfcxia5eL9GL+TMMNB9F3JWh23Y2tZRQCypn55wfCsTbB6xQdrQgBhoEChjYyh6OmubIfqmXqUfED5Amm8JCfkqMOAZFHeReJAgMUERwskBr9g3ulE3rG6iKTzS6r7rNmlfGPqSS8lVBHqMarg=
+  password: te123st23
   on:
     tags: true
     branch: master
