@@ -106,7 +106,7 @@ def test_new_attr_on_existing():
 def test_addition_arithmetic():
     a = NOD(4, 2)
     b = a + a
-    assert a.as_list() == [8, 4]
+    assert b.as_list() == [8, 4]
 
 
 def test_illegal_overwrite():
@@ -114,3 +114,30 @@ def test_illegal_overwrite():
         NOD(update=2)
 
     assert exc_info.type is IllegalAttributeKey
+
+
+def test_slice_get():
+    a = NOD(4, 2)
+    b = a + a
+    assert b[:1] == [8]
+    assert b[-1:] == [4]
+
+
+def test_slice_get_adv():
+    a = NOD(4, 2)
+    b = a[:1] + a[0:]
+    assert b[:1] == [4]
+    assert b[-1:] == [2]
+
+
+def test_slice_set():
+    a = NOD(4, 2)
+    a[:1] = [8]
+    assert a.as_list() == [8, 2]
+
+
+def test_slice_all():
+    a = NOD(4, 2)
+    b = a + a + a
+    b[:1] = [8]
+    assert b.as_list() == [8, 6]

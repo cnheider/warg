@@ -187,10 +187,18 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
         self.__dict__[key] = value
 
     def __getitem__(self, item) -> Any:
+        if isinstance(item, slice):
+            keys = list(self.__dict__.keys())[item]
+            return [self.__dict__[a] for a in keys]
         return self.__dict__[item]
 
     def __setitem__(self, key, value):
-        self.__dict__[key] = value
+        if isinstance(key, slice):
+            keys = list(self.__dict__.keys())[key]
+            for a, v in zip(keys, value):
+                self.__dict__[a] = v
+        else:
+            self.__dict__[key] = value
 
     def keys(self):
         return self.__dict__.keys()
@@ -236,24 +244,28 @@ items (dict): Python dictionary containing updated values.
         self.__dict__.update(args_dict)
 
     def __add__(self, other):
+        cop = self.__dict__.copy()
         if isinstance(other, NamedOrderedDictionary):
             for k in other.keys():
-                if k in self.__dict__:
-                    self.__dict__[k] += other.__dict__[k]
+                if k in cop:
+                    cop[k] += other.__dict__[k]
                 else:
-                    self.__dict__[k] = other.__dict__[k]
+                    cop[k] = other.__dict__[k]
         elif isinstance(other, Iterable):
             for arg in other:
                 self.add_unnamed_arg(arg)
         else:
             self.add_unnamed_arg(other)
-        return self.__dict__
+        return NOD(cop)
 
     def __sub__(self, other):
+        cop = self.__dict__.copy()
         if isinstance(other, NamedOrderedDictionary):
+
             for k in other.keys():
-                if k in self.__dict__:
-                    self.__dict__[k] -= other.__dict__[k]
+                if k in cop:
+                    cop[k] -= other.__dict__[k]
+            return NOD(cop)
         else:
             raise ArithmeticError(f"Can not subtract {type(other)} from {type(self)}")
 
