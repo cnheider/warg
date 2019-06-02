@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
+from collections import namedtuple
 from pathlib import Path, PosixPath
 from warnings import warn
 
@@ -170,7 +171,34 @@ def check_for_duplicates_in_args(**kwargs) -> None:
 def namedtuple_args(n_tuple):
     @wrapt.decorator(adapter=n_tuple)
     def wrapper(wrapped, instance, args, kwargs):
-        n = n_tuple(*args, **kwargs)
+        if isinstance(args[0], n_tuple):
+            n = args[0]
+        else:
+            n = n_tuple(*args, **kwargs)
         return wrapped(n)
 
     return wrapper
+
+
+if __name__ == "__main__":
+
+    c = namedtuple("C", ("a", "b"))
+
+    @namedtuple_args(c)
+    def add(v):
+        return v.a + v.b
+
+    def add2(a, b):
+        return a + b
+
+    h = add(2, 2)
+    print(h)
+
+    j = add(c(1, 4))
+    print(j)
+
+    wq = add2(2, 4)
+    print(wq)
+
+    wc = add2(*c(4, 3))
+    print(wc)

@@ -23,7 +23,7 @@ LOCALS = (
 
 class IllegalAttributeKey(Exception):
     def __init__(self, key, type):
-        msg = f'Overwritting of attribute "{key}" on type "{type}" is not allowed'
+        msg = f'Overwriting of attribute "{key}" on type "{type}" is not allowed'
         Exception.__init__(self, msg)
 
 
@@ -203,6 +203,12 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
     def keys(self):
         return self.__dict__.keys()
 
+    def items(self):
+        return self.__dict__.items()
+
+    def values(self):
+        return self.__dict__.values()
+
     def __contains__(self, item):
         return item in self.__dict__
 
@@ -278,6 +284,12 @@ items (dict): Python dictionary containing updated values.
     def __floordiv__(self, other):
         return self.__truediv__(other)
 
+    def __setstate__(self, state):
+        self.__dict__ = state
+
+    def __getstate__(self):
+        return self.__dict__
+
 
 NOD = NamedOrderedDictionary
 
@@ -352,4 +364,4 @@ if __name__ == "__main__":
 
     a = NamedOrderedDictionary(4, 2)
     b = a + a
-    assert a.as_list() == [8, 4]
+    assert b.as_list() == [8, 4], b
