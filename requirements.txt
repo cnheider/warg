@@ -3,4 +3,4 @@ six==1.12.0
 sorcery==0.1.0
 pytest==4.6.2
 cloudpickle==1.1.1
-wrapt
+wrapt==1.11.1
