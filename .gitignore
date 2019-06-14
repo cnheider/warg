@@ -122,5 +122,7 @@ ENV/
 logs/*.csv
 
 build
-exclude/
+exclude
 
+pip-wheel-metadata
+.pytest_cache

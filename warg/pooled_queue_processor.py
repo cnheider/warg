@@ -160,13 +160,13 @@ if __name__ == "__main__":
     task = Square()
 
     processor = PooledQueueProcessor(task, [2], fill_at_construction=True, max_queue_size=100)
-    for a, _ in zip(processor, range(30)):
-        print(a)
+    for LATEST_GPU_STATS, _ in zip(processor, range(30)):
+        print(LATEST_GPU_STATS)
 
     processor.blocking = True
     processor.args = [4]
     time.sleep(3)
-    for a in processor:
-        print(a)
-        if a == 8:
+    for LATEST_GPU_STATS in processor:
+        print(LATEST_GPU_STATS)
+        if LATEST_GPU_STATS == 8:
             break

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import Mapping
-from typing import Any, Iterable, TypeVar
+from typing import Any, Iterable, Sized, TypeVar, KeysView
 
 import sorcery
 
@@ -186,16 +186,24 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
         self.__dict__[key] = value
 
-    def __getitem__(self, item) -> Any:
-        if isinstance(item, slice):
-            keys = list(self.__dict__.keys())[item]
+    def __getitem__(self, key) -> Any:
+        if isinstance(key, slice):
+            keys = list(self.__dict__.keys())[key]
             return [self.__dict__[a] for a in keys]
-        return self.__dict__[item]
+        elif isinstance(key, KeysView):
+            # assert set(self.__dict__.keys()).issuperset(key)
+            return [self.__dict__[a] for a in key]
+        return self.__dict__[key]
 
     def __setitem__(self, key, value):
         if isinstance(key, slice):
             keys = list(self.__dict__.keys())[key]
             for a, v in zip(keys, value):
+                self.__dict__[a] = v
+        elif isinstance(key, KeysView):
+            # assert set(self.__dict__.keys()).issuperset(key)
+            assert len(key) == len(value)
+            for a, v in zip(key, value):
                 self.__dict__[a] = v
         else:
             self.__dict__[key] = value
@@ -217,10 +225,12 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
             yield key, value
 
     def __repr__(self):
+        items = self.items()
         print_str = f"{self.__class__.__name__}("
-        for key, value in self:
-            print_str += f"'{key}': {value}, "
-        print_str = print_str[:-2]
+        if len(items) > 0:
+            for key, value in items:
+                print_str += f"'{key}': {value}, "
+            print_str = print_str[:-2]
         print_str += ")"
         return print_str
 
@@ -324,7 +334,7 @@ if __name__ == "__main__":
 
     nodict = NamedOrderedDictionary("str_parameter", 10)
     odict = {**nodict}
-    assert nodict.as_list()[0] == list(odict.values())[0]
+    assert nodict.as_list()[0] == list(odict.values())[0], (nodict.as_list()[0], list(odict.values())[0])
 
     nodict = NamedOrderedDictionary("str_parameter", 10)
     nodict.update(arg1=20, arg0="other_param")
@@ -358,10 +368,30 @@ if __name__ == "__main__":
     assert columns / "aræa" == arg0
     assert id(columns / "aræa") == id(columns["aræa"])
 
-    a = NamedOrderedDictionary(4, 2)
-    a.list = "a"
-    assert a.list == "a"
+    LATEST_GPU_STATS = NamedOrderedDictionary(4, 2)
+    LATEST_GPU_STATS.list = "a"
+    assert LATEST_GPU_STATS.list == "a"
 
-    a = NamedOrderedDictionary(4, 2)
-    b = a + a
+    LATEST_GPU_STATS = NamedOrderedDictionary(4, 2)
+    b = LATEST_GPU_STATS + LATEST_GPU_STATS
     assert b.as_list() == [8, 4], b
+
+    columns = NamedOrderedDictionary.nod_of(arg1, aræa=arg0)
+
+    assert columns[columns.as_dict().keys()] == [arg1, arg0], columns[columns.as_dict().keys()]
+
+    try:
+        columns[columns.as_dict().keys()] = [arg1]
+    except Exception as e:
+        assert isinstance(e, AssertionError)
+
+    try:
+        assert columns["as", "ad"] == [arg1, arg0]
+        assert False
+    except Exception as e:
+        assert isinstance(e, KeyError)
+
+    columns["as", "ad"] = [arg1, arg0, 2]
+    assert columns["as", "ad"] == [arg1, arg0, 2]
+
+    assert id(columns / "aræa") == id(columns["aræa"])
