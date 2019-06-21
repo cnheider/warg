@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
-from collections import namedtuple
+from collections import namedtuple, Mapping
 from pathlib import Path, PosixPath
 from warnings import warn
 
 import wrapt
+
+from warg.named_ordered_dictionary import NOD
 
 __author__ = "cnheider"
 
@@ -29,7 +31,7 @@ class ConfigObject(object):
 
 def to_lower_properties(C_dict):
     if not isinstance(C_dict, dict):
-        C_dict = to_dict(C_dict)
+        C_dict = config_to_mapping(C_dict)
 
     a = ConfigObject()
 
@@ -44,22 +46,29 @@ def to_lower_properties(C_dict):
     return a
 
 
-def get_upper_case_vars_or_protected_of(module):
+def get_upper_case_vars_or_protected_of(module, lower_keys=True) -> Mapping:
     v = vars(module)
+    check_for_duplicates_in_args(**v)
     if v:
+        if lower_keys:
+            return {
+                key.lower(): value
+                for key, value in module.__dict__.items()
+                if (key.isupper() or (key.startswith("_")) and not key.endswith("_"))
+            }
         return {
             key: value
             for key, value in module.__dict__.items()
-            if key.isupper() or (key.startswith("_") and not key.endswith("_"))
+            if (key.isupper() or (key.startswith("_")) and not key.endswith("_"))
         }
     return {}
 
 
-def to_dict(C, only_upper_case=True):
+def config_to_mapping(C: object, only_upper_case: bool = True) -> NOD:
     if only_upper_case:
-        return get_upper_case_vars_or_protected_of(C)
+        return NOD(get_upper_case_vars_or_protected_of(C))
     else:
-        return vars(C)
+        return NOD(vars(C))
 
 
 def parse_arguments(desc, C):
