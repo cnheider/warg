@@ -1,13 +1,14 @@
-import os
 import pathlib
 import re
 
 from setuptools import find_packages
 
-
-with open(pathlib.Path.joinpath(pathlib.Path(os.path.dirname(__file__)) / "warg" / "version.py"), "r") as f:
+with open(pathlib.Path(__file__).parent / "warg" / "version.py", "r") as f:
+    content = f.read()
     # get version string from module
-    version = re.search(r"__version__ = ['\"]([^'\"]*)['\"]", f.read(), re.M).group(1)
+    version = re.search(r"__version__ = ['\"]([^'\"]*)['\"]", content, re.M).group(1)
+
+    project_name = re.search(r"PROJECT_NAME = ['\"]([^'\"]*)['\"]", content, re.M).group(1)
 
 
 class WargPackage:
@@ -21,7 +22,7 @@ class WargPackage:
 
     @property
     def package_name(self) -> str:
-        return "Warg"
+        return project_name
 
     @property
     def url(self) -> str:
