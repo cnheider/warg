@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import numpy
 
-
 __author__ = "cnheider"
 __doc__ = ""
 

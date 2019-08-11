@@ -16,7 +16,7 @@ import queue
 
 class CloudPickleBase(object):
     """
-  Uses cloudpickle to serialize contents (otherwise multiprocessing tries to use pickle)
+Uses cloudpickle to serialize contents (otherwise multiprocessing tries to use pickle)
 :param x: (Any) the variable you wish to wrap for pickling with cloudpickle
 """
 
@@ -44,10 +44,10 @@ class PooledQueueTask(ABC):
 
 class PooledQueueProcessor(object):
     """
-  This is a workaround of Pythons extremely slow interprocess communication pipes.
-  The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
-  limited.
-  This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
+This is a workaround of Pythons extremely slow interprocess communication pipes.
+The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
+limited.
+This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
 """
 
     def __init__(

@@ -1,5 +1,4 @@
 import sys
-from warg import arguments
 
 
 def test_sanity2():

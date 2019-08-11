@@ -58,10 +58,10 @@ There are three ways to achieve this:
 
 - Set a default mainloop (dbus.set_default_main_loop) before calling init()
 - Pass the mainloop parameter as a string 'glib' or 'qt' to integrate with
-  those mainloops. (N.B. passing 'qt' currently makes that the default dbus
-  mainloop, because that's the only way it seems to work.)
+those mainloops. (N.B. passing 'qt' currently makes that the default dbus
+mainloop, because that's the only way it seems to work.)
 - Pass the mainloop parameter a DBus compatible mainloop instance, such as
-  dbus.mainloop.glib.DBusGMainLoop().
+dbus.mainloop.glib.DBusGMainLoop().
 
 If you only want to display notifications, without receiving information
 back from them, you can safely omit mainloop.
@@ -139,15 +139,15 @@ class Toast(object):
     """A notification object.
 
 summary : str
-  The title text
+The title text
 message : str
-  The body text, if the server has the 'body' capability.
+The body text, if the server has the 'body' capability.
 icon : str
-  Path to an icon image, or the name of a stock icon. Stock icons available
-  in Ubuntu are `listed here <https://wiki.ubuntu.com/NotificationDevelopmentGuidelines
-  #How_do_I_get_these_slick_icons>`_.
-  You can also set an icon from data in your application - see
-  :meth:`set_icon_from_pixbuf`.
+Path to an icon image, or the name of a stock icon. Stock icons available
+in Ubuntu are `listed here <https://wiki.ubuntu.com/NotificationDevelopmentGuidelines
+#How_do_I_get_these_slick_icons>`_.
+You can also set an icon from data in your application - see
+:meth:`set_icon_from_pixbuf`.
 """
 
     _id = 0
@@ -247,7 +247,7 @@ server might ignore.
 
 Only exists for compatibility with pynotify; you can simply set::
 
-  n.timeout = 5000
+n.timeout = 5000
 """
         if not isinstance(timeout, int):
             raise TypeError("timeout value was not int", timeout)
@@ -267,14 +267,14 @@ timeout attribute directly.
 Check for the 'actions' server capability before using this.
 
 action : str
-  A brief key.
+A brief key.
 label : str
-  The text displayed on the action button
+The text displayed on the action button
 callback : callable
-  A function taking at 2-3 parameters: the Notification object, the
-  action key and (if specified) the user_data.
+A function taking at 2-3 parameters: the Notification object, the
+action key and (if specified) the user_data.
 user_data :
-  An extra argument to pass to the callback.
+An extra argument to pass to the callback.
 """
         self._actions[action] = (label, callback, user_data)
 

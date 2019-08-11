@@ -1,19 +1,19 @@
-dist: xenial
+dist:     xenial
 language: python
 python:
-- '3.6'
+  - '3.6'
 install:
-- pip install -r requirements.txt
-- pip install -r requirements_dev.txt
-- pip install -e .
+  - pip install -r requirements.txt
+  - pip install -r requirements_dev.txt
+  - pip install -e .
 script:
-- pytest --cov=warg --ignore=tests/test_toaster.py
-- coveralls
-- black --check warg
+  - pytest --cov=warg --ignore=tests/test_toaster.py
+  - coveralls
+  - black --check warg
 deploy:
   provider: pypi
-  user: aivclab
+  user:     aivclab
   password: te123st23
   on:
-    tags: true
+    tags:   true
     branch: master

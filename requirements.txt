@@ -1,3 +1,4 @@
+apppath
 numpy
 six
 sorcery
