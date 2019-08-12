@@ -11,7 +11,7 @@ from pip._internal.utils.misc import dist_is_editable
 from apppath import AppPath
 
 __author__ = "cnheider"
-__version__ = "0.2.3"
+__version__ = "0.2.4"
 __doc__ = r"""
 Created on 27/04/2019
 
