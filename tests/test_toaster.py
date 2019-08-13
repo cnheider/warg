@@ -15,7 +15,7 @@ import warg.toaster as toaster
 
 class ModuleTests(unittest.TestCase):
     """Test module level functions.
-  """
+"""
 
     def setUp(self):
         toaster.init("toaster test suite")
@@ -38,7 +38,7 @@ class ModuleTests(unittest.TestCase):
 
 class NotificationTests(unittest.TestCase):
     """Test notifications.
-  """
+"""
 
     def setUp(self):
         toaster.init("toaster test suite")

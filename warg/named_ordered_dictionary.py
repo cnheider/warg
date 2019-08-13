@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import Mapping
-from typing import Any, Iterable, Sized, TypeVar, KeysView
+from typing import Any, Iterable, KeysView, TypeVar
 
 import sorcery
 

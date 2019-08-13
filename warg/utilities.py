@@ -33,5 +33,5 @@ def closed_callback(nid, reason, notifications_registry):
 
 def no_op(*args):
     """No-op function for callbacks.
-  """
+"""
     pass
