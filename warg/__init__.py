@@ -11,7 +11,7 @@ from pip._internal.utils.misc import dist_is_editable
 from apppath import AppPath
 
 __author__ = "cnheider"
-__version__ = "0.2.5"
+__version__ = "0.2.8"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -32,7 +32,10 @@ def dist_is_editable(dist):
 '''
 
 PROJECT_NAME = "Warg"
+PROJECT_VERSION = __version__
+PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__
+
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
 
 distributions = {v.key: v for v in pkg_resources.working_set}

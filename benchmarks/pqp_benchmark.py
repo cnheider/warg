@@ -1,6 +1,6 @@
 import time
 
-import numpy as np
+import numpy
 
 from benchmarks.benchmark_func import benchmark_func
 from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
@@ -8,9 +8,9 @@ from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
 
 class Zeroes(PooledQueueTask):
     def call(self, batch_size, *args, tensor_size=(9, 9, 9, 9), **kwargs):
-        batch = [(np.zeros(tensor_size), i) for i in range(batch_size)]
-        imgs = np.array([i[0] for i in batch], dtype=np.float32)
-        ground_truth = np.array([i[1] for i in batch], dtype=np.float32)
+        batch = [(numpy.zeros(tensor_size), i) for i in range(batch_size)]
+        imgs = numpy.array([i[0] for i in batch], dtype=numpy.float32)
+        ground_truth = numpy.array([i[1] for i in batch], dtype=numpy.float32)
         return (imgs, ground_truth)
 
 

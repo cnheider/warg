@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import Mapping
-from typing import Any, Iterable, KeysView, TypeVar
+from typing import Any, Iterable, KeysView, TypeVar, MutableMapping
 
 import sorcery
 
@@ -30,7 +30,7 @@ class IllegalAttributeKey(Exception):
 T = TypeVar("T", bound="NamedOrderedDictionary")
 
 
-class NamedOrderedDictionary(Mapping):
+class NamedOrderedDictionary(MutableMapping):
     """
 
 Usage:
@@ -207,6 +207,9 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
                 self.__dict__[a] = v
         else:
             self.__dict__[key] = value
+
+    def __delitem__(self, key):
+        del self.__dict__[key]
 
     def keys(self):
         return self.__dict__.keys()
