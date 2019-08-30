@@ -12,7 +12,7 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.2.8"
+__version__ = "0.3.0"
 __doc__ = r"""
 Created on 27/04/2019
 
