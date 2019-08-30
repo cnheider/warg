@@ -8,7 +8,7 @@ from typing import Any, Iterable, Mapping
 
 from cloudpickle import cloudpickle
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 import multiprocessing as mp
 import queue

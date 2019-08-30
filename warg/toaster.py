@@ -5,15 +5,13 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import GdkPixbuf
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = "Based on the notifications spec at: http://developer.gnome.org/notification-spec/"
 __version__ = "0.0.1"
 
 import time
 
 import dbus
-
-from warg.utilities import action_callback, closed_callback, no_op
 
 EXPIRES_DEFAULT = -1
 EXPIRES_NEVER = 0
@@ -28,6 +26,33 @@ APP_NAME = f"unnamed_app_{time.time()}"
 HAVE_MAINLOOP = False
 
 NOTIFICATIONS_REGISTRY = {}
+
+
+def action_callback(nid, action, notifications_registry):
+    nid, action = int(nid), str(action)
+    try:
+        n = notifications_registry[nid]
+    except KeyError:
+        # this message was created through some other program.
+        return
+    n.action_callback(action, notifications_registry)
+
+
+def closed_callback(nid, reason, notifications_registry):
+    nid, reason = int(nid), int(reason)
+    try:
+        n = notifications_registry[nid]
+    except KeyError:
+        # this message was created through some other program.
+        return
+    n.closed_callback(n)
+    del notifications_registry[nid]
+
+
+def no_op(*args):
+    """No-op function for callbacks.
+"""
+    pass
 
 
 # TODO: Object orient globals!

@@ -4,7 +4,7 @@ import pytest
 
 from warg.named_ordered_dictionary import IllegalAttributeKey, NOD
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 
 def test_attribute_assignment():
@@ -92,6 +92,37 @@ def test_access_operators():
     columns = NOD.nod_of(arg1, dsa=arg0)
     assert columns["arg1"] == arg1
     assert columns.arg1 == arg1
+    assert columns["dsa"] == arg0
+    assert columns / "dsa" == arg0
+    assert id(columns / "dsa") == id(columns["dsa"])
+
+
+def test_multiple_return_assignment_to_contstruction():
+    arg0, arg1 = ("sta", 1)
+    columns = NOD.nod_of(arg1, arg0)
+    assert columns.arg1 == 1
+    assert columns.org0 == "sta"
+
+
+def test_access_operators_single_explicit_naming():
+    arg0 = "str_parameter"
+    columns = NOD.nod_of(dsa=arg0)
+    assert columns["dsa"] == arg0
+    assert columns / "dsa" == arg0
+    assert id(columns / "dsa") == id(columns["dsa"])
+
+
+def test_access_operators_single_no_naming():
+    dsa = "str_parameter"
+    columns = NOD.nod_of(dsa)
+    assert columns["dsa"] == dsa
+    assert columns / "dsa" == dsa
+    assert id(columns / "dsa") == id(columns["dsa"])
+
+
+def test_access_operators_no_multi_return_no_variable_name_direct_inference():
+    arg0 = "str_parameter"
+    columns = NOD.nod_of("sas", dsa=arg0)
     assert columns["dsa"] == arg0
     assert columns / "dsa" == arg0
     assert id(columns / "dsa") == id(columns["dsa"])

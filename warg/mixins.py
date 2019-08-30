@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import numpy
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
@@ -27,6 +27,21 @@ class IterValuesMixin(object):
 
 class IndexDictTuplesMixin(object):
     def __getitem__(self, item):
-        a = self.__dict__
-        b = numpy.array(list(a.values()))
-        return b[item]
+        if isinstance(item, int):
+            a = self.__dict__
+            b = numpy.array(list(a.values()))
+            return b[item]
+        else:
+            return self.__dict__[item]
+
+
+if __name__ == "__main__":
+
+    def asd():
+        class IDTM(IndexDictTuplesMixin):
+            pass
+
+        a = IDTM()
+        a.a = 2
+        a.b = 3
+        assert a[0] == 2

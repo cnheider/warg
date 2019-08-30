@@ -1,7 +1,9 @@
 # Warg
 ```Old-Norse: Varg``` 
 
-![warg](.github/images/warg.svg) ![warg](.github/images/python.svg)
+![warg](.github/images/warg.svg)
+ ![toaster](.github/images/toaster.svg)
+ ![warg](.github/images/python.svg)
 
 [![Build Status](https://travis-ci.com/aivclab/warg.svg?branch=master)](https://travis-ci.com/aivclab/warg) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Coverage Status](https://coveralls.io/repos/github/aivclab/warg/badge.svg?branch=master)](https://coveralls.io/github/aivclab/warg?branch=master)
 ___
