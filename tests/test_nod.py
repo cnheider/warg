@@ -4,7 +4,7 @@ import pytest
 
 from warg.named_ordered_dictionary import IllegalAttributeKey, NOD
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 
 def test_attribute_assignment():

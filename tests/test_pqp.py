@@ -5,7 +5,7 @@ import pytest
 
 from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 
 class Square(PooledQueueTask):

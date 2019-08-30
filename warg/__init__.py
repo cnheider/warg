@@ -10,7 +10,8 @@ from pip._internal.utils.misc import dist_is_editable
 
 from apppath import AppPath
 
-__author__ = "cnheider"
+__project__ = "Warg"
+__author__ = "Christian Heider Nielsen"
 __version__ = "0.2.8"
 __doc__ = r"""
 Created on 27/04/2019
@@ -31,10 +32,10 @@ def dist_is_editable(dist):
     return False
 '''
 
-PROJECT_NAME = "Warg"
+PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
 PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
-PROJECT_AUTHOR = __author__
+PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
 

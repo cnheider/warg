@@ -5,7 +5,7 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import GdkPixbuf
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = "Based on the notifications spec at: http://developer.gnome.org/notification-spec/"
 __version__ = "0.0.1"
 

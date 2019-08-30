@@ -6,7 +6,7 @@ from typing import Any, Iterable, KeysView, TypeVar, MutableMapping
 
 import sorcery
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 LOCALS = (
     "as_list",

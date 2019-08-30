@@ -3,7 +3,7 @@
 import logging
 from typing import MutableMapping, Any
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
