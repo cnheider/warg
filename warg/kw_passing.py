@@ -84,7 +84,7 @@ def passes_kws_to(*receiver_funcs: callable, keep_from_var_kw: bool = False) -> 
     return _func
 
 
-def pass_kws_to_super_init(f=None, keep_from_var_kw: bool = False) -> callable:
+def passes_kws_to_super_init(f=None, keep_from_var_kw: bool = False) -> callable:
     """
 
   :param f:
@@ -124,7 +124,7 @@ if __name__ == "__main__":
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init
+    @passes_kws_to_super_init
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             super().__init__(arg0, *args, **kwargs)

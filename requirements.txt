@@ -5,4 +5,3 @@ sorcery
 pytest
 cloudpickle
 wrapt
-dbus-python
