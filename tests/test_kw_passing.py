@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import inspect
 
-from warg.kw_passing import passes_kws_to, passes_kws_to_super_init
+from warg.kw_passing import passes_kws_to, super_init_pass_on_kws
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -30,7 +30,7 @@ def test_subclass_fully_qualified_no_args_or_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @passes_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -71,7 +71,7 @@ def test_with_args_and_kwargs_on_subclasses():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @passes_kws_to_super_init()
+    @super_init_pass_on_kws()
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             """
@@ -116,7 +116,7 @@ def test_subclass_with_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @passes_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -152,7 +152,7 @@ def test_subclass_with_args():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @passes_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, *args, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -188,7 +188,7 @@ def test_base_with_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @passes_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -224,7 +224,7 @@ def test_base_with_args():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @passes_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -260,7 +260,7 @@ def test_base_with_args_and_mock_empty_dict():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @passes_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, (), kwarg0=kwarg0, **{})

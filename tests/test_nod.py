@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pytest
+from sorcery import dict_of
 
 from warg.named_ordered_dictionary import IllegalAttributeKey, NOD
 
@@ -87,45 +88,15 @@ def test_as_list():
     assert arg1 == 10
 
 
-def test_access_operators():
-    arg0, arg1 = NOD("str_parameter", 10).as_list()
-    columns = NOD.nod_of(arg1, dsa=arg0)
-    assert columns["arg1"] == arg1
-    assert columns.arg1 == arg1
-    assert columns["dsa"] == arg0
-    assert columns / "dsa" == arg0
-    assert id(columns / "dsa") == id(columns["dsa"])
-
-
-def test_multiple_return_assignment_to_contstruction():
-    arg0, arg1 = ("sta", 1)
-    columns = NOD.nod_of(arg1, arg0)
-    assert columns.arg1 == 1
-    assert columns.org0 == "sta"
-
-
-def test_access_operators_single_explicit_naming():
+def test_access_operators_NOD():
     arg0 = "str_parameter"
-    columns = NOD.nod_of(dsa=arg0)
-    assert columns["dsa"] == arg0
-    assert columns / "dsa" == arg0
-    assert id(columns / "dsa") == id(columns["dsa"])
-
-
-def test_access_operators_single_no_naming():
-    dsa = "str_parameter"
-    columns = NOD.nod_of(dsa)
-    assert columns["dsa"] == dsa
-    assert columns / "dsa" == dsa
-    assert id(columns / "dsa") == id(columns["dsa"])
-
-
-def test_access_operators_no_multi_return_no_variable_name_direct_inference():
-    arg0 = "str_parameter"
-    columns = NOD.nod_of("sas", dsa=arg0)
-    assert columns["dsa"] == arg0
-    assert columns / "dsa" == arg0
-    assert id(columns / "dsa") == id(columns["dsa"])
+    arg1 = 10
+    l = NOD(arg0, arg1)
+    assert l[id(arg1)] == arg1
+    assert l.__getattr__(id(arg1)) == arg1
+    assert l[id(arg0)] == arg0
+    assert l / id(arg0) == arg0
+    assert l @ id(arg0) == arg0
 
 
 def test_new_attr_on_existing():
@@ -172,3 +143,56 @@ def test_slice_all():
     b = a + a + a
     b[:1] = [8]
     assert b.as_list() == [8, 6]
+
+
+def test_sorcery():
+    def ret1():
+        return 1
+
+    arg1 = ret1()
+    columns = dict_of(arg1)
+    assert columns["arg1"] == arg1
+
+
+def test_access_operators_NOD_of():
+    l = NOD("str_parameter", 10).as_list()
+    arg0 = l[0]
+    arg1 = l[1]
+    columns = NOD.nod_of(arg1, dsa=arg0)
+    assert columns["arg1"] == arg1
+    assert columns.arg1 == arg1
+    assert columns["dsa"] == arg0
+    assert columns / "dsa" == arg0
+    assert columns @ "dsa" == arg0
+    assert id(columns / "dsa") == id(columns["dsa"])
+
+
+def test_multiple_return_assignment_to_contstruction():
+    arg0, arg1 = ("sta", 1)
+    columns = NOD.nod_of(arg1, arg0)
+    assert columns.arg1 == 1
+    assert columns.org0 == "sta"
+
+
+def test_access_operators_single_explicit_naming():
+    arg0 = "str_parameter"
+    columns = NOD.nod_of(dsa=arg0)
+    assert columns["dsa"] == arg0
+    assert columns / "dsa" == arg0
+    assert id(columns / "dsa") == id(columns["dsa"])
+
+
+def test_access_operators_single_no_naming():
+    dsa = "str_parameter"
+    columns = NOD.nod_of(dsa)
+    assert columns["dsa"] == dsa
+    assert columns / "dsa" == dsa
+    assert id(columns / "dsa") == id(columns["dsa"])
+
+
+def test_access_operators_no_multi_return_no_variable_name_direct_inference():
+    arg0 = "str_parameter"
+    columns = NOD.nod_of("sas", dsa=arg0)
+    assert columns["dsa"] == arg0
+    assert columns / "dsa" == arg0
+    assert id(columns / "dsa") == id(columns["dsa"])

@@ -3,7 +3,6 @@
 
 import datetime
 import os
-from warnings import warn
 
 import pkg_resources
 from pip._internal.utils.misc import dist_is_editable
@@ -12,7 +11,7 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.3.1"
+__version__ = "0.4.1"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -86,3 +85,11 @@ if __version__ is None:
     __version__ = get_version(append_time=True)
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
+
+from .named_ordered_dictionary import *
+from .pooled_queue_processor import *
+from .singleton import *
+from .arguments import *
+from .gdkc import *
+from .kw_passing import *
+from .mixins import *
