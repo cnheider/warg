@@ -1,35 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import datetime
-import os
-
 import pkg_resources
-from pip._internal.utils.misc import dist_is_editable
-
 from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.4.1"
+__version__ = "0.4.2"
 __doc__ = r"""
 Created on 27/04/2019
 
 @author: cnheider
 """
 
-'''
+
 def dist_is_editable(dist):
-    # type: (Distribution) -> bool
     """
-    Return True if given Distribution is an editable install.
-    """
+  Return True if given Distribution is an editable install.
+  """
+    import sys
+    from pathlib import Path
+
     for path_item in sys.path:
-        egg_link = os.path.join(path_item, dist.project_name + '.egg-link')
-        if os.path.isfile(egg_link):
+        egg_link = Path(path_item) / f"{dist.project_name}.egg-link"
+        if egg_link.is_file():
             return True
     return False
-'''
+
 
 PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
 PROJECT_VERSION = __version__
@@ -47,6 +44,9 @@ else:
 
 
 def get_version(append_time=DEVELOP):
+    import datetime
+    import os
+
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")

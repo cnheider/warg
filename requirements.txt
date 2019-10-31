@@ -4,7 +4,6 @@ six
 sorcery
 asttokens
 snoop
-
 pytest
 cloudpickle
 wrapt

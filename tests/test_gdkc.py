@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-
 from warg.gdkc import GeneralisedDelayedKwargConstruction
 
 __author__ = "Christian Heider Nielsen"

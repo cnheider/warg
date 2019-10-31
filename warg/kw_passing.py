@@ -91,7 +91,7 @@ must be able to be received by receivers if multiple contracts are use
 def super_init_pass_on_kws(f=None, *, super_base: type = None, keep_from_var_kw: bool = False) -> callable:
     """
 
-  :param f:
+:param f:
 :param super_base:
 :param keep_from_var_kw:
 :return:
