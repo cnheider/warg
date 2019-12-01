@@ -19,6 +19,9 @@ import sorcery
 
 __author__ = "Christian Heider Nielsen"
 
+__all__ = ["NamedOrderedDictionary", "NOD"]
+
+
 LOCALS = (
     "as_list",
     "as_dict",
@@ -34,7 +37,7 @@ LOCALS = (
 
 class IllegalAttributeKey(Exception):
     def __init__(self, key, type: Type):
-        msg = f'Overwriting of attribute "{key}" on type "{type}" is not allowed'
+        msg = f'Overwriting of attribute "{key}" on type "{type.__name__}" is not allowed'
         Exception.__init__(self, msg)
 
 
@@ -271,7 +274,7 @@ items (dict): Python dictionary containing updated values.
 
         for key in args_dict:
             if key in LOCALS:
-                raise IllegalAttributeKey(key, type=NamedOrderedDictionary.__name__)
+                raise IllegalAttributeKey(key, type=NamedOrderedDictionary)
 
         self.__dict__.update(args_dict)
 

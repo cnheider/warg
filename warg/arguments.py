@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import argparse
 from collections import Mapping, namedtuple
 from pathlib import Path, PosixPath
 from warnings import warn
@@ -10,9 +11,18 @@ from warg.named_ordered_dictionary import NOD
 
 __author__ = "Christian Heider Nielsen"
 
+__all__ = [
+    "to_lower_properties",
+    "get_upper_case_vars_or_protected_of",
+    "config_to_mapping",
+    "add_bool_arg",
+    "check_for_duplicates_in_args",
+    "namedtuple_args",
+]
+
 
 class UpperAttrMetaclass(type):
-    def __new__(cls, clsname, bases, dct):
+    def __new__(cls, clsname, bases, dct: dict):
 
         uppercase_attr = {}
         for name, val in dct.items():
@@ -28,7 +38,7 @@ class ConfigObject(object):
     pass
 
 
-def to_lower_properties(C_dict):
+def to_lower_properties(C_dict: Mapping):
     if not isinstance(C_dict, dict):
         C_dict = config_to_mapping(C_dict)
 
@@ -45,7 +55,7 @@ def to_lower_properties(C_dict):
     return a
 
 
-def get_upper_case_vars_or_protected_of(module, lower_keys=True) -> Mapping:
+def get_upper_case_vars_or_protected_of(module: object, lower_keys: bool = True) -> Mapping:
     v = vars(module)
     check_for_duplicates_in_args(**v)
     if v:
@@ -70,16 +80,29 @@ def config_to_mapping(C: object, only_upper_case: bool = True) -> NOD:
         return NOD(vars(C))
 
 
-def add_bool_arg(parser, name, *, dest=None, default=False, **kwargs):
+def add_bool_arg(
+    parser: argparse.ArgumentParser,
+    name: str,
+    *,
+    dest: str = None,
+    converse: str = None,
+    default: bool = False,
+    **kwargs,
+):
     if not dest:
         dest = name
 
     group = parser.add_mutually_exclusive_group(required=False)
 
     group.add_argument(f"--{name.upper()}", f"-{name.lower()}", dest=dest, action="store_true", **kwargs)
-    group.add_argument(
-        f"--NO-{name.upper()}", f"-no-{name.lower()}", dest=dest, action="store_false", **kwargs
-    )
+    if converse:
+        group.add_argument(
+            f"--{converse.upper()}", f"-{converse.lower()}", dest=dest, action="store_false", **kwargs
+        )
+    else:
+        group.add_argument(
+            f"--NO-{name.upper()}", f"-no-{name.lower()}", dest=dest, action="store_false", **kwargs
+        )
     parser.set_defaults(**{dest: default})
 
 
@@ -110,7 +133,7 @@ def check_for_duplicates_in_args(**kwargs) -> None:
             warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
 
 
-def namedtuple_args(n_tuple):
+def namedtuple_args(n_tuple: namedtuple):
     @wrapt.decorator(adapter=n_tuple)
     def wrapper(wrapped, instance, args, kwargs):
         if isinstance(args[0], n_tuple):

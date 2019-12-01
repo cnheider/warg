@@ -155,9 +155,9 @@ def test_sorcery():
 
 
 def test_access_operators_NOD_of():
-    l = NOD("str_parameter", 10).as_list()
-    arg0 = l[0]
-    arg1 = l[1]
+    list_rep = NOD("str_parameter", 10).as_list()
+    arg0 = list_rep[0]
+    arg1 = list_rep[1]
     columns = NOD.nod_of(arg1, dsa=arg0)
     assert columns["arg1"] == arg1
     assert columns.arg1 == arg1

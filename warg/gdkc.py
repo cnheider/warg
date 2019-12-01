@@ -6,6 +6,8 @@ from typing import MutableMapping, Any
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
+__all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
+
 
 class GeneralisedDelayedKwargConstruction(object):
     """

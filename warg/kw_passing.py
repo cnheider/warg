@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import inspect
 import types
+from functools import wraps
 from logging import warning
 from typing import Dict, Tuple
 
@@ -12,7 +13,7 @@ __doc__ = r"""
           the receiver function allowing for autocompletion, typing and documentation fetching.  
            """
 
-__all__ = ["passes_kws_to", "super_init_pass_on_kws"]
+__all__ = ["passes_kws_to", "super_init_pass_on_kws", "drop_unused_kws"]
 
 
 def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
@@ -22,7 +23,7 @@ def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
 
 
 def eval_sig_kw_params(
-    passing_sig, receiver_func, keep_from_var_kw=False
+    passing_sig: inspect.Signature, receiver_func: callable, keep_from_var_kw: bool = False
 ) -> Tuple[inspect.Signature, Dict[str, inspect.Parameter]]:
     passing_params: dict = dict(passing_sig.parameters)
     receiver_params = inspect.signature(receiver_func).parameters
@@ -88,7 +89,9 @@ must be able to be received by receivers if multiple contracts are use
     return _func
 
 
-def super_init_pass_on_kws(f=None, *, super_base: type = None, keep_from_var_kw: bool = False) -> callable:
+def super_init_pass_on_kws(
+    f: callable = None, *, super_base: type = None, keep_from_var_kw: bool = False
+) -> callable:
     """
 
 :param f:
@@ -114,6 +117,25 @@ def super_init_pass_on_kws(f=None, *, super_base: type = None, keep_from_var_kw:
         return _func(f)
 
     return _func
+
+
+def drop_unused_kws(f: callable):
+    @wraps(f)
+    def wrapper(*args, **kws):
+        from_sig = inspect.signature(f)
+
+        for k, v in from_sig.parameters.items():
+            if v.kind == inspect._ParameterKind.VAR_KEYWORD:
+                return f(*args, **kws)
+
+        kept = {}
+        for k, v in kws.items():
+            if k in from_sig.parameters.keys():
+                kept[k] = v
+
+        return f(*args, **kept)
+
+    return wrapper
 
 
 if __name__ == "__main__":
@@ -151,6 +173,18 @@ if __name__ == "__main__":
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
+    @drop_unused_kws
+    def some_func(*, a):
+        print(a)
+
+    @drop_unused_kws
+    def some_other_func(*, a, **kwargs):
+        print(a, kwargs)
+
+    @drop_unused_kws
+    def some_different_func(*, a, b):
+        print(a)
+
     print(inspect.signature(SubClass0.__init__))
     print(inspect.signature(SubClass1.__init__))
     print(inspect.signature(SubClass1.__init__))
@@ -159,3 +193,9 @@ if __name__ == "__main__":
     print(vars(SubClass1(2, 2, 1, kwarg0=52)))
     print(vars(SubClass2(1, 1, 1, kwarg0=52)))
     print(inspect.getmro(SubClass0))
+
+    some_func(a=1, b=2, c=3)
+
+    some_other_func(a=1, b=2)
+
+    some_different_func(a=1, c=2, b="l")
