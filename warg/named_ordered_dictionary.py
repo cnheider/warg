@@ -1,26 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import (
-    Any,
-    Dict,
-    ItemsView,
-    Iterable,
-    KeysView,
-    List,
-    MutableMapping,
-    Tuple,
-    TypeVar,
-    ValuesView,
-    Type,
-)
+from typing import Any, ItemsView, Iterable, KeysView, List, MutableMapping, Tuple, TypeVar, ValuesView, Type
 
 import sorcery
+from sorcery.core import node_name
 
 __author__ = "Christian Heider Nielsen"
 
 __all__ = ["NamedOrderedDictionary", "NOD"]
-
 
 LOCALS = (
     "as_list",
@@ -143,8 +131,8 @@ assert nodict.paramA == 20
     def as_flat_tuples(self) -> List[Tuple]:
         return [(k, *v) for (k, v) in self.__dict__.items()]
 
-    def add_unnamed_arg(self, arg) -> None:
-        self.__dict__[id(arg)] = arg
+    def add_unnamed_arg(self, arg: Any) -> None:
+        self.__dict__[f"arg{id(arg)}"] = arg
 
     @staticmethod
     @sorcery.spell
@@ -183,12 +171,19 @@ assert nodict.paramA == 20
 
   :rtype: object
 
-"""
+  """
+        nod = NamedOrderedDictionary()
 
-        # result:Dict = sorcery.dict_of.at(frame_info)(*args)
-        # result.update(**kwargs)
-        result: Dict = sorcery.dict_of.at(frame_info)(*args, **kwargs)
-        return NamedOrderedDictionary(result)
+        for arg, value in zip(frame_info.call.args[-len(args) :], args):
+            try:
+                arg_key = node_name(arg)
+                nod[arg_key] = value
+            except TypeError:
+                nod.add_unnamed_arg(value)
+
+        nod.update(kwargs)
+
+        return nod
 
     def __getattr__(self, item) -> Any:
         return self.__dict__[item]

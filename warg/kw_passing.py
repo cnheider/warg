@@ -8,9 +8,9 @@ from typing import Dict, Tuple
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
-          The concept "kw passing" implemented here lets one make a contract with the caller that all 
-          kwargs with be passed onwards to a receiver, this lets the caller inspect available kwargs of the 
-          the receiver function allowing for autocompletion, typing and documentation fetching.  
+          The concept "kw passing" implemented here lets one make a contract with the caller that all
+          kwargs with be passed onwards to a receiver, this lets the caller inspect available kwargs of the
+          the receiver function allowing for autocompletion, typing and documentation fetching.
            """
 
 __all__ = ["passes_kws_to", "super_init_pass_on_kws", "drop_unused_kws"]
@@ -74,9 +74,9 @@ must be able to be received by receivers if multiple contracts are use
 :param keep_from_var_kw:
 :return:
 """
-    assert not isinstance(
-        receiver_funcs, types.BuiltinFunctionType
-    ), f"Built In Receiver function: {receiver_funcs}, is not supported"
+    for receiver_func in receiver_funcs:
+        if isinstance(receiver_func, types.BuiltinFunctionType):
+            raise AssertionError(f"'Built In Receiver' function: {receiver_func}, is not supported")
 
     def _func(passing_func: callable) -> callable:
         passing_sig = inspect.signature(passing_func)
@@ -183,7 +183,7 @@ if __name__ == "__main__":
 
     @drop_unused_kws
     def some_different_func(*, a, b):
-        print(a)
+        print(a, b)
 
     print(inspect.signature(SubClass0.__init__))
     print(inspect.signature(SubClass1.__init__))

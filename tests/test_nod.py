@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pytest
-from sorcery import dict_of
+
 
 from warg.named_ordered_dictionary import IllegalAttributeKey, NOD
 
@@ -146,6 +146,8 @@ def test_slice_all():
 
 
 def test_sorcery():
+    from sorcery import dict_of
+
     def ret1():
         return 1
 
@@ -171,7 +173,7 @@ def test_multiple_return_assignment_to_contstruction():
     arg0, arg1 = ("sta", 1)
     columns = NOD.nod_of(arg1, arg0)
     assert columns.arg1 == 1
-    assert columns.org0 == "sta"
+    assert columns.arg0 == "sta"
 
 
 def test_access_operators_single_explicit_naming():
@@ -193,6 +195,10 @@ def test_access_operators_single_no_naming():
 def test_access_operators_no_multi_return_no_variable_name_direct_inference():
     arg0 = "str_parameter"
     columns = NOD.nod_of("sas", dsa=arg0)
+    print(columns)
+    assert columns[:1] == ["sas"]
+    assert columns.as_list()[0] == "sas"
+    assert columns.as_list()[1] == arg0
     assert columns["dsa"] == arg0
     assert columns / "dsa" == arg0
     assert id(columns / "dsa") == id(columns["dsa"])
