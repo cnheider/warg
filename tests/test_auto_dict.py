@@ -44,3 +44,9 @@ def test_a():
     c = d["cd"]["v"]
 
     assert c == 412
+
+    print(d)
+
+
+if __name__ == "__main__":
+    test_a()

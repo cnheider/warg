@@ -119,6 +119,30 @@ def super_init_pass_on_kws(
     return _func
 
 
+def drop_args(f: callable):
+    @wraps(f)
+    def wrapper(*args, **kws):
+        return f(**kws)
+
+    return wrapper
+
+
+def drop_kws(f: callable):
+    @wraps(f)
+    def wrapper(*args, **kws):
+        return f(*args)
+
+    return wrapper
+
+
+def drop_unused_args(f: callable):
+    @wraps(f)
+    def wrapper(*args, **kws):
+        return f(**kws)
+
+    return wrapper
+
+
 def drop_unused_kws(f: callable):
     @wraps(f)
     def wrapper(*args, **kws):

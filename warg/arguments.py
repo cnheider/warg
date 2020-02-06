@@ -17,7 +17,7 @@ __all__ = [
     "config_to_mapping",
     "add_bool_arg",
     "check_for_duplicates_in_args",
-    "namedtuple_args",
+    "wrap_args",
 ]
 
 
@@ -133,7 +133,7 @@ def check_for_duplicates_in_args(**kwargs) -> None:
             warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
 
 
-def namedtuple_args(n_tuple: namedtuple):
+def wrap_args(n_tuple: namedtuple):
     @wrapt.decorator(adapter=n_tuple)
     def wrapper(wrapped, instance, args, kwargs):
         if isinstance(args[0], n_tuple):
@@ -149,7 +149,7 @@ if __name__ == "__main__":
 
     c = namedtuple("C", ("a", "b"))
 
-    @namedtuple_args(c)
+    @wrap_args(c)
     def add(v):
         return v.a + v.b
 
