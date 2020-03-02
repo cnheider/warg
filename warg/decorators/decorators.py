@@ -10,7 +10,6 @@ __doc__ = r"""
 
 __all__ = ["timeit"]
 
-
 import time
 from functools import wraps
 

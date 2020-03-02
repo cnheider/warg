@@ -139,39 +139,39 @@ assert nodict.paramA == 20
     def nod_of(frame_info, *args, **kwargs) -> T:
         """Instead of:
 
-  {'foo': foo, 'bar': bar, 'spam': thing()}
+{'foo': foo, 'bar': bar, 'spam': thing()}
 
-  or:
+or:
 
-  dict(foo=foo, bar=bar, spam=thing())
+dict(foo=foo, bar=bar, spam=thing())
 
-  write:
+write:
 
-  NOD.dict_of(foo, bar, spam=thing())
+NOD.dict_of(foo, bar, spam=thing())
 
-  In other words, returns a NamedOrderedDictionary with an item for each argument,
-  where positional arguments use their names as keys,
-  and keyword arguments do the same as in the usual dict constructor.
+In other words, returns a NamedOrderedDictionary with an item for each argument,
+where positional arguments use their names as keys,
+and keyword arguments do the same as in the usual dict constructor.
 
-  The positional arguments can be any of:
+The positional arguments can be any of:
 
-  - plain variables,
-  - attributes, or
-  - subscripts (square bracket access) with string literal keys
+- plain variables,
+- attributes, or
+- subscripts (square bracket access) with string literal keys
 
-  So the following:
+So the following:
 
-  NOD.dict_of(spam, x.foo, y['bar'])
+NOD.dict_of(spam, x.foo, y['bar'])
 
-  is equivalent to:
+is equivalent to:
 
-  NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
+NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
-  *args are not allowed.
+*args are not allowed.
 
-  :rtype: object
+:rtype: object
 
-  """
+"""
         nod = NamedOrderedDictionary()
 
         for arg, value in zip(frame_info.call.args[-len(args) :], args):

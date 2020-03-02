@@ -13,11 +13,11 @@ __all__ = ["SingletonBase", "SingletonMeta"]
 
 class SingletonBase:
     """
-  A base class for creating singleton class where all subtypes(Deriavations) should also return the first
-  and only
-  instantiation of a particular singleton base type, if this property is not wanted consider using the
-  SingletonMeta class instead.
-  """
+A base class for creating singleton class where all subtypes(Deriavations) should also return the first
+and only
+instantiation of a particular singleton base type, if this property is not wanted consider using the
+SingletonMeta class instead.
+"""
 
     instance = None
 
@@ -30,17 +30,17 @@ class SingletonBase:
 
 class SingletonMeta(type):
     """
-  Conversely the SingletonBase, this base meta class is used for creating singleton class where all
-  subtypes(
-  Deriavations) should only
-  return
-  singleton instantiations of a particular singleton type independantly of subtyping and super-types,
-  if this property is not
-  wanted
-  consider using
-  the
-  SingletonBase class instead.
-  """
+Conversely the SingletonBase, this base meta class is used for creating singleton class where all
+subtypes(
+Deriavations) should only
+return
+singleton instantiations of a particular singleton type independantly of subtyping and super-types,
+if this property is not
+wanted
+consider using
+the
+SingletonBase class instead.
+"""
 
     def __init__(cls, name, bases, namespace):
         super().__init__(name, bases, namespace)

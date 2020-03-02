@@ -12,8 +12,8 @@ __doc__ = r"""
 def test_post_init_class():
     class MyTestingClass(metaclass=PostInit):
         """
-    class with the metaclass passed as an argument
-    """
+class with the metaclass passed as an argument
+"""
 
         @drop_unused_kws
         def __init__(self, *args, **kwargs):
@@ -33,8 +33,8 @@ def test_post_init_class():
 def test_post_init_no_kws_class():
     class MyTestingClass(metaclass=PostInit):
         """
-    class with the metaclass passed as an argument
-    """
+class with the metaclass passed as an argument
+"""
 
         @drop_unused_kws
         def __init__(self, *args):
@@ -55,8 +55,8 @@ def test_post_init_no_kws_class():
 def test_no_post_init_class():
     class MyTestingClass(metaclass=PostInit):
         """
-    class with the metaclass passed as an argument
-    """
+class with the metaclass passed as an argument
+"""
 
         def __init__(self):
             print("Init class")

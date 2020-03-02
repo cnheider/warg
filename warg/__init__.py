@@ -7,7 +7,7 @@ from warnings import warn
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.4.4"
+__version__ = "0.4.5"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -17,8 +17,8 @@ Created on 27/04/2019
 
 def dist_is_editable(dist):
     """
-  Return True if given Distribution is an editable install.
-  """
+Return True if given Distribution is an editable install.
+"""
     import sys
     from pathlib import Path
 
@@ -94,3 +94,6 @@ from .arguments import *
 from .gdkc import *
 from .kw_passing import *
 from .mixins import *
+from .decorators import *
+from .auto_dict import *
+from .post_init import *

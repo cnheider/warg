@@ -5,30 +5,28 @@ import numpy
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
+__all__ = ["IterDictItemsMixin", "IterDictKeysMixin", "IterDictValuesMixin", "IndexDictTuplesMixin"]
 
-__all__ = ["IterItemsMixin", "IterKeysMixin", "IterValuesMixin", "IndexDictTuplesMixin"]
 
-
-class IterItemsMixin(object):
+class IterDictItemsMixin:
     def __iter__(self):
         for attr, value in self.__dict__.items():
             yield attr, value
 
 
-class IterKeysMixin(object):
+class IterDictKeysMixin:
     def __iter__(self):
         for attr in self.__dict__.keys():
             yield attr
 
 
-class IterValuesMixin(object):
+class IterDictValuesMixin:
     def __iter__(self):
-        a = self.__dict__
-        for value in a.values():
+        for value in self.__dict__.values():
             yield value
 
 
-class IndexDictTuplesMixin(object):
+class IndexDictTuplesMixin:
     def __getitem__(self, item):
         if isinstance(item, int):
             a = self.__dict__
@@ -48,3 +46,18 @@ if __name__ == "__main__":
         a.a = 2
         a.b = 3
         assert a[0] == 2
+
+    def asdij():
+        class IASD(IterDictValuesMixin):
+            pass
+
+        a = IASD()
+        a.b = 1
+        a.c = 2
+        a.d = 3
+
+        for ca in a:
+            print(ca)
+
+    asd()
+    asdij()

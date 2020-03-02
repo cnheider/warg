@@ -12,8 +12,8 @@ __all__ = ["PostInit"]
 
 class PostInit(type):
     """
-  define a new metaclass which overrides the "__call__" function
-  """
+define a new metaclass which overrides the "__call__" function
+"""
 
     def __call__(cls, *args, **kwargs):
         """Called when you call a class type constructor() """

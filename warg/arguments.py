@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
-from collections import Mapping, namedtuple
+from collections import namedtuple
+from typing import Mapping
 from pathlib import Path, PosixPath
 from warnings import warn
 
@@ -18,6 +19,7 @@ __all__ = [
     "add_bool_arg",
     "check_for_duplicates_in_args",
     "wrap_args",
+    "UpperAttrMetaclass",
 ]
 
 
@@ -53,6 +55,24 @@ def to_lower_properties(C_dict: Mapping):
             setattr(a, lowered, v)
 
     return a
+
+
+def lower_dict(map: Mapping) -> Mapping:
+    cop = {}
+    for (k, v) in map.items():
+        assert isinstance(k, str)
+        cop[k.lower()] = v
+
+    return cop
+
+
+def upper_dict(map: Mapping) -> Mapping:
+    cop = {}
+    for (k, v) in map.items():
+        assert isinstance(k, str)
+        cop[k.upper()] = v
+
+    return cop
 
 
 def get_upper_case_vars_or_protected_of(module: object, lower_keys: bool = True) -> Mapping:

@@ -11,7 +11,7 @@ __all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
 
 class GeneralisedDelayedKwargConstruction(object):
     """
-  A generalised class for setting up kwargs for later construction of an instance of an object
+A generalised class for setting up kwargs for later construction of an instance of an object
 """
 
     def __init__(self, constructor: callable, *args, **kwargs):
