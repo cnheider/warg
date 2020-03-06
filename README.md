@@ -4,8 +4,9 @@
 ![warg](.github/images/warg.svg)
 ![python](.github/images/python.svg)
 
-[![Build Status](https://travis-ci.com/aivclab/warg.svg?branch=master)](https://travis-ci.com/aivclab/warg) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Coverage Status](https://coveralls.io/repos/github/aivclab/warg/badge.svg?branch=master)](https://coveralls.io/github/aivclab/warg?branch=master)
-___
+[![Build Status](https://travis-ci.com/aivclab/warg.svg?branch=master)](https://travis-ci.com/aivclab/warg
+) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Coverage Status](https://coveralls.io/repos/github/aivclab/warg/badge.svg?branch=master)](https://coveralls.io/github/aivclab/warg?branch=master) ![Python package](https://github.com/cnheider/draugr/workflows/Python%20package/badge.svg)___
+
 > Devour everything :wolf:
 ___
 
@@ -32,7 +33,7 @@ Note: communication and organisation is costly, intended for heavy processing fu
 # Disclaimer
 Use warg with caution, some features might break as python naturally evolves.
 Warg uses some advanced features of python and sometimes abuse notation/syntax, with some pretty hard
- assumptions on input and interaction. 
+ assumptions on input and interaction.
 With this in mind please have fun with it ![epic_face](.github/images/epic_face.png)
 
 ___

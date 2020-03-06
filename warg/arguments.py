@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 from collections import namedtuple
-from typing import Mapping
+from typing import Mapping, Tuple
 from pathlib import Path, PosixPath
 from warnings import warn
 
@@ -164,6 +164,18 @@ def wrap_args(n_tuple: namedtuple):
 
     return wrapper
 
+
+def str_to_bool(s: str, preds: Tuple[str, ...] = ("true", "1")) -> bool:
+    """
+
+
+  :param s:
+  :return:
+  """
+    return s.lower() in preds
+
+
+str2bool = str_to_bool
 
 if __name__ == "__main__":
 

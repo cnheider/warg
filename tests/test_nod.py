@@ -201,3 +201,22 @@ def test_access_operators_no_multi_return_no_variable_name_direct_inference():
     assert columns["dsa"] == arg0
     assert columns / "dsa" == arg0
     assert id(columns / "dsa") == id(columns["dsa"])
+
+
+def test_nested():
+    cfg = NOD()
+
+    cfg.MODEL = NOD()
+
+    cfg.MODEL.DEVICE = "cuda"
+    # match default boxes to any ground truth with jaccard overlap higher than a threshold (0.5)
+    cfg.MODEL.THRESHOLD = 0.5
+    cfg.MODEL.NUM_CLASSES = 21
+    # Hard negative mining
+    cfg.MODEL.NEG_POS_RATIO = 3
+    cfg.MODEL.CENTER_VARIANCE = 0.1
+    cfg.MODEL.SIZE_VARIANCE = 0.2
+
+    cfg.ADSA = 203182
+
+    print(cfg)
