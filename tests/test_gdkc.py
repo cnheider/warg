@@ -1,21 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pytest
-import logging
-
-logger = logging.getLogger()
-logger.addHandler(logging.StreamHandler())
 
 from warg.gdkc import GeneralisedDelayedKwargConstruction
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
+            Much like the partial wrapper from functools, GeneralisedDelayedKwargConstruction provides a
+            way of finishing constrution of class instance or call of function but lets you change the
+            kwargs until actual call.
            """
 
 
 class A:
     def __init__(self, *args, **kwargs):
-        pass
+        self.args_a = args
+        self.kwargs_a = kwargs
+
+    def something(self):
+        print(self.kwargs_a)
+
+    def something_else(self, *args):
+        print(args, self.kwargs_a)
+
+    def another(self, *args, **kwargs):
+        print(args, self.kwargs_a, kwargs)
+
+    def clearly_something(self, *args, **kwargs):
+        print(self.args_a, args, self.kwargs_a, kwargs)
 
 
 def test_not_both():
@@ -27,7 +39,10 @@ def test_kw():
 
 
 def test_mapping():
-    GeneralisedDelayedKwargConstruction(A, {"a": 2})
+    da = GeneralisedDelayedKwargConstruction(A, {"a": 2})
+    a = da(99)
+    a.something()
+    a.clearly_something(231, b="52")
 
 
 def test_overwriting_warning(caplog):

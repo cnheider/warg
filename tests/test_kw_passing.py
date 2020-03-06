@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import inspect
 
-from warg.kw_passing import passes_kws_to, pass_kws_to_super_init
+from warg.kw_passing import passes_kws_to, super_init_pass_on_kws
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -14,10 +14,10 @@ def test_subclass_fully_qualified_no_args_or_kwargs():
         def __init__(self, arg0, kwarg0=None, kwarg1=None):
             """
 
-      :param arg0:
-      :param kwarg0:
-      :param kwarg1:
-      """
+:param arg0:
+:param kwarg0:
+:param kwarg1:
+"""
             self.arg0 = arg0
             self.kwarg0 = kwarg0
             self.kwarg1 = kwarg1
@@ -30,7 +30,7 @@ def test_subclass_fully_qualified_no_args_or_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -50,12 +50,12 @@ def test_with_args_and_kwargs_on_subclasses():
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs):
             """
 
-      :param arg0:
-      :param args:
-      :param kwarg0:
-      :param kwarg1:
-      :param kwargs:
-      """
+:param arg0:
+:param args:
+:param kwarg0:
+:param kwarg1:
+:param kwargs:
+"""
             self.arg0 = arg0
             for key, val in enumerate(args):
                 setattr(self, f"arg{key + 1}", val)
@@ -71,18 +71,18 @@ def test_with_args_and_kwargs_on_subclasses():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init()
+    @super_init_pass_on_kws()
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             """
 
-      :param arg0:
-      :param arg1:
-      :param arg2:
-      :param args:
-      :param kwarg2:
-      :param kwargs:
-      """
+:param arg0:
+:param arg1:
+:param arg2:
+:param args:
+:param kwarg2:
+:param kwargs:
+"""
             super().__init__(arg0, *args, **kwargs)
             self.arg1 = arg1
             self.arg2 = arg2
@@ -100,10 +100,10 @@ def test_subclass_with_kwargs():
         def __init__(self, arg0, kwarg0=None, kwarg1=None):
             """
 
-      :param arg0:
-      :param kwarg0:
-      :param kwarg1:
-      """
+:param arg0:
+:param kwarg0:
+:param kwarg1:
+"""
             self.arg0 = arg0
             self.kwarg0 = kwarg0
             self.kwarg1 = kwarg1
@@ -116,7 +116,7 @@ def test_subclass_with_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -136,10 +136,10 @@ def test_subclass_with_args():
         def __init__(self, arg0, kwarg0=None, kwarg1=None):
             """
 
-      :param arg0:
-      :param kwarg0:
-      :param kwarg1:
-      """
+:param arg0:
+:param kwarg0:
+:param kwarg1:
+"""
             self.arg0 = arg0
             self.kwarg0 = kwarg0
             self.kwarg1 = kwarg1
@@ -152,7 +152,7 @@ def test_subclass_with_args():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, *args, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -172,10 +172,10 @@ def test_base_with_kwargs():
         def __init__(self, arg0, kwarg0=None, kwarg1=None, **kwargs):
             """
 
-      :param arg0:
-      :param kwarg0:
-      :param kwarg1:
-      """
+:param arg0:
+:param kwarg0:
+:param kwarg1:
+"""
             self.arg0 = arg0
             self.kwarg0 = kwarg0
             self.kwarg1 = kwarg1
@@ -188,7 +188,7 @@ def test_base_with_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -208,10 +208,10 @@ def test_base_with_args():
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None):
             """
 
-      :param arg0:
-      :param kwarg0:
-      :param kwarg1:
-      """
+:param arg0:
+:param kwarg0:
+:param kwarg1:
+"""
             self.arg0 = arg0
             self.kwarg0 = kwarg0
             self.kwarg1 = kwarg1
@@ -224,7 +224,7 @@ def test_base_with_args():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -244,10 +244,10 @@ def test_base_with_args_and_mock_empty_dict():
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None):
             """
 
-      :param arg0:
-      :param kwarg0:
-      :param kwarg1:
-      """
+:param arg0:
+:param kwarg0:
+:param kwarg1:
+"""
             self.arg0 = arg0
             self.kwarg0 = kwarg0
             self.kwarg1 = kwarg1
@@ -260,7 +260,7 @@ def test_base_with_args_and_mock_empty_dict():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    @pass_kws_to_super_init
+    @super_init_pass_on_kws
     class SubClass1(BaseClass):
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, (), kwarg0=kwarg0, **{})
@@ -316,10 +316,10 @@ def test_chaining_no_keep():
     def l(a, im_here: str = None, **kwargs):
         """
 
-    :param im_here: Nice to meet you
-    :param kwargs:
-    :return:
-    """
+:param im_here: Nice to meet you
+:param kwargs:
+:return:
+"""
         pass
 
     @passes_kws_to(b)
@@ -327,11 +327,11 @@ def test_chaining_no_keep():
     def a1(e: int, *args, **kwargs):
         """
 
-    :param e:
-    :param args:
-    :param kwargs:
-    :return:
-    """
+:param e:
+:param args:
+:param kwargs:
+:return:
+"""
         b(1, 2, **kwargs)
         l(1, **kwargs)
 

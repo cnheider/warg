@@ -6,19 +6,21 @@ from typing import MutableMapping, Any
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
+__all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
+
 
 class GeneralisedDelayedKwargConstruction(object):
     """
-    A generalised class for setting up kwargs for later construction of an instance of an object
-  """
+A generalised class for setting up kwargs for later construction of an instance of an object
+"""
 
     def __init__(self, constructor: callable, *args, **kwargs):
         """
 
-    :param constructor:
-    :param args:
-    :param kwargs:
-    """
+:param constructor:
+:param args:
+:param kwargs:
+"""
         self.constructor: callable = constructor
         assert len(args) < 2
         assert not (len(kwargs) > 1 and len(args) > 1)
@@ -33,10 +35,10 @@ class GeneralisedDelayedKwargConstruction(object):
     def __call__(self, *args, **kwargs) -> Any:
         """
 
-    :param args:
-    :param kwargs:
-    :return:
-    """
+:param args:
+:param kwargs:
+:return:
+"""
 
         war = "".join(
             [

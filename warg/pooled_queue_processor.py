@@ -13,6 +13,8 @@ __author__ = "Christian Heider Nielsen"
 import multiprocessing as mp
 import queue
 
+__all__ = ["CloudPickleBase", "PooledQueueTask", "PooledQueueProcessor"]
+
 
 class CloudPickleBase(object):
     """

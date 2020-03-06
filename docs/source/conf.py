@@ -75,7 +75,6 @@ project = PROJECT_NAME
 author = PROJECT_AUTHOR
 copyright_text = f"{PROJECT_YEAR}, {PROJECT_AUTHOR}"
 
-
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
