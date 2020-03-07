@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from warg.singleton import SingletonMeta, SingletonBase
+from warg.metas.singleton import SingletonMeta, SingletonBase
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

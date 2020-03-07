@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from warg import drop_unused_kws
-from warg.post_init import PostInit
-from warg.singleton import SingletonMeta, SingletonBase
+from warg.metas.post_init import PostInit
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

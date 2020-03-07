@@ -11,7 +11,7 @@ __doc__ = r"""
 from time import sleep, time
 from typing import Iterable, Set, Mapping, Tuple
 
-from warg.hashing import make_hash
+from warg.decorators.hashing import make_hash
 
 global_table = {}
 
