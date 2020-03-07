@@ -7,7 +7,7 @@ from warnings import warn
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.4.6"
+__version__ = "0.4.7"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -89,12 +89,9 @@ __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
 from .named_ordered_dictionary import *
 from .pooled_queue_processor import *
-from .singleton import *
 from .arguments import *
 from .gdkc import *
-from .kw_passing import *
 from .mixins import *
 from .decorators import *
 from .auto_dict import *
-from .post_init import *
-from .hashing import *
+from .metas import *

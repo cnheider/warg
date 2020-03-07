@@ -20,7 +20,7 @@ def make_hash(o):
     make_hash([fn.__dict__, fn.__code__])
   """
 
-    if type(o) == DictProxyType:
+    if isinstance(o, DictProxyType):
         o2 = {}
         for k, v in o.items():
             if not k.startswith("__"):
@@ -28,8 +28,8 @@ def make_hash(o):
         o = o2
 
     if isinstance(o, (set, tuple, list)):
-        return tuple([make_hash(e) for e in o])
-    elif not isinstance(o, dict):
+        return hash(tuple([make_hash(e) for e in o]))
+    if not isinstance(o, dict):
         return hash(o)
 
     new_o = copy.deepcopy(o)
@@ -37,3 +37,21 @@ def make_hash(o):
         new_o[k] = make_hash(v)
 
     return hash(tuple(frozenset(sorted(new_o.items()))))
+
+
+if __name__ == "__main__":
+    print(hash(1))
+    print(make_hash(1))
+    print(make_hash(1))
+    print(make_hash({1}))
+    print(make_hash([1]))
+    print(make_hash({1}))
+    print(make_hash({1, 2}))
+    print(make_hash([1, 2]))
+    print(make_hash((1, 2)))
+    print(make_hash({4}))
+    print(make_hash("1"))
+    print(make_hash({"2": 2}))
+    print(make_hash({"2": 3}))
+    print(make_hash({"3": 2}))
+    print(make_hash({"3": 3}))

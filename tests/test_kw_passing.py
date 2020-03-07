@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import inspect
 
-from warg.kw_passing import passes_kws_to, super_init_pass_on_kws
+from warg.decorators.kw_passing import passes_kws_to, super_init_pass_on_kws
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
