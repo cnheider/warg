@@ -32,7 +32,7 @@ class PropertySettings:
 
     def __setattr__(self, key, value):
         assert not key.startswith("_"), f"{key} is not allowed"
-        self.__getattr__(key)
+        # self.__getattr__(key)
         super().__setattr__(key, value)
 
     def __getattr__(self, item):
