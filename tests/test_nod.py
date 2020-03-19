@@ -220,3 +220,51 @@ def test_nested():
     cfg.ADSA = 203182
 
     print(cfg)
+
+
+def test_copy():
+    from copy import deepcopy, copy
+
+    nodict = NOD()
+    nodict.paramA = "str_parameter"
+    nodict.paramB = 10
+
+    b = copy(nodict)
+    print(b)
+    assert b.paramB == 10
+    assert b.paramB == nodict.paramB
+
+    a = deepcopy(nodict)
+    print(a)
+    assert a.paramB == 10
+    assert a.paramB == nodict.paramB
+
+
+def test_distribute_keys_view():
+
+    nodict = NOD()
+    nodict.paramA = 2
+    nodict.paramB = 10
+
+    nodict.paramC = 5
+    nodict[nodict.keys()] = 4
+
+    assert nodict.paramA == 4
+    assert nodict.paramB == 4
+    assert nodict.paramC == 4
+
+
+def test_distribute_slice():
+
+    nodict = NOD()
+    nodict.paramA = 2
+    nodict.paramB = 10
+    nodict.paramC = 5
+    nodict.paramD = 5
+
+    nodict[:2] = 4
+
+    assert nodict.paramA == 4
+    assert nodict.paramB == 4
+    assert nodict.paramC == 4
+    assert nodict.paramD == 5

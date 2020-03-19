@@ -1,7 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import Any, ItemsView, Iterable, KeysView, List, MutableMapping, Tuple, TypeVar, ValuesView, Type
+from typing import (
+    Any,
+    ItemsView,
+    Iterable,
+    KeysView,
+    List,
+    MutableMapping,
+    Tuple,
+    Type,
+    TypeVar,
+    ValuesView,
+    Sized,
+)
 
 import sorcery
 from sorcery.core import node_name
@@ -106,7 +118,6 @@ assert nodict.paramA == 20
 
     def __init__(self, *args, **kwargs) -> None:
         # super().__init__(**kwargs)
-
         if len(args) == 1 and isinstance(args[0], dict):
             args_dict = args[0]
         else:
@@ -186,6 +197,8 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
         return nod
 
     def __getattr__(self, item) -> Any:
+        if item == "__deepcopy__":
+            return super().__getattribute__(item)
         return self.__dict__[item]
 
     def __len__(self) -> int:
@@ -193,9 +206,12 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
     def __setattr__(self, key, value) -> None:
         if key in LOCALS:
-            raise IllegalAttributeKey(key, type=NamedOrderedDictionary.__name__)
+            raise IllegalAttributeKey(key, type=NamedOrderedDictionary)
 
-        self.__dict__[key] = value
+        if key == "__dict__":
+            super().__setattr__(key, value)
+        else:
+            self.__dict__[key] = value
 
     def __getitem__(self, key) -> Any:
         if isinstance(key, slice):
@@ -209,13 +225,26 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
     def __setitem__(self, key, value) -> None:
         if isinstance(key, slice):
             keys = list(self.__dict__.keys())[key]
-            for a, v in zip(keys, value):
-                self.__dict__[a] = v
+            if isinstance(value, Sized):
+                assert len(keys) == len(
+                    value
+                ), f"number of keys {len(keys)} are not equal values {len(value)}"
+                for a, v in zip(keys, value):
+                    self.__dict__[a] = v
+            else:
+                for a in keys:
+                    self.__dict__[a] = value
         elif isinstance(key, KeysView):
             # assert set(self.__dict__.keys()).issuperset(key)
-            assert len(key) == len(value)
-            for a, v in zip(key, value):
-                self.__dict__[a] = v
+            # assert isinstance(value,Sized), f'values must be of type Sized, was {type(value)},' \
+            #                                f' distribution is not supported'
+            if isinstance(value, Sized):
+                assert len(key) == len(value), f"number of keys {len(key)} are not equal values {len(value)}"
+                for a, v in zip(key, value):
+                    self.__dict__[a] = v
+            else:
+                for a in key:
+                    self.__dict__[a] = value
         else:
             self.__dict__[key] = value
 
@@ -330,3 +359,14 @@ if __name__ == "__main__":
     nodict.paramB = 10
     assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
+    from copy import deepcopy, copy
+
+    b = copy(nodict)
+    print(b)
+    assert b.paramB == 10
+    assert b.paramB == nodict.paramB
+
+    a = deepcopy(nodict)
+    print(a)
+    assert a.paramB == 10
+    assert a.paramB == nodict.paramB
