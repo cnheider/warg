@@ -7,7 +7,7 @@ from warnings import warn
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.4.7"
+__version__ = "0.4.8"
 __doc__ = r"""
 Created on 27/04/2019
 

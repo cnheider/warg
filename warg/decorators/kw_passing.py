@@ -13,7 +13,14 @@ __doc__ = r"""
           the receiver function allowing for autocompletion, typing and documentation fetching.
            """
 
-__all__ = ["passes_kws_to", "super_init_pass_on_kws", "drop_unused_kws"]
+__all__ = [
+    "passes_kws_to",
+    "super_init_pass_on_kws",
+    "drop_unused_kws",
+    "drop_unused_args",
+    "drop_kws",
+    "drop_args",
+]
 
 
 def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
