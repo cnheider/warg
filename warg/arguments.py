@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 import argparse
 from collections import namedtuple
-from typing import Mapping, Tuple
 from pathlib import Path, PosixPath
+from typing import Mapping, Tuple
 from warnings import warn
 
 import wrapt
@@ -169,9 +169,9 @@ def str_to_bool(s: str, preds: Tuple[str, ...] = ("true", "1")) -> bool:
     """
 
 
-  :param s:
-  :return:
-  """
+:param s:
+:return:
+"""
     return s.lower() in preds
 
 

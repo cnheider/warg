@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import functools
 import inspect
 import types
 from functools import wraps
@@ -230,3 +231,13 @@ if __name__ == "__main__":
     some_other_func(a=1, b=2)
 
     some_different_func(a=1, c=2, b="l")
+
+
+class AlsoDecorator:
+    def __call__(self, func):
+        @functools.wraps(func)
+        def decorate_no_grad(*args, **kwargs):
+            with self:
+                return func(*args, **kwargs)
+
+        return decorate_no_grad

@@ -8,11 +8,11 @@ from typing import (
     KeysView,
     List,
     MutableMapping,
+    Sized,
     Tuple,
     Type,
     TypeVar,
     ValuesView,
-    Sized,
 )
 
 import sorcery

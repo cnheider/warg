@@ -1,8 +1,8 @@
 import time
 
 import numpy
-
 from benchmarks.benchmark_func import benchmark_func
+
 from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
 
 

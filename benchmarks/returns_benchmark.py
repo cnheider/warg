@@ -1,8 +1,8 @@
 from collections import namedtuple
 
 import sorcery
-
 from benchmarks.benchmark_func import benchmark_func
+
 from warg.named_ordered_dictionary import NOD
 
 

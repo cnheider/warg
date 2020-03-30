@@ -241,7 +241,6 @@ def test_copy():
 
 
 def test_distribute_keys_view():
-
     nodict = NOD()
     nodict.paramA = 2
     nodict.paramB = 10
@@ -255,7 +254,6 @@ def test_distribute_keys_view():
 
 
 def test_distribute_slice():
-
     nodict = NOD()
     nodict.paramA = 2
     nodict.paramB = 10

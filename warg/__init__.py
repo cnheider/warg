@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import pkg_resources
-from apppath import AppPath
 from warnings import warn
+
+import pkg_resources
+
+from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.4.8"
+__version__ = "0.5.0"
 __doc__ = r"""
 Created on 27/04/2019
 
 @author: cnheider
 """
-__all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
+# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
 
 
 def dist_is_editable(dist):

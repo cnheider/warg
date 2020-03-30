@@ -7,8 +7,8 @@ __doc__ = r"""
            Created on 16/02/2020
            """
 
-from .timing import *
 from .caching import *
-from .look_up_table import *
 from .hashing import *
 from .kw_passing import *
+from .look_up_table import *
+from .timing import *
