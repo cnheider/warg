@@ -1,7 +1,9 @@
+![warg](.github/images/warg.svg)
+
 # Warg
 ```Old-Norse: Varg```
 
-![warg](.github/images/warg.svg)
+
 ![python](.github/images/python.svg)
 
 [![Build Status](https://travis-ci.com/aivclab/warg.svg?branch=master)](https://travis-ci.com/aivclab/warg

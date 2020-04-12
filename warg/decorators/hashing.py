@@ -7,18 +7,18 @@ __all__ = ["make_hash"]
 
 def make_hash(o):
     """
-Makes a hash from a dictionary, list, tuple or set to any level, that
-contains only other hashable types (including any lists, tuples, sets, and
-dictionaries). In the case where other kinds of objects (like classes) need
-to be hashed, pass in a collection of object attributes that are pertinent.
-For example, a class can be hashed in this fashion:
+    Makes a hash from a dictionary, list, tuple or set to any level, that
+    contains only other hashable types (including any lists, tuples, sets, and
+    dictionaries). In the case where other kinds of objects (like classes) need
+    to be hashed, pass in a collection of object attributes that are pertinent.
+    For example, a class can be hashed in this fashion:
 
-  make_hash([cls.__dict__, cls.__name__])
+      make_hash([cls.__dict__, cls.__name__])
 
-A function can be hashed like so:
+    A function can be hashed like so:
 
-  make_hash([fn.__dict__, fn.__code__])
-"""
+      make_hash([fn.__dict__, fn.__code__])
+    """
 
     if isinstance(o, DictProxyType):
         o2 = {}

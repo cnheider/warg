@@ -24,6 +24,10 @@ __all__ = [
 
 
 class UpperAttrMetaclass(type):
+    """
+    Upper case all attributes if not __private
+    """
+
     def __new__(cls, clsname, bases, dct: dict):
 
         uppercase_attr = {}
@@ -37,10 +41,21 @@ class UpperAttrMetaclass(type):
 
 
 class ConfigObject(object):
+    """
+    Config object
+    """
+
     pass
 
 
 def to_lower_properties(C_dict: Mapping):
+    """
+
+    :param C_dict:
+    :type C_dict:
+    :return:
+    :rtype:
+    """
     if not isinstance(C_dict, dict):
         C_dict = config_to_mapping(C_dict)
 
@@ -58,6 +73,13 @@ def to_lower_properties(C_dict: Mapping):
 
 
 def lower_dict(map: Mapping) -> Mapping:
+    """
+
+    :param map:
+    :type map:
+    :return:
+    :rtype:
+    """
     cop = {}
     for (k, v) in map.items():
         assert isinstance(k, str)
@@ -67,6 +89,13 @@ def lower_dict(map: Mapping) -> Mapping:
 
 
 def upper_dict(map: Mapping) -> Mapping:
+    """
+
+    :param map:
+    :type map:
+    :return:
+    :rtype:
+    """
     cop = {}
     for (k, v) in map.items():
         assert isinstance(k, str)
@@ -76,6 +105,15 @@ def upper_dict(map: Mapping) -> Mapping:
 
 
 def get_upper_case_vars_or_protected_of(module: object, lower_keys: bool = True) -> Mapping:
+    """
+
+    :param module:
+    :type module:
+    :param lower_keys:
+    :type lower_keys:
+    :return:
+    :rtype:
+    """
     v = vars(module)
     check_for_duplicates_in_args(**v)
     if v:
@@ -94,6 +132,15 @@ def get_upper_case_vars_or_protected_of(module: object, lower_keys: bool = True)
 
 
 def config_to_mapping(C: object, only_upper_case: bool = True) -> NOD:
+    """
+
+    :param C:
+    :type C:
+    :param only_upper_case:
+    :type only_upper_case:
+    :return:
+    :rtype:
+    """
     if only_upper_case:
         return NOD(get_upper_case_vars_or_protected_of(C))
     else:
@@ -109,6 +156,21 @@ def add_bool_arg(
     default: bool = False,
     **kwargs,
 ):
+    """
+
+    :param parser:
+    :type parser:
+    :param name:
+    :type name:
+    :param dest:
+    :type dest:
+    :param converse:
+    :type converse:
+    :param default:
+    :type default:
+    :param kwargs:
+    :type kwargs:
+    """
     if not dest:
         dest = name
 
@@ -127,6 +189,11 @@ def add_bool_arg(
 
 
 def check_for_duplicates_in_args(**kwargs) -> None:
+    """
+
+    :param kwargs:
+    :type kwargs:
+    """
     for key, value in kwargs.items():
 
         occur = 0
@@ -154,8 +221,29 @@ def check_for_duplicates_in_args(**kwargs) -> None:
 
 
 def wrap_args(n_tuple: namedtuple):
+    """
+
+    :param n_tuple:
+    :type n_tuple:
+    :return:
+    :rtype:
+    """
+
     @wrapt.decorator(adapter=n_tuple)
     def wrapper(wrapped, instance, args, kwargs):
+        """
+
+        :param wrapped:
+        :type wrapped:
+        :param instance:
+        :type instance:
+        :param args:
+        :type args:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         if isinstance(args[0], n_tuple):
             n = args[0]
         else:
@@ -183,9 +271,25 @@ if __name__ == "__main__":
 
     @wrap_args(c)
     def add(v):
+        """
+
+        :param v:
+        :type v:
+        :return:
+        :rtype:
+        """
         return v.a + v.b
 
     def add2(a, b):
+        """
+
+        :param a:
+        :type a:
+        :param b:
+        :type b:
+        :return:
+        :rtype:
+        """
         return a + b
 
     h = add(2, 2)

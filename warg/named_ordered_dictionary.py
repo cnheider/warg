@@ -36,9 +36,14 @@ LOCALS = (
 
 
 class IllegalAttributeKey(Exception):
-    def __init__(self, key, type: Type):
-        msg = f'Overwriting of attribute "{key}" on type "{type.__name__}" is not allowed'
-        Exception.__init__(self, msg)
+    """
+    An exception for when a deemed illegal attribute key was being overwritten
+    """
+
+    def __init__(self, key, type_: Type):
+        Exception.__init__(
+            self, f'Overwriting of attribute "{key}" on type "{type_.__name__}" is not allowed'
+        )
 
 
 T = TypeVar("T", bound="NamedOrderedDictionary")
@@ -131,18 +136,43 @@ assert nodict.paramA == 20
         self.update(args_dict or {})
 
     def as_list(self) -> list:
+        """
+
+        :return:
+        :rtype:
+        """
         return list(self.__dict__.values())
 
     def as_dict(self) -> dict:
+        """
+
+        :return:
+        :rtype:
+        """
         return self.__dict__
 
     def as_tuples(self) -> List[Tuple[Any, Any]]:
+        """
+
+        :return:
+        :rtype:
+        """
         return [(k, v) for (k, v) in self.__dict__.items()]
 
     def as_flat_tuples(self) -> List[Tuple]:
+        """
+
+        :return:
+        :rtype:
+        """
         return [(k, *v) for (k, v) in self.__dict__.items()]
 
     def add_unnamed_arg(self, arg: Any) -> None:
+        """
+
+        :param arg:
+        :type arg:
+        """
         self.__dict__[f"arg{id(arg)}"] = arg
 
     @staticmethod
@@ -206,7 +236,7 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
     def __setattr__(self, key, value) -> None:
         if key in LOCALS:
-            raise IllegalAttributeKey(key, type=NamedOrderedDictionary)
+            raise IllegalAttributeKey(key, type_=NamedOrderedDictionary)
 
         if key == "__dict__":
             super().__setattr__(key, value)
@@ -252,12 +282,27 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
         del self.__dict__[key]
 
     def keys(self) -> KeysView:
+        """
+
+        :return:
+        :rtype:
+        """
         return self.__dict__.keys()
 
     def items(self) -> ItemsView:
+        """
+
+        :return:
+        :rtype:
+        """
         return self.__dict__.items()
 
     def values(self) -> ValuesView:
+        """
+
+        :return:
+        :rtype:
+        """
         return self.__dict__.values()
 
     def __contains__(self, item) -> bool:
@@ -298,7 +343,7 @@ items (dict): Python dictionary containing updated values.
 
         for key in args_dict:
             if key in LOCALS:
-                raise IllegalAttributeKey(key, type=NamedOrderedDictionary)
+                raise IllegalAttributeKey(key, type_=NamedOrderedDictionary)
 
         self.__dict__.update(args_dict)
 
