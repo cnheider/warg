@@ -21,6 +21,7 @@ __all__ = [
     "drop_unused_args",
     "drop_kws",
     "drop_args",
+    "AlsoDecorator",
 ]
 
 
@@ -256,6 +257,25 @@ def drop_unused_kws(f: callable):
     return wrapper
 
 
+class AlsoDecorator:
+    def __call__(self, func):
+        @functools.wraps(func)
+        def decorate_no_grad(*args, **kwargs):
+            """
+
+      :param args:
+      :type args:
+      :param kwargs:
+      :type kwargs:
+      :return:
+      :rtype:
+      """
+            with self:
+                return func(*args, **kwargs)
+
+        return decorate_no_grad
+
+
 if __name__ == "__main__":
 
     class BaseClass:
@@ -352,22 +372,3 @@ if __name__ == "__main__":
     some_other_func(a=1, b=2)
 
     some_different_func(a=1, c=2, b="l")
-
-
-class AlsoDecorator:
-    def __call__(self, func):
-        @functools.wraps(func)
-        def decorate_no_grad(*args, **kwargs):
-            """
-
-            :param args:
-            :type args:
-            :param kwargs:
-            :type kwargs:
-            :return:
-            :rtype:
-            """
-            with self:
-                return func(*args, **kwargs)
-
-        return decorate_no_grad
