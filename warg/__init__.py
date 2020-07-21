@@ -9,7 +9,7 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.5.2"
+__version__ = "0.5.3"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -99,3 +99,7 @@ from .decorators import *
 from .auto_dict import *
 from .metas import *
 from .bases import *
+from .typing_extension import *
+from .context_wrapper import *
+
+# from .ode import *

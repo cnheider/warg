@@ -260,9 +260,47 @@ def test_distribute_slice():
     nodict.paramC = 5
     nodict.paramD = 5
 
-    nodict[:2] = 4
+    nodict[:3] = 4
 
     assert nodict.paramA == 4
     assert nodict.paramB == 4
     assert nodict.paramC == 4
     assert nodict.paramD == 5
+
+
+def test_multi_key_index():
+    nodict = NOD()
+    nodict.paramA = 2
+    nodict.paramB = 10
+    nodict.paramC = 5
+    nodict.paramD = 5
+
+    nodict["paramA", "paramB"] = 4
+
+    assert nodict.paramA == 2
+    assert nodict.paramB == 10
+    assert nodict.paramC == 5
+    assert nodict.paramD == 5
+
+    assert nodict["paramA", "paramB"] == 4
+
+
+def test_call_index():
+    nodict = NOD()
+    nodict.paramA = 2
+    nodict.paramB = 10
+    nodict.paramC = 5
+    nodict.paramD = 5
+    nodict[6] = 1
+    nodict[1] = 1
+    nodict[2] = 11
+
+    assert nodict.paramA == 2
+    assert nodict.paramB == 10
+    assert nodict.paramC == 5
+    assert nodict.paramD == 5
+
+    assert nodict("paramA", "paramB", 6) == [2, 10, 1]
+    assert nodict("paramC") == [5]
+    assert nodict(6, "paramD", 1) == [1, 5, 1]
+    assert nodict(2) == [11]

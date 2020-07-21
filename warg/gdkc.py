@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import logging
-from typing import Any, MutableMapping
+from typing import Any, Mapping, MutableMapping
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
@@ -12,20 +12,28 @@ __all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
 class GeneralisedDelayedKwargConstruction(object):
     """
 A generalised class for setting up kwargs for later construction of an instance of an object
+[constructor, args, kwargs]
+
 """
 
     def __init__(self, constructor: callable, *args, **kwargs):
         """
-
+[constructor, args, kwargs]
 :param constructor:
 :param args:
 :param kwargs:
 """
         self.constructor: callable = constructor
-        assert len(args) < 2
-        assert not (len(kwargs) > 1 and len(args) > 1)
+        assert len(args) < 2, f"Does not support multiple args, only a single mapping type"
+        if len(args) == 1:
+            assert isinstance(
+                args[0], Mapping
+            ), f"Arg[0] type is not a mapping type, was {type(args[0])} which is not supported"
+        assert not (
+            len(kwargs) > 0 and len(args) > 0
+        ), f"Does not support both args and kwargs, both supplied args, {args} and {kwargs}"
 
-        if len(args) == 1 and len(kwargs) == 0 and isinstance(args[0], MutableMapping):
+        if len(args) == 1 and len(kwargs) == 0 and isinstance(args[0], Mapping):
             self.kwargs: MutableMapping = args[0]
         elif len(kwargs) == 1 and next(iter(kwargs.keys())) == "kwargs":
             self.kwargs = kwargs["kwargs"]

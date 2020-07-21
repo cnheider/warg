@@ -31,7 +31,10 @@ class A:
 
 
 def test_not_both():
-    GeneralisedDelayedKwargConstruction(A, [1], a=2)
+    try:
+        GeneralisedDelayedKwargConstruction(A, [1], a=2)
+    except Exception as e:
+        assert isinstance(e, AssertionError)
 
 
 def test_kw():

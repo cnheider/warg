@@ -1,24 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# from __future__ import braces # TODO: Try disable comment
-
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
+          This file is not for general use. Ode to python
 
            Created on 13/06/2020
            """
 
-import __hello__
+if __name__ == "__main__":
+    # from __future__ import braces # TODO: Try disable comment
 
-print()
-import this
+    # noinspection PyUnresolvedReferences
+    import __hello__
 
-print()
-import antigravity
+    print()
+    import this
 
-print()
-print(this.i, this.d, this.c, this.s)
-print()
-# import that
+    print()
+    # noinspection PyUnresolvedReferences
+    import antigravity
+
+    print()
+    print(this.i, this.d, this.c, this.s)
+    print()
+
+    # noinspection PyUnresolvedReferences
+    import that

@@ -37,8 +37,8 @@ LOCALS = (
 
 class IllegalAttributeKey(Exception):
     """
-    An exception for when a deemed illegal attribute key was being overwritten
-    """
+  An exception for when a deemed illegal attribute key was being overwritten
+  """
 
     def __init__(self, key, type_: Type):
         Exception.__init__(
@@ -138,41 +138,41 @@ assert nodict.paramA == 20
     def as_list(self) -> list:
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return list(self.__dict__.values())
 
     def as_dict(self) -> dict:
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return self.__dict__
 
     def as_tuples(self) -> List[Tuple[Any, Any]]:
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return [(k, v) for (k, v) in self.__dict__.items()]
 
     def as_flat_tuples(self) -> List[Tuple]:
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return [(k, *v) for (k, v) in self.__dict__.items()]
 
     def add_unnamed_arg(self, arg: Any) -> None:
         """
 
-        :param arg:
-        :type arg:
-        """
+    :param arg:
+    :type arg:
+    """
         self.__dict__[f"arg{id(arg)}"] = arg
 
     @staticmethod
@@ -226,7 +226,7 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
         return nod
 
-    def __getattr__(self, item) -> Any:
+    def __getattr__(self, item: Any) -> Any:
         if item == "__deepcopy__":
             return super().__getattribute__(item)
         return self.__dict__[item]
@@ -234,7 +234,7 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
     def __len__(self) -> int:
         return len(self.__dict__)
 
-    def __setattr__(self, key, value) -> None:
+    def __setattr__(self, key: Any, value: Any) -> None:
         if key in LOCALS:
             raise IllegalAttributeKey(key, type_=NamedOrderedDictionary)
 
@@ -243,7 +243,15 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
         else:
             self.__dict__[key] = value
 
-    def __getitem__(self, key) -> Any:
+    def __getitem__(self, key: Any) -> Any:
+        """
+    NOTE getting a tuple is a unique key
+
+    :param key:
+    :type key:
+    :return:
+    :rtype:
+    """
         if isinstance(key, slice):
             keys = list(self.__dict__.keys())[key]
             return [self.__dict__[a] for a in keys]
@@ -252,7 +260,15 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
             return [self.__dict__[a] for a in key]
         return self.__dict__[key]
 
-    def __setitem__(self, key, value) -> None:
+    def __setitem__(self, key: Any, value: Any) -> None:
+        """
+    NOTE setting a tuple is a unique key
+
+    :param key:
+    :type key:
+    :param value:
+    :type value:
+    """
         if isinstance(key, slice):
             keys = list(self.__dict__.keys())[key]
             if isinstance(value, Sized):
@@ -284,25 +300,25 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
     def keys(self) -> KeysView:
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return self.__dict__.keys()
 
     def items(self) -> ItemsView:
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return self.__dict__.items()
 
     def values(self) -> ValuesView:
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return self.__dict__.values()
 
     def __contains__(self, item) -> bool:
@@ -393,6 +409,9 @@ items (dict): Python dictionary containing updated values.
 
     def __getstate__(self) -> dict:
         return self.__dict__
+
+    def __call__(self, *args) -> List:
+        return [self.get(a) for a in args]
 
 
 NOD = NamedOrderedDictionary
