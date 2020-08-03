@@ -37,8 +37,8 @@ Uses cloudpickle to serialize contents (otherwise multiprocessing tries to use p
 
 class PooledQueueTask(ABC):
     """
-    Pooled queue task interface
-    """
+  Pooled queue task interface
+  """
 
     def __call__(self, *args, **kwargs):
         return self.call(*args, **kwargs)
@@ -47,11 +47,11 @@ class PooledQueueTask(ABC):
     def call(self, *args, **kwargs):
         """
 
-        :param args:
-        :type args:
-        :param kwargs:
-        :type kwargs:
-        """
+    :param args:
+    :type args:
+    :param kwargs:
+    :type kwargs:
+    """
         raise NotImplemented
 
 
@@ -94,29 +94,29 @@ This solution has processes complete tasks (batches) and a thread add the result
 
     def fill(self):
         """
-        fill queue
-        """
+    fill queue
+    """
         for i in range(self._max_queue_size):
             self.maybe_fill()
 
     def close(self):
         """
-        close pool
-        """
+    close pool
+    """
         self._pool.close()
         self._pool.join()
 
     def terminate(self):
         """
-        terminate pool
-        """
+    terminate pool
+    """
         self._pool.terminate()
         self._pool.join()
 
     def maybe_fill(self):
         """
-        fill queue if not full
-        """
+    fill queue if not full
+    """
         if self.queue_size < self._max_queue_size:  # and not self._queue.full():
             self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.raise_error)
 
@@ -124,25 +124,25 @@ This solution has processes complete tasks (batches) and a thread add the result
     def queue_size(self):
         """
 
-        :return:
-        :rtype:
-        """
+    :return:
+    :rtype:
+    """
         return self._queue.qsize()
 
     def put(self, res):
         """
 
-        :param res:
-        :type res:
-        """
+    :param res:
+    :type res:
+    """
         self._queue.put(res)
 
     def raise_error(self, excptn):
         """
 
-        :param excptn:
-        :type excptn:
-        """
+    :param excptn:
+    :type excptn:
+    """
         self._pool.terminate()
         self._pool.close()
         # print(excptn.__cause__)
@@ -193,26 +193,26 @@ if __name__ == "__main__":
         def call(self, i, *args, **kwargs):
             """
 
-            :param i:
-            :type i:
-            :param args:
-            :type args:
-            :param kwargs:
-            :type kwargs:
-            :return:
-            :rtype:
-            """
+      :param i:
+      :type i:
+      :param args:
+      :type args:
+      :param kwargs:
+      :type kwargs:
+      :return:
+      :rtype:
+      """
             return i * 2
 
     class Exc(PooledQueueTask):
         def call(self, *args, **kwargs):
             """
 
-            :param args:
-            :type args:
-            :param kwargs:
-            :type kwargs:
-            """
+      :param args:
+      :type args:
+      :param kwargs:
+      :type kwargs:
+      """
             raise NotImplementedError
 
     task = Square()

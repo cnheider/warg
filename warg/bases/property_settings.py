@@ -16,7 +16,7 @@ from warg import NOD
 class PropertySettings:
     """
 
-    """
+  """
 
     def __init__(self, **kwargs):
         for k, v in kwargs.items():

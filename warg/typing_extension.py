@@ -10,7 +10,6 @@ __doc__ = r"""
 import numbers
 from typing import Sequence, Union
 
-
 __all__ = ["Number", "Reals", "Numbers", "StrictNumbers"]
 
 Number = Union[int, float]

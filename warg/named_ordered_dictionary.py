@@ -8,7 +8,7 @@ from typing import (
     KeysView,
     List,
     MutableMapping,
-    Sized,
+    Sequence,
     Tuple,
     Type,
     TypeVar,
@@ -37,8 +37,8 @@ LOCALS = (
 
 class IllegalAttributeKey(Exception):
     """
-  An exception for when a deemed illegal attribute key was being overwritten
-  """
+An exception for when a deemed illegal attribute key was being overwritten
+"""
 
     def __init__(self, key, type_: Type):
         Exception.__init__(
@@ -138,41 +138,41 @@ assert nodict.paramA == 20
     def as_list(self) -> list:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return list(self.__dict__.values())
 
     def as_dict(self) -> dict:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return self.__dict__
 
     def as_tuples(self) -> List[Tuple[Any, Any]]:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return [(k, v) for (k, v) in self.__dict__.items()]
 
     def as_flat_tuples(self) -> List[Tuple]:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return [(k, *v) for (k, v) in self.__dict__.items()]
 
     def add_unnamed_arg(self, arg: Any) -> None:
         """
 
-    :param arg:
-    :type arg:
-    """
+:param arg:
+:type arg:
+"""
         self.__dict__[f"arg{id(arg)}"] = arg
 
     @staticmethod
@@ -245,13 +245,13 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
     def __getitem__(self, key: Any) -> Any:
         """
-    NOTE getting a tuple is a unique key
+NOTE getting a tuple is a unique key
 
-    :param key:
-    :type key:
-    :return:
-    :rtype:
-    """
+:param key:
+:type key:
+:return:
+:rtype:
+"""
         if isinstance(key, slice):
             keys = list(self.__dict__.keys())[key]
             return [self.__dict__[a] for a in keys]
@@ -262,16 +262,16 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
     def __setitem__(self, key: Any, value: Any) -> None:
         """
-    NOTE setting a tuple is a unique key
+NOTE setting a tuple is a unique key
 
-    :param key:
-    :type key:
-    :param value:
-    :type value:
-    """
+:param key:
+:type key:
+:param value:
+:type value:
+"""
         if isinstance(key, slice):
             keys = list(self.__dict__.keys())[key]
-            if isinstance(value, Sized):
+            if isinstance(value, Sequence):
                 assert len(keys) == len(
                     value
                 ), f"number of keys {len(keys)} are not equal values {len(value)}"
@@ -282,9 +282,9 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
                     self.__dict__[a] = value
         elif isinstance(key, KeysView):
             # assert set(self.__dict__.keys()).issuperset(key)
-            # assert isinstance(value,Sized), f'values must be of type Sized, was {type(value)},' \
+            # assert isinstance(value,Sequence), f'values must be of type Sequence, was {type(value)},' \
             #                                f' distribution is not supported'
-            if isinstance(value, Sized):
+            if isinstance(value, Sequence):
                 assert len(key) == len(value), f"number of keys {len(key)} are not equal values {len(value)}"
                 for a, v in zip(key, value):
                     self.__dict__[a] = v
@@ -300,25 +300,25 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
     def keys(self) -> KeysView:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return self.__dict__.keys()
 
     def items(self) -> ItemsView:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return self.__dict__.items()
 
     def values(self) -> ValuesView:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return self.__dict__.values()
 
     def __contains__(self, item) -> bool:

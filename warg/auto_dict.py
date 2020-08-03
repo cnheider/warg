@@ -13,20 +13,20 @@ from collections import defaultdict
 def AutoDict():
     """
 
-    :return:
-    :rtype:
-    """
+  :return:
+  :rtype:
+  """
     return defaultdict(autodict)
 
 
 def recursive_default_dict_print(d, depth=1):
     """
 
-    :param d:
-    :type d:
-    :param depth:
-    :type depth:
-    """
+  :param d:
+  :type d:
+  :param depth:
+  :type depth:
+  """
     for k, v in d.items():
         print("-" * depth, k)
         if type(v) is defaultdict:
@@ -38,11 +38,11 @@ def recursive_default_dict_print(d, depth=1):
 def sanitise_auto_dict(d):
     """
 
-    :param d:
-    :type d:
-    :return:
-    :rtype:
-    """
+  :param d:
+  :type d:
+  :return:
+  :rtype:
+  """
     if isinstance(d, defaultdict):
         if len(d.keys()) == 0:
             return None

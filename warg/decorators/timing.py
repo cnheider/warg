@@ -20,23 +20,23 @@ from functools import wraps
 def timeit(f: callable):
     """
 
-  :param f:
-  :type f:
-  :return:
-  :rtype:
-  """
+:param f:
+:type f:
+:return:
+:rtype:
+"""
 
     @wraps(f)
     def wrapper(*args, **kwds):
         """
 
-    :param args:
-    :type args:
-    :param kwds:
-    :type kwds:
-    :return:
-    :rtype:
-    """
+:param args:
+:type args:
+:param kwds:
+:type kwds:
+:return:
+:rtype:
+"""
         start_time = time.time()
         result = f(*args, **kwds)
         elapsed_time = time.time() - start_time
@@ -49,38 +49,38 @@ def timeit(f: callable):
 class StopWatch(contextlib.AbstractContextManager):
     r"""**Measure execution time of function.**
 
-  Can be used as context manager or function decorator, perform checkpoints
-  or display absolute time from measurements beginning.
+Can be used as context manager or function decorator, perform checkpoints
+or display absolute time from measurements beginning.
 
-  **Used as context manager**::
+**Used as context manager**::
 
-      with Timer() as timer:
-          ... # your operations
-          print(timer) # __str__ calls timer.time() internally
-          timer.checkpoint() # register checkpoint
-          ... # more operations
-          print(timer.checkpoint()) # time since last timer.checkpoint() call
+    with Timer() as timer:
+        ... # your operations
+        print(timer) # __str__ calls timer.time() internally
+        timer.checkpoint() # register checkpoint
+        ... # more operations
+        print(timer.checkpoint()) # time since last timer.checkpoint() call
 
-      ... # even more operations
-      print(timer) # time taken for the block, will not be updated outside of it
+    ... # even more operations
+    print(timer) # time taken for the block, will not be updated outside of it
 
-  When execution leaves the block, timer will be blocked. Last checkpoint and time taken
-  to execute whole block will be returned by `checkpoint()` and `time()` methods respectively.
+When execution leaves the block, timer will be blocked. Last checkpoint and time taken
+to execute whole block will be returned by `checkpoint()` and `time()` methods respectively.
 
-  **Used as function decorator**::
+**Used as function decorator**::
 
-      @Timer()
-      def foo():
-          return 42
+    @Timer()
+    def foo():
+        return 42
 
-      value, time = foo()
+    value, time = foo()
 
-  Parameters
-  ----------
-  function : Callable, optional
-          No argument function used to measure time. Default: time.perf_counter
+Parameters
+----------
+function : Callable, optional
+        No argument function used to measure time. Default: time.perf_counter
 
-  """
+"""
 
     def __init__(
         self,
@@ -144,12 +144,12 @@ class StopWatch(contextlib.AbstractContextManager):
     def since_start(self):
         """**Time taken since the start of timer (measurements beginning).**
 
-    Returns
-    -------
-    time-like
-            Whatever `self.function() - self.function()` returns,
-            usually fraction of seconds
-    """
+Returns
+-------
+time-like
+        Whatever `self.function() - self.function()` returns,
+        usually fraction of seconds
+"""
         if not self._stopped and self._started:
             return self._callable() - self.start_time
         return self.new_time - self.start_time
@@ -157,15 +157,15 @@ class StopWatch(contextlib.AbstractContextManager):
     def tick(self):
         """**Time taken since last tick call.**
 
-    If wasn't called before, it is the same as as Timer creation time (first call returns
-    the same thing as `time()`)
+If wasn't called before, it is the same as as Timer creation time (first call returns
+the same thing as `time()`)
 
-    Returns
-    -------
-    time-like
-            Whatever `self.function() - self.function()` returns,
-            usually fraction of seconds
-    """
+Returns
+-------
+time-like
+        Whatever `self.function() - self.function()` returns,
+        usually fraction of seconds
+"""
         if not self._stopped:
             if self._started:
                 self.previous_time = self.new_time
@@ -176,13 +176,13 @@ class StopWatch(contextlib.AbstractContextManager):
 
     def __call__(self, function):
         """
-    decorator functionality
+decorator functionality
 
-    :param function:
-    :type function:
-    :return:
-    :rtype:
-    """
+:param function:
+:type function:
+:return:
+:rtype:
+"""
 
         @functools.wraps(function)
         def decorated(*args, **kwargs):

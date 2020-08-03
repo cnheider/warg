@@ -38,7 +38,7 @@ homepage = "https://github.com/ambv/black/"
 documentation = "https://black.readthedocs.io/en/stable/"
 license = "MIT"
 keywords = ["automation", "formatter", "yapf", "autopep8", "gofmt"]
-classifiers=[
+classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
     "Intended Audience :: Developers",
@@ -48,8 +48,8 @@ classifiers=[
 ]
 
 packages = [
-    {include = "black.py"},
-    {include = "blib2to3"}
+    { include = "black.py" },
+    { include = "blib2to3" }
 ]
 
 [tool.poetry.scripts]

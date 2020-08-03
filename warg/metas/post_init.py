@@ -12,14 +12,26 @@ __all__ = ["PostInit"]
 
 class PostInit(type):
     """
-    define a new metaclass which overrides the "__call__" function
-    """
+  define a new metaclass which overrides the "__call__" function
+  """
 
     def __call__(cls, *args, **kwargs):
         """
-        Called when you call a class type constructor()
-        """
+    Called when you call a class type constructor()
+    """
         obj = type.__call__(cls, *args, **kwargs)
         if hasattr(obj, "__post_init__"):
             obj.__post_init__(*args, **kwargs)
         return obj
+
+
+if __name__ == "__main__":
+
+    class SAD(metaclass=PostInit):
+        def __init__(self):
+            print("init")
+
+        def __post_init__(self):
+            print("post_init")
+
+    SAD()

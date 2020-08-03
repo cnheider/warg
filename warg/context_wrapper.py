@@ -7,17 +7,17 @@ __doc__ = r"""
            Created on 01/07/2020
            """
 
-
 __all__ = ["ContextWrapper"]
+
 import inspect
 
 
 class ContextWrapper:
     """
-  Allows for conditional application of contexts, if uninstanted context manager classes are passed no arguments is supplied in construction.
-  if disabled None is returned
-  if enabled return of context manager is propagated
-  """
+Allows for conditional application of contexts, if uninstanted context manager classes are passed no arguments is supplied in construction.
+if disabled None is returned
+if enabled return of context manager is propagated
+"""
 
     def __init__(self, context_manager: callable, enabled: bool):
         self._context_manager = context_manager

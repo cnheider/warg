@@ -10,8 +10,8 @@ __all__ = ["IterDictItemsMixin", "IterDictKeysMixin", "IterDictValuesMixin", "Or
 
 class IterDictItemsMixin:
     """
-    Mixin class for iterating kw pairs in a class instance __dict__
-    """
+  Mixin class for iterating kw pairs in a class instance __dict__
+  """
 
     def __iter__(self):
         for attr, value in self.__dict__.items():

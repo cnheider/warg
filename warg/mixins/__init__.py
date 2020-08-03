@@ -8,5 +8,4 @@ __doc__ = r"""
 
 __author__ = "Christian Heider Nielsen"
 
-
 from .dict_mixins import *
