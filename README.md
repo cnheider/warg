@@ -7,7 +7,7 @@
 ![python](.github/images/python.svg)
 
 [![Build Status](https://travis-ci.com/aivclab/warg.svg?branch=master)](https://travis-ci.com/aivclab/warg
-) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Coverage Status](https://coveralls.io/repos/github/aivclab/warg/badge.svg?branch=master)](https://coveralls.io/github/aivclab/warg?branch=master) ![Python package](https://github.com/cnheider/draugr/workflows/Python%20package/badge.svg)___
+) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Coverage Status](https://coveralls.io/repos/github/aivclab/warg/badge.svg?branch=master)](https://coveralls.io/github/aivclab/warg?branch=master) ![Python package](https://github.com/cnheider/draugr/workflows/Python%20package/badge.svg) ![CodeQL](https://github.com/cnheider/warg/workflows/CodeQL/badge.svg)
 
 > Devour everything :wolf:
 ___
