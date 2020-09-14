@@ -10,8 +10,8 @@ __doc__ = r"""
 from collections import defaultdict
 from typing import Dict, Union
 
+__all__ = ['AutoDict', 'recursive_default_dict_print', 'sanitise_auto_dict']
 
-__all__ = ['AutoDict','recursive_default_dict_print','sanitise_auto_dict']
 
 def AutoDict() -> defaultdict:
   """

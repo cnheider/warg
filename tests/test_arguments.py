@@ -10,11 +10,11 @@ __doc__ = r"""
 
 
 def test_print(capsys):
-    """Correct my_name argument prints"""
-    text = "hello"
-    err = "world"
-    print(text)
-    sys.stderr.write("world")
-    captured = capsys.readouterr()
-    assert text in captured.out
-    assert err in captured.err
+  """Correct my_name argument prints"""
+  text = "hello"
+  err = "world"
+  print(text)
+  sys.stderr.write("world")
+  captured = capsys.readouterr()
+  assert text in captured.out
+  assert err in captured.err
