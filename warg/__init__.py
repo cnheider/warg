@@ -93,13 +93,12 @@ if __version__ is None:
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
-from .named_ordered_dictionary import *
+from .data_structures import *
 from .pooled_queue_processor import *
 from .arguments import *
 from .gdkc import *
 from .mixins import *
 from .decorators import *
-from .auto_dict import *
 from .metas import *
 from .bases import *
 from .typing_extension import *

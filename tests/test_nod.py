@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from warg.named_ordered_dictionary import IllegalAttributeKey, NOD
+from warg.data_structures.named_ordered_dictionary import IllegalAttributeKey, NOD
 
 __author__ = "Christian Heider Nielsen"
 

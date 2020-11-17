@@ -7,7 +7,7 @@ from typing import Mapping, Tuple
 from warnings import warn
 
 import wrapt
-from warg.named_ordered_dictionary import NOD
+from warg.data_structures.named_ordered_dictionary import NOD
 
 __author__ = "Christian Heider Nielsen"
 

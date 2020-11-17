@@ -15,7 +15,7 @@ from typing import Sequence
 
 class ContextWrapper:
   """
-Allows for conditional application of contexts, if uninstanted context manager classes are passed no arguments is supplied in construction.
+Allows for conditional application of contexts, if uninstantiated context manager classes are passed no arguments is supplied in construction.
 if disabled None is returned
 if enabled return of context manager is propagated
 """
