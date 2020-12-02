@@ -20,6 +20,13 @@ exclude = '''
 [tool.poetry.scripts]
 black = "black:main"
 
+[build-system]
+# These are the assumed default build requirements from pip:
+# https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
+requires = ["setuptools>=40.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
 [tool.poetry.dependencies]
 python = "^3.6"
 attrs = "^18.1"
