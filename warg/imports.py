@@ -25,3 +25,30 @@ bool
 
 """
   return find_spec(module) is not None
+
+def reimport_check():
+  from sys import modules
+  try:
+    module = modules[module_name]
+  except KeyError:
+    __import__('m')
+
+def reimport_check2():
+  import importlib
+  spam_spec = importlib.util.find_spec("spam")
+  found = spam_spec is not None
+
+
+def reimport_check3():
+  import sys
+
+  modulename = 'datetime'
+  if modulename not in sys.modules:
+    print(f'You have not imported the {modulename} module')
+
+if __name__ == '__main__':
+    def main():
+      pass
+
+
+    main()
