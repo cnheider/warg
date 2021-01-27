@@ -41,7 +41,7 @@ if __name__ == '__main__':
   def asdijha():
     from warg import NOD
 
-    a = NOD(a=[1 ], b=[4], c=[8])
+    a = NOD(a=[1], b=[4], c=[8])
     print(f'ValueMapProduct{str(list(map_value_product(a.as_dict())))}')
     print(f'MapProduct{str(list(map_product(a.as_dict())))}')
     print(f'map_combinations{str(list(map_combinations(a.as_dict())))}')
@@ -52,7 +52,7 @@ if __name__ == '__main__':
   def asdijhsadasdad():
     from warg import NOD
 
-    a = NOD(a=[1 ,2,8], b=[4,3,99])
+    a = NOD(a=[1, 2, 8], b=[4, 3, 99])
     print(f'ValueMapProduct{str(list(map_value_product(a.as_dict())))}')
     print(f'MapProduct{str(list(map_product(a.as_dict())))}')
     print(f'map_combinations{str(list(map_combinations(a.as_dict())))}')
@@ -60,6 +60,5 @@ if __name__ == '__main__':
     print(f'map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}')
 
 
-
   asdijha()
-  #asdijhsadasdad()
+  # asdijhsadasdad()

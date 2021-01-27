@@ -8,6 +8,9 @@ __doc__ = r"""
            """
 
 from importlib.util import find_spec
+from warnings import warn
+
+__all__ = ['is_module_available', 'import_warning', 'reimported_warning']
 
 
 def is_module_available(module: str) -> bool:
@@ -26,29 +29,42 @@ bool
 """
   return find_spec(module) is not None
 
-def reimport_check():
+
+def import_warning(module_name: str) -> None:
+  '''
+  Inform the user that module has been imported,
+  useful when repeated imports are heavy in the contexts of multiprocessing.
+  Lets the user identify which file is reporting heavy loading and restructure code to avoid repeated importing
+
+  :param module_name:
+  :return:
+  '''
   from sys import modules
-  try:
-    module = modules[module_name]
-  except KeyError:
-    __import__('m')
-
-def reimport_check2():
-  import importlib
-  spam_spec = importlib.util.find_spec("spam")
-  found = spam_spec is not None
+  if module_name in modules:
+    warn(f'You have imported {module_name}')
 
 
-def reimport_check3():
-  import sys
+def reimported_warning(module_name: str) -> None:
+  '''
+  Just an idea
 
-  modulename = 'datetime'
-  if modulename not in sys.modules:
-    print(f'You have not imported the {modulename} module')
+  :return:
+  '''
+  raise NotImplemented
+  # TODO: touch .lock file to system for module_name for a multiprocess warning if already exists,
+  # delete it again once process is done?
+  # context_wrapper maybe useful
+
 
 if __name__ == '__main__':
-    def main():
-      pass
+
+  def main():
+
+    mod = 'matplotlib'
+    import_warning(mod)
+    from matplotlib import pyplot
+    import_warning(mod)
+    pyplot.figure()
 
 
-    main()
+  main()
