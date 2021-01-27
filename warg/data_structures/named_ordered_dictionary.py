@@ -176,7 +176,7 @@ assert nodict.paramA == 20
     self.__dict__[f"arg{id(arg)}"] = arg
 
   @staticmethod
-  @sorcery.spell
+  @sorcery.spell # TODO: MAY BE BROKEN!
   def nod_of(frame_info, *args, **kwargs) -> T:
     """Instead of:
 

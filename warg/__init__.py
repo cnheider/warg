@@ -8,17 +8,34 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.5.5"
+__version__ = "0.5.6"
 __doc__ = r"""
 Created on 27/04/2019
 
 @author: cnheider
 """
 
-# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
+# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"] # let everything be accessable from base warg import
 
 
 from typing import Any
+
+from .data_structures import *
+from .pooled_queue_processor import *
+from .arguments import *
+from .gdkc import *
+from .mixins import *
+from .decorators import *
+from .metas import *
+from .bases import *
+from .typing_extension import *
+from .context_wrapper import *
+from .boolean_tests import *
+from .map_itertools import *
+from .ast_ops import *
+
+
+# from .ode import *
 
 
 def dist_is_editable(dist: Any) -> bool:
@@ -92,17 +109,3 @@ if __version__ is None:
   __version__ = get_version(append_time=True)
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
-
-from .data_structures import *
-from .pooled_queue_processor import *
-from .arguments import *
-from .gdkc import *
-from .mixins import *
-from .decorators import *
-from .metas import *
-from .bases import *
-from .typing_extension import *
-from .context_wrapper import *
-from .boolean_tests import *
-from .map_itertools import *
-# from .ode import *
