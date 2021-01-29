@@ -4,7 +4,7 @@
 import pytest
 
 from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
-
+from warg.callables import identity
 __author__ = "Christian Heider Nielsen"
 
 
@@ -18,10 +18,7 @@ class Exc(PooledQueueTask):
     raise NotImplementedError
 
 
-def identity(*args, **kwargs):
-  return args, kwargs
-
-
+@pytest.mark.skip
 @pytest.mark.slow
 def test_integration_success():
   task = Square()
@@ -31,7 +28,7 @@ def test_integration_success():
       pass
       # print(a)
 
-
+@pytest.mark.skip
 @pytest.mark.slow
 def test_integration_func():
   task = identity
@@ -41,7 +38,7 @@ def test_integration_func():
       pass
       # print(a)
 
-
+@pytest.mark.skip
 def test_lambda_func():
   task = lambda x:x
 
@@ -50,7 +47,7 @@ def test_lambda_func():
       pass
       # print(a)
 
-
+@pytest.mark.skip
 def test_integration_except():
   task = Exc()
 
@@ -63,7 +60,7 @@ def test_integration_except():
 
   assert exc_info.type is NotImplementedError
 
-
+@pytest.mark.skip
 # @pytest.mark.slow
 def test_integration_except_ctx():
   task = Exc()

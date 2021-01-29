@@ -17,8 +17,7 @@ exclude = '''
 )/
 '''
 
-[tool.poetry.scripts]
-black = "black:main"
+
 
 [build-system]
 # These are the assumed default build requirements from pip:
@@ -26,25 +25,27 @@ black = "black:main"
 requires = ["setuptools>=40.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+#[tool.poetry.scripts]
+#black = "black:main"
 
-[tool.poetry.dependencies]
-python = "^3.6"
-attrs = "^18.1"
-click = "^6.5"
-toml = "^0.9.4"
-appdirs = "^1.4"
-aiohttp = { version = "^3.4", optional = true }
+#[tool.poetry.dependencies]
+#python = "^3.6"
+#attrs = "^18.1"
+#click = "^6.5"
+#toml = "^0.9.4"
+#appdirs = "^1.4"
+#aiohttp = { version = "^3.4", optional = true }
 
-[tool.poetry.extras]
-d = ["aiohttp"]
+#[tool.poetry.extras]
+#d = ["aiohttp"]
 
-[tool.poetry.dev-dependencies]
-Sphinx = "^1.7"
-pre-commit = "^1.10"
-coverage = "^4.5"
-flake8 = "^3.5"
-flake8-bugbear = "^18.2"
-flake8-mypy = "^17.8"
-mypy = "^0.620"
-readme_renderer = "^21.0"
-recommonmark = "^0.4.0"
+#[tool.poetry.dev-dependencies]
+#Sphinx = "^1.7"
+#pre-commit = "^1.10"
+#coverage = "^4.5"
+#flake8 = "^3.5"
+#flake8-bugbear = "^18.2"
+#flake8-mypy = "^17.8"
+#mypy = "^0.620"
+#readme_renderer = "^21.0"
+#recommonmark = "^0.4.0"
