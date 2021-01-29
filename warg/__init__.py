@@ -33,6 +33,8 @@ from .context_wrapper import *
 from .boolean_tests import *
 from .map_itertools import *
 from .ast_ops import *
+from .imports import *
+from .functions import *
 
 
 # from .ode import *

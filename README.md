@@ -1,16 +1,33 @@
-![warg](.github/images/warg.svg)
+<!--![warg](.github/images/warg.svg)-->
 
-# Warg
+<p align="center">
+  <img src=".github/images/warg.svg" alt='Warg' />
+</p>
+
+<h1 align="center">Warg</h1>
+
+<!--# Warg-->
+
+| [![Build Status](https://travis-ci.com/aivclab/warg.svg?branch=master)](https://travis-ci.com/aivclab/warg) | [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) | [![Coverage Status](https://coveralls.io/repos/github/aivclab/warg/badge.svg?branch=master)](https://coveralls.io/github/aivclab/warg?branch=master) | [![codebeat badge](https://codebeat.co/badges/e788d8e5-9934-44bf-85e2-b8043e5806bc)](https://codebeat.co/projects/github-com-cnheider-warg-master) | [![Codeship Status for cnheider/warg](https://app.codeship.com/projects/34b921f0-5e8f-0138-1e29-1ef237e9df62/status?branch=master)](https://app.codeship.com/projects/392349) |
+|---|---|---|---|---|
+
+
+| Workflows |
+|-----------|
+| ![Publish Python 🐍 distributions 📦 to PyPI and TestPyPI](https://github.com/cnheider/warg/workflows/Publish%20Python%20%F0%9F%90%8D%20distributions%20%F0%9F%93%A6%20to%20PyPI%20and%20TestPyPI/badge.svg) |
+| ![On Push Any Documentation Check](https://github.com/cnheider/warg/workflows/On%20Push%20Any%20Documentation%20Check/badge.svg) |
+|  ![CodeQL](https://github.com/cnheider/warg/workflows/CodeQL/badge.svg) |
+
+
+
+> Devour everything :wolf: 
+> Prey upon
+
+![python](.github/images/python.svg) 
+
+___
 
 ```Old-Norse: Varg```
-
-![python](.github/images/python.svg)
-
-[![Build Status](https://travis-ci.com/aivclab/warg.svg?branch=master)](https://travis-ci.com/aivclab/warg
-) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Coverage Status](https://coveralls.io/repos/github/aivclab/warg/badge.svg?branch=master)](https://coveralls.io/github/aivclab/warg?branch=master) ![Python package](https://github.com/cnheider/draugr/workflows/Python%20package/badge.svg) ![CodeQL](https://github.com/cnheider/warg/workflows/CodeQL/badge.svg) [![codebeat badge](https://codebeat.co/badges/e788d8e5-9934-44bf-85e2-b8043e5806bc)](https://codebeat.co/projects/github-com-cnheider-warg-master) [![Codeship Status for cnheider/warg](https://app.codeship.com/projects/34b921f0-5e8f-0138-1e29-1ef237e9df62/status?branch=master)](https://app.codeship.com/projects/392349)
-
-> Devour everything :wolf:
-___
 
 ## Only for use with Python 3.6+
 
