@@ -83,7 +83,6 @@ def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_un
   caller_src_code_lines = inspect.getsourcelines(caller_frame)
   fai = FirstArgIdentifier(func_name, verbose=verbose, max_num_intermediate_unnamed_elements=max_num_intermediate_unnamed_elements)
   fai.visit(ast.parse(textwrap.dedent(''.join(caller_src_code_lines[0]))))
-  print(fai.result)
   if func_name in fai.result:
     idx = caller_frame.f_lineno - (caller_src_code_lines[1] - 1)
     if idx in fai.result[func_name]:
