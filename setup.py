@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import List, Union
+from typing import List, Sequence, Union
 
 
-def python_version_check(major=3, minor=6):
+def python_version_check(major: int = 3, minor: int = 7):
   import sys
 
   assert sys.version_info.major == major and sys.version_info.minor >= minor, (
@@ -14,12 +14,55 @@ def python_version_check(major=3, minor=6):
 
 python_version_check()
 
-import pathlib
+from pathlib import Path
+
+
+def read_reqs(file: str, path: Path) -> List[str]:
+  def readlines_ignore_comments(f):
+    return [a_ for a_ in f.readlines() if "#" not in a_ and a_]
+
+  def recursive_flatten_ignore_str(seq: Sequence) -> Sequence:
+    if not seq:  # is empty Sequence
+      return seq
+    if isinstance(seq[0], str):
+      return seq
+    if isinstance(seq[0], Sequence):
+      return (
+          *recursive_flatten_ignore_str(seq[0]),
+          *recursive_flatten_ignore_str(seq[1:]),
+          )
+    return (*seq[:1], *recursive_flatten_ignore_str(seq[1:]))
+
+  def unroll_nested_reqs(req_str: str, base_path: Path):
+    if req_str.startswith("-r"):
+      with open(base_path / req_str.strip("-r").strip()) as f:
+        return [
+            unroll_nested_reqs(req.strip(), base_path)
+            for req in readlines_ignore_comments(f)
+            ]
+    else:
+      return (req_str,)
+
+  requirements_group = []
+  with open(str(file)) as f:
+    requirements = readlines_ignore_comments(f)
+    for requirement in requirements:
+      requirements_group.extend(
+          recursive_flatten_ignore_str(
+              unroll_nested_reqs(requirement.strip(), path)
+              )
+          )
+
+  req_set = set(requirements_group)
+  req_set.discard("")
+  return list(req_set)
+
+
 import re
 
 from setuptools import find_packages
 
-with open(pathlib.Path(__file__).parent / "warg" / "__init__.py", "r") as project_init_file:
+with open(Path(__file__).parent / "warg" / "__init__.py", "r") as project_init_file:
   str_reg_exp = "['\"]([^'\"]*)['\"]"
   content = project_init_file.read()  # get strings from module
   version = re.search(rf"__version__ = {str_reg_exp}", content, re.M).group(1)
@@ -100,7 +143,7 @@ class WargPackage:
         # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
 
-    path: pathlib.Path = pathlib.Path(__file__).parent
+    path: Path = Path(__file__).parent
 
     for file in path.iterdir():
       if file.name.startswith("requirements_"):
@@ -120,20 +163,13 @@ class WargPackage:
 
     for group_name in these_extras:
       all_dependencies += these_extras[group_name]
-    these_extras["all"] = all_dependencies
+    these_extras["all"] = list(set(all_dependencies))
 
     return these_extras
 
   @property
   def requirements(self) -> list:
-    requirements_out = []
-    with open("requirements.txt") as f:
-      requirements = f.readlines()
-
-      for requirement in requirements:
-        requirements_out.append(requirement.strip())
-
-    return requirements_out
+    return read_reqs("requirements.txt", Path(__file__).parent)
 
   @property
   def description(self) -> str:
@@ -141,7 +177,7 @@ class WargPackage:
 
   @property
   def readme(self) -> str:
-    with open("README.md") as f:
+    with open("README.md", encoding="utf8") as f:
       return f.read()
 
   @property

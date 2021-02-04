@@ -1,7 +1,8 @@
 dist:     xenial
 language: python
 python:
-  - '3.6'
+  - '3.7'
+  - '3.8'
 install:
   - pip install -r requirements.txt
   - pip install -r requirements_dev.txt
@@ -10,10 +11,4 @@ script:
   - pytest --cov=warg --ignore=tests/test_toaster.py
   - coveralls
   - black --check warg
-deploy:
-  provider: pypi
-  user:     aivclab
-  password: te123st23
-  on:
-    tags:   true
-    branch: master
+
