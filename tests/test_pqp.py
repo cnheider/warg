@@ -20,7 +20,7 @@ class Exc(PooledQueueTask):
 
 
 @pytest.mark.skip
-@pytest.mark.slow
+
 def test_integration_success():
     task = Square()
 
@@ -33,7 +33,7 @@ def test_integration_success():
 
 
 @pytest.mark.skip
-@pytest.mark.slow
+
 def test_integration_func():
     task = identity
 
@@ -68,7 +68,7 @@ def test_integration_except():
 
 
 @pytest.mark.skip
-# @pytest.mark.slow
+#
 def test_integration_except_ctx():
     task = Exc()
 
