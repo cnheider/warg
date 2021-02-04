@@ -10,7 +10,7 @@ __doc__ = r"""
 import numbers
 from typing import Sequence, Tuple, Union
 
-__all__ = ["Number", "Reals", "Numbers", "StrictNumbers",'Single','Double','Triple','Quad','Quint']
+__all__ = ["Number", "Reals", "Numbers", "StrictNumbers", "Single", "Double", "Triple", "Quad", "Quint"]
 
 Number = Union[int, float]
 Reals = Sequence[Union[numbers.Real, "Reals"]]
@@ -25,20 +25,19 @@ Quint = Tuple[Number, Number, Number, Number, Number]
 
 if __name__ == "__main__":
 
-  def stest():
-    assert (
-        isinstance(1, Number.__args__)
-        and isinstance(1.1, Number.__args__)
-        and not isinstance(complex(1, 1), Number.__args__)
-    )
-    # assert isinstance(list(range(2)), Numbers.__args__) and isinstance((float(i) for i in range(2)), Numbers.__args__) and isinstance((1,2.0), Numbers.__args__)
-    # assert isinstance(list(range(2)), StrictNumbers.__args__) and isinstance((float(i) for i in range(2)), StrictNumbers.__args__) and not isinstance((1,2.0), StrictNumbers.__args__)
-    assert (
-        isinstance(1, numbers.Real)
-        and isinstance(1.1, numbers.Real)
-        and not isinstance(complex(2, 2), numbers.Real)
-    )
-    # assert isinstance(list(range(2)), Reals.__args__) and isinstance((float(i) for i in range(2)), Reals.__args__) and isinstance((1,2.0), Reals.__args__)
+    def stest():
+        assert (
+            isinstance(1, Number.__args__)
+            and isinstance(1.1, Number.__args__)
+            and not isinstance(complex(1, 1), Number.__args__)
+        )
+        # assert isinstance(list(range(2)), Numbers.__args__) and isinstance((float(i) for i in range(2)), Numbers.__args__) and isinstance((1,2.0), Numbers.__args__)
+        # assert isinstance(list(range(2)), StrictNumbers.__args__) and isinstance((float(i) for i in range(2)), StrictNumbers.__args__) and not isinstance((1,2.0), StrictNumbers.__args__)
+        assert (
+            isinstance(1, numbers.Real)
+            and isinstance(1.1, numbers.Real)
+            and not isinstance(complex(2, 2), numbers.Real)
+        )
+        # assert isinstance(list(range(2)), Reals.__args__) and isinstance((float(i) for i in range(2)), Reals.__args__) and isinstance((1,2.0), Reals.__args__)
 
-
-  stest()
+    stest()

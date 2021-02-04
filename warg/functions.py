@@ -15,7 +15,7 @@ __all__ = [
     "call_identity",
     "args_sink",
     "identity",
-    ]
+]
 
 import operator
 from functools import reduce
@@ -25,57 +25,57 @@ from warg import drop_unused_kws
 
 
 def identity(a: Any) -> Any:
-  return a
+    return a
 
 
 @drop_unused_kws
 def kws_sink(*args) -> Tuple[Any, ...]:
-  """
-Returns args without any modification what so ever. Drops kws
-:param x:
-:return:"""
-  return args
+    """
+    Returns args without any modification what so ever. Drops kws
+    :param x:
+    :return:"""
+    return args
 
 
 def call_identity(*args, **kwargs) -> Tuple[Tuple[Any], Dict[str, Any]]:
-  """
+    """
 
-:param args:
-:param kwargs:
-:return:"""
-  return args, kwargs
+    :param args:
+    :param kwargs:
+    :return:"""
+    return args, kwargs
 
 
 def args_sink(*args, **kwargs) -> Dict[str, Any]:
-  """
+    """
 
-:param args:
-:param kwargs:
-:return:"""
-  return kwargs
+    :param args:
+    :param kwargs:
+    :return:"""
+    return kwargs
 
 
 def sink(*args, **kwargs) -> None:
-  """
-Returns None, but accepts everything
+    """
+    Returns None, but accepts everything
 
-:param args:
-:param kwargs:
-:return:"""
-  return None
+    :param args:
+    :param kwargs:
+    :return:"""
+    return None
 
 
 def prod(iterable: Iterable[Union[int, float]]) -> Union[int, float]:
-  """
-Calculate the product of the a Iterable of int or floats
-:param iterable:
-:return:"""
-  return reduce(operator.mul, iterable, 1)
+    """
+    Calculate the product of the a Iterable of int or floats
+    :param iterable:
+    :return:"""
+    return reduce(operator.mul, iterable, 1)
 
 
 def collate_first_dim(batch: Iterable) -> tuple:
-  """
+    """
 
-:param batch:
-:return:"""
-  return tuple(zip(*batch))
+    :param batch:
+    :return:"""
+    return tuple(zip(*batch))
