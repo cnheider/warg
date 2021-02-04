@@ -11,6 +11,6 @@ __all__ = []
 
 
 def test_import():
-  import warg
+    import warg
 
-  print(warg.__version__)
+    print(warg.__version__)
