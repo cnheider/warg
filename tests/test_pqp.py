@@ -4,7 +4,7 @@
 import pytest
 
 from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
-from warg.callables import identity
+from warg.functions import identity
 
 __author__ = "Christian Heider Nielsen"
 
