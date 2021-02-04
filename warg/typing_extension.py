@@ -10,12 +10,24 @@ __doc__ = r"""
 import numbers
 from typing import Sequence, Tuple, Union
 
-__all__ = ["Number", "Reals", "Numbers", "StrictNumbers", "Single", "Double", "Triple", "Quad", "Quint"]
+__all__ = [
+    "Number",
+    "Reals",
+    "Numbers",
+    "StrictNumbers",
+    "Single",
+    "Double",
+    "Triple",
+    "Quad",
+    "Quint",
+]
 
 Number = Union[int, float]
 Reals = Sequence[Union[numbers.Real, "Reals"]]
 Numbers = Sequence[Union[Number, "Numbers"]]
-StrictNumbers = Union[Union[Sequence[int], "StrictNumbers"], Union[Sequence[float], "StrictNumbers"]]
+StrictNumbers = Union[
+    Union[Sequence[int], "StrictNumbers"], Union[Sequence[float], "StrictNumbers"]
+]
 
 Single = Tuple[Number]
 Double = Tuple[Number, Number]

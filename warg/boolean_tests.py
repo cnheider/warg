@@ -21,7 +21,9 @@ from warg.decorators import drop_unused_kws, passes_kws_to
 
 
 @drop_unused_kws
-def is_positive_and_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_positive_and_mod_zero(
+    mod: int, counter: int, *, ret: Any = True, alt: Any = False
+) -> Any:
     """
 
     test if mod is positive
@@ -40,7 +42,9 @@ def is_positive_and_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: An
 
 
 @drop_unused_kws
-def is_zero_or_mod_below(mod: int, below: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_zero_or_mod_below(
+    mod: int, below: int, counter: int, *, ret: Any = True, alt: Any = False
+) -> Any:
     """
 
     test if mod is zero or if counter % mod is 0
@@ -59,7 +63,9 @@ def is_zero_or_mod_below(mod: int, below: int, counter: int, *, ret: Any = True,
 
 
 @drop_unused_kws
-def is_zero_or_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_zero_or_mod_zero(
+    mod: int, counter: int, *, ret: Any = True, alt: Any = False
+) -> Any:
     """
 
     test if mod is zero or if counter % mod is 0
@@ -96,7 +102,9 @@ def is_none_or_zero_or_negative_or_mod_zero(mod: int, counter: int, **kwargs) ->
     @param counter:
     @param kwargs:
     @return:"""
-    return is_none_or_zero_or_negative(mod) or is_zero_or_mod_zero(mod, counter, **kwargs)
+    return is_none_or_zero_or_negative(mod) or is_zero_or_mod_zero(
+        mod, counter, **kwargs
+    )
 
 
 if __name__ == "__main__":

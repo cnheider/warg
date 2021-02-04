@@ -35,7 +35,9 @@ class UpperAttrMetaclass(type):
             else:
                 uppercase_attr[name] = val
 
-        return super(UpperAttrMetaclass, cls).__new__(cls, clsname, bases, uppercase_attr)
+        return super(UpperAttrMetaclass, cls).__new__(
+            cls, clsname, bases, uppercase_attr
+        )
 
 
 class ConfigObject(object):
@@ -98,7 +100,9 @@ def upper_dict(map: Mapping) -> Mapping:
     return cop
 
 
-def get_upper_case_vars_or_protected_of(module: object, lower_keys: bool = True) -> Mapping:
+def get_upper_case_vars_or_protected_of(
+    module: object, lower_keys: bool = True
+) -> Mapping:
     """
 
     :param module:
@@ -167,14 +171,28 @@ def add_bool_arg(
 
     group = parser.add_mutually_exclusive_group(required=False)
 
-    group.add_argument(f"--{name.upper()}", f"-{name.lower()}", dest=dest, action="store_true", **kwargs)
+    group.add_argument(
+        f"--{name.upper()}",
+        f"-{name.lower()}",
+        dest=dest,
+        action="store_true",
+        **kwargs,
+    )
     if converse:
         group.add_argument(
-            f"--{converse.upper()}", f"-{converse.lower()}", dest=dest, action="store_false", **kwargs
+            f"--{converse.upper()}",
+            f"-{converse.lower()}",
+            dest=dest,
+            action="store_false",
+            **kwargs,
         )
     else:
         group.add_argument(
-            f"--NO-{name.upper()}", f"-no-{name.lower()}", dest=dest, action="store_false", **kwargs
+            f"--NO-{name.upper()}",
+            f"-no-{name.lower()}",
+            dest=dest,
+            action="store_false",
+            **kwargs,
         )
     parser.set_defaults(**{dest: default})
 
@@ -207,7 +225,9 @@ def check_for_duplicates_in_args(**kwargs) -> None:
                 pass
 
         if occur > 1:
-            warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
+            warn(
+                f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times"
+            )
 
 
 def wrap_args(n_tuple: namedtuple):

@@ -115,7 +115,9 @@ class PooledQueueProcessor(object):
         """
         fill queue if not full"""
         if self.queue_size < self._max_queue_size:  # and not self._queue.full():
-            self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.raise_error)
+            self._pool.apply_async(
+                self._func, self.args, self.kwargs, self.put, self.raise_error
+            )
 
     @property
     def queue_size(self):
@@ -208,7 +210,9 @@ if __name__ == "__main__":
 
     task = Square()
 
-    processor = PooledQueueProcessor(task, [2], fill_at_construction=True, max_queue_size=100)
+    processor = PooledQueueProcessor(
+        task, [2], fill_at_construction=True, max_queue_size=100
+    )
     for GPU_STATS, _ in zip(processor, range(30)):
         print(GPU_STATS)
 

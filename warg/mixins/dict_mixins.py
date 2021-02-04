@@ -5,7 +5,12 @@ import numpy
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
-__all__ = ["IterDictItemsMixin", "IterDictKeysMixin", "IterDictValuesMixin", "OrdinalIndexingDictMixin"]
+__all__ = [
+    "IterDictItemsMixin",
+    "IterDictKeysMixin",
+    "IterDictValuesMixin",
+    "OrdinalIndexingDictMixin",
+]
 
 
 class IterDictItemsMixin:

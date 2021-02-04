@@ -13,7 +13,12 @@ import ast
 
 
 class FirstArgIdentifier(ast.NodeVisitor):
-    def __init__(self, *args, verbose: bool = False, max_num_intermediate_unnamed_elements: int = 1):
+    def __init__(
+        self,
+        *args,
+        verbose: bool = False,
+        max_num_intermediate_unnamed_elements: int = 1,
+    ):
         if len(args) < 1:
             raise ValueError("Supply at least one target function")
         self.result = {arg: {} for arg in args}
@@ -40,8 +45,12 @@ class FirstArgIdentifier(ast.NodeVisitor):
                 else:
                     iter_name = f"{first_arg.func.id}"
                 if self.verbose:
-                    args_repr = f'{", ".join([ast.dump(sub) for sub in first_arg.args])}'
-                    kws_repr = f'{", ".join([ast.dump(sub) for sub in first_arg.keywords])}'
+                    args_repr = (
+                        f'{", ".join([ast.dump(sub) for sub in first_arg.args])}'
+                    )
+                    kws_repr = (
+                        f'{", ".join([ast.dump(sub) for sub in first_arg.keywords])}'
+                    )
                     args_kw_repr = []
                     if len(args_repr) > 1:
                         args_kw_repr.append(args_repr)
@@ -58,7 +67,9 @@ class FirstArgIdentifier(ast.NodeVisitor):
                         between = elts[1:-2:stride]
                     else:
                         between = []
-                    elts_str = [ast.dump(sub) for sub in [elts[0]] + between + [elts[-1]]]
+                    elts_str = [
+                        ast.dump(sub) for sub in [elts[0]] + between + [elts[-1]]
+                    ]
                     iter_name = f'[{" .. ".join(elts_str)}]'
                 else:
                     iter_name = f'[{", ".join([ast.dump(sub) for sub in elts])}]'
@@ -75,7 +86,9 @@ class FirstArgIdentifier(ast.NodeVisitor):
         self.generic_visit(node)  # visit the children
 
 
-def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1) -> str:
+def get_first_arg_name(
+    func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1
+) -> str:
     import inspect
     import textwrap
     import ast
@@ -94,7 +107,9 @@ def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_un
         if idx in fai.result[func_name]:
             return fai.result[func_name][idx]
         elif verbose:
-            print(f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied')
+            print(
+                f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied'
+            )
     elif verbose:
         print(f"{func_name} was not found in {fai.result}")
     return None

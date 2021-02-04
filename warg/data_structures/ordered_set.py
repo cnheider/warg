@@ -214,7 +214,9 @@ class OrderedSet(MutableSet[T], Sequence[T]):
             for item in sequence:
                 item_index = self.add(item)
         except TypeError:
-            raise ValueError("Argument needs to be an iterable, got %s" % type(sequence))
+            raise ValueError(
+                "Argument needs to be an iterable, got %s" % type(sequence)
+            )
         return item_index
 
     @overload
@@ -440,7 +442,9 @@ class OrderedSet(MutableSet[T], Sequence[T]):
             return False
         return all(item in self for item in other)
 
-    def symmetric_difference(self, other: Union[Sequence[T], Set[T]]) -> "OrderedSet[T]":
+    def symmetric_difference(
+        self, other: Union[Sequence[T], Set[T]]
+    ) -> "OrderedSet[T]":
         """
         Return the symmetric difference of two OrderedSets as a new set.
         That is, the new set will contain all elements that are in exactly
@@ -518,7 +522,9 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         """
         items_to_add = [item for item in other if item not in self]
         items_to_remove = set(other)
-        self._update_items([item for item in self.items if item not in items_to_remove] + items_to_add)
+        self._update_items(
+            [item for item in self.items if item not in items_to_remove] + items_to_add
+        )
 
 
 if __name__ == "__main__":
@@ -767,7 +773,9 @@ if __name__ == "__main__":
         data and name are used to indicate what sort of tests is run.
         """
         if not allsame_(results):
-            raise AssertionError("Not all same {} for {} with datas={}".format(results, name, datas))
+            raise AssertionError(
+                "Not all same {} for {} with datas={}".format(results, name, datas)
+            )
         for a, b in it.combinations(results, 2):
             if not isinstance(a, (bool, int)):
                 assert a is not b, name + " should all be different items"
@@ -811,7 +819,9 @@ if __name__ == "__main__":
             result1.intersection_update(data2)
             result2 = data1 & data2
             result3 = data1.intersection(data2)
-            check_results_([result1, result2, result3], datas=(data1, data2), name="isect")
+            check_results_(
+                [result1, result2, result3], datas=(data1, data2), name="isect"
+            )
 
     def test_operator_consistency_difference():
         for data1, data2 in _operator_consistency_testdata():
@@ -819,7 +829,9 @@ if __name__ == "__main__":
             result1.difference_update(data2)
             result2 = data1 - data2
             result3 = data1.difference(data2)
-            check_results_([result1, result2, result3], datas=(data1, data2), name="difference")
+            check_results_(
+                [result1, result2, result3], datas=(data1, data2), name="difference"
+            )
 
     def test_operator_consistency_xor():
         for data1, data2 in _operator_consistency_testdata():
@@ -827,7 +839,9 @@ if __name__ == "__main__":
             result1.symmetric_difference_update(data2)
             result2 = data1 ^ data2
             result3 = data1.symmetric_difference(data2)
-            check_results_([result1, result2, result3], datas=(data1, data2), name="xor")
+            check_results_(
+                [result1, result2, result3], datas=(data1, data2), name="xor"
+            )
 
     def test_operator_consistency_union():
         for data1, data2 in _operator_consistency_testdata():
@@ -835,21 +849,27 @@ if __name__ == "__main__":
             result1.update(data2)
             result2 = data1 | data2
             result3 = data1.union(data2)
-            check_results_([result1, result2, result3], datas=(data1, data2), name="union")
+            check_results_(
+                [result1, result2, result3], datas=(data1, data2), name="union"
+            )
 
     def test_operator_consistency_subset():
         for data1, data2 in _operator_consistency_testdata():
             result1 = data1 <= data2
             result2 = data1.issubset(data2)
             result3 = set(data1).issubset(set(data2))
-            check_results_([result1, result2, result3], datas=(data1, data2), name="subset")
+            check_results_(
+                [result1, result2, result3], datas=(data1, data2), name="subset"
+            )
 
     def test_operator_consistency_superset():
         for data1, data2 in _operator_consistency_testdata():
             result1 = data1 >= data2
             result2 = data1.issuperset(data2)
             result3 = set(data1).issuperset(set(data2))
-            check_results_([result1, result2, result3], datas=(data1, data2), name="superset")
+            check_results_(
+                [result1, result2, result3], datas=(data1, data2), name="superset"
+            )
 
     def test_operator_consistency_disjoint():
         for data1, data2 in _operator_consistency_testdata():

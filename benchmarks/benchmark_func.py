@@ -7,9 +7,9 @@ import time
 
 
 def benchmark_func(func, times=100000):
-  start = time.time()
-  result = None
-  for _ in range(times):
-    result = func()
-  end = time.time()
-  return end - start, result
+    start = time.time()
+    result = None
+    for _ in range(times):
+        result = func()
+    end = time.time()
+    return end - start, result

@@ -22,7 +22,9 @@ class GeneralisedDelayedKwargConstruction(object):
         :param args:
         :param kwargs:"""
         self.constructor: callable = constructor
-        assert len(args) < 2, f"Does not support multiple args, only a single mapping type"
+        assert (
+            len(args) < 2
+        ), f"Does not support multiple args, only a single mapping type"
         if len(args) == 1:
             assert isinstance(
                 args[0], Mapping

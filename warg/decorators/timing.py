@@ -107,7 +107,17 @@ class StopWatch(contextlib.AbstractContextManager):
         def make_func(name):
             return lambda self, *args: getattr(self.since_start, name)(*args)
 
-        arithmetics = ("add", "sub", "mul", "div", "truediv", "floordiv", "mod", "divmod", "pow")
+        arithmetics = (
+            "add",
+            "sub",
+            "mul",
+            "div",
+            "truediv",
+            "floordiv",
+            "mod",
+            "divmod",
+            "pow",
+        )
 
         methods = [
             "__invert__",
@@ -231,7 +241,9 @@ if __name__ == "__main__":
     print(timer4)  # ime since start, will not be updated outside of it
     print()
 
-    with StopWatch(auto_start_on_construction=True, auto_start_on_enter=False) as timer2:
+    with StopWatch(
+        auto_start_on_construction=True, auto_start_on_enter=False
+    ) as timer2:
         print(timer2)  # __str__ calls timer.time() internally
         print(timer2.tick())  # time since last timer.checkpoint() call
         print(timer2)

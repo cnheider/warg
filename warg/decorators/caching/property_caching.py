@@ -44,7 +44,9 @@ class cached_property:
         if instance is None:
             return self
         if self.attrname is None:
-            raise TypeError("Cannot use cached_property instance without calling __set_name__ on it.")
+            raise TypeError(
+                "Cannot use cached_property instance without calling __set_name__ on it."
+            )
         try:
             cache = instance.__dict__
         except AttributeError:  # not all objects have __dict__ (e.g. class defines slots)

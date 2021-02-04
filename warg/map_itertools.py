@@ -24,15 +24,24 @@ def map_value_product(dicts: Mapping) -> Any:
 
 
 def map_product(dicts: Mapping, r: int = 2) -> Any:
-    yield from zip(itertools.product(dicts.keys(), repeat=r), itertools.product(dicts.values(), repeat=r))
+    yield from zip(
+        itertools.product(dicts.keys(), repeat=r),
+        itertools.product(dicts.values(), repeat=r),
+    )
 
 
 def map_permutations(dicts: Mapping, r: int = 2) -> Tuple:
-    yield from zip(itertools.permutations(dicts.keys(), r), itertools.permutations(dicts.values(), r))
+    yield from zip(
+        itertools.permutations(dicts.keys(), r),
+        itertools.permutations(dicts.values(), r),
+    )
 
 
 def map_combinations(dicts: Mapping, r: int = 2) -> Tuple:
-    yield from zip(itertools.combinations(dicts.keys(), r), itertools.combinations(dicts.values(), r))
+    yield from zip(
+        itertools.combinations(dicts.keys(), r),
+        itertools.combinations(dicts.values(), r),
+    )
 
 
 def map_combinations_with_replacement(dicts: Mapping, r: int = 2) -> Tuple:
@@ -52,7 +61,9 @@ if __name__ == "__main__":
         print(f"MapProduct{str(list(map_product(a.as_dict())))}")
         print(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
         print(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
-        print(f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}")
+        print(
+            f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}"
+        )
 
     def asdijhsadasdad():
         from warg import NOD
@@ -62,7 +73,9 @@ if __name__ == "__main__":
         print(f"MapProduct{str(list(map_product(a.as_dict())))}")
         print(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
         print(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
-        print(f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}")
+        print(
+            f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}"
+        )
 
     asdijha()
     # asdijhsadasdad()

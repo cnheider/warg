@@ -41,7 +41,8 @@ class IllegalAttributeKey(Exception):
 
     def __init__(self, key, type_: Type):
         Exception.__init__(
-            self, f'Overwriting of attribute "{key}" on type "{type_.__name__}" is not allowed'
+            self,
+            f'Overwriting of attribute "{key}" on type "{type_.__name__}" is not allowed',
         )
 
 
@@ -275,7 +276,9 @@ class NamedOrderedDictionary(MutableMapping):
             # assert isinstance(value,Sequence), f'values must be of type Sequence, was {type(value)},' \
             #                                f' distribution is not supported'
             if isinstance(value, Sequence):
-                assert len(key) == len(value), f"number of keys {len(key)} are not equal values {len(value)}"
+                assert len(key) == len(
+                    value
+                ), f"number of keys {len(key)} are not equal values {len(value)}"
                 for a, v in zip(key, value):
                     self.__dict__[a] = v
             else:
