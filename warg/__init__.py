@@ -8,7 +8,7 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.5.6"
+__version__ = "0.5.7"
 __doc__ = r"""
 Created on 27/04/2019
 
