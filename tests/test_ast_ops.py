@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 28-01-2021
            """
 
-from warg import get_first_arg_name
+from warg import get_first_arg_name, identity
 
 
 def test_ausdh3():
@@ -21,12 +21,11 @@ def test_ausdh3():
 
 def test_ausd2h3():
     from typing import Any
-    import draugr
 
     def some_func(a: Any) -> None:
         print(get_first_arg_name("some_func", verbose=True))
 
-    some_func(draugr.identity(2))
+    some_func(identity(2))
 
 
 def test_ausd2h3213():
