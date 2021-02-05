@@ -44,7 +44,7 @@ def read_reqs(file: str, path: Path) -> List[str]:
             return (req_str,)
 
     requirements_group = []
-    with open(str(file)) as f:
+    with open(str(path/file)) as f:
         requirements = readlines_ignore_comments(f)
         for requirement in requirements:
             requirements_group.extend(
@@ -74,11 +74,11 @@ __author__ = author
 class WargPackage:
     @property
     def test_dependencies(self) -> list:
-        return ["pytest", "mock"]
+        return read_reqs("requirements_tests.txt", Path(__file__).parent/'requirements')
 
     @property
     def setup_dependencies(self) -> list:
-        return ["pytest-runner"]
+        return read_reqs("requirements_setup.txt", Path(__file__).parent/'requirements')
 
     @property
     def package_name(self) -> str:
@@ -143,24 +143,14 @@ class WargPackage:
             # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
 
-        path: Path = Path(__file__).parent
+        path: Path = Path(__file__).parent/'requirements'
 
         for file in path.iterdir():
             if file.name.startswith("requirements_"):
-
-                requirements_group = []
-                with open(str(file.absolute())) as f:
-                    requirements = f.readlines()
-
-                    for requirement in requirements:
-                        requirements_group.append(requirement.strip())
-
                 group_name_ = "_".join(file.name.strip(".txt").split("_")[1:])
-
-                these_extras[group_name_] = requirements_group
+                these_extras[group_name_] = read_reqs(file, path)
 
         all_dependencies = []
-
         for group_name in these_extras:
             all_dependencies += these_extras[group_name]
         these_extras["all"] = list(set(all_dependencies))
