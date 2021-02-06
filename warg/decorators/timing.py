@@ -104,7 +104,11 @@ class StopWatch(contextlib.AbstractContextManager):
         self.override_arithmetics()
 
     def override_arithmetics(self):
+        """
+        """
         def make_func(name):
+            """
+            """
             return lambda self, *args: getattr(self.since_start, name)(*args)
 
         arithmetics = (
@@ -138,12 +142,16 @@ class StopWatch(contextlib.AbstractContextManager):
             setattr(StopWatch, name, make_func(name))
 
     def start_timer(self):
+        """
+        """
         self._started = True
         self.start_time = self._callable()
         self.new_time = self.start_time
         self.previous_time = self.start_time
 
     def stop_timer(self):
+        """
+        """
         self.new_time = self._callable()
         self._stopped: bool = True
 
@@ -190,6 +198,8 @@ class StopWatch(contextlib.AbstractContextManager):
 
         @functools.wraps(function)
         def decorated(*args, **kwargs):
+            """
+            """
             self.start_timer()
             values = function(*args, **kwargs)
             self.stop_timer()
@@ -250,6 +260,8 @@ if __name__ == "__main__":
 
     @StopWatch()
     def foo():
+        """
+        """
         return 42
 
     value, time = foo()

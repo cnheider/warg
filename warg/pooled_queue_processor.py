@@ -4,7 +4,7 @@ import multiprocessing
 import pickle
 import time
 from abc import ABC, abstractmethod
-from typing import Any, Iterable, Mapping
+from typing import Any, Iterable
 
 from cloudpickle import cloudpickle
 

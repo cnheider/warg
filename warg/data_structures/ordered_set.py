@@ -221,6 +221,8 @@ class OrderedSet(MutableSet[T], Sequence[T]):
 
     @overload
     def index(self, key: T) -> int:
+        """
+        """
         ...
 
     def index(self, key: Sequence[T]) -> List[int]:

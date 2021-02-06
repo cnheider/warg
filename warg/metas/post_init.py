@@ -26,6 +26,8 @@ class PostInit(type):
 if __name__ == "__main__":
 
     class SAD(metaclass=PostInit):
+        """
+        """
         def __init__(self):
             print("init")
 

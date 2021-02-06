@@ -25,6 +25,8 @@ from warg import drop_unused_kws
 
 
 def identity(a: Any) -> Any:
+    """
+    """
     return a
 
 

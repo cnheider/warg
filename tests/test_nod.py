@@ -148,6 +148,8 @@ def test_sorcery():
     from sorcery import dict_of
 
     def ret1():
+        """
+        """
         return 1
 
     arg1 = ret1()

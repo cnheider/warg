@@ -69,6 +69,8 @@ else:
 
 
 def get_version(append_time: Any = DEVELOP) -> str:
+    """
+    """
     import datetime
     import os
 

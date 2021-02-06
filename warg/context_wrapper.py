@@ -51,6 +51,8 @@ class ContextWrapper:
 if __name__ == "__main__":
 
     class SampleContextManager:
+        """
+        """
         def __init__(self, message="Hello World"):
             self._message = message
 
@@ -61,6 +63,8 @@ if __name__ == "__main__":
             print(not self._message)  # False ;)
 
     def main():
+        """
+        """
         with ContextWrapper(SampleContextManager(), True):
             print("with enabled")
 

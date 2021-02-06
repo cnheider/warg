@@ -77,6 +77,8 @@ GDKC = GeneralisedDelayedKwargConstruction
 if __name__ == "__main__":
 
     class A:
+        """
+        """
         def __init__(self, *args, **kwargs):
             pass
 

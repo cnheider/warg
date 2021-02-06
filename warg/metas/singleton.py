@@ -87,9 +87,15 @@ def singleton(cls):
 
 
 def singleton_2(cache_key):
+    """
+    """
     def inner_fn(fn):
+        """
+        """
         @wraps(fn)
         def wrapper(self, *args, **kwargs):
+            """
+            """
             instance = getattr(self, cache_key)
             if instance is not None:
                 return instance
