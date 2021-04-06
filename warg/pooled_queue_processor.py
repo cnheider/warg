@@ -42,7 +42,7 @@ class PooledQueueTask(ABC):
         return self.call(*args, **kwargs)
 
     @abstractmethod
-    def call(self, *args, **kwargs):
+    def call(self, *args, **kwargs)->Any:
         """
 
         :param args:
@@ -93,25 +93,25 @@ class PooledQueueProcessor(object):
         if fill_at_construction:
             self.fill()
 
-    def fill(self):
+    def fill(self)->None:
         """
         fill queue"""
         for i in range(self._max_queue_size):
             self.maybe_fill()
 
-    def close(self):
+    def close(self)->None:
         """
         close pool"""
         self._pool.close()
         self._pool.join()
 
-    def terminate(self):
+    def terminate(self)->None:
         """
         terminate pool"""
         self._pool.terminate()
         self._pool.join()
 
-    def maybe_fill(self):
+    def maybe_fill(self)->None:
         """
         fill queue if not full"""
         if self.queue_size < self._max_queue_size:  # and not self._queue.full():
@@ -120,21 +120,21 @@ class PooledQueueProcessor(object):
             )
 
     @property
-    def queue_size(self):
+    def queue_size(self)->int:
         """
 
         :return:
         :rtype:"""
         return self._queue.qsize()
 
-    def put(self, res):
+    def put(self, res)->None:
         """
 
         :param res:
         :type res:"""
         self._queue.put(res)
 
-    def raise_error(self, excptn):
+    def raise_error(self, excptn)->None:
         """
 
         :param excptn:
@@ -146,7 +146,7 @@ class PooledQueueProcessor(object):
         # exc_type, exc_obj, exc_tb = sys.exc_info()
         raise excptn
 
-    def get(self):
+    def get(self)->Any:
         """
 
         :return:"""
@@ -161,13 +161,13 @@ class PooledQueueProcessor(object):
         self.maybe_fill()
         return res
 
-    def __len__(self):
+    def __len__(self)->int:
         return self.queue_size
 
     def __iter__(self):
         return self
 
-    def __next__(self):
+    def __next__(self)->Any:
         return self.get()
 
     def __enter__(self):

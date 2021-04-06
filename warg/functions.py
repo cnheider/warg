@@ -21,7 +21,7 @@ import operator
 from functools import reduce
 from typing import Any, Dict, Iterable, Tuple, Union
 
-from warg import drop_unused_kws
+from warg import Number, drop_unused_kws
 
 
 def identity(a: Any) -> Any:
@@ -39,7 +39,7 @@ def kws_sink(*args) -> Tuple[Any, ...]:
   return args
 
 
-def call_identity(*args, **kwargs) -> Tuple[Tuple[Any], Dict[str, Any]]:
+def call_identity(*args, **kwargs) -> Tuple[Tuple[Any, ...], Dict[str, Any]]:
   """
 
     :param args:
@@ -69,7 +69,7 @@ def sink(*args, **kwargs) -> None:
   return None
 
 
-def prod(iterable: Iterable[Union[int, float]]) -> Union[int, float]:
+def prod(iterable: Iterable[Number]) -> Number:
   """
     Calculate the product of the a Iterable of int or floats
     :param iterable:
@@ -77,7 +77,7 @@ def prod(iterable: Iterable[Union[int, float]]) -> Union[int, float]:
   return reduce(operator.mul, iterable, 1)
 
 
-def collate_first_dim(batch: Iterable) -> tuple:
+def collate_first_dim(batch: Iterable) -> Tuple:
   """
 
     :param batch:

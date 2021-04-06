@@ -26,7 +26,7 @@ class UpperAttrMetaclass(type):
     """
     Upper case all attributes if not __private"""
 
-    def __new__(cls, clsname, bases, dct: dict):
+    def __new__(mcs, clsname, bases, dct: dict):
 
         uppercase_attr = {}
         for name, val in dct.items():
@@ -35,8 +35,8 @@ class UpperAttrMetaclass(type):
             else:
                 uppercase_attr[name] = val
 
-        return super(UpperAttrMetaclass, cls).__new__(
-            cls, clsname, bases, uppercase_attr
+        return super(UpperAttrMetaclass, mcs).__new__(
+            mcs, clsname, bases, uppercase_attr
         )
 
 
