@@ -32,6 +32,9 @@ if __name__ == "__main__":
             print("init")
 
         def __post_init__(self):
+            """
+
+            """
             print("post_init")
 
     SAD()
