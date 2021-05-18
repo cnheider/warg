@@ -107,6 +107,9 @@ def is_none_or_zero_or_negative_or_mod_zero(mod: int, counter: int, **kwargs) ->
     )
 
 
+
+
+
 if __name__ == "__main__":
     assert is_zero_or_mod_below(5, 3, 7) == True
     assert is_zero_or_mod_below(5, 2, 4) == False
