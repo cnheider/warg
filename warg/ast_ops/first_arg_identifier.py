@@ -13,6 +13,8 @@ import ast
 
 
 class FirstArgIdentifier(ast.NodeVisitor):
+    """
+    """
     def __init__(
         self,
         *args,
@@ -89,6 +91,8 @@ class FirstArgIdentifier(ast.NodeVisitor):
 def get_first_arg_name(
     func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1
 ) -> str:
+    """
+    """
     import inspect
     import textwrap
     import ast
@@ -118,12 +122,16 @@ def get_first_arg_name(
 if __name__ == "__main__":
 
     def ausdh():
+        """
+        """
         import inspect
         import textwrap
         import ast
         from warg import FirstArgIdentifier
 
         def some_func(a):
+            """
+            """
             caller_frame = inspect.currentframe().f_back
             # caller_src_code_snippet = inspect.getsource(caller_frame) # Only gets scope
             caller_src_code_lines = inspect.getsourcelines(caller_frame)
@@ -153,12 +161,16 @@ if __name__ == "__main__":
         some_func([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     def ausdh2():
+        """
+        """
         import inspect
         import textwrap
         import ast
         from warg import FirstArgIdentifier
 
         def some_func(a):
+            """
+            """
             caller_frame = inspect.currentframe().f_back
             # caller_src_code_snippet = inspect.getsource(caller_frame) # Only gets scope
             caller_src_code_lines = inspect.getsourcelines(caller_frame)
@@ -177,32 +189,46 @@ if __name__ == "__main__":
         some_func({1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10})
 
     def ausdh3():
+        """
+        """
         from typing import Any
 
         def some_func(a: Any) -> None:
+            """
+            """
             print(get_first_arg_name("some_func", verbose=True))
 
         some_func(print(2, sep="-"))
 
     def ausd2h3():
+        """
+        """
         from typing import Any
         import warg
 
         def some_func(a: Any) -> None:
+            """
+            """
             print(get_first_arg_name("some_func", verbose=True))
 
         some_func(warg.identity(2))
 
     def ausd2h3213():
+        """
+        """
         from typing import Any
 
         class Ac:
             class Bc:
                 @staticmethod
                 def c(d):
+                    """
+                    """
                     pass
 
         def some_func(a: Any) -> None:
+            """
+            """
             print(get_first_arg_name("some_func", verbose=True))
 
         some_func(Ac.Bc.c(2))

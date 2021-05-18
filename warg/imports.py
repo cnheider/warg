@@ -59,7 +59,8 @@ def reimported_warning(module_name: str) -> None:
 if __name__ == "__main__":
 
     def main():
-
+        """
+        """
         mod = "matplotlib"
         import_warning(mod)
         from matplotlib import pyplot

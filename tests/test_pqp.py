@@ -11,11 +11,15 @@ __author__ = "Christian Heider Nielsen"
 
 class Square(PooledQueueTask):
     def call(self, i, *args, **kwargs):
+        """
+        """
         return i * 2
 
 
 class Exc(PooledQueueTask):
     def call(self, *args, **kwargs):
+        """
+        """
         raise NotImplementedError
 
 

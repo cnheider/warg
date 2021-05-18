@@ -20,40 +20,52 @@ from typing import Any, Mapping, Tuple
 
 
 def map_value_product(dicts: Mapping) -> Any:
+    """
+    """
     return (dict(zip(dicts, x)) for x in itertools.product(*dicts.values()))
 
 
-def map_product(dicts: Mapping, r: int = 2) -> Any:
+def map_product(dicts: Mapping, repeat: int = 2) -> Any:
+    """
+    """
     yield from zip(
-        itertools.product(dicts.keys(), repeat=r),
-        itertools.product(dicts.values(), repeat=r),
+        itertools.product(dicts.keys(), repeat=repeat),
+        itertools.product(dicts.values(), repeat=repeat),
     )
 
 
-def map_permutations(dicts: Mapping, r: int = 2) -> Tuple:
+def map_permutations(dicts: Mapping, repeat: int = 2) -> Tuple:
+    """
+    """
     yield from zip(
-        itertools.permutations(dicts.keys(), r),
-        itertools.permutations(dicts.values(), r),
+        itertools.permutations(dicts.keys(), repeat),
+        itertools.permutations(dicts.values(), repeat),
     )
 
 
-def map_combinations(dicts: Mapping, r: int = 2) -> Tuple:
+def map_combinations(dicts: Mapping, repeat: int = 2) -> Tuple:
+    """
+    """
     yield from zip(
-        itertools.combinations(dicts.keys(), r),
-        itertools.combinations(dicts.values(), r),
+        itertools.combinations(dicts.keys(), repeat),
+        itertools.combinations(dicts.values(), repeat),
     )
 
 
-def map_combinations_with_replacement(dicts: Mapping, r: int = 2) -> Tuple:
+def map_combinations_with_replacement(dicts: Mapping, repeat: int = 2) -> Tuple:
+    """
+    """
     yield from zip(
-        itertools.combinations_with_replacement(dicts.keys(), r),
-        itertools.combinations_with_replacement(dicts.values(), r),
+        itertools.combinations_with_replacement(dicts.keys(), repeat),
+        itertools.combinations_with_replacement(dicts.values(), repeat),
     )
 
 
 if __name__ == "__main__":
 
     def asdijha():
+        """
+        """
         from warg import NOD
 
         a = NOD(a=[1], b=[4], c=[8])
@@ -66,6 +78,8 @@ if __name__ == "__main__":
         )
 
     def asdijhsadasdad():
+        """
+        """
         from warg import NOD
 
         a = NOD(a=[1, 2, 8], b=[4, 3, 99])
