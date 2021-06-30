@@ -10,8 +10,7 @@ __doc__ = r"""
 if __name__ == "__main__":
 
     def f():
-        """
-        """
+        """ """
         import config1
 
         print(config1.A_CONSTANT)

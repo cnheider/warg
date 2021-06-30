@@ -91,9 +91,7 @@ def eval_sig_kw_params(
     return passing_sig, passing_params
 
 
-def passes_kws_to(
-    *receiver_funcs: callable, keep_from_var_kw: bool = False
-) -> callable:
+def passes_kws_to(*receiver_funcs: callable, keep_from_var_kw: bool = False) -> callable:
     """
     A contract decorator, attaching this to a function you explicitly state that kws will be passed onward to
     a receiver function. No call graph checks if this actually enforces this yet. Also all receiver kwargs
@@ -104,16 +102,12 @@ def passes_kws_to(
     :return:"""
     for receiver_func in receiver_funcs:
         if isinstance(receiver_func, types.BuiltinFunctionType):
-            raise AssertionError(
-                f"'Built In Receiver' function: {receiver_func}, is not supported"
-            )
+            raise AssertionError(f"'Built In Receiver' function: {receiver_func}, is not supported")
 
     def _func(passing_func: callable) -> callable:
         passing_sig = inspect.signature(passing_func)
         for receiver_func in receiver_funcs:
-            passing_sig, new_params = eval_sig_kw_params(
-                passing_sig, receiver_func, keep_from_var_kw
-            )
+            passing_sig, new_params = eval_sig_kw_params(passing_sig, receiver_func, keep_from_var_kw)
             passing_sig = passing_sig.replace(parameters=list(new_params.values()))
         passing_func.__signature__ = passing_sig
         return passing_func
@@ -140,12 +134,8 @@ def super_init_pass_on_kws(
         from_func = func.__init__
 
         from_sig = inspect.signature(from_func)
-        from_signature, signature_parameters = eval_sig_kw_params(
-            from_sig, to_func, keep_from_var_kw
-        )
-        from_func.__signature__ = from_signature.replace(
-            parameters=list(signature_parameters.values())
-        )
+        from_signature, signature_parameters = eval_sig_kw_params(from_sig, to_func, keep_from_var_kw)
+        from_func.__signature__ = from_signature.replace(parameters=list(signature_parameters.values()))
         return func
 
     if f:
@@ -278,7 +268,7 @@ class AlsoDecorator:
 if __name__ == "__main__":
 
     class BaseClass:
-        """"""
+        """ """
 
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs):
             self.arg0 = arg0
@@ -289,7 +279,7 @@ if __name__ == "__main__":
             self.__dict__.update(kwargs)
 
     class SubClass0(BaseClass):
-        """"""
+        """ """
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
@@ -300,7 +290,7 @@ if __name__ == "__main__":
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """"""
+        """ """
 
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             super().__init__(arg0, *args, **kwargs)
@@ -310,7 +300,7 @@ if __name__ == "__main__":
 
     @super_init_pass_on_kws(super_base=BaseClass)
     class SubClass2(BaseClass):
-        """"""
+        """ """
 
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             super().__init__(arg0, *args, **kwargs)

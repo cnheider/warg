@@ -7,10 +7,18 @@ __doc__ = r"""
            Created on 01/07/2020
            """
 
-__all__ = ["ContextWrapper"]
+__all__ = ["ContextWrapper", "NopContext"]
 
 import inspect
 from typing import Sequence
+
+
+class NopContext:
+    def __enter__(self):
+        return
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        return
 
 
 class ContextWrapper:
@@ -51,8 +59,8 @@ class ContextWrapper:
 if __name__ == "__main__":
 
     class SampleContextManager:
-        """
-        """
+        """ """
+
         def __init__(self, message="Hello World"):
             self._message = message
 
@@ -63,8 +71,7 @@ if __name__ == "__main__":
             print(not self._message)  # False ;)
 
     def main():
-        """
-        """
+        """ """
         with ContextWrapper(SampleContextManager(), True):
             print("with enabled")
 

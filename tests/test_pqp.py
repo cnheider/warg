@@ -3,41 +3,35 @@
 
 import pytest
 
-from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
 from warg.functions import identity
+from warg.pooled_queue_processor import PooledQueueProcessor, PooledQueueTask
 
 __author__ = "Christian Heider Nielsen"
 
 
 class Square(PooledQueueTask):
     def call(self, i, *args, **kwargs):
-        """
-        """
+        """ """
         return i * 2
 
 
 class Exc(PooledQueueTask):
     def call(self, *args, **kwargs):
-        """
-        """
+        """ """
         raise NotImplementedError
 
 
 @pytest.mark.skip
-
 def test_integration_success():
     task = Square()
 
-    with PooledQueueProcessor(
-        task, [2], fill_at_construction=True, max_queue_size=10
-    ) as processor:
+    with PooledQueueProcessor(task, [2], fill_at_construction=True, max_queue_size=10) as processor:
         for a, _ in zip(processor, range(30)):
             pass
             # print(a)
 
 
 @pytest.mark.skip
-
 def test_integration_func():
     task = identity
 

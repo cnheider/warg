@@ -35,9 +35,7 @@ class UpperAttrMetaclass(type):
             else:
                 uppercase_attr[name] = val
 
-        return super(UpperAttrMetaclass, mcs).__new__(
-            mcs, clsname, bases, uppercase_attr
-        )
+        return super(UpperAttrMetaclass, mcs).__new__(mcs, clsname, bases, uppercase_attr)
 
 
 class ConfigObject(object):
@@ -100,9 +98,7 @@ def upper_dict(map: Mapping) -> Mapping:
     return cop
 
 
-def get_upper_case_vars_or_protected_of(
-    module: object, lower_keys: bool = True
-) -> Mapping:
+def get_upper_case_vars_or_protected_of(module: object, lower_keys: bool = True) -> Mapping:
     """
 
     :param module:
@@ -225,9 +221,7 @@ def check_for_duplicates_in_args(**kwargs) -> None:
                 pass
 
         if occur > 1:
-            warn(
-                f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times"
-            )
+            warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
 
 
 def wrap_args(n_tuple: namedtuple):
@@ -265,6 +259,7 @@ def str_to_bool(s: str, preds: Tuple[str, ...] = ("true", "1")) -> bool:
     """
 
 
+    :param preds:
     :param s:
     :return:"""
     return s.lower() in preds

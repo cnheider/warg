@@ -13,30 +13,26 @@ __doc__ = r"""
 
 
 class A:
-    """
-    """
+    """ """
+
     def __init__(self, *args, **kwargs):
         self.args_a = args
         self.kwargs_a = kwargs
 
     def something(self):
-        """
-        """
+        """ """
         print(self.kwargs_a)
 
     def something_else(self, *args):
-        """
-        """
+        """ """
         print(args, self.kwargs_a)
 
     def another(self, *args, **kwargs):
-        """
-        """
+        """ """
         print(args, self.kwargs_a, kwargs)
 
     def clearly_something(self, *args, **kwargs):
-        """
-        """
+        """ """
         print(self.args_a, args, self.kwargs_a, kwargs)
 
 

@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 from collections import defaultdict
-from typing import Dict, Optional, Union
+from typing import Dict, Optional
 
 __all__ = ["AutoDict", "recursive_default_dict_print", "sanitise_auto_dict"]
 
@@ -36,7 +36,7 @@ def recursive_default_dict_print(d: Dict, depth: int = 1) -> None:
             print("-" * (depth + 1), v)
 
 
-def sanitise_auto_dict(d:Dict) -> Optional[ Dict]:
+def sanitise_auto_dict(d: Dict) -> Optional[Dict]:
     """
 
     :param d:

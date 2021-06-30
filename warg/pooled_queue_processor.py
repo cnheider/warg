@@ -42,7 +42,7 @@ class PooledQueueTask(ABC):
         return self.call(*args, **kwargs)
 
     @abstractmethod
-    def call(self, *args, **kwargs)->Any:
+    def call(self, *args, **kwargs) -> Any:
         """
 
         :param args:
@@ -93,48 +93,46 @@ class PooledQueueProcessor(object):
         if fill_at_construction:
             self.fill()
 
-    def fill(self)->None:
+    def fill(self) -> None:
         """
         fill queue"""
         for i in range(self._max_queue_size):
             self.maybe_fill()
 
-    def close(self)->None:
+    def close(self) -> None:
         """
         close pool"""
         self._pool.close()
         self._pool.join()
 
-    def terminate(self)->None:
+    def terminate(self) -> None:
         """
         terminate pool"""
         self._pool.terminate()
         self._pool.join()
 
-    def maybe_fill(self)->None:
+    def maybe_fill(self) -> None:
         """
         fill queue if not full"""
         if self.queue_size < self._max_queue_size:  # and not self._queue.full():
-            self._pool.apply_async(
-                self._func, self.args, self.kwargs, self.put, self.raise_error
-            )
+            self._pool.apply_async(self._func, self.args, self.kwargs, self.put, self.raise_error)
 
     @property
-    def queue_size(self)->int:
+    def queue_size(self) -> int:
         """
 
         :return:
         :rtype:"""
         return self._queue.qsize()
 
-    def put(self, res)->None:
+    def put(self, res) -> None:
         """
 
         :param res:
         :type res:"""
         self._queue.put(res)
 
-    def raise_error(self, excptn)->None:
+    def raise_error(self, excptn) -> None:
         """
 
         :param excptn:
@@ -146,7 +144,7 @@ class PooledQueueProcessor(object):
         # exc_type, exc_obj, exc_tb = sys.exc_info()
         raise excptn
 
-    def get(self)->Any:
+    def get(self) -> Any:
         """
 
         :return:"""
@@ -161,13 +159,13 @@ class PooledQueueProcessor(object):
         self.maybe_fill()
         return res
 
-    def __len__(self)->int:
+    def __len__(self) -> int:
         return self.queue_size
 
     def __iter__(self):
         return self
 
-    def __next__(self)->Any:
+    def __next__(self) -> Any:
         return self.get()
 
     def __enter__(self):
@@ -210,9 +208,7 @@ if __name__ == "__main__":
 
     task = Square()
 
-    processor = PooledQueueProcessor(
-        task, [2], fill_at_construction=True, max_queue_size=100
-    )
+    processor = PooledQueueProcessor(task, [2], fill_at_construction=True, max_queue_size=100)
     for GPU_STATS, _ in zip(processor, range(30)):
         print(GPU_STATS)
 

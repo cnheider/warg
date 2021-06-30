@@ -11,8 +11,7 @@ from multiprocessing import Pool
 
 
 def f(x):
-    """
-    """
+    """ """
     import config1
 
     print(config1.A_CONSTANT)

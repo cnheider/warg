@@ -57,8 +57,8 @@ class OrdinalIndexingDictMixin:
 if __name__ == "__main__":
 
     def asd():
-        """
-        """
+        """ """
+
         class IDTM(OrdinalIndexingDictMixin):
             pass
 
@@ -69,8 +69,8 @@ if __name__ == "__main__":
         assert a[1] == 3
 
     def asdij():
-        """
-        """
+        """ """
+
         class IASD(IterDictValuesMixin):
             pass
 

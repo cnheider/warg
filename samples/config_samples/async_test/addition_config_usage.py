@@ -9,8 +9,7 @@ __doc__ = r"""
 
 
 async def b():
-    """
-    """
+    """ """
     import config2
 
     print(config2.A_CONSTANT)
@@ -19,8 +18,7 @@ async def b():
 if __name__ == "__main__":
 
     async def c():
-        """
-        """
+        """ """
         await b()
 
     import asyncio

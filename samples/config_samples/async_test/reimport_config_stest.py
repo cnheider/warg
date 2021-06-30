@@ -10,8 +10,7 @@ __doc__ = r"""
 if __name__ == "__main__":
 
     async def a():
-        """
-        """
+        """ """
         import addition_config_usage
 
         await addition_config_usage.b()

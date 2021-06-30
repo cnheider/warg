@@ -97,9 +97,7 @@ def look_up_kws(f, **kws):
     return res
 
 
-def precompute_lut(
-    f: callable, arg_sets: Set[Tuple[Iterable, Mapping]], *, verbose=False
-) -> callable:
+def precompute_lut(f: callable, arg_sets: Set[Tuple[Iterable, Mapping]], *, verbose=False) -> callable:
     """
 
     :param f:
@@ -117,9 +115,7 @@ def precompute_lut(
     return f
 
 
-def precompute_lut_args(
-    f: callable, arg_sets: Set[Iterable], *, verbose=False
-) -> callable:
+def precompute_lut_args(f: callable, arg_sets: Set[Iterable], *, verbose=False) -> callable:
     """
 
     :param f:
@@ -137,9 +133,7 @@ def precompute_lut_args(
     return f
 
 
-def precompute_lut_kws(
-    f: callable, arg_sets: Set[Mapping], *, verbose=False
-) -> callable:
+def precompute_lut_kws(f: callable, arg_sets: Set[Mapping], *, verbose=False) -> callable:
     """
 
     :param f:
