@@ -11,14 +11,14 @@ from multiprocessing import Pool
 
 
 def f(x):
-    """
-    """
-    import config1
+  """
+  """
+  import config1
 
-    print(config1.A_CONSTANT)
-    return x * x
+  print(config1.A_CONSTANT)
+  return x * x
 
 
 if __name__ == "__main__":
-    with Pool(5) as p:
-        print(p.map(f, [1, 2, 3]))
+  with Pool(5) as p:
+    print(p.map(f, [1, 2, 3]))

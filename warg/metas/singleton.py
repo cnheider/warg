@@ -84,12 +84,12 @@ def singleton(cls):
   return cls
 
 
-def key_singleton(cache_key:Any)->callable:
+def key_singleton(cache_key: Any) -> callable:
   """
   TODO: finish
     """
 
-  def inner_fn(fn:callable)->Any:
+  def inner_fn(fn: callable) -> Any:
     """
         """
 

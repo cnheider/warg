@@ -12,21 +12,21 @@ __doc__ = r"""
 __all__ = []
 
 if __name__ == "__main__":
-    # from __future__ import braces # TODO: Try disable comment
+  # from __future__ import braces # TODO: Try disable comment
 
-    # noinspection PyUnresolvedReferences
-    import __hello__
+  # noinspection PyUnresolvedReferences
+  import __hello__
 
-    print()
-    import this
+  print()
+  import this
 
-    print()
-    # noinspection PyUnresolvedReferences
-    import antigravity
+  print()
+  # noinspection PyUnresolvedReferences
+  import antigravity
 
-    print()
-    print(this.i, this.d, this.c, this.s)
-    print()
+  print()
+  print(this.i, this.d, this.c, this.s)
+  print()
 
-    # noinspection PyUnresolvedReferences
-    import that
+  # noinspection PyUnresolvedReferences
+  import that

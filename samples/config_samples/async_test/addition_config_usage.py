@@ -9,20 +9,21 @@ __doc__ = r"""
 
 
 async def b():
-    """
-    """
-    import config2
+  """
+  """
+  import config2
 
-    print(config2.A_CONSTANT)
+  print(config2.A_CONSTANT)
 
 
 if __name__ == "__main__":
 
-    async def c():
-        """
-        """
-        await b()
+  async def c():
+    """
+    """
+    await b()
 
-    import asyncio
 
-    asyncio.run(c())
+  import asyncio
+
+  asyncio.run(c())

@@ -10,7 +10,7 @@ __doc__ = r"""
 from pathlib import Path
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
-    __doc__ += this_init_file.read()
+  __doc__ += this_init_file.read()
 
 from .post_init import *
 from .singleton import *
