@@ -15,9 +15,6 @@ from typing import (
     ValuesView,
 )
 
-import sorcery
-from sorcery.core import node_name
-
 __author__ = "Christian Heider Nielsen"
 
 __all__ = ["NamedOrderedDictionary", "NOD"]
@@ -169,55 +166,60 @@ class NamedOrderedDictionary(MutableMapping):
         :type arg:"""
         self.__dict__[f"arg{id(arg)}"] = arg
 
-    @staticmethod
-    @sorcery.spell  # TODO: MAY BE BROKEN!
-    def nod_of(frame_info, *args, **kwargs) -> T:
-        """Instead of:
+    '''
+  import sorcery
+  from sorcery.core import node_name
 
-        {'foo': foo, 'bar': bar, 'spam': thing()}
+  @staticmethod
+  @sorcery.spell  # TODO: MAY BE BROKEN!
+  def nod_of(frame_info, *args, **kwargs) -> T:
+      """Instead of:
 
-        or:
+      {'foo': foo, 'bar': bar, 'spam': thing()}
 
-        dict(foo=foo, bar=bar, spam=thing())
+      or:
 
-        write:
+      dict(foo=foo, bar=bar, spam=thing())
 
-        NOD.dict_of(foo, bar, spam=thing())
+      write:
 
-        In other words, returns a NamedOrderedDictionary with an item for each argument,
-        where positional arguments use their names as keys,
-        and keyword arguments do the same as in the usual dict constructor.
+      NOD.dict_of(foo, bar, spam=thing())
 
-        The positional arguments can be any of:
+      In other words, returns a NamedOrderedDictionary with an item for each argument,
+      where positional arguments use their names as keys,
+      and keyword arguments do the same as in the usual dict constructor.
 
-        - plain variables,
-        - attributes, or
-        - subscripts (square bracket access) with string literal keys
+      The positional arguments can be any of:
 
-        So the following:
+      - plain variables,
+      - attributes, or
+      - subscripts (square bracket access) with string literal keys
 
-        NOD.dict_of(spam, x.foo, y['bar'])
+      So the following:
 
-        is equivalent to:
+      NOD.dict_of(spam, x.foo, y['bar'])
 
-        NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
+      is equivalent to:
 
-        *args are not allowed.
+      NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 
-        :rtype: object
-        """
-        nod = NamedOrderedDictionary()
+      *args are not allowed.
 
-        for arg, value in zip(frame_info.call.args[-len(args) :], args):
-            try:
-                arg_key = node_name(arg)
-                nod[arg_key] = value
-            except TypeError:
-                nod.add_unnamed_arg(value)
+      :rtype: object
+      """
+      nod = NamedOrderedDictionary()
 
-        nod.update(kwargs)
+      for arg, value in zip(frame_info.call.args[-len(args) :], args):
+          try:
+              arg_key = node_name(arg)
+              nod[arg_key] = value
+          except TypeError:
+              nod.add_unnamed_arg(value)
 
-        return nod
+      nod.update(kwargs)
+
+      return nod
+  '''
 
     def __getattr__(self, item: Any) -> Any:
         if item == "__deepcopy__":
@@ -275,7 +277,7 @@ class NamedOrderedDictionary(MutableMapping):
             # assert set(self.__dict__.keys()).issuperset(key)
             # assert isinstance(value,Sequence), f'values must be of type Sequence, was {type(value)},' \
             #                                f' distribution is not supported'
-            if isinstance(value, Sequence):
+            if isinstance(value, (Sequence, ValuesView)):
                 assert len(key) == len(value), f"number of keys {len(key)} are not equal values {len(value)}"
                 for a, v in zip(key, value):
                     self.__dict__[a] = v
@@ -424,3 +426,9 @@ if __name__ == "__main__":
     print(a)
     assert a.paramB == 10
     assert a.paramB == nodict.paramB
+
+    c = NOD()
+    c[nodict.keys()] = nodict.values()
+    print(c)
+    d = deepcopy(c)
+    print(d)

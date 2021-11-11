@@ -10,7 +10,7 @@ __doc__ = r"""
 __all__ = ["ContextWrapper", "NopContext"]
 
 import inspect
-from typing import Sequence
+from typing import Callable, Sequence
 
 
 class NopContext:
@@ -44,12 +44,14 @@ class ContextWrapper:
 
     def __enter__(self):
         if self._enabled:
-            if inspect.isclass(self._context_manager):
+            if inspect.isclass(self._context_manager) or isinstance(self._context_manager, Callable):
                 self._context_manager = self._context_manager(
                     *self._construction_args, **self._construction_kwargs
                 )
-
-            return self._context_manager.__enter__()
+            if hasattr(self._context_manager, "__enter__"):
+                return self._context_manager.__enter__()
+            else:
+                raise NotImplementedError(f"{self._context_manager} does not implement __enter__")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self._enabled:

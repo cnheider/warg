@@ -22,7 +22,6 @@ Created on 27/04/2019
 from typing import Any
 
 from .data_structures import *
-from .pooled_queue_processor import *
 from .arguments import *
 from .gdkc import *
 from .mixins import *
