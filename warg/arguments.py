@@ -6,7 +6,6 @@ from pathlib import Path, PosixPath
 from typing import Mapping, Tuple
 from warnings import warn
 
-import wrapt
 from warg.data_structures.named_ordered_dictionary import NOD
 
 __author__ = "Christian Heider Nielsen"
@@ -232,7 +231,9 @@ def wrap_args(n_tuple: namedtuple):
     :return:
     :rtype:"""
 
-    @wrapt.decorator(adapter=n_tuple)
+    # import wrapt
+
+    # @wrapt.decorator(adapter=n_tuple)
     def wrapper(wrapped, instance, args, kwargs):
         """
 

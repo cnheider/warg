@@ -8,13 +8,24 @@ __doc__ = r"""
            """
 __all__ = ["PropertySettings"]
 
-from typing import Dict, Mapping
+from collections.abc import Mapping
+from typing import Dict
 
 from warg import NOD
 
 
-class PropertySettings:
+class PropertySettings(
+    # Mapping
+):
     """ """
+
+    # def __getitem__(self, k):
+    #  return  self.__getattribute__(k)
+
+    # def __len__(self) -> int:
+    #  return len(self.__crystallise__())
+
+    # raise_exception_on_none = False
 
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
@@ -40,7 +51,10 @@ class PropertySettings:
     def __getattr__(self, item):
         assert not item.startswith("_"), f"{item} is not allowed"
         try:
-            return super().__getattribute__(item)
+            val = super().__getattribute__(item)
+            # if PropertySettings.raise_exception_on_none and not val:
+            #  raise ValueError(f'Property {item} is {val}')
+            return val
         except AttributeError as a:
             a = type(a)(str(a) + f", available settings {self}")
             raise a
@@ -50,6 +64,9 @@ class PropertySettings:
 
     def __contains__(self, item):
         return hasattr(self, item)
+
+    # def __dir__(self) -> Iterable[str]:
+    #  return self.__crystallise__().keys()
 
     def __repr__(self) -> str:
         settings_dict = {}
@@ -86,4 +103,6 @@ class PropertySettings:
 
 if __name__ == "__main__":
     a = PropertySettings()
+
+    print({**a.__crystallise__()})
     assert not "h" in a
