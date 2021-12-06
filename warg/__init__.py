@@ -35,6 +35,7 @@ from .map_itertools import *
 from .ast_ops import *
 from .imports import *
 from .functions import *
+from .platform import *
 
 
 # from .ode import *
