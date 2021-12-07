@@ -25,7 +25,7 @@ import operator
 from collections import defaultdict
 from copy import deepcopy
 from functools import reduce
-from typing import Any, Dict, Iterable, Mapping, Sequence, Tuple
+from typing import Any, Callable, Dict, Iterable, Mapping, Sequence, Tuple
 
 from warg import Number, drop_unused_kws
 
@@ -141,6 +141,24 @@ def swap_mapping_order(m: Mapping, order: Sequence[int]) -> Mapping:
                 order[i + 1] = temp
                 m = deep_swap(m, i)
     return m
+
+
+def chain_filter(it: Iterable, *filters: Callable):
+    """
+    Apply a sequence of callables to an iterable through filter; filtering the iterable to the subset of a callable returns
+    """
+    for f in filters:
+        it = filter(f, it)
+    return it
+
+
+def chain_apply(it: Iterable, *callables: Callable):
+    """
+    Apply a sequence of callables to an iterable; apply the iterable sequitally in callables order
+    """
+    for f in callables:
+        it = f(it)
+    return it
 
 
 if __name__ == "__main__":

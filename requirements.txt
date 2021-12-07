@@ -1,9 +1,2 @@
-apppath
-numpy
-six
-sorcery
-asttokens
-snoop
-pytest
-cloudpickle
-wrapt
+# CLEAN!
+setuptools==59.5.0
