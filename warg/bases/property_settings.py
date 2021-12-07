@@ -87,6 +87,9 @@ class PropertySettings(
 
         return iter(available_settings)
 
+    def __getitem__(self, item):
+        return self.__getattr__(item)
+
     def __to_dict__(self) -> dict:
         return self.__crystallise__().as_dict()
 
