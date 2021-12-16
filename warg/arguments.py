@@ -16,7 +16,6 @@ __all__ = [
     "config_to_mapping",
     "add_bool_arg",
     "check_for_duplicates_in_args",
-    "wrap_args",
     "UpperAttrMetaclass",
 ]
 
@@ -67,30 +66,30 @@ def to_lower_properties(C_dict: Mapping):
     return a
 
 
-def lower_dict(map: Mapping) -> Mapping:
+def lower_dict(mapping: Mapping) -> Mapping:
     """
 
-    :param map:
-    :type map:
+    :param mapping:
+    :type mapping:
     :return:
     :rtype:"""
     cop = {}
-    for (k, v) in map.items():
+    for (k, v) in mapping.items():
         assert isinstance(k, str)
         cop[k.lower()] = v
 
     return cop
 
 
-def upper_dict(map: Mapping) -> Mapping:
+def upper_dict(mapping: Mapping) -> Mapping:
     """
 
-    :param map:
-    :type map:
+    :param mapping:
+    :type mapping:
     :return:
     :rtype:"""
     cop = {}
-    for (k, v) in map.items():
+    for (k, v) in mapping.items():
         assert isinstance(k, str)
         cop[k.upper()] = v
 
@@ -223,47 +222,14 @@ def check_for_duplicates_in_args(**kwargs) -> None:
             warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
 
 
-def wrap_args(n_tuple: namedtuple):
-    """
-
-    :param n_tuple:
-    :type n_tuple:
-    :return:
-    :rtype:"""
-
-    # import wrapt
-
-    # @wrapt.decorator(adapter=n_tuple)
-    def wrapper(wrapped, instance, args, kwargs):
-        """
-
-        :param wrapped:
-        :type wrapped:
-        :param instance:
-        :type instance:
-        :param args:
-        :type args:
-        :param kwargs:
-        :type kwargs:
-        :return:
-        :rtype:"""
-        if isinstance(args[0], n_tuple):
-            n = args[0]
-        else:
-            n = n_tuple(*args, **kwargs)
-        return wrapped(n)
-
-    return wrapper
-
-
-def str_to_bool(s: str, preds: Tuple[str, ...] = ("true", "1")) -> bool:
+def str_to_bool(s: str, truthies: Tuple[str, ...] = ("true", "1")) -> bool:
     """
 
 
-    :param preds:
+    :param truthies:
     :param s:
     :return:"""
-    return s.lower() in preds
+    return s.lower() in truthies
 
 
 str2bool = str_to_bool
@@ -271,16 +237,6 @@ str2bool = str_to_bool
 if __name__ == "__main__":
 
     c = namedtuple("C", ("a", "b"))
-
-    @wrap_args(c)
-    def add(v):
-        """
-
-        :param v:
-        :type v:
-        :return:
-        :rtype:"""
-        return v.a + v.b
 
     def add2(a, b):
         """
@@ -292,12 +248,6 @@ if __name__ == "__main__":
         :return:
         :rtype:"""
         return a + b
-
-    h = add(2, 2)
-    print(h)
-
-    j = add(c(1, 4))
-    print(j)
 
     wq = add2(2, 4)
     print(wq)

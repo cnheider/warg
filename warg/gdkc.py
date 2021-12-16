@@ -88,18 +88,23 @@ if __name__ == "__main__":
             pass
 
     def stest_not_both():
+        """ """
         GeneralisedDelayedKwargConstruction(A, [1], a=2)
 
     def stest_kw():
+        """ """
         GeneralisedDelayedKwargConstruction(A, a=2)
 
     def stest_mapping():
+        """ """
         GeneralisedDelayedKwargConstruction(A, {"a": 2})
 
     def stest_mapping_and_args_fail():
+        """ """
         GeneralisedDelayedKwargConstruction(A, {"a": 2}, 1)
 
     def stest_mapping_and_args_fail_inv():
+        """ """
         GeneralisedDelayedKwargConstruction(A, 1, {"a": 2})
 
     stest_kw()
