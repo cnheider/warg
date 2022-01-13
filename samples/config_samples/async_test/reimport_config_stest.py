@@ -9,8 +9,10 @@ __doc__ = r"""
 
 if __name__ == "__main__":
 
-    async def a():
-        """ """
+    async def a() -> None:
+        """
+        :rtype: None
+        """
         import addition_config_usage
 
         await addition_config_usage.b()

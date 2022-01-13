@@ -30,8 +30,10 @@ from typing import Any, Callable, Dict, Iterable, Iterator, Mapping, Sequence, T
 from warg import Number, drop_unused_kws
 
 
-def nop():
-    """ """
+def nop() -> None:
+    """
+    :rtype: None
+    """
     pass
 
 
@@ -209,18 +211,27 @@ def chain_apply(it: Iterable, *callables: Callable) -> Iterable:
 
 if __name__ == "__main__":
 
-    def asud():
-        """ """
+    def asud() -> None:
+        """
+        :rtype: None
+        """
         a = {"b": 1, "h": 2}
         print(invert_shallow_mapping(a))
 
-    def asjdnasid():
-        """ """
-        a = {"b": {"c": {"d": [0, 1, 2], "e": [3, 4, 5, 6]}, "f": [7, 8], "g": [9]}, "h": {"j": [10, 11]}}
+    def asjdnasid() -> None:
+        """
+        :rtype: None
+        """
+        a = {
+            "b": {"c": {"d": [0, 1, 2], "e": [3, 4, 5, 6]}, "f": [7, 8], "g": [9]},
+            "h": {"j": [10, 11]},
+        }
         print(flip_two_level_mapping(a))
 
-    def asidj():
-        """ """
+    def asidj() -> None:
+        """
+        :rtype: None
+        """
         test_dict = {
             "a": {"c": {"e": 0, "f": 1}, "d": {"e": 2, "f": 3}},
             "b": {"c": {"g": 4, "h": 5}, "d": {"j": 6, "k": 7}},

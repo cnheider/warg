@@ -10,7 +10,7 @@ __doc__ = r"""
 import random
 import time
 from multiprocessing import Process, Queue, current_process, freeze_support
-from typing import Any, Sequence
+from typing import Sequence
 
 
 def worker(input: Queue, output: Queue) -> None:

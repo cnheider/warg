@@ -8,8 +8,10 @@ __doc__ = r"""
            """
 
 
-async def b():
-    """ """
+async def b() -> None:
+    """
+    :rtype: None
+    """
     import config2
 
     print(config2.A_CONSTANT)
@@ -17,8 +19,10 @@ async def b():
 
 if __name__ == "__main__":
 
-    async def c():
-        """ """
+    async def c() -> None:
+        """
+        :rtype: None
+        """
         await b()
 
     import asyncio

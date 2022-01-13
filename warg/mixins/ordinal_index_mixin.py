@@ -24,8 +24,10 @@ class OrdinalIndexingDictMixin:
 
 if __name__ == "__main__":
 
-    def asd():
-        """ """
+    def asd() -> None:
+        """
+        :rtype: None
+        """
 
         class IDTM(OrdinalIndexingDictMixin):
             pass

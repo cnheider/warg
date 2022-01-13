@@ -58,8 +58,10 @@ def reimported_warning(module_name: str) -> None:
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         mod = "matplotlib"
         import_warning(mod)
         from matplotlib import pyplot

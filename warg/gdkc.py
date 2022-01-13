@@ -87,24 +87,34 @@ if __name__ == "__main__":
         def __init__(self, *args, **kwargs):
             pass
 
-    def stest_not_both():
-        """ """
+    def stest_not_both() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, [1], a=2)
 
-    def stest_kw():
-        """ """
+    def stest_kw() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, a=2)
 
-    def stest_mapping():
-        """ """
+    def stest_mapping() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, {"a": 2})
 
-    def stest_mapping_and_args_fail():
-        """ """
+    def stest_mapping_and_args_fail() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, {"a": 2}, 1)
 
-    def stest_mapping_and_args_fail_inv():
-        """ """
+    def stest_mapping_and_args_fail_inv() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, 1, {"a": 2})
 
     stest_kw()

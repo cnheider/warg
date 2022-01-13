@@ -58,8 +58,10 @@ def map_combinations_with_replacement(dicts: Mapping, repeat: int = 2) -> Tuple:
 
 if __name__ == "__main__":
 
-    def asdijha():
-        """ """
+    def asdijha() -> None:
+        """
+        :rtype: None
+        """
         from warg import NOD
 
         a = NOD(a=[1], b=[4], c=[8])
@@ -69,8 +71,10 @@ if __name__ == "__main__":
         print(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
         print(f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}")
 
-    def asdijhsadasdad():
-        """ """
+    def asdijhsadasdad() -> None:
+        """
+        :rtype: None
+        """
         from warg import NOD
 
         a = NOD(a=[1, 2, 8], b=[4, 3, 99])

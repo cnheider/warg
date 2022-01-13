@@ -86,7 +86,6 @@ def look_up_kws(f, **kws):
     kw_hash = make_hash(kws)
     if f in global_table:
         if kw_hash in global_table[f]:
-
             return global_table[f][kw_hash]
 
         res = global_table[f][kw_hash] = f(**kws)

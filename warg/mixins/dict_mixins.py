@@ -41,8 +41,10 @@ class IterDictValuesMixin:
 
 if __name__ == "__main__":
 
-    def asdij():
-        """ """
+    def asdij() -> None:
+        """
+        :rtype: None
+        """
 
         class IASD(IterDictValuesMixin):
             pass

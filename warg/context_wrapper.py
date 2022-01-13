@@ -72,8 +72,10 @@ if __name__ == "__main__":
         def __exit__(self, exc_type, exc_val, exc_tb):
             print(not self._message)  # False ;)
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         with ContextWrapper(SampleContextManager(), True):
             print("with enabled")
 
