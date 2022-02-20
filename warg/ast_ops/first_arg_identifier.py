@@ -108,6 +108,11 @@ def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_un
     return None
 
 
+def get_first_arg_name_recurse():
+    pass  # TODO: For e.g. description in progress_bar(range(_name_))
+    raise NotImplementedError
+
+
 if __name__ == "__main__":
 
     def ausdh() -> None:
