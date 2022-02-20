@@ -208,7 +208,7 @@ class StopWatch(contextlib.AbstractContextManager):
             self.start_timer()
         return self
 
-    def __exit__(self, *_, **__) -> None:
+    def __exit__(self, *_, **__) -> bool:
         if self._auto_stop_on_exit:
             self.stop_timer()
         return False
@@ -221,7 +221,6 @@ class StopWatch(contextlib.AbstractContextManager):
 
 
 if __name__ == "__main__":
-
     a = StopWatch()
     print(f"Timer str rep: {a}")
     print(a.tick())
@@ -253,8 +252,10 @@ if __name__ == "__main__":
         print(timer2)
 
     @StopWatch()
-    def foo():
-        """ """
+    def foo() -> int:
+        """
+        :rtype: None
+        """
         return 42
 
     value, time = foo()

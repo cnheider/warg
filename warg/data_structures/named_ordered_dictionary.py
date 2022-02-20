@@ -409,7 +409,6 @@ class NamedOrderedDictionary(MutableMapping):
 NOD = NamedOrderedDictionary
 
 if __name__ == "__main__":
-
     nodict = NamedOrderedDictionary()
     nodict.paramA = "str_parameter"
     nodict.paramB = 10

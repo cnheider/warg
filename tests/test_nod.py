@@ -144,11 +144,14 @@ def test_slice_all():
     assert b.as_list() == [8, 6]
 
 
+@pytest.mark.skip
 def test_sorcery():
     from sorcery import dict_of
 
-    def ret1():
-        """ """
+    def ret1() -> int:
+        """
+        :rtype: None
+        """
         return 1
 
     arg1 = ret1()

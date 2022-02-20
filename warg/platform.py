@@ -13,8 +13,16 @@ IS_NIX = any(CUR_OS.startswith(i) for i in ["aix", "linux", "darwin"])
 
 
 def is_windows() -> bool:
+    """
+
+    :return:
+    """
     return IS_WIN
 
 
 def is_nix() -> bool:
+    """
+
+    :return:
+    """
     return IS_NIX

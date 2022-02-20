@@ -10,16 +10,21 @@ __doc__ = r"""
 import random
 import time
 from multiprocessing import Process, Queue, current_process, freeze_support
+from typing import Sequence
 
 
-def worker(input, output):
-    """ """
+def worker(input: Queue, output: Queue) -> None:
+    """
+    task_queue
+    done_queue
+
+    """
     for func, args in iter(input.get, "STOP"):
         result = calculate(func, args)
         output.put(result)
 
 
-def calculate(func, args):
+def calculate(func: callable, args: Sequence) -> str:
     """ """
     result = func(*args)
     return f"{current_process().name} says that {func.__name__}{args} = {result}"

@@ -95,7 +95,7 @@ class WargPackage:
     @property
     def download_url(self):
         """ """
-        return self.url + "/releases"
+        return f"{self.url}/releases"
 
     @property
     def readme_type(self):
@@ -226,7 +226,6 @@ class WargPackage:
 from setuptools import setup
 
 if __name__ == "__main__":
-
     pkg = WargPackage()
 
     setup(

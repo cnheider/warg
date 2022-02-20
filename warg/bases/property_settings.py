@@ -59,6 +59,11 @@ class PropertySettings(
             a = type(a)(str(a) + f", available settings {self}")
             raise a
 
+    def __iter_keys__(self):
+        for setting in dir(self):
+            if not setting.startswith("_"):
+                yield setting
+
     def __str__(self) -> str:
         return self.__repr__()
 

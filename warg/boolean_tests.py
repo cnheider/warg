@@ -15,13 +15,16 @@ __all__ = [
     "is_none_or_zero_or_negative_or_mod_zero",
 ]
 
-from typing import Any
+from typing import Any, Optional
 
+from warg import Number
 from warg.decorators import drop_unused_kws, passes_kws_to
 
 
 @drop_unused_kws
-def is_positive_and_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_positive_and_mod_zero(
+    mod: Optional[Number], counter: int, *, ret: Any = True, alt: Any = False
+) -> Any:
     """
 
     test if mod is positive
@@ -40,7 +43,9 @@ def is_positive_and_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: An
 
 
 @drop_unused_kws
-def is_zero_or_mod_below(mod: int, below: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_zero_or_mod_below(
+    mod: Optional[Number], below: Number, counter: int, *, ret: Any = True, alt: Any = False
+) -> Any:
     """
 
     test if mod is zero or if counter % mod is 0
@@ -59,7 +64,7 @@ def is_zero_or_mod_below(mod: int, below: int, counter: int, *, ret: Any = True,
 
 
 @drop_unused_kws
-def is_zero_or_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_zero_or_mod_zero(mod: Optional[Number], counter: int, *, ret: Any = True, alt: Any = False) -> Any:
     """
 
     test if mod is zero or if counter % mod is 0
@@ -75,7 +80,7 @@ def is_zero_or_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = F
     return ret if (mod == 0 or (counter % mod == 0)) else alt
 
 
-def is_none_or_zero_or_negative(obj: Any) -> bool:
+def is_none_or_zero_or_negative(obj: Optional[Number]) -> bool:
     """
 
     :param obj:
@@ -89,7 +94,7 @@ def is_none_or_zero_or_negative(obj: Any) -> bool:
 
 
 @passes_kws_to(is_zero_or_mod_zero)
-def is_none_or_zero_or_negative_or_mod_zero(mod: int, counter: int, **kwargs) -> bool:
+def is_none_or_zero_or_negative_or_mod_zero(mod: Optional[Number], counter: int, **kwargs) -> bool:
     """
 
     :param mod:

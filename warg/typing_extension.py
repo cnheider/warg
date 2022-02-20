@@ -46,8 +46,10 @@ QuintNumber = Tuple[Number, Number, Number, Number, Number]
 
 if __name__ == "__main__":
 
-    def stest():
-        """ """
+    def stest() -> None:
+        """
+        :rtype: None
+        """
         assert (
             isinstance(1, Number.__args__)
             and isinstance(1.1, Number.__args__)

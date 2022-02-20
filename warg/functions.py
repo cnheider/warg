@@ -25,12 +25,15 @@ import operator
 from collections import defaultdict
 from copy import deepcopy
 from functools import reduce
-from typing import Any, Callable, Dict, Iterable, Mapping, Sequence, Tuple
+from typing import Any, Callable, Dict, Iterable, Iterator, Mapping, Sequence, Tuple
 
 from warg import Number, drop_unused_kws
 
 
-def nop():
+def nop() -> None:
+    """
+    :rtype: None
+    """
     pass
 
 
@@ -94,6 +97,11 @@ def collate_first_dim(batch: Iterable) -> Tuple:
 
 
 def invert_shallow_mapping(m: Mapping) -> Dict:
+    """
+
+    :param m:
+    :return:
+    """
     return {v: k for k, v in m.items()}
 
 
@@ -115,10 +123,28 @@ def flip_two_level_mapping(m: Mapping) -> Dict:
 
 
 def swap_mapping_order(m: Mapping, order: Sequence[int]) -> Mapping:
+    """
+
+    :param m:
+    :param order:
+    :return:
+    """
     order = [*order]
 
     def deep_swap(dict_, level):
+        """
+
+        :param dict_:
+        :param level:
+        :return:
+        """
+
         def swap_two_level_dict(a):
+            """
+
+            :param a:
+            :return:
+            """
             b = defaultdict(dict)
             for key1, value1 in a.items():
                 for key2, value2 in value1.items():
@@ -143,18 +169,40 @@ def swap_mapping_order(m: Mapping, order: Sequence[int]) -> Mapping:
     return m
 
 
-def chain_filter(it: Iterable, *filters: Callable):
+def chain_filter(it: Iterable, *filters: Callable) -> Iterator:
     """
-    Apply a sequence of callables to an iterable through filter; filtering the iterable to the subset of a callable returns
+    Apply a sequence of callables to an iterable through filter; filtering the iterable to the subset of a callable
+    returns
+
+    Args:
+        it (Iterable):
+            iterable to be filtered
+        filters (Callable):
+            The filter callables
+
+    Returns:
+        Iterator:
+            returns an iterator yielding those items of iterable for which all(filters(item)) is true. If filters are
+            None, return the items that are true.
     """
     for f in filters:
         it = filter(f, it)
     return it
 
 
-def chain_apply(it: Iterable, *callables: Callable):
+def chain_apply(it: Iterable, *callables: Callable) -> Iterable:
     """
-    Apply a sequence of callables to an iterable; apply the iterable sequitally in callables order
+    Apply a sequence of callables to an iterable; apply the iterable sequentially in callables order
+
+    Args:
+        it (Iterable):
+            iterable to be applied to
+        callables (Callable):
+             The applying callables
+
+    Returns:
+        Iterable:
+            returns the iterable with all the callables applied.
     """
     for f in callables:
         it = f(it)
@@ -163,15 +211,27 @@ def chain_apply(it: Iterable, *callables: Callable):
 
 if __name__ == "__main__":
 
-    def asud():
+    def asud() -> None:
+        """
+        :rtype: None
+        """
         a = {"b": 1, "h": 2}
         print(invert_shallow_mapping(a))
 
-    def asjdnasid():
-        a = {"b": {"c": {"d": [0, 1, 2], "e": [3, 4, 5, 6]}, "f": [7, 8], "g": [9]}, "h": {"j": [10, 11]}}
+    def asjdnasid() -> None:
+        """
+        :rtype: None
+        """
+        a = {
+            "b": {"c": {"d": [0, 1, 2], "e": [3, 4, 5, 6]}, "f": [7, 8], "g": [9]},
+            "h": {"j": [10, 11]},
+        }
         print(flip_two_level_mapping(a))
 
-    def asidj():
+    def asidj() -> None:
+        """
+        :rtype: None
+        """
         test_dict = {
             "a": {"c": {"e": 0, "f": 1}, "d": {"e": 2, "f": 3}},
             "b": {"c": {"g": 4, "h": 5}, "d": {"j": 6, "k": 7}},

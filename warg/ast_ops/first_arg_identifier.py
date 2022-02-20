@@ -82,7 +82,7 @@ class FirstArgIdentifier(ast.NodeVisitor):
         self.generic_visit(node)  # visit the children
 
 
-def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1) -> str:
+def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1) -> None:
     """ """
     import inspect
     import textwrap
@@ -108,10 +108,17 @@ def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_un
     return None
 
 
+def get_first_arg_name_recurse():
+    pass  # TODO: For e.g. description in progress_bar(range(_name_))
+    raise NotImplementedError
+
+
 if __name__ == "__main__":
 
-    def ausdh():
-        """ """
+    def ausdh() -> None:
+        """
+        :rtype: None
+        """
         import inspect
         import textwrap
         import ast
@@ -147,8 +154,10 @@ if __name__ == "__main__":
         # some_func([this_func_is_in_another_frame, this_func_is_in_another_frame, this_generator_is_in_another_frame,this_class_is_in_another_frame])
         some_func([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-    def ausdh2():
-        """ """
+    def ausdh2() -> None:
+        """
+        :rtype: None
+        """
         import inspect
         import textwrap
         import ast
@@ -173,8 +182,10 @@ if __name__ == "__main__":
 
         some_func({1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10})
 
-    def ausdh3():
-        """ """
+    def ausdh3() -> None:
+        """
+        :rtype: None
+        """
         from typing import Any
 
         def some_func(a: Any) -> None:
@@ -183,8 +194,10 @@ if __name__ == "__main__":
 
         some_func(print(2, sep="-"))
 
-    def ausd2h3():
-        """ """
+    def ausd2h3() -> None:
+        """
+        :rtype: None
+        """
         from typing import Any
         import warg
 
@@ -194,8 +207,10 @@ if __name__ == "__main__":
 
         some_func(warg.identity(2))
 
-    def ausd2h3213():
-        """ """
+    def ausd2h3213() -> None:
+        """
+        :rtype: None
+        """
         from typing import Any
 
         class Ac:
