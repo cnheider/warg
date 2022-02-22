@@ -1,2 +1,2 @@
 # CLEAN!
-setuptools==60.9.3
+setuptools>=60.9.3

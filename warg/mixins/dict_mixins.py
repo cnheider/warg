@@ -57,5 +57,4 @@ if __name__ == "__main__":
         for ca in a:
             print(ca)
 
-    asd()
     asdij()
