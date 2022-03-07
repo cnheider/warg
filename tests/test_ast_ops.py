@@ -30,6 +30,17 @@ def test_ausd2h3():
     some_func(identity(2))
 
 
+def test_ausd2h34():
+    from typing import Any
+
+    def some_func(a: Any) -> None:
+        """ """
+        print(get_first_arg_name("some_func", verbose=True))
+
+    asd = 2
+    some_func(identity(asd))
+
+
 def test_ausd2h3213():
     from typing import Any
 

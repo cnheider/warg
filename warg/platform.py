@@ -1,9 +1,13 @@
-#  Copyright (c) 2021. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-#  Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
-#  Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
-#  Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
-#  Vestibulum commodo. Ut rhoncus gravida arcu.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import sys
+
+__author__ = "Christian Heider Nielsen"
+__doc__ = r"""
+          This file is not for general use. Ode to python
+
+           Created on 13/06/2020
+           """
 
 __all__ = ["is_nix", "is_windows"]
 

@@ -7,9 +7,10 @@ __doc__ = r"""
            Created on 26-01-2021
            """
 
-__all__ = ["FirstArgIdentifier", "get_first_arg_name"]
+__all__ = ["FirstArgIdentifier", "get_first_arg_name", "cprint"]
 
 import ast
+from typing import Optional, Any
 
 
 class FirstArgIdentifier(ast.NodeVisitor):
@@ -71,7 +72,7 @@ class FirstArgIdentifier(ast.NodeVisitor):
                     iter_name = f'[{", ".join([ast.dump(sub) for sub in elts])}]'
             elif isinstance(first_arg, ast.Dict):
                 kw_repr = f'{", ".join([f"{k}:{v}" for k, v in zip([ast.dump(sub) for sub in first_arg.keys], [ast.dump(sub) for sub in first_arg.values])])}'
-                iter_name = "{" + kw_repr + "}"
+                iter_name = f"{{{kw_repr}}}"
             else:  # No obvious name
                 if self.verbose:
                     print(type(first_arg))
@@ -82,7 +83,9 @@ class FirstArgIdentifier(ast.NodeVisitor):
         self.generic_visit(node)  # visit the children
 
 
-def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1) -> None:
+def get_first_arg_name(
+    func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1
+) -> Optional[str]:
     """ """
     import inspect
     import textwrap
@@ -98,22 +101,47 @@ def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_un
     )
     fai.visit(ast.parse(textwrap.dedent("".join(caller_src_code_lines[0]))))
     if func_name in fai.result:
-        idx = caller_frame.f_lineno - (caller_src_code_lines[1] - 1)
+        offset = 0
+        if caller_src_code_lines[1]:
+            offset = caller_src_code_lines[1] - 1
+        idx = caller_frame.f_lineno - offset
         if idx in fai.result[func_name]:
             return fai.result[func_name][idx]
         elif verbose:
-            print(f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied')
+            print(
+                f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied, found {fai.result[func_name]}, in {inspect.getsourcefile(caller_frame)}'
+            )
     elif verbose:
         print(f"{func_name} was not found in {fai.result}")
     return None
 
 
-def get_first_arg_name_recurse():
+def get_first_arg_name_recurse() -> Optional[str]:
+    """
+    unpack chained generators to base iterator name
+
+    :return:
+    :rtype:
+    """
     pass  # TODO: For e.g. description in progress_bar(range(_name_))
     raise NotImplementedError
 
 
+def cprint(v: Any, writer: callable = print, deliminator: str = ":") -> None:
+    if isinstance(v, str) and v.strip() == "":
+        v = '""'
+    writer(f"{get_first_arg_name('cprint')}{deliminator}", v)
+
+
 if __name__ == "__main__":
+
+    def siajd():
+        s = ""
+        cprint(s)
+        cprint("")
+        ass = "    "
+        cprint(ass)
+        cprint("  ")
 
     def ausdh() -> None:
         """
@@ -230,4 +258,5 @@ if __name__ == "__main__":
     # ausdh2()
     # ausdh3()
     # ausd2h3()
-    ausd2h3213()
+    # ausd2h3213()
+    siajd()
