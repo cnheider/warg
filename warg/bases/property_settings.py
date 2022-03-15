@@ -26,6 +26,7 @@ class PropertySettings(
     #  return len(self.__crystallise__())
 
     # raise_exception_on_none = False
+    raise_exception_non_exist_property = True
 
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
@@ -45,6 +46,8 @@ class PropertySettings(
 
     def __setattr__(self, key, value):
         assert not key.startswith("_"), f"{key} is not allowed"
+        if PropertySettings.raise_exception_non_exist_property and not hasattr(self, key):
+            raise ValueError(f"Property setting {key} does not exist , available settings {self}")
         # self.__getattr__(key)
         super().__setattr__(key, value)
 

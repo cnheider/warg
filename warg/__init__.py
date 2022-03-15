@@ -38,7 +38,7 @@ from .imports import *
 from .functions import *
 from .platform import *
 from .generators import *
-
+from .text import *
 
 # from .ode import *
 

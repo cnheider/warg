@@ -13,6 +13,19 @@ import ast
 from typing import Optional, Any
 
 
+def recurse_first_args(args):
+    for a in args:
+        if isinstance(a, ast.Call):
+            if isinstance(a.func, ast.Attribute):
+                r = f"{a.func.attr}"
+            else:
+                r = f"{a.func.id}"
+            return f"{r}({recurse_first_args(a.args)})"
+    else:
+        if isinstance(a, ast.Constant):
+            return a.value
+
+
 class FirstArgIdentifier(ast.NodeVisitor):
     """ """
 
@@ -20,14 +33,14 @@ class FirstArgIdentifier(ast.NodeVisitor):
         self,
         *args,
         verbose: bool = False,
-        max_num_intermediate_unnamed_elements: int = 1,
+        max_num_intermediate_unnamed_elements: int = -1,  # recurse = -1
     ):
         if len(args) < 1:
             raise ValueError("Supply at least one target function")
         self.result = {arg: {} for arg in args}
         self.verbose = verbose
-        assert max_num_intermediate_unnamed_elements >= 0
-        self.num_unnamed_sequence_elements = max_num_intermediate_unnamed_elements
+        # assert max_num_intermediate_unnamed_elements >= 0
+        self.sequence_depth = max_num_intermediate_unnamed_elements
 
     def visit_Call(self, node: ast.AST) -> None:
         """
@@ -47,6 +60,10 @@ class FirstArgIdentifier(ast.NodeVisitor):
                     iter_name = f"{first_arg.func.attr}"
                 else:
                     iter_name = f"{first_arg.func.id}"
+
+                if self.sequence_depth < 0:
+                    iter_name += f"({recurse_first_args(first_arg.args)})"
+
                 if self.verbose:
                     args_repr = f'{", ".join([ast.dump(sub) for sub in first_arg.args])}'
                     kws_repr = f'{", ".join([ast.dump(sub) for sub in first_arg.keywords])}'
@@ -58,16 +75,19 @@ class FirstArgIdentifier(ast.NodeVisitor):
                     iter_name += f'({", ".join(args_kw_repr)})'
             elif isinstance(first_arg, (ast.List, ast.Set, ast.Tuple)):
                 elts = first_arg.elts
-                if self.num_unnamed_sequence_elements < len(elts) - 2:
-                    if (
-                        self.num_unnamed_sequence_elements
-                    ):  # TODO: Generalise to another external function, "pick num from sequence" func
-                        stride = (len(elts) // self.num_unnamed_sequence_elements) + 1
-                        between = elts[1:-2:stride]
+                if self.sequence_depth > 0:
+                    if self.sequence_depth < len(elts) - 2:
+                        if (
+                            self.sequence_depth
+                        ):  # TODO: Generalise to another external function, "pick num from sequence" func
+                            stride = (len(elts) // self.sequence_depth) + 1
+                            between = elts[1:-2:stride]
+                        else:
+                            between = []
+                        elts_str = [ast.dump(sub) for sub in [elts[0]] + between + [elts[-1]]]
+                        iter_name = f'[{" .. ".join(elts_str)}]'
                     else:
-                        between = []
-                    elts_str = [ast.dump(sub) for sub in [elts[0]] + between + [elts[-1]]]
-                    iter_name = f'[{" .. ".join(elts_str)}]'
+                        iter_name = f'[{", ".join([ast.dump(sub) for sub in elts])}]'
                 else:
                     iter_name = f'[{", ".join([ast.dump(sub) for sub in elts])}]'
             elif isinstance(first_arg, ast.Dict):
@@ -84,13 +104,12 @@ class FirstArgIdentifier(ast.NodeVisitor):
 
 
 def get_first_arg_name(
-    func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1
+    func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=-1  # recurse = -1
 ) -> Optional[str]:
     """ """
     import inspect
     import textwrap
     import ast
-    from warg import FirstArgIdentifier
 
     caller_frame = inspect.currentframe().f_back.f_back
     caller_src_code_lines = inspect.getsourcelines(caller_frame)
