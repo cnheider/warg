@@ -22,8 +22,8 @@ def recurse_first_args(args):
                 r = f"{a.func.id}"
             return f"{r}({recurse_first_args(a.args)})"
     else:
-        if isinstance(a, ast.Constant):
-            return a.value
+        if isinstance(args, ast.Constant):
+            return args.value
 
 
 class FirstArgIdentifier(ast.NodeVisitor):
