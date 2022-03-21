@@ -36,9 +36,10 @@ from .map_itertools import *
 from .ast_ops import *
 from .imports import *
 from .functions import *
-from .platform import *
+from .os_platform import *
 from .generators import *
 from .text import *
+from .ordinals import *
 
 # from .ode import *
 

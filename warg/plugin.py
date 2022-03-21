@@ -6,7 +6,9 @@ __doc__ = r"""
 
            Created on 13/06/2020
            """
+
 from typing import Tuple
+
 import pkg_resources
 
 __all__ = ["get_plugins", "get_static_plugins", "get_dynamic_plugins"]
