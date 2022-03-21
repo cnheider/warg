@@ -7,9 +7,23 @@ __doc__ = r"""
            Created on 26-01-2021
            """
 
-__all__ = ["FirstArgIdentifier", "get_first_arg_name"]
+__all__ = ["FirstArgIdentifier", "get_first_arg_name", "cprint"]
 
 import ast
+from typing import Optional, Any
+
+
+def recurse_first_args(args):
+    for a in args:
+        if isinstance(a, ast.Call):
+            if isinstance(a.func, ast.Attribute):
+                r = f"{a.func.attr}"
+            else:
+                r = f"{a.func.id}"
+            return f"{r}({recurse_first_args(a.args)})"
+    else:
+        if isinstance(args, ast.Constant):
+            return args.value
 
 
 class FirstArgIdentifier(ast.NodeVisitor):
@@ -19,14 +33,14 @@ class FirstArgIdentifier(ast.NodeVisitor):
         self,
         *args,
         verbose: bool = False,
-        max_num_intermediate_unnamed_elements: int = 1,
+        max_num_intermediate_unnamed_elements: int = -1,  # recurse = -1
     ):
         if len(args) < 1:
             raise ValueError("Supply at least one target function")
         self.result = {arg: {} for arg in args}
         self.verbose = verbose
-        assert max_num_intermediate_unnamed_elements >= 0
-        self.num_unnamed_sequence_elements = max_num_intermediate_unnamed_elements
+        # assert max_num_intermediate_unnamed_elements >= 0
+        self.sequence_depth = max_num_intermediate_unnamed_elements
 
     def visit_Call(self, node: ast.AST) -> None:
         """
@@ -46,6 +60,10 @@ class FirstArgIdentifier(ast.NodeVisitor):
                     iter_name = f"{first_arg.func.attr}"
                 else:
                     iter_name = f"{first_arg.func.id}"
+
+                if self.sequence_depth < 0:
+                    iter_name += f"({recurse_first_args(first_arg.args)})"
+
                 if self.verbose:
                     args_repr = f'{", ".join([ast.dump(sub) for sub in first_arg.args])}'
                     kws_repr = f'{", ".join([ast.dump(sub) for sub in first_arg.keywords])}'
@@ -57,21 +75,24 @@ class FirstArgIdentifier(ast.NodeVisitor):
                     iter_name += f'({", ".join(args_kw_repr)})'
             elif isinstance(first_arg, (ast.List, ast.Set, ast.Tuple)):
                 elts = first_arg.elts
-                if self.num_unnamed_sequence_elements < len(elts) - 2:
-                    if (
-                        self.num_unnamed_sequence_elements
-                    ):  # TODO: Generalise to another external function, "pick num from sequence" func
-                        stride = (len(elts) // self.num_unnamed_sequence_elements) + 1
-                        between = elts[1:-2:stride]
+                if self.sequence_depth > 0:
+                    if self.sequence_depth < len(elts) - 2:
+                        if (
+                            self.sequence_depth
+                        ):  # TODO: Generalise to another external function, "pick num from sequence" func
+                            stride = (len(elts) // self.sequence_depth) + 1
+                            between = elts[1:-2:stride]
+                        else:
+                            between = []
+                        elts_str = [ast.dump(sub) for sub in [elts[0]] + between + [elts[-1]]]
+                        iter_name = f'[{" .. ".join(elts_str)}]'
                     else:
-                        between = []
-                    elts_str = [ast.dump(sub) for sub in [elts[0]] + between + [elts[-1]]]
-                    iter_name = f'[{" .. ".join(elts_str)}]'
+                        iter_name = f'[{", ".join([ast.dump(sub) for sub in elts])}]'
                 else:
                     iter_name = f'[{", ".join([ast.dump(sub) for sub in elts])}]'
             elif isinstance(first_arg, ast.Dict):
                 kw_repr = f'{", ".join([f"{k}:{v}" for k, v in zip([ast.dump(sub) for sub in first_arg.keys], [ast.dump(sub) for sub in first_arg.values])])}'
-                iter_name = "{" + kw_repr + "}"
+                iter_name = f"{{{kw_repr}}}"
             else:  # No obvious name
                 if self.verbose:
                     print(type(first_arg))
@@ -82,12 +103,13 @@ class FirstArgIdentifier(ast.NodeVisitor):
         self.generic_visit(node)  # visit the children
 
 
-def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1) -> None:
+def get_first_arg_name(
+    func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=-1  # recurse = -1
+) -> Optional[str]:
     """ """
     import inspect
     import textwrap
     import ast
-    from warg import FirstArgIdentifier
 
     caller_frame = inspect.currentframe().f_back.f_back
     caller_src_code_lines = inspect.getsourcelines(caller_frame)
@@ -98,22 +120,47 @@ def get_first_arg_name(func_name: str, *, verbose=False, max_num_intermediate_un
     )
     fai.visit(ast.parse(textwrap.dedent("".join(caller_src_code_lines[0]))))
     if func_name in fai.result:
-        idx = caller_frame.f_lineno - (caller_src_code_lines[1] - 1)
+        offset = 0
+        if caller_src_code_lines[1]:
+            offset = caller_src_code_lines[1] - 1
+        idx = caller_frame.f_lineno - offset
         if idx in fai.result[func_name]:
             return fai.result[func_name][idx]
         elif verbose:
-            print(f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied')
+            print(
+                f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied, found {fai.result[func_name]}, in {inspect.getsourcefile(caller_frame)}'
+            )
     elif verbose:
         print(f"{func_name} was not found in {fai.result}")
     return None
 
 
-def get_first_arg_name_recurse():
+def get_first_arg_name_recurse() -> Optional[str]:
+    """
+    unpack chained generators to base iterator name
+
+    :return:
+    :rtype:
+    """
     pass  # TODO: For e.g. description in progress_bar(range(_name_))
     raise NotImplementedError
 
 
+def cprint(v: Any, writer: callable = print, deliminator: str = ":") -> None:
+    if isinstance(v, str) and v.strip() == "":
+        v = '""'
+    writer(f"{get_first_arg_name('cprint')}{deliminator}", v)
+
+
 if __name__ == "__main__":
+
+    def siajd():
+        s = ""
+        cprint(s)
+        cprint("")
+        ass = "    "
+        cprint(ass)
+        cprint("  ")
 
     def ausdh() -> None:
         """
@@ -230,4 +277,5 @@ if __name__ == "__main__":
     # ausdh2()
     # ausdh3()
     # ausd2h3()
-    ausd2h3213()
+    # ausd2h3213()
+    siajd()

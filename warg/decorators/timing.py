@@ -216,7 +216,7 @@ class StopWatch(contextlib.AbstractContextManager):
     def __str__(self) -> str:
         return str(self.__repr__())
 
-    def __repr__(self):
+    def __repr__(self) -> int:
         return self.since_start
 
 

@@ -9,7 +9,7 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.6.5"
+__version__ = "0.6.6"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -21,6 +21,7 @@ Created on 27/04/2019
 
 from typing import Any
 
+from .sequences import *
 from .data_structures import *
 from .arguments import *
 from .gdkc import *
@@ -35,9 +36,10 @@ from .map_itertools import *
 from .ast_ops import *
 from .imports import *
 from .functions import *
-from .platform import *
+from .os_platform import *
 from .generators import *
-
+from .text import *
+from .ordinals import *
 
 # from .ode import *
 
