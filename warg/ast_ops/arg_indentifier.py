@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 26-01-2021
            """
 
-__all__ = ["ArgIdentifier", "get_arg_names", "cprinta"]
+__all__ = ["ArgIdentifier", "get_arg_names", "cprinta", "cprintz"]
 
 import ast
 from typing import Optional, Any
@@ -132,6 +132,14 @@ def cprinta(*v: Any, writer: callable = print, deliminator: str = ":") -> None:
     writer(f"{get_arg_names('cprinta')}{deliminator}", v)
 
 
+def cprintz(*v: Any, writer: callable = print) -> None:
+    if isinstance(v, str) and v.strip() == "":
+        v = '""'
+
+    gen = zip(get_arg_names("cprintz"), v)
+    writer(f"{list(gen)}")
+
+
 if __name__ == "__main__":
 
     def siajd():
@@ -144,5 +152,7 @@ if __name__ == "__main__":
         ls = ass + s
         cprinta(ass, ls, 2)
         cprinta("  ")
+
+        cprintz(ass, ls, 2)
 
     siajd()
