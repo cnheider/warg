@@ -19,6 +19,7 @@ __all__ = [
     "flip_two_level_mapping",
     "swap_mapping_order",
     "nop",
+    "empty_str",
 ]
 
 import operator
@@ -28,6 +29,10 @@ from functools import reduce
 from typing import Any, Callable, Dict, Iterable, Iterator, Mapping, Sequence, Tuple
 
 from warg import Number, drop_unused_kws
+
+
+def empty_str() -> str:
+    return ""
 
 
 def nop() -> None:
