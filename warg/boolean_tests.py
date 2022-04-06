@@ -13,6 +13,9 @@ __all__ = [
     "is_none_or_zero_or_negative",
     "is_zero_or_mod_below",
     "is_none_or_zero_or_negative_or_mod_zero",
+    "xor",
+    "xnor",
+    "nand",
 ]
 
 from typing import Any, Optional
@@ -102,6 +105,33 @@ def is_none_or_zero_or_negative_or_mod_zero(mod: Optional[Number], counter: int,
     :param kwargs:
     :return:"""
     return is_none_or_zero_or_negative(mod) or is_zero_or_mod_zero(mod, counter, **kwargs)
+
+
+def xor(a: bool, b: bool) -> bool:
+    """
+
+    :param a:
+    :param b:
+    :return:"""
+    return a ^ b
+
+
+def xnor(a: bool, b: bool) -> bool:
+    """
+
+    :param a:
+    :param b:
+    :return:"""
+    return not xor(a, b)
+
+
+def nand(a: bool, b: bool) -> bool:
+    """
+
+    :param a:
+    :param b:
+    :return:"""
+    return not (a and b)
 
 
 if __name__ == "__main__":

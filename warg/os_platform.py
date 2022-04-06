@@ -4,16 +4,18 @@ import sys
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
-          This file is not for general use. Ode to python
+          get os platform utilities 
 
            Created on 13/06/2020
            """
 
-__all__ = ["is_nix", "is_windows"]
+__all__ = ["is_nix", "is_windows", "is_mac", "is_linux", "get_platform"]
 
 CUR_OS = sys.platform
 IS_WIN = any(CUR_OS.startswith(i) for i in ["win32", "cygwin"])
-IS_NIX = any(CUR_OS.startswith(i) for i in ["aix", "linux", "darwin"])
+IS_LINUX = CUR_OS.startswith("linux")
+IS_MAC = CUR_OS.startswith("darwin")
+IS_NIX = IS_LINUX or IS_MAC or CUR_OS.startswith("aix")
 
 
 def is_windows() -> bool:
@@ -24,9 +26,33 @@ def is_windows() -> bool:
     return IS_WIN
 
 
+def is_linux() -> bool:
+    """
+
+    :return:
+    """
+    return IS_LINUX
+
+
 def is_nix() -> bool:
     """
 
     :return:
     """
     return IS_NIX
+
+
+def is_mac() -> bool:
+    """
+
+    :return:
+    """
+    return IS_MAC
+
+
+def get_platform() -> str:
+    """
+
+    :return:
+    """
+    return CUR_OS
