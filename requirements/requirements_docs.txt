@@ -2,4 +2,4 @@ sphinx
 m2r2
 sphinxcontrib-programoutput
 warg
-mistune
+mistune==0.8.4
