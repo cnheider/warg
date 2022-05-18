@@ -11,9 +11,10 @@ __all__ = ["ContextWrapper", "NopContext"]
 
 import inspect
 from typing import Callable, Sequence
+import contextlib
 
 
-class NopContext:
+class NopContext(contextlib.AbstractContextManager):
     def __enter__(self):
         return
 
@@ -21,7 +22,7 @@ class NopContext:
         return
 
 
-class ContextWrapper:
+class ContextWrapper(contextlib.AbstractContextManager):
     """
     Allows for conditional application of contexts, if uninstantiated context manager classes are passed no arguments is supplied in construction.
     if disabled None is returned
