@@ -250,7 +250,7 @@ def drop_unused_kws(f: callable):
 class AlsoDecorator:
     def __call__(self, func):
         @functools.wraps(func)
-        def decorate_no_grad(*args, **kwargs):
+        def decorate_func(*args, **kwargs):
             """
 
             :param args:
@@ -262,7 +262,7 @@ class AlsoDecorator:
             with self:
                 return func(*args, **kwargs)
 
-        return decorate_no_grad
+        return decorate_func
 
 
 if __name__ == "__main__":

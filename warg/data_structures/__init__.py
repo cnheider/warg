@@ -15,3 +15,5 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 from .auto_dict import *
 from .named_ordered_dictionary import *
 from .ordered_set import *
+from .sequences import *
+from .mappings import *

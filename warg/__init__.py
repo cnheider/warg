@@ -9,7 +9,7 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.6.8"
+__version__ = "0.6.9"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -21,7 +21,6 @@ Created on 27/04/2019
 
 from typing import Any
 
-from .sequences import *
 from .data_structures import *
 from .arguments import *
 from .gdkc import *
@@ -47,7 +46,7 @@ from .math import *
 
 def dist_is_editable(dist: Any) -> bool:
     """
-    Return True if given Distribution is an editable install."""
+    Return True if given Distribution is an editable installation."""
     import sys
     from pathlib import Path
 
