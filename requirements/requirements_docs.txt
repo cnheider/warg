@@ -1,5 +1,5 @@
 sphinx
-m2r2
+#m2r2
 sphinxcontrib-programoutput
 warg
-mistune==0.8.4
+#mistune==0.8.4

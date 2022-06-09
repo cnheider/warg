@@ -4,12 +4,14 @@ pushd %~dp0
 
 REM Command file for Sphinx documentation
 
+REM conda activate py38
+
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
 set SOURCEDIR=source
-set BUILDDIR=build
-set SPHINXPROJ=warg
+set BUILDDIR=../docs/github
+set SPHINXPROJ=Warg
 
 if "%1" == "" goto help
 

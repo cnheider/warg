@@ -9,9 +9,9 @@ __doc__ = r"""
 
 __all__ = ["ContextWrapper", "NopContext"]
 
+import contextlib
 import inspect
 from typing import Callable, Sequence
-import contextlib
 
 
 class NopContext(contextlib.AbstractContextManager):

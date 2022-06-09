@@ -7,9 +7,6 @@ __doc__ = r"""
            Created on 18/07/2020
            """
 
-import numbers
-from typing import Any, Sequence, Tuple, Union
-
 __all__ = [
     "Number",
     "Reals",
@@ -26,6 +23,9 @@ __all__ = [
     "QuintNumber",
     "StrictNumbers",
 ]
+
+import numbers
+from typing import Any, Sequence, Tuple, Union
 
 Number = Union[int, float]
 Reals = Sequence[Union[numbers.Real, "Reals"]]

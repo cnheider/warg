@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import logging
-from typing import Any, Mapping, MutableMapping
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
-
 Generalised wrapper for delayed construction of class objects. Encapsulates kwargs and callable constructor with the option of modifying construction arguments before construction is finally performed.
 
 """
 
 __all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
+
+import logging
+from typing import Any, Mapping, MutableMapping
 
 
 class GeneralisedDelayedKwargConstruction(object):

@@ -21,10 +21,11 @@
 import sys
 from pathlib import Path
 
-PACKAGE_ROOT = Path(__file__).parent.parent.parent
+PACKAGE_ROOT = Path(__file__).parent.parent.parent  # / "warg"
+print(f"PACKAGE_ROOT: {PACKAGE_ROOT}")
 sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
 
-from warg import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_YEAR, PROJECT_VERSION
+from warg import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_YEAR, PROJECT_VERSION, __project__
 
 # -- General configuration ------------------------------------------------
 
@@ -37,7 +38,7 @@ from warg import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_YEAR, PROJECT_VERSION
 # ones.
 
 extensions = [
-    "m2r2",
+    # "m2r2",
     # 'recommonmark',
     "sphinxcontrib.programoutput",
     "sphinx.ext.autodoc",
@@ -54,9 +55,13 @@ extensions = [
 ]
 
 napoleon_use_ivar = True
+autosummary_generate = True
+# autosummary_imported_members = True
+autosummary_ignore_module_all = False
+autosummary_generate_overwrite = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = ["../templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -73,7 +78,7 @@ source_suffix = {".rst": "restructuredtext", ".txt": "markdown", ".md": "markdow
 master_doc = "index"
 
 # General information about the project.
-project = PROJECT_NAME
+project = __project__  # PROJECT_NAME
 author = PROJECT_AUTHOR
 copyright_text = f"{PROJECT_YEAR}, {PROJECT_AUTHOR}"
 
@@ -118,7 +123,8 @@ html_theme = "alabaster"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named 'default.css' will overwrite the builtin 'default.css'.
-html_static_path = ["_static"]
+# html_static_path = ["_static"]
+html_static_path = []
 
 html_baseurl = f"{PROJECT_NAME}.github.io"
 

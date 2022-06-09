@@ -3,7 +3,4 @@
 Getting Started
 ================
 
-
-
-
-
+pip install warg -U
