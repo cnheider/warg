@@ -9,12 +9,20 @@ from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.6.9"
+__version__ = "1.0.0"
 __doc__ = r"""
 Created on 27/04/2019
 
 @author: cnheider
 """
+
+from pathlib import Path
+
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
+
+# with open(Path(__file__).parent.parent / "README.md", "r") as this_init_file:
+#    __doc__ += this_init_file.read()
 
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"] # let everything be accessable from base warg import
 
@@ -35,10 +43,21 @@ from .map_itertools import *
 from .ast_ops import *
 from .imports import *
 from .functions import *
-from .os_platform import *
+from .os import *
 from .generators import *
 from .text import *
 from .math import *
+from .business import *
+from .datetimes import *
+from .debug import *
+from .exceptions import *
+from .manipulation import *
+from .replication import *
+from .styling import *
+from .strings import *
+from .contexts import *
+from .config_shell import *
+from .colors import *
 
 
 # from .ode import *

@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+__author__ = "Christian Heider Nielsen"
+
+__doc__ = """"""
+__all__ = ["to_british_english", "deamericanise"]
+
 from types import MappingProxyType
 from typing import Mapping
 
@@ -10,8 +18,6 @@ default_rules = MappingProxyType(
         # 'og': 'ogue',
     }
 )
-
-__all__ = ["to_british_english", "deamericanise"]
 
 
 def to_british_english(text: str, rules: Mapping = default_rules) -> str:

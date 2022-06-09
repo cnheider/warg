@@ -1,8 +1,12 @@
 Warg Documentation
 ==================
 
-.. automodule:: warg
-    :members:
+..  autosummary::
+    :toctree: generated
+    :template: custom_autosummary/module.rst
+    :recursive:
+
+    warg
 
 .. toctree::
     :glob:
@@ -11,14 +15,11 @@ Warg Documentation
     :caption: Notes
 
     getting_started
-    readme
 
 What's next?
 -------------
 
 Read the :ref:`Getting Started Guide <getting_started>`
-
-
 
 Indices and tables
 ==================

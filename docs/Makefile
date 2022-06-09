@@ -2,12 +2,12 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = warg
-SOURCEDIR     = source
-BUILDDIR      = ../docs/github
-PYCMD 				= python
+SPHINXOPTS    	=
+SPHINXBUILD   	= sphinx-build
+SPHINXPROJ    	= Warg
+SOURCEDIR     	= source
+BUILDDIR      	= ../docs/github
+PYCMD 			= python
 
 # Put it first so that "make" without argument is like "make help".
 help:

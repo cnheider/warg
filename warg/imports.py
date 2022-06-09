@@ -7,10 +7,10 @@ __doc__ = r"""
            Created on 28/06/2020
            """
 
+__all__ = ["is_module_available", "import_warning", "reimported_warning"]
+
 from importlib.util import find_spec
 from warnings import warn
-
-__all__ = ["is_module_available", "import_warning", "reimported_warning"]
 
 
 def is_module_available(module: str) -> bool:
