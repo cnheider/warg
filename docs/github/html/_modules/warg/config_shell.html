@@ -1,145 +1,243 @@
-
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>warg.config_shell &#8212; Warg 0.6.9 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css"/>
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css"/>
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css"/>
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <link rel="canonical" href="warg.github.io/_modules/warg/config_shell.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-   
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="canonical" href="warg.github.io/_modules/warg/config_shell.html"/>
+    <link rel="index" title="Index" href="../../genindex.html"/>
+    <link rel="search" title="Search" href="../../search.html"/>
 
-  </head><body>
-  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css"/>
 
-    <div class="document">
-      <div class="documentwrapper">
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
+
+</head>
+<body>
+
+
+<div class="document">
+    <div class="documentwrapper">
         <div class="bodywrapper">
-          
 
-          <div class="body" role="main">
-            
-  <h1>Source code for warg.config_shell</h1><div class="highlight"><pre>
+
+            <div class="body" role="main">
+
+                <h1>Source code for warg.config_shell</h1>
+                <div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
-<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span
+                        class="s2">&quot;&quot;&quot;</span>
 
 <span class="s2">           Created on 17/03/2020</span>
 <span class="s2">           &quot;&quot;&quot;</span>
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PlaybackShell&quot;</span><span class="p">,</span> <span class="s2">&quot;ConfigShell&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PlaybackShell&quot;</span><span
+                        class="p">,</span> <span class="s2">&quot;ConfigShell&quot;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">cmd</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">warg</span> <span class="kn">import</span> <span class="n">passes_kws_to</span><span class="p">,</span> <span class="n">PropertySettings</span>
+<span class="kn">from</span> <span class="nn">warg</span> <span class="kn">import</span> <span
+                        class="n">passes_kws_to</span><span class="p">,</span> <span class="n">PropertySettings</span>
 
 
-<div class="viewcode-block" id="PlaybackShell"><a class="viewcode-back" href="../../generated/warg.config_shell.PlaybackShell.html#warg.config_shell.PlaybackShell">[docs]</a><span class="k">class</span> <span class="nc">PlaybackShell</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">Cmd</span><span class="p">):</span>
-    <span class="n">intro</span> <span class="o">=</span> <span class="s2">&quot;Type help or ? to list commands.</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">default_file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;playback.cmd&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="PlaybackShell"><a class="viewcode-back"
+                                                  href="../../generated/warg.config_shell.PlaybackShell.html#warg.config_shell.PlaybackShell">[docs]</a><span
+        class="k">class</span> <span class="nc">PlaybackShell</span><span class="p">(</span><span
+        class="n">cmd</span><span class="o">.</span><span class="n">Cmd</span><span class="p">):</span>
+    <span class="n">intro</span> <span class="o">=</span> <span class="s2">&quot;Type help or ? to list commands.</span><span
+            class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">default_file_path</span> <span class="o">=</span> <span class="n">Path</span><span
+            class="p">(</span><span class="s2">&quot;playback.cmd&quot;</span><span class="p">)</span>
     <span class="n">file</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="c1"># ----- record and playback -----</span>
-    <span class="k">def</span> <span class="nf">do_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">do_record</span><span class="p">(</span><span
+            class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span
+            class="n">Path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save future commands to filename:  RECORD file.cmd&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="p">:</span>
-            <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_file_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span
+            class="o">.</span><span class="n">default_file_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span
+            class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span
+            class="s2">&quot;w&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">do_playback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">do_playback</span><span class="p">(</span><span
+            class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span
+            class="n">Path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Playback commands from a file:  PLAYBACK file.cmd&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="p">:</span>
-            <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_file_path</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cmdqueue</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="bp">self</span><span
+            class="o">.</span><span class="n">default_file_path</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span
+            class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cmdqueue</span><span
+            class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">f</span><span
+            class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span
+            class="n">splitlines</span><span class="p">())</span>
 
-    <span class="k">def</span> <span class="nf">precmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">precmd</span><span class="p">(</span><span class="bp">self</span><span
+            class="p">,</span> <span class="n">line</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param line:</span>
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="ow">and</span> <span class="s2">&quot;playback&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span
+            class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span
+            class="ow">and</span> <span class="s2">&quot;playback&quot;</span> <span class="ow">not</span> <span
+            class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span
+            class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span
+            class="o">.</span><span class="n">file</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">line</span>
 
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span
+            class="p">):</span>
         <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span
+            class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span
+            class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span
+            class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">do_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">do_exit</span><span class="p">(</span><span class="bp">self</span><span
+            class="p">,</span> <span class="n">arg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;If recording, stop, close file, close window, and exit:&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exiting&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">do_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">do_close</span><span class="p">(</span><span class="bp">self</span><span
+            class="p">,</span> <span class="n">arg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;If recording, stop, close file, close window, and exit:&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">do_exit</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">do_exit</span><span class="p">(</span><span
+            class="n">arg</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ConfigShell"><a class="viewcode-back" href="../../generated/warg.config_shell.ConfigShell.html#warg.config_shell.ConfigShell">[docs]</a><span class="k">class</span> <span class="nc">ConfigShell</span><span class="p">(</span><span class="n">PlaybackShell</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># Override!</span>
-        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="ConfigShell"><a class="viewcode-back"
+                                                href="../../generated/warg.config_shell.ConfigShell.html#warg.config_shell.ConfigShell">[docs]</a><span
+        class="k">class</span> <span class="nc">ConfigShell</span><span class="p">(</span><span
+        class="n">PlaybackShell</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_names</span><span class="p">(</span><span
+            class="bp">self</span><span class="p">):</span>  <span class="c1"># Override!</span>
+        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span
+            class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">onecmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>  <span class="c1"># Override!</span>
+    <span class="k">def</span> <span class="nf">onecmd</span><span class="p">(</span><span class="bp">self</span><span
+            class="p">,</span> <span class="n">line</span><span class="p">):</span>  <span class="c1"># Override!</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">onecmd</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span
+            class="n">onecmd</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span
+            class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># don&#39;t stop</span>
 
-    <span class="nd">@passes_kws_to</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;config&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">ConfigShell</span><span class="o">.</span><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">) &quot;</span>
+    <span class="nd">@passes_kws_to</span><span class="p">(</span><span class="n">cmd</span><span
+            class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="fm">__init__</span><span
+            class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span
+            class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span
+            class="o">=</span> <span class="s2">&quot;config&quot;</span><span class="p">,</span> <span
+            class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span
+            class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span
+            class="n">kwargs</span><span class="p">)</span>
+        <span class="n">ConfigShell</span><span class="o">.</span><span class="n">prompt</span> <span class="o">=</span> <span
+            class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">name</span><span
+            class="si">}</span><span class="s2">) &quot;</span>
 
-    <span class="k">def</span> <span class="nf">add_property_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ps</span><span class="p">:</span> <span class="n">PropertySettings</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="o">.</span><span class="n">__iter_keys__</span><span class="p">():</span>
-            <span class="n">prop</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-            <span class="n">getter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">e</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="n">ps</span><span class="p">))</span>
-            <span class="n">getter</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">fget</span><span class="o">.</span><span class="vm">__doc__</span>
-            <span class="n">setter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">e</span><span class="p">:</span> <span class="n">prop</span><span class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span> <span class="o">*</span><span class="n">e</span><span class="p">)</span>
-            <span class="n">setter</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">fset</span><span class="o">.</span><span class="vm">__doc__</span>
-            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">fdel</span><span class="p">:</span>
-                <span class="n">deleter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">e</span><span class="p">:</span> <span class="n">prop</span><span class="o">.</span><span class="n">fdel</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
-                <span class="n">deleter</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">fdel</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="k">def</span> <span class="nf">add_property_options</span><span class="p">(</span><span
+            class="bp">self</span><span class="p">,</span> <span class="n">ps</span><span class="p">:</span> <span
+            class="n">PropertySettings</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span
+            class="o">.</span><span class="n">__iter_keys__</span><span class="p">():</span>
+            <span class="n">prop</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span
+            class="n">ps</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span
+            class="n">p</span><span class="p">)</span>
+            <span class="n">getter</span> <span class="o">=</span> <span class="k">lambda</span> <span
+            class="o">*</span><span class="n">e</span><span class="p">:</span> <span class="nb">print</span><span
+            class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">fget</span><span
+            class="p">(</span><span class="n">ps</span><span class="p">))</span>
+            <span class="n">getter</span><span class="o">.</span><span class="vm">__doc__</span> <span
+            class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">fget</span><span
+            class="o">.</span><span class="vm">__doc__</span>
+            <span class="n">setter</span> <span class="o">=</span> <span class="k">lambda</span> <span
+            class="o">*</span><span class="n">e</span><span class="p">:</span> <span class="n">prop</span><span
+            class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="n">ps</span><span
+            class="p">,</span> <span class="o">*</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">setter</span><span class="o">.</span><span class="vm">__doc__</span> <span
+            class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">fset</span><span
+            class="o">.</span><span class="vm">__doc__</span>
+            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span
+            class="n">fdel</span><span class="p">:</span>
+                <span class="n">deleter</span> <span class="o">=</span> <span class="k">lambda</span> <span
+            class="o">*</span><span class="n">e</span><span class="p">:</span> <span class="n">prop</span><span
+            class="o">.</span><span class="n">fdel</span><span class="p">(</span><span class="n">ps</span><span
+            class="p">)</span>
+                <span class="n">deleter</span><span class="o">.</span><span class="vm">__doc__</span> <span
+            class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">fdel</span><span
+            class="o">.</span><span class="vm">__doc__</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">deleter</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">getter</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="n">setter</span><span class="p">,</span> <span class="n">deleter</span><span class="o">=</span><span class="n">deleter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_option</span><span
+            class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">getter</span><span
+            class="o">=</span><span class="n">getter</span><span class="p">,</span> <span class="n">setter</span><span
+            class="o">=</span><span class="n">setter</span><span class="p">,</span> <span class="n">deleter</span><span
+            class="o">=</span><span class="n">deleter</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">deleter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_func</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;get_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">getter</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_func</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;set_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">setter</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">add_option</span><span class="p">(</span><span
+            class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span
+            class="o">*</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span
+            class="n">setter</span><span class="p">,</span> <span class="n">deleter</span><span class="o">=</span><span
+            class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_func</span><span class="p">(</span><span
+            class="sa">f</span><span class="s2">&quot;get_</span><span class="si">{</span><span
+            class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span
+            class="n">getter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_func</span><span class="p">(</span><span
+            class="sa">f</span><span class="s2">&quot;set_</span><span class="si">{</span><span
+            class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span
+            class="n">setter</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">deleter</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_func</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;del_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">deleter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_func</span><span
+            class="p">(</span><span class="sa">f</span><span class="s2">&quot;del_</span><span class="si">{</span><span
+            class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span
+            class="n">deleter</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;do_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">assert</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_names</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">add_func</span><span class="p">(</span><span class="bp">self</span><span
+            class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">func</span><span
+            class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="sa">f</span><span
+            class="s2">&quot;do_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span
+            class="s2">&quot;</span>
+        <span class="k">assert</span> <span class="n">k</span> <span class="ow">not</span> <span
+            class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span
+            class="n">get_names</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span
+            class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">func</span><span
+            class="p">)</span></div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span
+                        class="p">:</span>
 
     <span class="k">def</span> <span class="nf">ujsd</span><span class="p">():</span>
         <span class="k">global</span> <span class="n">A</span>
@@ -147,9 +245,11 @@
         <span class="n">A</span> <span class="o">=</span> <span class="mi">99</span>
         <span class="n">SOME</span> <span class="o">=</span> <span class="mi">99</span>
 
-        <span class="k">class</span> <span class="nc">Aconfig</span><span class="p">(</span><span class="n">PropertySettings</span><span class="p">):</span>
+        <span class="k">class</span> <span class="nc">Aconfig</span><span class="p">(</span><span class="n">PropertySettings</span><span
+                        class="p">):</span>
             <span class="nd">@property</span>
-            <span class="k">def</span> <span class="nf">some</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">some</span><span class="p">(</span><span
+                        class="bp">self</span><span class="p">):</span>
                 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                return SOME</span>
 <span class="sd">                :return:</span>
@@ -159,7 +259,8 @@
                 <span class="k">return</span> <span class="n">SOME</span>
 
             <span class="nd">@some</span><span class="o">.</span><span class="n">setter</span>
-            <span class="k">def</span> <span class="nf">some</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">some</span><span class="p">(</span><span
+                        class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
                 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                set SOME</span>
 <span class="sd">                :return:</span>
@@ -169,7 +270,8 @@
                 <span class="n">SOME</span> <span class="o">=</span> <span class="n">i</span>
 
             <span class="nd">@some</span><span class="o">.</span><span class="n">deleter</span>
-            <span class="k">def</span> <span class="nf">some</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">some</span><span class="p">(</span><span
+                        class="bp">self</span><span class="p">):</span>
                 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                del SOME</span>
 <span class="sd">                :return:</span>
@@ -179,7 +281,8 @@
                 <span class="k">del</span> <span class="n">SOME</span>
 
             <span class="nd">@property</span>
-            <span class="k">def</span> <span class="nf">other</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">other</span><span class="p">(</span><span class="bp">self</span><span
+                        class="p">):</span>
                 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                return A</span>
 <span class="sd">                :return:</span>
@@ -189,7 +292,8 @@
                 <span class="k">return</span> <span class="n">A</span>
 
             <span class="nd">@other</span><span class="o">.</span><span class="n">setter</span>
-            <span class="k">def</span> <span class="nf">other</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">other</span><span class="p">(</span><span class="bp">self</span><span
+                        class="p">,</span> <span class="n">i</span><span class="p">):</span>
                 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                set A</span>
 <span class="sd">                :return:</span>
@@ -200,92 +304,94 @@
 
         <span class="n">ac</span> <span class="o">=</span> <span class="n">Aconfig</span><span class="p">()</span>
 
-        <span class="k">def</span> <span class="nf">set_A</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">set_A</span><span class="p">(</span><span class="n">e</span><span
+                        class="p">):</span>
             <span class="k">global</span> <span class="n">A</span>
             <span class="n">A</span> <span class="o">=</span> <span class="n">e</span>
 
-        <span class="k">def</span> <span class="nf">get_A</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">get_A</span><span class="p">(</span><span class="n">e</span><span
+                        class="p">):</span>
             <span class="k">global</span> <span class="n">A</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
         <span class="n">cs</span> <span class="o">=</span> <span class="n">ConfigShell</span><span class="p">()</span>
-        <span class="n">cs</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">get_A</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="n">set_A</span><span class="p">)</span>
+        <span class="n">cs</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span
+                        class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">getter</span><span
+                        class="o">=</span><span class="n">get_A</span><span class="p">,</span> <span
+                        class="n">setter</span><span class="o">=</span><span class="n">set_A</span><span
+                        class="p">)</span>
 
-        <span class="n">cs</span><span class="o">.</span><span class="n">add_property_options</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">cs</span><span class="o">.</span><span class="n">add_property_options</span><span
+                        class="p">(</span><span class="n">ac</span><span class="p">)</span>
 
         <span class="n">cs</span><span class="o">.</span><span class="n">cmdloop</span><span class="p">()</span>
 
     <span class="n">ujsd</span><span class="p">()</span>
-</pre></div>
+</pre>
+                </div>
 
-          </div>
-          
+            </div>
+
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">Warg</a></h1>
+            <h1 class="logo"><a href="../../index.html">Warg</a></h1>
 
 
+            <h3>Navigation</h3>
+            <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../generated/warg.html">warg</a></li>
+            </ul>
+            <p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+            <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting
+                    Started</a></li>
+            </ul>
 
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../generated/warg.html">warg</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  <li><a href="../warg.html">warg</a><ul>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
+            <div class="relations">
+                <h3>Related Topics</h3>
+                <ul>
+                    <li><a href="../../index.html">Documentation overview</a>
+                        <ul>
+                            <li><a href="../index.html">Module code</a>
+                                <ul>
+                                    <li><a href="../warg.html">warg</a>
+                                        <ul>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="searchbox" style="display: none" role="search">
+                <h3 id="searchlabel">Quick search</h3>
+                <div class="searchformwrapper">
+                    <form class="search" action="../../search.html" method="get">
+                        <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off"
+                               autocapitalize="off" spellcheck="false"/>
+                        <input type="submit" value="Go"/>
+                    </form>
+                </div>
+            </div>
+            <script>$('#searchbox').show(0);</script>
 
 
         </div>
-      </div>
-      <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &copy;.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
+    <div class="clearer"></div>
+</div>
+<div class="footer">
+    &copy;.
 
-    
+    |
+    Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
 
-    
-  </body>
+</div>
+
+
+</body>
 </html>

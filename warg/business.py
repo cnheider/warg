@@ -39,9 +39,13 @@ def busy_indicator(
 
 
 if __name__ == "__main__":
-    import time
 
-    for i in busy_indicator(indicator_interval=10):
-        time.sleep(0.1)
-        if i > 100:
-            break
+    def iasd():
+        import time
+
+        for i in busy_indicator(indicator_interval=10):
+            time.sleep(0.1)
+            if i > 100:
+                break
+
+    iasd()

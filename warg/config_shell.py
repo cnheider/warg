@@ -81,16 +81,17 @@ class ConfigShell(PlaybackShell):
     def add_property_options(self, ps: PropertySettings):
         for p in ps.__iter_keys__():
             prop = getattr(ps.__class__, p)
-            getter = lambda *e: print(prop.fget(ps))
-            getter.__doc__ = prop.fget.__doc__
-            setter = lambda *e: prop.fset(ps, *e)
-            setter.__doc__ = prop.fset.__doc__
-            if prop.fdel:
-                deleter = lambda *e: prop.fdel(ps)
-                deleter.__doc__ = prop.fdel.__doc__
-            else:
-                deleter = None
-            self.add_option(p, getter=getter, setter=setter, deleter=deleter)
+            if isinstance(prop, property):
+                getter = lambda *e: print(prop.fget(ps))
+                getter.__doc__ = prop.fget.__doc__
+                setter = lambda *e: prop.fset(ps, *e)
+                setter.__doc__ = prop.fset.__doc__
+                if prop.fdel:
+                    deleter = lambda *e: prop.fdel(ps)
+                    deleter.__doc__ = prop.fdel.__doc__
+                else:
+                    deleter = None
+                self.add_option(p, getter=getter, setter=setter, deleter=deleter)
 
     def add_option(self, key, *, getter, setter, deleter=None):
         self.add_func(f"get_{key}", getter)

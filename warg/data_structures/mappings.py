@@ -60,7 +60,6 @@ def pivot_dict(d: Dict, key) -> Dict:
 
     :param d:
     :param key:
-    :param value:
     :return:
     :rtype:
     """
@@ -73,7 +72,6 @@ def pivot_dict_object(d: Dict, key) -> Dict:
 
     :param d:
     :param key:
-    :param value:
     :return:
     :rtype:
     """

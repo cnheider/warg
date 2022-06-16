@@ -42,6 +42,8 @@ def is_positive_and_mod_zero(
     else return alt
 
 
+    :param residual_printer:
+    :type residual_printer:
     :param mod:
     :param counter:
     :param ret:
@@ -77,6 +79,8 @@ def is_zero_or_mod_below(
     else return alt
 
 
+    :param residual_printer:
+    :type residual_printer:
     :param below:
     :type below:
     :param mod:
@@ -112,6 +116,8 @@ def is_zero_or_mod_zero(
     else return alt
 
 
+    :param residual_printer:
+    :type residual_printer:
     :param mod:
     :param counter:
     :param ret:
@@ -134,6 +140,8 @@ def is_zero_or_mod_zero(
 def is_none_or_zero_or_negative(obj: Optional[Number], residual_printer: callable = None) -> bool:
     """
 
+    :param residual_printer:
+    :type residual_printer:
     :param obj:
     :return:"""
     is_none = obj is None

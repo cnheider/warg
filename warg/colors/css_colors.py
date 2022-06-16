@@ -268,10 +268,11 @@ def color(s, fg=None, bg=None, style=None):
     """
     Add ANSI colors and styles to a string.
 
+    :param style:
+    :type style:
     :param str s: String to format.
     :param str|int|tuple fg: Foreground color specification.
     :param str|int|tuple bg: Background color specification.
-    :param str: Style names, separated by '+'
     :returns: Formatted string.
     :rtype: str (or unicode in Python 2, if s is unicode)
     """

@@ -210,11 +210,11 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 nod = NamedOrderedDictionary()
 
 for arg, value in zip(frame_info.call.args[-len(args) :], args):
-    try:
-        arg_key = node_name(arg)
-        nod[arg_key] = value
-    except TypeError:
-        nod.add_unnamed_arg(value)
+  try:
+      arg_key = node_name(arg)
+      nod[arg_key] = value
+  except TypeError:
+      nod.add_unnamed_arg(value)
 
 nod.update(kwargs)
 

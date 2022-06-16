@@ -11,7 +11,6 @@ __all__ = ["replicate"]
 
 from typing import Sequence, Union
 
-
 from warg import Number
 
 
