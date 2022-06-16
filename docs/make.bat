@@ -6,6 +6,8 @@ REM Command file for Sphinx documentation
 
 REM conda activate py38
 
+call clean.bat
+
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
