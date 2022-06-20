@@ -98,7 +98,7 @@ class PropertySettings(
     def __getitem__(self, item):
         return self.__getattr__(item)
 
-    def __to_dict__(self) -> dict:
+    def __to_dict__(self) -> Dict:
         return self.__crystallise__().as_dict()
 
     def __crystallise__(self) -> NOD:
@@ -108,8 +108,8 @@ class PropertySettings(
         for k, v in mapping.items():
             setattr(self, k, v)
 
-    def __from_dict__(self, dict: Dict) -> None:
-        self.__from_mapping__(dict)
+    def __from_dict__(self, d: Dict) -> None:
+        self.__from_mapping__(d)
 
 
 if __name__ == "__main__":

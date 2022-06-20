@@ -1,4 +1,4 @@
-warg.config\_shell
+﻿warg.config\_shell
 ==================
 
 .. automodule:: warg.config_shell

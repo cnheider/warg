@@ -21,6 +21,15 @@ default_rules = MappingProxyType(
 
 
 def to_british_english(text: str, rules: Mapping = default_rules) -> str:
+    """
+
+    :param text:
+    :type text:
+    :param rules:
+    :type rules:
+    :return:
+    :rtype:
+    """
     for r in rules.items():
         text = text.replace(*r)
     return text

@@ -1,4 +1,4 @@
-warg.boolean\_tests
+﻿warg.boolean\_tests
 ===================
 
 .. automodule:: warg.boolean_tests

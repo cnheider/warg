@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>warg.contexts &#8212; Warg 0.6.9 documentation</title>
+    <title>warg.contexts &#8212; Warg 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -13,7 +13,7 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <link rel="canonical" href="warg.github.io/_modules/warg/contexts.html" />
+    <link rel="canonical" href="pything.github.io/warg/_modules/warg/contexts.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -43,12 +43,15 @@
 <span class="s2">           &quot;&quot;&quot;</span>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;IgnoreInterruptSignal&quot;</span><span class="p">]</span>
 
-<span class="kn">from</span> <span class="nn">warg</span> <span class="kn">import</span> <span class="n">AlsoDecorator</span>
-<span class="kn">import</span> <span class="nn">signal</span>
 <span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">signal</span>
+
+<span class="kn">from</span> <span class="nn">warg</span> <span class="kn">import</span> <span class="n">AlsoDecorator</span>
 
 
 <div class="viewcode-block" id="IgnoreInterruptSignal"><a class="viewcode-back" href="../../generated/warg.contexts.IgnoreInterruptSignal.html#warg.contexts.IgnoreInterruptSignal">[docs]</a><span class="k">class</span> <span class="nc">IgnoreInterruptSignal</span><span class="p">(</span><span class="n">contextlib</span><span class="o">.</span><span class="n">AbstractContextManager</span><span class="p">,</span> <span class="n">AlsoDecorator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_IGN</span><span class="p">)</span>
         <span class="c1"># signal.getsignal() No sideeffect options for exit</span>
@@ -119,7 +122,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

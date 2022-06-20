@@ -1,4 +1,4 @@
-warg.styling
+﻿warg.styling
 ============
 
 .. automodule:: warg.styling

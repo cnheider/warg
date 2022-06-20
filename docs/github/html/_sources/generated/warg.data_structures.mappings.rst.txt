@@ -1,4 +1,4 @@
-warg.data\_structures.mappings
+﻿warg.data\_structures.mappings
 ==============================
 
 .. automodule:: warg.data_structures.mappings

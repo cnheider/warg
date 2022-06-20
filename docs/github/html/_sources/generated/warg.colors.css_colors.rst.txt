@@ -1,4 +1,4 @@
-warg.colors.css\_colors
+﻿warg.colors.css\_colors
 =======================
 
 .. automodule:: warg.colors.css_colors

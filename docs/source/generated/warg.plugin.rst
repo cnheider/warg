@@ -1,4 +1,4 @@
-warg.plugin
+﻿warg.plugin
 ===========
 
 .. automodule:: warg.plugin

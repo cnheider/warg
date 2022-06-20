@@ -4,6 +4,17 @@ __all__ = ["invert_mapping", "invert_dict", "AppendingDict", "pivot_dict_object"
 
 
 def append_to_dict(d: Dict, key, value) -> Dict:
+    """
+
+    :param d:
+    :type d:
+    :param key:
+    :type key:
+    :param value:
+    :type value:
+    :return:
+    :rtype:
+    """
     d.setdefault(key, []).append(value)
     return d
 
@@ -60,7 +71,6 @@ def pivot_dict(d: Dict, key) -> Dict:
 
     :param d:
     :param key:
-    :param value:
     :return:
     :rtype:
     """
@@ -73,7 +83,6 @@ def pivot_dict_object(d: Dict, key) -> Dict:
 
     :param d:
     :param key:
-    :param value:
     :return:
     :rtype:
     """

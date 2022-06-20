@@ -1,4 +1,4 @@
-warg.decorators.caching.look\_up\_table
+﻿warg.decorators.caching.look\_up\_table
 =======================================
 
 .. automodule:: warg.decorators.caching.look_up_table

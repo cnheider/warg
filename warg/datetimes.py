@@ -26,7 +26,11 @@ def default_datetime_repr(date: datetime, str_format: str = DEFAULT_REPRESENTATI
 
 
 def now_repr() -> str:
-    """ """
+    """
+
+    :return:
+    :rtype:
+    """
     return default_datetime_repr(datetime.datetime.now())
 
 

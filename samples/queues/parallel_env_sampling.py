@@ -13,13 +13,13 @@ from multiprocessing import Process, Queue, current_process, freeze_support
 from typing import Sequence
 
 
-def worker(input: Queue, output: Queue) -> None:
+def worker(i: Queue, output: Queue) -> None:
     """
     task_queue
     done_queue
 
     """
-    for func, args in iter(input.get, "STOP"):
+    for func, args in iter(i.get, "STOP"):
         result = calculate(func, args)
         output.put(result)
 

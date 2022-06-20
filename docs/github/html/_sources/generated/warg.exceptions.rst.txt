@@ -1,4 +1,4 @@
-warg.exceptions
+﻿warg.exceptions
 ===============
 
 .. automodule:: warg.exceptions

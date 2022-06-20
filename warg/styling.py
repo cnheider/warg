@@ -162,10 +162,12 @@ def generate_style(
 
 
 @passes_kws_to(generate_style)
-def sprint(obj: Any, print_kws: Mapping = {}, **kwargs) -> None:
+def sprint(obj: Any, print_kws=None, **kwargs) -> None:
     """
     Stylised print. Defaults to stdout
     Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson"""
+    if print_kws is None:
+        print_kws = {}
     print(generate_style(obj, **kwargs), **print_kws)
 
 
