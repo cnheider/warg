@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.decorators.kw_passing.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="warg.decorators.kw_passing.drop_args" href="warg.decorators.kw_passing.drop_args.html" />
+    <link rel="next" title="warg.decorators.kw_passing.passes_kws_to" href="warg.decorators.kw_passing.passes_kws_to.html" />
     <link rel="prev" title="warg.decorators.hashing.make_hash" href="warg.decorators.hashing.make_hash.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,65 +37,51 @@
           <div class="body" role="main">
             
   <section id="module-warg.decorators.kw_passing">
-<span id="warg-decorators-kw-passing"></span><h1>warg.decorators.kw_passing<a class="headerlink" href="#module-warg.decorators.kw_passing" title="Permalink to this headline">¶</a></h1>
+<span id="warg-decorators-kw-passing"></span><h1>warg.decorators.kw_passing<a class="headerlink" href="#module-warg.decorators.kw_passing" title="Permalink to this heading">¶</a></h1>
 <p>The concept “kw passing” implemented here lets one make a contract with the caller that all
 kwargs with be passed onwards to a receiver, this lets the caller inspect available kwargs of the
 the receiver function allowing for autocompletion, typing and documentation fetching.</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_args.html#warg.decorators.kw_passing.drop_args" title="warg.decorators.kw_passing.drop_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_args</span></code></a>(f)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param f</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_kws.html#warg.decorators.kw_passing.drop_kws" title="warg.decorators.kw_passing.drop_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_kws</span></code></a>(f)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param f</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_args.html#warg.decorators.kw_passing.drop_unused_args" title="warg.decorators.kw_passing.drop_unused_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_unused_args</span></code></a>(f)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param f</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_kws.html#warg.decorators.kw_passing.drop_unused_kws" title="warg.decorators.kw_passing.drop_unused_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_unused_kws</span></code></a>(f)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param f</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.decorators.kw_passing.eval_sig_kw_params.html#warg.decorators.kw_passing.eval_sig_kw_params" title="warg.decorators.kw_passing.eval_sig_kw_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval_sig_kw_params</span></code></a>(passing_sig, receiver_func)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param passing_sig</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.decorators.kw_passing.passes_kws_to.html#warg.decorators.kw_passing.passes_kws_to" title="warg.decorators.kw_passing.passes_kws_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">passes_kws_to</span></code></a>(*receiver_funcs[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.decorators.kw_passing.passes_kws_to.html#warg.decorators.kw_passing.passes_kws_to" title="warg.decorators.kw_passing.passes_kws_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">passes_kws_to</span></code></a>(*receiver_funcs[, ...])</p></td>
 <td><p>A contract decorator, attaching this to a function you explicitly state that kws will be passed onward to a receiver function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.decorators.kw_passing.super_init_pass_on_kws.html#warg.decorators.kw_passing.super_init_pass_on_kws" title="warg.decorators.kw_passing.super_init_pass_on_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">super_init_pass_on_kws</span></code></a>([f, super_base, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.decorators.kw_passing.super_init_pass_on_kws.html#warg.decorators.kw_passing.super_init_pass_on_kws" title="warg.decorators.kw_passing.super_init_pass_on_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">super_init_pass_on_kws</span></code></a>([f, super_base, ...])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param f</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.decorators.kw_passing.to_keyword_only.html#warg.decorators.kw_passing.to_keyword_only" title="warg.decorators.kw_passing.to_keyword_only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_keyword_only</span></code></a>(val)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_kws.html#warg.decorators.kw_passing.drop_unused_kws" title="warg.decorators.kw_passing.drop_unused_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_unused_kws</span></code></a>(f)</p></td>
 <td><p><dl class="field-list simple">
-<dt class="field-odd">param val</dt>
+<dt class="field-odd">param f</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_args.html#warg.decorators.kw_passing.drop_unused_args" title="warg.decorators.kw_passing.drop_unused_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_unused_args</span></code></a>(f)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param f</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_kws.html#warg.decorators.kw_passing.drop_kws" title="warg.decorators.kw_passing.drop_kws"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_kws</span></code></a>(f)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param f</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.decorators.kw_passing.drop_args.html#warg.decorators.kw_passing.drop_args" title="warg.decorators.kw_passing.drop_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop_args</span></code></a>(f)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param f</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
@@ -102,7 +89,7 @@ the receiver function allowing for autocompletion, typing and documentation fetc
 </tbody>
 </table>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -152,14 +139,12 @@ the receiver function allowing for autocompletion, typing and documentation fetc
 <li class="toctree-l3"><a class="reference internal" href="warg.decorators.caching.html">warg.decorators.caching</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.decorators.hashing.html">warg.decorators.hashing</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">warg.decorators.kw_passing</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_args.html">warg.decorators.kw_passing.drop_args</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_kws.html">warg.decorators.kw_passing.drop_kws</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_args.html">warg.decorators.kw_passing.drop_unused_args</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_kws.html">warg.decorators.kw_passing.drop_unused_kws</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.eval_sig_kw_params.html">warg.decorators.kw_passing.eval_sig_kw_params</a></li>
 <li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.passes_kws_to.html">warg.decorators.kw_passing.passes_kws_to</a></li>
 <li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.super_init_pass_on_kws.html">warg.decorators.kw_passing.super_init_pass_on_kws</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.to_keyword_only.html">warg.decorators.kw_passing.to_keyword_only</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_kws.html">warg.decorators.kw_passing.drop_unused_kws</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_unused_args.html">warg.decorators.kw_passing.drop_unused_args</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_kws.html">warg.decorators.kw_passing.drop_kws</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.drop_args.html">warg.decorators.kw_passing.drop_args</a></li>
 <li class="toctree-l4"><a class="reference internal" href="warg.decorators.kw_passing.AlsoDecorator.html">warg.decorators.kw_passing.AlsoDecorator</a></li>
 </ul>
 </li>
@@ -199,7 +184,7 @@ the receiver function allowing for autocompletion, typing and documentation fetc
   <li><a href="warg.html">warg</a><ul>
   <li><a href="warg.decorators.html">warg.decorators</a><ul>
       <li>Previous: <a href="warg.decorators.hashing.make_hash.html" title="previous chapter">warg.decorators.hashing.make_hash</a></li>
-      <li>Next: <a href="warg.decorators.kw_passing.drop_args.html" title="next chapter">warg.decorators.kw_passing.drop_args</a></li>
+      <li>Next: <a href="warg.decorators.kw_passing.passes_kws_to.html" title="next chapter">warg.decorators.kw_passing.passes_kws_to</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -214,7 +199,7 @@ the receiver function allowing for autocompletion, typing and documentation fetc
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -231,7 +216,7 @@ the receiver function allowing for autocompletion, typing and documentation fetc
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

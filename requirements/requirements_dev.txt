@@ -6,7 +6,7 @@ pytest>=4.3.0
 pytest-cov>=2.6.1
 coveralls>=1.6.0
 tox
-
+-r ../requirements.txt
 -r requirements_docs.txt
 -r requirements_setup.txt
 -r requirements_tests.txt

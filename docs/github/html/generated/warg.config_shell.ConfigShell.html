@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.config_shell.ConfigShell.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="warg.config_shell.PlaybackShell" href="warg.config_shell.PlaybackShell.html" />
-    <link rel="prev" title="warg.config_shell" href="warg.config_shell.html" />
+    <link rel="next" title="warg.context_wrapper" href="warg.context_wrapper.html" />
+    <link rel="prev" title="warg.config_shell.PlaybackShell" href="warg.config_shell.PlaybackShell.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="warg-config-shell-configshell">
-<h1>warg.config_shell.ConfigShell<a class="headerlink" href="#warg-config-shell-configshell" title="Permalink to this headline">¶</a></h1>
+<h1>warg.config_shell.ConfigShell<a class="headerlink" href="#warg-config-shell-configshell" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="warg.config_shell.ConfigShell">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">warg.config_shell.</span></span><span class="sig-name descname"><span class="pre">ConfigShell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'config'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completekey</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/config_shell.html#ConfigShell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.config_shell.ConfigShell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="warg.config_shell.PlaybackShell.html#warg.config_shell.PlaybackShell" title="warg.config_shell.PlaybackShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">warg.config_shell.PlaybackShell</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">warg.config_shell.</span></span><span class="sig-name descname"><span class="pre">ConfigShell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'config'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completekey</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/config_shell.html#ConfigShell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.config_shell.ConfigShell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="warg.config_shell.PlaybackShell.html#warg.config_shell.PlaybackShell" title="warg.config_shell.PlaybackShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlaybackShell</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="warg.config_shell.ConfigShell.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'config'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completekey</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/config_shell.html#ConfigShell.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.config_shell.ConfigShell.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'config'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completekey</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/config_shell.html#ConfigShell.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.config_shell.ConfigShell.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiate a line-oriented interpreter framework.</p>
 <p>The optional argument ‘completekey’ is the readline name of a
 completion key; it defaults to the Tab key. If completekey is
@@ -54,7 +55,7 @@ sys.stdin and sys.stdout are used.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -94,7 +95,7 @@ sys.stdin and sys.stdout are used.</p>
 <td><p>Display a list of strings as a compact set of columns.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#warg.config_shell.ConfigShell.complete" title="warg.config_shell.ConfigShell.complete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">complete</span></code></a>(text, state)</p></td>
-<td><p>Return the next possible completion for ‘text’.</p></td>
+<td><p>Return the next possible completion for 'text'.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">complete_help</span></code>(*args)</p></td>
 <td><p></p></td>
@@ -115,7 +116,7 @@ sys.stdin and sys.stdout are used.</p>
 <td><p>If recording, stop, close file, close window, and exit:</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#warg.config_shell.ConfigShell.do_help" title="warg.config_shell.ConfigShell.do_help"><code class="xref py py-obj docutils literal notranslate"><span class="pre">do_help</span></code></a>(arg)</p></td>
-<td><p>List available commands with “help” or detailed help with “help cmd”.</p></td>
+<td><p>List available commands with &quot;help&quot; or detailed help with &quot;help cmd&quot;.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#warg.config_shell.ConfigShell.do_playback" title="warg.config_shell.ConfigShell.do_playback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">do_playback</span></code></a>(file)</p></td>
 <td><p>Playback commands from a file:  PLAYBACK file.cmd</p></td>
@@ -165,7 +166,7 @@ sys.stdin and sys.stdout are used.</p>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -242,7 +243,7 @@ sys.stdin and sys.stdout are used.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="warg.config_shell.ConfigShell.add_property_options">
-<span class="sig-name descname"><span class="pre">add_property_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="warg.bases.property_settings.PropertySettings.html#warg.bases.property_settings.PropertySettings" title="warg.bases.property_settings.PropertySettings"><span class="pre">warg.bases.property_settings.PropertySettings</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/config_shell.html#ConfigShell.add_property_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.config_shell.ConfigShell.add_property_options" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_property_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="warg.bases.property_settings.PropertySettings.html#warg.bases.property_settings.PropertySettings" title="warg.bases.property_settings.PropertySettings"><span class="pre">PropertySettings</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/config_shell.html#ConfigShell.add_property_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.config_shell.ConfigShell.add_property_options" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>ps</strong> – </p>
@@ -310,13 +311,13 @@ returns.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="warg.config_shell.ConfigShell.do_playback">
-<span class="sig-name descname"><span class="pre">do_playback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">pathlib.Path</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warg.config_shell.ConfigShell.do_playback" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">do_playback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warg.config_shell.ConfigShell.do_playback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Playback commands from a file:  PLAYBACK file.cmd</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="warg.config_shell.ConfigShell.do_record">
-<span class="sig-name descname"><span class="pre">do_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">pathlib.Path</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warg.config_shell.ConfigShell.do_record" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">do_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warg.config_shell.ConfigShell.do_record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save future commands to filename:  RECORD file.cmd</p>
 </dd></dl>
 
@@ -429,8 +430,8 @@ return.</p>
 <li class="toctree-l2"><a class="reference internal" href="warg.business.html">warg.business</a></li>
 <li class="toctree-l2"><a class="reference internal" href="warg.colors.html">warg.colors</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="warg.config_shell.html">warg.config_shell</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">warg.config_shell.ConfigShell</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.config_shell.PlaybackShell.html">warg.config_shell.PlaybackShell</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">warg.config_shell.ConfigShell</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="warg.context_wrapper.html">warg.context_wrapper</a></li>
@@ -471,8 +472,8 @@ return.</p>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="warg.html">warg</a><ul>
   <li><a href="warg.config_shell.html">warg.config_shell</a><ul>
-      <li>Previous: <a href="warg.config_shell.html" title="previous chapter">warg.config_shell</a></li>
-      <li>Next: <a href="warg.config_shell.PlaybackShell.html" title="next chapter">warg.config_shell.PlaybackShell</a></li>
+      <li>Previous: <a href="warg.config_shell.PlaybackShell.html" title="previous chapter">warg.config_shell.PlaybackShell</a></li>
+      <li>Next: <a href="warg.context_wrapper.html" title="next chapter">warg.context_wrapper</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -487,7 +488,7 @@ return.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -504,7 +505,7 @@ return.</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

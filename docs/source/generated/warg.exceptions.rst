@@ -22,8 +22,8 @@
    .. autosummary::
       :toctree:
    
-      IncompatiblePackageVersions
       NoData
+      IncompatiblePackageVersions
    
    
 

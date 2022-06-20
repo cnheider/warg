@@ -14,9 +14,7 @@
    .. autosummary::
       :toctree:
    
-      AD
       AutoDict
-      autodict
       recursive_default_dict_print
       sanitise_auto_dict
    

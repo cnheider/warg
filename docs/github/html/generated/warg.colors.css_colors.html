@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.colors.css_colors.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="warg.colors.css_colors.ansilen" href="warg.colors.css_colors.ansilen.html" />
-    <link rel="prev" title="warg.colors.color_conversion.rgba" href="warg.colors.color_conversion.rgba.html" />
+    <link rel="next" title="warg.colors.css_colors.color" href="warg.colors.css_colors.color.html" />
+    <link rel="prev" title="warg.colors.color_conversion.color_from_str" href="warg.colors.color_conversion.color_from_str.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,33 +37,17 @@
           <div class="body" role="main">
             
   <section id="module-warg.colors.css_colors">
-<span id="warg-colors-css-colors"></span><h1>warg.colors.css_colors<a class="headerlink" href="#module-warg.colors.css_colors" title="Permalink to this headline">¶</a></h1>
+<span id="warg-colors-css-colors"></span><h1>warg.colors.css_colors<a class="headerlink" href="#module-warg.colors.css_colors" title="Permalink to this heading">¶</a></h1>
 <p>Created on 01/02/2022</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.colors.css_colors.ansilen.html#warg.colors.css_colors.ansilen" title="warg.colors.css_colors.ansilen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ansilen</span></code></a>(s)</p></td>
-<td><p>Given a string with embedded ANSI codes, what would its length be without those codes?</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.colors.css_colors.color.html#warg.colors.css_colors.color" title="warg.colors.css_colors.color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">color</span></code></a>(s[, fg, bg, style])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.colors.css_colors.color.html#warg.colors.css_colors.color" title="warg.colors.css_colors.color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">color</span></code></a>(s[, fg, bg, style])</p></td>
 <td><p>Add ANSI colors and styles to a string.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.colors.css_colors.is_string.html#warg.colors.css_colors.is_string" title="warg.colors.css_colors.is_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_string</span></code></a>(obj)</p></td>
-<td><p>Is the given object a string?</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.colors.css_colors.parse_rgb.html#warg.colors.css_colors.parse_rgb" title="warg.colors.css_colors.parse_rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_rgb</span></code></a>(s)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param s</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.colors.css_colors.strip_color.html#warg.colors.css_colors.strip_color" title="warg.colors.css_colors.strip_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strip_color</span></code></a>(s)</p></td>
-<td><p>Remove ANSI color/style sequences from a string.</p></td>
 </tr>
 </tbody>
 </table>
@@ -97,11 +82,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="warg.colors.html">warg.colors</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="warg.colors.color_conversion.html">warg.colors.color_conversion</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">warg.colors.css_colors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="warg.colors.css_colors.ansilen.html">warg.colors.css_colors.ansilen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="warg.colors.css_colors.color.html">warg.colors.css_colors.color</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.colors.css_colors.is_string.html">warg.colors.css_colors.is_string</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.colors.css_colors.parse_rgb.html">warg.colors.css_colors.parse_rgb</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warg.colors.css_colors.strip_color.html">warg.colors.css_colors.strip_color</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="warg.colors.label_colors.html">warg.colors.label_colors</a></li>
@@ -146,8 +127,8 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="warg.html">warg</a><ul>
   <li><a href="warg.colors.html">warg.colors</a><ul>
-      <li>Previous: <a href="warg.colors.color_conversion.rgba.html" title="previous chapter">warg.colors.color_conversion.rgba</a></li>
-      <li>Next: <a href="warg.colors.css_colors.ansilen.html" title="next chapter">warg.colors.css_colors.ansilen</a></li>
+      <li>Previous: <a href="warg.colors.color_conversion.color_from_str.html" title="previous chapter">warg.colors.color_conversion.color_from_str</a></li>
+      <li>Next: <a href="warg.colors.css_colors.color.html" title="next chapter">warg.colors.css_colors.color</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -162,7 +143,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -179,7 +160,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

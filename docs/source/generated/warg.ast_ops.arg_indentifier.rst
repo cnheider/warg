@@ -14,10 +14,9 @@
    .. autosummary::
       :toctree:
    
+      get_arg_names
       cprinta
       cprintz
-      ge_arg_names_recurse
-      get_arg_names
    
    
 

@@ -14,10 +14,8 @@
    .. autosummary::
       :toctree:
    
-      cprint
       get_first_arg_name
-      get_first_arg_name_recurse
-      recurse_first_args
+      cprint
    
    
 

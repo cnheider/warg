@@ -18,11 +18,6 @@
       look_up
       look_up_args
       look_up_kws
-      precompute_lut
-      precompute_lut_args
-      precompute_lut_args_dec
-      precompute_lut_dec
-      precompute_lut_kws
    
    
 

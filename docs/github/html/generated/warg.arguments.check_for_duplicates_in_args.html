@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.arguments.check_for_duplicates_in_args.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="warg.arguments.config_to_mapping" href="warg.arguments.config_to_mapping.html" />
+    <link rel="next" title="warg.arguments.UpperAttrMetaclass" href="warg.arguments.UpperAttrMetaclass.html" />
     <link rel="prev" title="warg.arguments.add_bool_arg" href="warg.arguments.add_bool_arg.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,7 +37,7 @@
           <div class="body" role="main">
             
   <section id="warg-arguments-check-for-duplicates-in-args">
-<h1>warg.arguments.check_for_duplicates_in_args<a class="headerlink" href="#warg-arguments-check-for-duplicates-in-args" title="Permalink to this headline">¶</a></h1>
+<h1>warg.arguments.check_for_duplicates_in_args<a class="headerlink" href="#warg-arguments-check-for-duplicates-in-args" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="warg.arguments.check_for_duplicates_in_args">
 <span class="sig-prename descclassname"><span class="pre">warg.arguments.</span></span><span class="sig-name descname"><span class="pre">check_for_duplicates_in_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/warg/arguments.html#check_for_duplicates_in_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.arguments.check_for_duplicates_in_args" title="Permalink to this definition">¶</a></dt>
@@ -71,16 +72,11 @@
 <li class="toctree-l2"><a class="reference internal" href="warg.dist_is_editable.html">warg.dist_is_editable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="warg.get_version.html">warg.get_version</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="warg.arguments.html">warg.arguments</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="warg.arguments.to_lower_properties.html">warg.arguments.to_lower_properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.arguments.get_upper_case_vars_or_protected_of.html">warg.arguments.get_upper_case_vars_or_protected_of</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.arguments.config_to_mapping.html">warg.arguments.config_to_mapping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.arguments.add_bool_arg.html">warg.arguments.add_bool_arg</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">warg.arguments.check_for_duplicates_in_args</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.config_to_mapping.html">warg.arguments.config_to_mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.get_upper_case_vars_or_protected_of.html">warg.arguments.get_upper_case_vars_or_protected_of</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.lower_dict.html">warg.arguments.lower_dict</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.str2bool.html">warg.arguments.str2bool</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.str_to_bool.html">warg.arguments.str_to_bool</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.to_lower_properties.html">warg.arguments.to_lower_properties</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.upper_dict.html">warg.arguments.upper_dict</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.ConfigObject.html">warg.arguments.ConfigObject</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.arguments.UpperAttrMetaclass.html">warg.arguments.UpperAttrMetaclass</a></li>
 </ul>
 </li>
@@ -129,7 +125,7 @@
   <li><a href="warg.html">warg</a><ul>
   <li><a href="warg.arguments.html">warg.arguments</a><ul>
       <li>Previous: <a href="warg.arguments.add_bool_arg.html" title="previous chapter">warg.arguments.add_bool_arg</a></li>
-      <li>Next: <a href="warg.arguments.config_to_mapping.html" title="next chapter">warg.arguments.config_to_mapping</a></li>
+      <li>Next: <a href="warg.arguments.UpperAttrMetaclass.html" title="next chapter">warg.arguments.UpperAttrMetaclass</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -144,7 +140,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -161,7 +157,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

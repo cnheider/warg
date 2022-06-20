@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      import_warning
       is_module_available
+      import_warning
       reimported_warning
    
    

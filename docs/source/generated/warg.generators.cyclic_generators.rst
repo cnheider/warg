@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      cos_gen
       sin_gen
+      cos_gen
    
    
 

@@ -119,26 +119,29 @@ def get_first_arg_name(
     import ast
 
     caller_frame = inspect.currentframe().f_back.f_back
-    caller_src_code_lines = inspect.getsourcelines(caller_frame)
-    fai = FirstArgIdentifier(
-        func_name,
-        verbose=verbose,
-        max_num_intermediate_unnamed_elements=max_num_intermediate_unnamed_elements,
-    )
-    fai.visit(ast.parse(textwrap.dedent("".join(caller_src_code_lines[0]))))
-    if func_name in fai.result:
-        offset = 0
-        if caller_src_code_lines[1]:
-            offset = caller_src_code_lines[1] - 1
-        idx = caller_frame.f_lineno - offset
-        if idx in fai.result[func_name]:
-            return fai.result[func_name][idx]
+    try:
+        caller_src_code_lines = inspect.getsourcelines(caller_frame)
+        fai = FirstArgIdentifier(
+            func_name,
+            verbose=verbose,
+            max_num_intermediate_unnamed_elements=max_num_intermediate_unnamed_elements,
+        )
+        fai.visit(ast.parse(textwrap.dedent("".join(caller_src_code_lines[0]))))
+        if func_name in fai.result:
+            offset = 0
+            if caller_src_code_lines[1]:
+                offset = caller_src_code_lines[1] - 1
+            idx = caller_frame.f_lineno - offset
+            if idx in fai.result[func_name]:
+                return fai.result[func_name][idx]
+            elif verbose:
+                print(
+                    f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied, found {fai.result[func_name]}, in {inspect.getsourcefile(caller_frame)}'
+                )
         elif verbose:
-            print(
-                f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied, found {fai.result[func_name]}, in {inspect.getsourcefile(caller_frame)}'
-            )
-    elif verbose:
-        print(f"{func_name} was not found in {fai.result}")
+            print(f"{func_name} was not found in {fai.result}")
+    except Exception as e:
+        print(e)
     return None
 
 

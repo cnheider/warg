@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.boolean_tests.is_zero_or_mod_zero.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="warg.boolean_tests.nand" href="warg.boolean_tests.nand.html" />
-    <link rel="prev" title="warg.boolean_tests.is_zero_or_mod_below" href="warg.boolean_tests.is_zero_or_mod_below.html" />
+    <link rel="next" title="warg.boolean_tests.is_none_or_zero_or_negative" href="warg.boolean_tests.is_none_or_zero_or_negative.html" />
+    <link rel="prev" title="warg.boolean_tests.is_positive_and_mod_zero" href="warg.boolean_tests.is_positive_and_mod_zero.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="warg-boolean-tests-is-zero-or-mod-zero">
-<h1>warg.boolean_tests.is_zero_or_mod_zero<a class="headerlink" href="#warg-boolean-tests-is-zero-or-mod-zero" title="Permalink to this headline">¶</a></h1>
+<h1>warg.boolean_tests.is_zero_or_mod_zero<a class="headerlink" href="#warg-boolean-tests-is-zero-or-mod-zero" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="warg.boolean_tests.is_zero_or_mod_zero">
-<span class="sig-prename descclassname"><span class="pre">warg.boolean_tests.</span></span><span class="sig-name descname"><span class="pre">is_zero_or_mod_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residual_printer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">callable</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/warg/boolean_tests.html#is_zero_or_mod_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.boolean_tests.is_zero_or_mod_zero" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">warg.boolean_tests.</span></span><span class="sig-name descname"><span class="pre">is_zero_or_mod_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residual_printer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a></span></span><a class="reference internal" href="../_modules/warg/boolean_tests.html#is_zero_or_mod_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.boolean_tests.is_zero_or_mod_zero" title="Permalink to this definition">¶</a></dt>
 <dd><p>test if mod is zero or if counter % mod is 0
 if any of the tests are true return ret
 else return alt</p>
@@ -86,14 +87,14 @@ else return alt</p>
 <li class="toctree-l2"><a class="reference internal" href="warg.ast_ops.html">warg.ast_ops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="warg.bases.html">warg.bases</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="warg.boolean_tests.html">warg.boolean_tests</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.is_none_or_zero_or_negative.html">warg.boolean_tests.is_none_or_zero_or_negative</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.is_none_or_zero_or_negative_or_mod_zero.html">warg.boolean_tests.is_none_or_zero_or_negative_or_mod_zero</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.is_positive_and_mod_zero.html">warg.boolean_tests.is_positive_and_mod_zero</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.is_zero_or_mod_below.html">warg.boolean_tests.is_zero_or_mod_below</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">warg.boolean_tests.is_zero_or_mod_zero</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.nand.html">warg.boolean_tests.nand</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.xnor.html">warg.boolean_tests.xnor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.is_none_or_zero_or_negative.html">warg.boolean_tests.is_none_or_zero_or_negative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.is_zero_or_mod_below.html">warg.boolean_tests.is_zero_or_mod_below</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.is_none_or_zero_or_negative_or_mod_zero.html">warg.boolean_tests.is_none_or_zero_or_negative_or_mod_zero</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.xor.html">warg.boolean_tests.xor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.xnor.html">warg.boolean_tests.xnor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.boolean_tests.nand.html">warg.boolean_tests.nand</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="warg.business.html">warg.business</a></li>
@@ -137,8 +138,8 @@ else return alt</p>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="warg.html">warg</a><ul>
   <li><a href="warg.boolean_tests.html">warg.boolean_tests</a><ul>
-      <li>Previous: <a href="warg.boolean_tests.is_zero_or_mod_below.html" title="previous chapter">warg.boolean_tests.is_zero_or_mod_below</a></li>
-      <li>Next: <a href="warg.boolean_tests.nand.html" title="next chapter">warg.boolean_tests.nand</a></li>
+      <li>Previous: <a href="warg.boolean_tests.is_positive_and_mod_zero.html" title="previous chapter">warg.boolean_tests.is_positive_and_mod_zero</a></li>
+      <li>Next: <a href="warg.boolean_tests.is_none_or_zero_or_negative.html" title="next chapter">warg.boolean_tests.is_none_or_zero_or_negative</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -153,7 +154,7 @@ else return alt</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -170,7 +171,7 @@ else return alt</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -19,8 +19,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      GDKC
       GeneralisedDelayedKwargConstruction
+      GDKC
    
    
 

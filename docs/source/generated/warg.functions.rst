@@ -14,20 +14,18 @@
    .. autosummary::
       :toctree:
    
-      args_sink
-      call_identity
-      chain_apply
-      chain_filter
+      kws_sink
+      sink
+      prod
       collate_first_dim
-      empty_str
-      flip_two_level_mapping
+      call_identity
+      args_sink
       identity
       invert_shallow_mapping
-      kws_sink
-      nop
-      prod
-      sink
+      flip_two_level_mapping
       swap_mapping_order
+      nop
+      empty_str
    
    
 

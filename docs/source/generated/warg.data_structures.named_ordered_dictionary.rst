@@ -19,19 +19,12 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      NOD
       NamedOrderedDictionary
+      NOD
    
    
 
    
-   
-   .. rubric:: Exceptions
-
-   .. autosummary::
-      :toctree:
-   
-      IllegalAttributeKey
    
    
 

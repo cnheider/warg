@@ -14,11 +14,10 @@
    .. autosummary::
       :toctree:
    
-      append_to_dict
-      invert_dict
       invert_mapping
-      pivot_dict
+      invert_dict
       pivot_dict_object
+      pivot_dict
    
    
 

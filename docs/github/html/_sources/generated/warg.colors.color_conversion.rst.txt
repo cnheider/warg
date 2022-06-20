@@ -14,12 +14,12 @@
    .. autosummary::
       :toctree:
    
-      RGB
-      RGBA
-      color_from_str
-      color_to_str
       rgb
       rgba
+      RGB
+      RGBA
+      color_to_str
+      color_from_str
    
    
 

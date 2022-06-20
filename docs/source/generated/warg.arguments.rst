@@ -14,15 +14,11 @@
    .. autosummary::
       :toctree:
    
+      to_lower_properties
+      get_upper_case_vars_or_protected_of
+      config_to_mapping
       add_bool_arg
       check_for_duplicates_in_args
-      config_to_mapping
-      get_upper_case_vars_or_protected_of
-      lower_dict
-      str2bool
-      str_to_bool
-      to_lower_properties
-      upper_dict
    
    
 
@@ -34,7 +30,6 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      ConfigObject
       UpperAttrMetaclass
    
    

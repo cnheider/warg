@@ -14,11 +14,7 @@
    .. autosummary::
       :toctree:
    
-      ansilen
       color
-      is_string
-      parse_rgb
-      strip_color
    
    
 

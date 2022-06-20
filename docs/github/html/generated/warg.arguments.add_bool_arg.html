@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.arguments.add_bool_arg.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="warg.arguments.check_for_duplicates_in_args" href="warg.arguments.check_for_duplicates_in_args.html" />
-    <link rel="prev" title="warg.arguments" href="warg.arguments.html" />
+    <link rel="prev" title="warg.arguments.config_to_mapping" href="warg.arguments.config_to_mapping.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="warg-arguments-add-bool-arg">
-<h1>warg.arguments.add_bool_arg<a class="headerlink" href="#warg-arguments-add-bool-arg" title="Permalink to this headline">¶</a></h1>
+<h1>warg.arguments.add_bool_arg<a class="headerlink" href="#warg-arguments-add-bool-arg" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="warg.arguments.add_bool_arg">
-<span class="sig-prename descclassname"><span class="pre">warg.arguments.</span></span><span class="sig-name descname"><span class="pre">add_bool_arg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser" title="(in Python v3.10)"><span class="pre">argparse.ArgumentParser</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converse</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/arguments.html#add_bool_arg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.arguments.add_bool_arg" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">warg.arguments.</span></span><span class="sig-name descname"><span class="pre">add_bool_arg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser" title="(in Python v3.10)"><span class="pre">ArgumentParser</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/arguments.html#add_bool_arg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.arguments.add_bool_arg" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -78,16 +79,11 @@
 <li class="toctree-l2"><a class="reference internal" href="warg.dist_is_editable.html">warg.dist_is_editable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="warg.get_version.html">warg.get_version</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="warg.arguments.html">warg.arguments</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="warg.arguments.to_lower_properties.html">warg.arguments.to_lower_properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.arguments.get_upper_case_vars_or_protected_of.html">warg.arguments.get_upper_case_vars_or_protected_of</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.arguments.config_to_mapping.html">warg.arguments.config_to_mapping</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">warg.arguments.add_bool_arg</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.arguments.check_for_duplicates_in_args.html">warg.arguments.check_for_duplicates_in_args</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.config_to_mapping.html">warg.arguments.config_to_mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.get_upper_case_vars_or_protected_of.html">warg.arguments.get_upper_case_vars_or_protected_of</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.lower_dict.html">warg.arguments.lower_dict</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.str2bool.html">warg.arguments.str2bool</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.str_to_bool.html">warg.arguments.str_to_bool</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.to_lower_properties.html">warg.arguments.to_lower_properties</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.upper_dict.html">warg.arguments.upper_dict</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.arguments.ConfigObject.html">warg.arguments.ConfigObject</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.arguments.UpperAttrMetaclass.html">warg.arguments.UpperAttrMetaclass</a></li>
 </ul>
 </li>
@@ -135,7 +131,7 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="warg.html">warg</a><ul>
   <li><a href="warg.arguments.html">warg.arguments</a><ul>
-      <li>Previous: <a href="warg.arguments.html" title="previous chapter">warg.arguments</a></li>
+      <li>Previous: <a href="warg.arguments.config_to_mapping.html" title="previous chapter">warg.arguments.config_to_mapping</a></li>
       <li>Next: <a href="warg.arguments.check_for_duplicates_in_args.html" title="next chapter">warg.arguments.check_for_duplicates_in_args</a></li>
   </ul></li>
   </ul></li>
@@ -151,7 +147,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -168,7 +164,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

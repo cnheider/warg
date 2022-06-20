@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.plugin.get_dynamic_plugins.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="warg.plugin.get_plugins" href="warg.plugin.get_plugins.html" />
-    <link rel="prev" title="warg.plugin" href="warg.plugin.html" />
+    <link rel="next" title="warg.replication" href="warg.replication.html" />
+    <link rel="prev" title="warg.plugin.get_static_plugins" href="warg.plugin.get_static_plugins.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="warg-plugin-get-dynamic-plugins">
-<h1>warg.plugin.get_dynamic_plugins<a class="headerlink" href="#warg-plugin-get-dynamic-plugins" title="Permalink to this headline">¶</a></h1>
+<h1>warg.plugin.get_dynamic_plugins<a class="headerlink" href="#warg-plugin-get-dynamic-plugins" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="warg.plugin.get_dynamic_plugins">
-<span class="sig-prename descclassname"><span class="pre">warg.plugin.</span></span><span class="sig-name descname"><span class="pre">get_dynamic_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span></span></span><a class="reference internal" href="../_modules/warg/plugin.html#get_dynamic_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.plugin.get_dynamic_plugins" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">warg.plugin.</span></span><span class="sig-name descname"><span class="pre">get_dynamic_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.10)"><span class="pre">Tuple</span></a></span></span><a class="reference internal" href="../_modules/warg/plugin.html#get_dynamic_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.plugin.get_dynamic_plugins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list specifying  dynamically loaded plugins.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -98,9 +99,9 @@
 <li class="toctree-l2"><a class="reference internal" href="warg.ode.html">warg.ode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="warg.os.html">warg.os</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="warg.plugin.html">warg.plugin</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">warg.plugin.get_dynamic_plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.plugin.get_plugins.html">warg.plugin.get_plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.plugin.get_static_plugins.html">warg.plugin.get_static_plugins</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">warg.plugin.get_dynamic_plugins</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="warg.replication.html">warg.replication</a></li>
@@ -122,8 +123,8 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="warg.html">warg</a><ul>
   <li><a href="warg.plugin.html">warg.plugin</a><ul>
-      <li>Previous: <a href="warg.plugin.html" title="previous chapter">warg.plugin</a></li>
-      <li>Next: <a href="warg.plugin.get_plugins.html" title="next chapter">warg.plugin.get_plugins</a></li>
+      <li>Previous: <a href="warg.plugin.get_static_plugins.html" title="previous chapter">warg.plugin.get_static_plugins</a></li>
+      <li>Next: <a href="warg.replication.html" title="next chapter">warg.replication</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -138,7 +139,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -155,7 +156,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

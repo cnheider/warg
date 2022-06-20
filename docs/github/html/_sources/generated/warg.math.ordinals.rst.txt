@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      ceil_even
       ceil_odd
+      ceil_even
       floor_even
       floor_odd
       next_even

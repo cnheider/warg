@@ -14,9 +14,9 @@
    .. autosummary::
       :toctree:
    
+      yield_and_map
       inner_map
       kw_map
-      yield_and_map
    
    
 

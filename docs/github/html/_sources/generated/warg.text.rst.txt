@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      deamericanise
       to_british_english
+      deamericanise
    
    
 

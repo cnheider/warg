@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.functions.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="warg.functions.args_sink" href="warg.functions.args_sink.html" />
-    <link rel="prev" title="warg.exceptions.NoData" href="warg.exceptions.NoData.html" />
+    <link rel="next" title="warg.functions.kws_sink" href="warg.functions.kws_sink.html" />
+    <link rel="prev" title="warg.exceptions.IncompatiblePackageVersions" href="warg.exceptions.IncompatiblePackageVersions.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,45 +37,51 @@
           <div class="body" role="main">
             
   <section id="module-warg.functions">
-<span id="warg-functions"></span><h1>warg.functions<a class="headerlink" href="#module-warg.functions" title="Permalink to this headline">¶</a></h1>
+<span id="warg-functions"></span><h1>warg.functions<a class="headerlink" href="#module-warg.functions" title="Permalink to this heading">¶</a></h1>
 <p>Created on 14/01/2020</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.args_sink.html#warg.functions.args_sink" title="warg.functions.args_sink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">args_sink</span></code></a>(*args, **kwargs)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param args</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.kws_sink.html#warg.functions.kws_sink" title="warg.functions.kws_sink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kws_sink</span></code></a>(*args)</p></td>
+<td><p>Returns args without any modification what so ever.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.call_identity.html#warg.functions.call_identity" title="warg.functions.call_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_identity</span></code></a>(*args, **kwargs)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param args</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.sink.html#warg.functions.sink" title="warg.functions.sink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sink</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Returns None, but accepts everything</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.chain_apply.html#warg.functions.chain_apply" title="warg.functions.chain_apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_apply</span></code></a>(it, *callables)</p></td>
-<td><p>Apply a sequence of callables to an iterable; apply the iterable sequentially in callables order</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.prod.html#warg.functions.prod" title="warg.functions.prod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prod</span></code></a>(iterable)</p></td>
+<td><p>Calculate the product of the a Iterable of int or floats :param iterable: :return:</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.chain_filter.html#warg.functions.chain_filter" title="warg.functions.chain_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_filter</span></code></a>(it, *filters)</p></td>
-<td><p>Apply a sequence of callables to an iterable through filter; filtering the iterable to the subset of a callable returns</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.collate_first_dim.html#warg.functions.collate_first_dim" title="warg.functions.collate_first_dim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collate_first_dim</span></code></a>(batch)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.collate_first_dim.html#warg.functions.collate_first_dim" title="warg.functions.collate_first_dim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collate_first_dim</span></code></a>(batch)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param batch</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.empty_str.html#warg.functions.empty_str" title="warg.functions.empty_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty_str</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.call_identity.html#warg.functions.call_identity" title="warg.functions.call_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_identity</span></code></a>(*args, **kwargs)</p></td>
 <td><p><dl class="field-list simple">
-<dt class="field-odd">return</dt>
+<dt class="field-odd">param args</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.args_sink.html#warg.functions.args_sink" title="warg.functions.args_sink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">args_sink</span></code></a>(*args, **kwargs)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param args</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.identity.html#warg.functions.identity" title="warg.functions.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>(a)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.invert_shallow_mapping.html#warg.functions.invert_shallow_mapping" title="warg.functions.invert_shallow_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invert_shallow_mapping</span></code></a>(m)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param m</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
@@ -82,18 +89,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.flip_two_level_mapping.html#warg.functions.flip_two_level_mapping" title="warg.functions.flip_two_level_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flip_two_level_mapping</span></code></a>(m)</p></td>
 <td><p>result = {} [result.setdefault(a, {}).update({k:b}) for k, v in m.items() for a, b in v.items()] return result</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.identity.html#warg.functions.identity" title="warg.functions.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>(a)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.invert_shallow_mapping.html#warg.functions.invert_shallow_mapping" title="warg.functions.invert_shallow_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invert_shallow_mapping</span></code></a>(m)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.swap_mapping_order.html#warg.functions.swap_mapping_order" title="warg.functions.swap_mapping_order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swap_mapping_order</span></code></a>(m, order)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param m</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.kws_sink.html#warg.functions.kws_sink" title="warg.functions.kws_sink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kws_sink</span></code></a>(*args)</p></td>
-<td><p>Returns args without any modification what so ever.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.nop.html#warg.functions.nop" title="warg.functions.nop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nop</span></code></a>()</p></td>
 <td><p><dl class="field-list simple">
@@ -103,15 +104,9 @@
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.prod.html#warg.functions.prod" title="warg.functions.prod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prod</span></code></a>(iterable)</p></td>
-<td><p>Calculate the product of the a Iterable of int or floats :param iterable: :return:</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="warg.functions.sink.html#warg.functions.sink" title="warg.functions.sink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sink</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Returns None, but accepts everything</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.swap_mapping_order.html#warg.functions.swap_mapping_order" title="warg.functions.swap_mapping_order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swap_mapping_order</span></code></a>(m, order)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="warg.functions.empty_str.html#warg.functions.empty_str" title="warg.functions.empty_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty_str</span></code></a>()</p></td>
 <td><p><dl class="field-list simple">
-<dt class="field-odd">param m</dt>
+<dt class="field-odd">return</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
@@ -156,20 +151,18 @@
 <li class="toctree-l2"><a class="reference internal" href="warg.decorators.html">warg.decorators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="warg.exceptions.html">warg.exceptions</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">warg.functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.args_sink.html">warg.functions.args_sink</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.call_identity.html">warg.functions.call_identity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.chain_apply.html">warg.functions.chain_apply</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.chain_filter.html">warg.functions.chain_filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.kws_sink.html">warg.functions.kws_sink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.sink.html">warg.functions.sink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.prod.html">warg.functions.prod</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.functions.collate_first_dim.html">warg.functions.collate_first_dim</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.empty_str.html">warg.functions.empty_str</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.flip_two_level_mapping.html">warg.functions.flip_two_level_mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.call_identity.html">warg.functions.call_identity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.args_sink.html">warg.functions.args_sink</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.functions.identity.html">warg.functions.identity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.functions.invert_shallow_mapping.html">warg.functions.invert_shallow_mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.kws_sink.html">warg.functions.kws_sink</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.nop.html">warg.functions.nop</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.prod.html">warg.functions.prod</a></li>
-<li class="toctree-l3"><a class="reference internal" href="warg.functions.sink.html">warg.functions.sink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.flip_two_level_mapping.html">warg.functions.flip_two_level_mapping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="warg.functions.swap_mapping_order.html">warg.functions.swap_mapping_order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.nop.html">warg.functions.nop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.functions.empty_str.html">warg.functions.empty_str</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="warg.gdkc.html">warg.gdkc</a></li>
@@ -201,8 +194,8 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="warg.html">warg</a><ul>
-      <li>Previous: <a href="warg.exceptions.NoData.html" title="previous chapter">warg.exceptions.NoData</a></li>
-      <li>Next: <a href="warg.functions.args_sink.html" title="next chapter">warg.functions.args_sink</a></li>
+      <li>Previous: <a href="warg.exceptions.IncompatiblePackageVersions.html" title="previous chapter">warg.exceptions.IncompatiblePackageVersions</a></li>
+      <li>Next: <a href="warg.functions.kws_sink.html" title="next chapter">warg.functions.kws_sink</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -216,7 +209,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -233,7 +226,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

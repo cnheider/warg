@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/warg/generated/warg.decorators.timing.StopWatch.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,11 +37,11 @@
           <div class="body" role="main">
             
   <section id="warg-decorators-timing-stopwatch">
-<h1>warg.decorators.timing.StopWatch<a class="headerlink" href="#warg-decorators-timing-stopwatch" title="Permalink to this headline">¶</a></h1>
+<h1>warg.decorators.timing.StopWatch<a class="headerlink" href="#warg-decorators-timing-stopwatch" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="warg.decorators.timing.StopWatch">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">warg.decorators.timing.</span></span><span class="sig-name descname"><span class="pre">StopWatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function:</span> <span class="pre">Callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">perf_counter&gt;</span></em>, <em class="sig-param"><span class="pre">auto_start_on_construction:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">auto_start_on_enter:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em>, <em class="sig-param"><span class="pre">auto_stop_on_exit:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/contextlib.html#contextlib.AbstractContextManager" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">contextlib.AbstractContextManager</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">warg.decorators.timing.</span></span><span class="sig-name descname"><span class="pre">StopWatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">perf_counter&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_construction:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_enter:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_stop_on_exit:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/contextlib.html#contextlib.AbstractContextManager" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractContextManager</span></code></a></p>
 <p><strong>Measure execution time of function.</strong></p>
 <p>Can be used as context manager or function decorator, perform checkpoints
 or display absolute time from measurements beginning.</p>
@@ -73,17 +74,17 @@ to execute whole block will be returned by <cite>checkpoint()</cite> and <cite>t
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function:</span> <span class="pre">Callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">perf_counter&gt;</span></em>, <em class="sig-param"><span class="pre">auto_start_on_construction:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">auto_start_on_enter:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em>, <em class="sig-param"><span class="pre">auto_stop_on_exit:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">perf_counter&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_construction:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_enter:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_stop_on_exit:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.__init__" title="warg.decorators.timing.StopWatch.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([function, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.__init__" title="warg.decorators.timing.StopWatch.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([function, ...])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">override_arithmetics</span></code>()</p></td>
@@ -101,7 +102,7 @@ to execute whole block will be returned by <cite>checkpoint()</cite> and <cite>t
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -114,7 +115,7 @@ to execute whole block will be returned by <cite>checkpoint()</cite> and <cite>t
 </table>
 <dl class="py property">
 <dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.since_start">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">since_start</span></span><a class="headerlink" href="#warg.decorators.timing.StopWatch.since_start" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">since_start</span></span><a class="headerlink" href="#warg.decorators.timing.StopWatch.since_start" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Time taken since the start of timer (measurements beginning).</strong></p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -242,7 +243,7 @@ usually fraction of seconds</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -259,7 +260,7 @@ usually fraction of seconds</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
