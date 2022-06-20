@@ -1,4 +1,4 @@
-warg.data\_structures.named\_ordered\_dictionary
+﻿warg.data\_structures.named\_ordered\_dictionary
 ================================================
 
 .. automodule:: warg.data_structures.named_ordered_dictionary
@@ -19,12 +19,19 @@ warg.data\_structures.named\_ordered\_dictionary
       :toctree:
       :template: custom_autosummary/class.rst
    
-      NamedOrderedDictionary
       NOD
+      NamedOrderedDictionary
    
    
 
    
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+      :toctree:
+   
+      IllegalAttributeKey
    
    
 

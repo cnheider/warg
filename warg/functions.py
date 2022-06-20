@@ -32,6 +32,11 @@ from warg import Number, drop_unused_kws
 
 
 def empty_str() -> str:
+    """
+
+    :return:
+    :rtype:
+    """
     return ""
 
 

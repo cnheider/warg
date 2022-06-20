@@ -1,4 +1,4 @@
-warg.ast\_ops.arg\_indentifier
+﻿warg.ast\_ops.arg\_indentifier
 ==============================
 
 .. automodule:: warg.ast_ops.arg_indentifier
@@ -14,9 +14,10 @@ warg.ast\_ops.arg\_indentifier
    .. autosummary::
       :toctree:
    
-      get_arg_names
       cprinta
       cprintz
+      ge_arg_names_recurse
+      get_arg_names
    
    
 

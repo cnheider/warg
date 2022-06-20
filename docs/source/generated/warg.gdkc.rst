@@ -1,4 +1,4 @@
-warg.gdkc
+﻿warg.gdkc
 =========
 
 .. automodule:: warg.gdkc
@@ -19,8 +19,8 @@ warg.gdkc
       :toctree:
       :template: custom_autosummary/class.rst
    
-      GeneralisedDelayedKwargConstruction
       GDKC
+      GeneralisedDelayedKwargConstruction
    
    
 

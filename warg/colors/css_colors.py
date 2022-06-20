@@ -186,6 +186,13 @@ STYLES = (
 
 
 def parse_rgb(s):
+    """
+
+    :param s:
+    :type s:
+    :return:
+    :rtype:
+    """
     if not isinstance(s, str):
         raise ValueError("Could not parse color '{0}'".format(s))
     s = s.strip().replace(" ", "").lower()

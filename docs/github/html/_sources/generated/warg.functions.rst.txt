@@ -1,4 +1,4 @@
-warg.functions
+﻿warg.functions
 ==============
 
 .. automodule:: warg.functions
@@ -14,18 +14,20 @@ warg.functions
    .. autosummary::
       :toctree:
    
-      kws_sink
-      sink
-      prod
-      collate_first_dim
-      call_identity
       args_sink
+      call_identity
+      chain_apply
+      chain_filter
+      collate_first_dim
+      empty_str
+      flip_two_level_mapping
       identity
       invert_shallow_mapping
-      flip_two_level_mapping
-      swap_mapping_order
+      kws_sink
       nop
-      empty_str
+      prod
+      sink
+      swap_mapping_order
    
    
 

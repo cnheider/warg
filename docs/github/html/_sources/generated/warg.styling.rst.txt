@@ -1,4 +1,4 @@
-warg.styling
+﻿warg.styling
 ============
 
 .. automodule:: warg.styling
@@ -15,10 +15,10 @@ warg.styling
       :toctree:
    
       generate_style
-      sprint
       get_terminal_size
       hyperlink_path
       hyperlink_url
+      sprint
    
    
 

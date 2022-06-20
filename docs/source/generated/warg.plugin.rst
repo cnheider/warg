@@ -1,4 +1,4 @@
-warg.plugin
+﻿warg.plugin
 ===========
 
 .. automodule:: warg.plugin
@@ -14,9 +14,9 @@ warg.plugin
    .. autosummary::
       :toctree:
    
+      get_dynamic_plugins
       get_plugins
       get_static_plugins
-      get_dynamic_plugins
    
    
 

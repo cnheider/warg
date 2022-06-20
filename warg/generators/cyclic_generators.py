@@ -31,6 +31,7 @@ def cos_gen(iterable: Iterable, magnitude: Number = 1) -> Iterable[Number]:
 if __name__ == "__main__":
 
     def assda():
+        """ """
         import numpy
 
         for i in cos_gen(numpy.arange(0, 100, 0.1)):

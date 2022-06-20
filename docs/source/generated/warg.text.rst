@@ -1,4 +1,4 @@
-warg.text
+﻿warg.text
 =========
 
 .. automodule:: warg.text
@@ -14,8 +14,8 @@ warg.text
    .. autosummary::
       :toctree:
    
-      to_british_english
       deamericanise
+      to_british_english
    
    
 

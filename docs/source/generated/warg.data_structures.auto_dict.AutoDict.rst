@@ -1,6 +1,6 @@
-warg.data\_structures.auto\_dict.AutoDict
+warg.data\_structures.auto\_dict.autodict
 =========================================
 
 .. currentmodule:: warg.data_structures.auto_dict
 
-.. autofunction:: AutoDict
+.. autofunction:: autodict

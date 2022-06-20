@@ -1,4 +1,4 @@
-warg.colors.css\_colors
+﻿warg.colors.css\_colors
 =======================
 
 .. automodule:: warg.colors.css_colors
@@ -14,7 +14,11 @@ warg.colors.css\_colors
    .. autosummary::
       :toctree:
    
+      ansilen
       color
+      is_string
+      parse_rgb
+      strip_color
    
    
 

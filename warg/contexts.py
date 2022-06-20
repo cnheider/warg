@@ -15,6 +15,8 @@ from warg import AlsoDecorator
 
 
 class IgnoreInterruptSignal(contextlib.AbstractContextManager, AlsoDecorator):
+    """ """
+
     def __enter__(self) -> bool:
         signal.signal(signal.SIGINT, signal.SIG_IGN)
         # signal.getsignal() No sideeffect options for exit

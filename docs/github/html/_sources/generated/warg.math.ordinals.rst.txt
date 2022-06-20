@@ -1,4 +1,4 @@
-warg.math.ordinals
+﻿warg.math.ordinals
 ==================
 
 .. automodule:: warg.math.ordinals
@@ -14,8 +14,8 @@ warg.math.ordinals
    .. autosummary::
       :toctree:
    
-      ceil_odd
       ceil_even
+      ceil_odd
       floor_even
       floor_odd
       next_even

@@ -1,4 +1,4 @@
-warg.imports
+﻿warg.imports
 ============
 
 .. automodule:: warg.imports
@@ -14,8 +14,8 @@ warg.imports
    .. autosummary::
       :toctree:
    
-      is_module_available
       import_warning
+      is_module_available
       reimported_warning
    
    

@@ -1,4 +1,4 @@
-warg.ast\_ops.first\_arg\_identifier
+﻿warg.ast\_ops.first\_arg\_identifier
 ====================================
 
 .. automodule:: warg.ast_ops.first_arg_identifier
@@ -14,8 +14,10 @@ warg.ast\_ops.first\_arg\_identifier
    .. autosummary::
       :toctree:
    
-      get_first_arg_name
       cprint
+      get_first_arg_name
+      get_first_arg_name_recurse
+      recurse_first_args
    
    
 

@@ -127,12 +127,28 @@ def ge_arg_names_recurse() -> Optional[str]:
 
 
 def cprinta(*v: Any, writer: callable = print, deliminator: str = ":") -> None:
+    """
+
+    :param v:
+    :type v:
+    :param writer:
+    :type writer:
+    :param deliminator:
+    :type deliminator:
+    """
     if isinstance(v, str) and v.strip() == "":
         v = '""'
     writer(f"{get_arg_names('cprinta')}{deliminator}", v)
 
 
 def cprintz(*v: Any, writer: callable = print) -> None:
+    """
+
+    :param v:
+    :type v:
+    :param writer:
+    :type writer:
+    """
     if isinstance(v, str) and v.strip() == "":
         v = '""'
 
@@ -143,6 +159,7 @@ def cprintz(*v: Any, writer: callable = print) -> None:
 if __name__ == "__main__":
 
     def siajd():
+        """ """
         s = ""
         aisjd = s
         sioj = 4

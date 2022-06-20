@@ -1,4 +1,4 @@
-warg.map\_itertools
+﻿warg.map\_itertools
 ===================
 
 .. automodule:: warg.map_itertools
@@ -14,11 +14,11 @@ warg.map\_itertools
    .. autosummary::
       :toctree:
    
-      map_value_product
-      map_product
-      map_permutations
       map_combinations
       map_combinations_with_replacement
+      map_permutations
+      map_product
+      map_value_product
    
    
 

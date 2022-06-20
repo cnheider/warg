@@ -1,4 +1,4 @@
-warg.os.os\_platform
+﻿warg.os.os\_platform
 ====================
 
 .. automodule:: warg.os.os_platform
@@ -14,11 +14,11 @@ warg.os.os\_platform
    .. autosummary::
       :toctree:
    
+      get_platform
+      is_linux
+      is_mac
       is_nix
       is_windows
-      is_mac
-      is_linux
-      get_platform
    
    
 

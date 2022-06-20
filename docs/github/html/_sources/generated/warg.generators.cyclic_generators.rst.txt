@@ -1,4 +1,4 @@
-warg.generators.cyclic\_generators
+﻿warg.generators.cyclic\_generators
 ==================================
 
 .. automodule:: warg.generators.cyclic_generators
@@ -14,8 +14,8 @@ warg.generators.cyclic\_generators
    .. autosummary::
       :toctree:
    
-      sin_gen
       cos_gen
+      sin_gen
    
    
 

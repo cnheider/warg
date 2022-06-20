@@ -1,4 +1,4 @@
-warg.exceptions
+﻿warg.exceptions
 ===============
 
 .. automodule:: warg.exceptions
@@ -22,8 +22,8 @@ warg.exceptions
    .. autosummary::
       :toctree:
    
-      NoData
       IncompatiblePackageVersions
+      NoData
    
    
 

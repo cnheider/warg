@@ -14,6 +14,13 @@ from typing import Optional, Any
 
 
 def recurse_first_args(args):
+    """
+
+    :param args:
+    :type args:
+    :return:
+    :rtype:
+    """
     for a in args:
         if isinstance(a, ast.Call):
             if isinstance(a.func, ast.Attribute):
@@ -147,6 +154,15 @@ def get_first_arg_name_recurse() -> Optional[str]:
 
 
 def cprint(v: Any, writer: callable = print, deliminator: str = ":") -> None:
+    """
+
+    :param v:
+    :type v:
+    :param writer:
+    :type writer:
+    :param deliminator:
+    :type deliminator:
+    """
     if isinstance(v, str) and v.strip() == "":
         v = '""'
     writer(f"{get_first_arg_name('cprint')}{deliminator}", v)
@@ -155,6 +171,7 @@ def cprint(v: Any, writer: callable = print, deliminator: str = ":") -> None:
 if __name__ == "__main__":
 
     def siajd():
+        """ """
         s = ""
         cprint(s)
         cprint("")

@@ -13,6 +13,13 @@ __all__ = ["split"]
 
 
 def split(seq: Sequence) -> Tuple[Sequence, Sequence]:
+    """
+
+    :param seq:
+    :type seq:
+    :return:
+    :rtype:
+    """
     m = len(seq) // 2
     return seq[:m], seq[m:]
 

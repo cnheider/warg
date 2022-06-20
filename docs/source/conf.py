@@ -38,8 +38,6 @@ from warg import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_YEAR, PROJECT_VERSION, __
 # ones.
 
 extensions = [
-    # "m2r2",
-    # 'recommonmark',
     "sphinxcontrib.programoutput",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -93,7 +91,7 @@ release = version  # 'master'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set 'language' from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -126,7 +124,8 @@ html_theme = "alabaster"
 # html_static_path = ["_static"]
 html_static_path = []
 
-html_baseurl = f"{PROJECT_NAME}.github.io"
+ORGANISATION = "pything"
+html_baseurl = f"{ORGANISATION}.github.io/{PROJECT_NAME}"
 
 # -- Options for HTMLHelp output ------------------------------------------
 

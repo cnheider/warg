@@ -1,4 +1,4 @@
-warg.data\_structures.mappings
+﻿warg.data\_structures.mappings
 ==============================
 
 .. automodule:: warg.data_structures.mappings
@@ -14,10 +14,11 @@ warg.data\_structures.mappings
    .. autosummary::
       :toctree:
    
-      invert_mapping
+      append_to_dict
       invert_dict
-      pivot_dict_object
+      invert_mapping
       pivot_dict
+      pivot_dict_object
    
    
 

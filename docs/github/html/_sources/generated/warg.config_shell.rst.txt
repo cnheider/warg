@@ -1,4 +1,4 @@
-warg.config\_shell
+﻿warg.config\_shell
 ==================
 
 .. automodule:: warg.config_shell
@@ -19,8 +19,8 @@ warg.config\_shell
       :toctree:
       :template: custom_autosummary/class.rst
    
-      PlaybackShell
       ConfigShell
+      PlaybackShell
    
    
 

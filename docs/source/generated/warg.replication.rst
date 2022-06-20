@@ -1,4 +1,4 @@
-warg.replication
+﻿warg.replication
 ================
 
 .. automodule:: warg.replication
@@ -19,14 +19,6 @@ warg.replication
    
 
    
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-      :toctree:
-      :template: custom_autosummary/class.rst
-   
-      BroadcastNone
    
    
 

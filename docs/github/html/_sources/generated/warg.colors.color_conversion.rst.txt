@@ -1,4 +1,4 @@
-warg.colors.color\_conversion
+﻿warg.colors.color\_conversion
 =============================
 
 .. automodule:: warg.colors.color_conversion
@@ -14,12 +14,12 @@ warg.colors.color\_conversion
    .. autosummary::
       :toctree:
    
-      rgb
-      rgba
       RGB
       RGBA
-      color_to_str
       color_from_str
+      color_to_str
+      rgb
+      rgba
    
    
 
