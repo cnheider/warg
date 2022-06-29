@@ -90,11 +90,11 @@ def key_singleton(cache_key: Any) -> callable:
     """
 
     def inner_fn(fn: callable) -> Any:
-        """ """
+        """description"""
 
         @wraps(fn)
         def wrapper(self, *args, **kwargs):
-            """ """
+            """description"""
             instance = getattr(self, cache_key)
             if instance is not None:
                 return instance

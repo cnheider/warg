@@ -15,7 +15,7 @@ from warg import passes_kws_to, PropertySettings
 
 
 class PlaybackShell(cmd.Cmd):
-    """ """
+    """description"""
 
     intro = "Type help or ? to list commands.\n"
     default_file_path = Path("playback.cmd")
@@ -48,7 +48,7 @@ class PlaybackShell(cmd.Cmd):
         return line
 
     def close(self):
-        """ """
+        """description"""
         if self.file:
             self.file.close()
             self.file = None
@@ -65,7 +65,7 @@ class PlaybackShell(cmd.Cmd):
 
 
 class ConfigShell(PlaybackShell):
-    """ """
+    """description"""
 
     def get_names(self):  # Override!
         """

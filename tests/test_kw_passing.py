@@ -15,7 +15,7 @@ __doc__ = r"""
 
 def test_subclass_fully_qualified_no_args_or_kwargs():
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, kwarg0=None, kwarg1=None):
             """
@@ -28,7 +28,7 @@ def test_subclass_fully_qualified_no_args_or_kwargs():
             self.kwarg1 = kwarg1
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
@@ -39,7 +39,7 @@ def test_subclass_fully_qualified_no_args_or_kwargs():
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -56,7 +56,7 @@ def test_subclass_fully_qualified_no_args_or_kwargs():
 
 def test_with_args_and_kwargs_on_subclasses():
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs):
             """
@@ -74,7 +74,7 @@ def test_with_args_and_kwargs_on_subclasses():
             self.__dict__.update(kwargs)
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
@@ -85,7 +85,7 @@ def test_with_args_and_kwargs_on_subclasses():
 
     @super_init_pass_on_kws()
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             """
@@ -110,7 +110,7 @@ def test_with_args_and_kwargs_on_subclasses():
 
 def test_subclass_with_kwargs():
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, kwarg0=None, kwarg1=None):
             """
@@ -123,7 +123,7 @@ def test_subclass_with_kwargs():
             self.kwarg1 = kwarg1
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs):
@@ -134,7 +134,7 @@ def test_subclass_with_kwargs():
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -151,7 +151,7 @@ def test_subclass_with_kwargs():
 
 def test_subclass_with_args():
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, kwarg0=None, kwarg1=None):
             """
@@ -164,7 +164,7 @@ def test_subclass_with_args():
             self.kwarg1 = kwarg1
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, *args, kwarg0=0, kwarg2=None):
@@ -175,7 +175,7 @@ def test_subclass_with_args():
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, *args, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -192,7 +192,7 @@ def test_subclass_with_args():
 
 def test_base_with_kwargs():
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, kwarg0=None, kwarg1=None, **kwargs):
             """
@@ -205,7 +205,7 @@ def test_base_with_kwargs():
             self.kwarg1 = kwarg1
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
@@ -216,7 +216,7 @@ def test_base_with_kwargs():
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -233,7 +233,7 @@ def test_base_with_kwargs():
 
 def test_base_with_args():
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None):
             """
@@ -246,7 +246,7 @@ def test_base_with_args():
             self.kwarg1 = kwarg1
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
@@ -257,7 +257,7 @@ def test_base_with_args():
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, kwarg0=kwarg0)
@@ -274,7 +274,7 @@ def test_base_with_args():
 
 def test_base_with_args_and_mock_empty_dict():
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None):
             """
@@ -287,7 +287,7 @@ def test_base_with_args_and_mock_empty_dict():
             self.kwarg1 = kwarg1
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
@@ -298,7 +298,7 @@ def test_base_with_args_and_mock_empty_dict():
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None):
             super().__init__(arg0, (), kwarg0=kwarg0, **{})
@@ -315,17 +315,17 @@ def test_base_with_args_and_mock_empty_dict():
 
 def test_chaining_arbitrary_kwargs():
     def b(c, f, *args, d=None, **kwargs):
-        """ """
+        """description"""
         pass
 
     def l(im_here=None, **kwargs):
-        """ """
+        """description"""
         pass
 
     @passes_kws_to(b)
     @passes_kws_to(l)
     def a(e, *args, **kwargs):
-        """ """
+        """description"""
         b(1, 2, **kwargs)
         l(**kwargs)
 
@@ -335,17 +335,17 @@ def test_chaining_arbitrary_kwargs():
 
 def test_chaining_arbitrary_kwargs_keep():
     def b(c, f, *args, d=None, **kwargs):
-        """ """
+        """description"""
         pass
 
     def l(im_here=None, **kwargs):
-        """ """
+        """description"""
         pass
 
     @passes_kws_to(b, keep_from_var_kw=True)
     @passes_kws_to(l, keep_from_var_kw=True)
     def a(e, *args, **kwargs):
-        """ """
+        """description"""
         b(1, 2, **kwargs)
         l(**kwargs)
 
@@ -355,7 +355,7 @@ def test_chaining_arbitrary_kwargs_keep():
 
 def test_chaining_no_keep():
     def b(c, f, *args, d: float = None, **kwargs):
-        """ """
+        """description"""
         pass
 
     def l(a, im_here: str = None, **kwargs):
@@ -383,7 +383,7 @@ def test_chaining_no_keep():
 
     @passes_kws_to(b, l)
     def a(e: int, *args, **kwargs):
-        """ """
+        """description"""
         pass
         b(1, 2, **kwargs)
         l(1, **kwargs)
@@ -394,7 +394,7 @@ def test_chaining_no_keep():
 
 def test_chaining_no_keep_composed_drop_kws():
     def b(c, f, *args, d: float = None, **kwargs):
-        """ """
+        """description"""
         pass
 
     def l(a, im_here: str = None, **kwargs):
@@ -423,7 +423,7 @@ def test_chaining_no_keep_composed_drop_kws():
     @drop_unused_kws
     @passes_kws_to(b, l)
     def a(e: int, *args, **kwargs):
-        """ """
+        """description"""
         pass
         b(1, 2, **kwargs)
         l(1, **kwargs)

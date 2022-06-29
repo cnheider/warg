@@ -3,7 +3,7 @@
 
 __author__ = "Christian Heider Nielsen"
 
-__doc__ = """"""
+__doc__ = """description"""
 
 __all__ = [
     "COLORS",
@@ -59,7 +59,7 @@ DECORATIONS = NOD(
 
 
 def hyperlink_url(link: str, link_id: str = None, style: bool = False, prefix: str = "https://") -> str:
-    """ """
+    """description"""
     if not link.startswith(prefix):
         if "://" in link:
             link = f'{prefix}{link.split("://")[1]}'
@@ -74,7 +74,7 @@ def hyperlink_url(link: str, link_id: str = None, style: bool = False, prefix: s
 
 
 def hyperlink_path(link: Path, link_id: str = None, style: bool = False, linux: bool = True) -> str:
-    """ """
+    """description"""
     if linux:
         link = f"file://{link.resolve()}"
     if not style:
@@ -85,7 +85,7 @@ def hyperlink_path(link: Path, link_id: str = None, style: bool = False, linux: 
 
 
 class PrintStyle(object):
-    """ """
+    """description"""
 
     def __init__(self, attributes_joined, end):
         self._attributes_joined = attributes_joined

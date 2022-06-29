@@ -20,12 +20,12 @@ from typing import Any, Mapping, Tuple
 
 
 def map_value_product(dicts: Mapping) -> Any:
-    """ """
+    """description"""
     return (dict(zip(dicts, x)) for x in itertools.product(*dicts.values()))
 
 
 def map_product(dicts: Mapping, repeat: int = 2) -> Any:
-    """ """
+    """description"""
     yield from zip(
         itertools.product(dicts.keys(), repeat=repeat),
         itertools.product(dicts.values(), repeat=repeat),
@@ -33,7 +33,7 @@ def map_product(dicts: Mapping, repeat: int = 2) -> Any:
 
 
 def map_permutations(dicts: Mapping, repeat: int = 2) -> Tuple:
-    """ """
+    """description"""
     yield from zip(
         itertools.permutations(dicts.keys(), repeat),
         itertools.permutations(dicts.values(), repeat),
@@ -41,7 +41,7 @@ def map_permutations(dicts: Mapping, repeat: int = 2) -> Tuple:
 
 
 def map_combinations(dicts: Mapping, repeat: int = 2) -> Tuple:
-    """ """
+    """description"""
     yield from zip(
         itertools.combinations(dicts.keys(), repeat),
         itertools.combinations(dicts.values(), repeat),
@@ -49,7 +49,7 @@ def map_combinations(dicts: Mapping, repeat: int = 2) -> Tuple:
 
 
 def map_combinations_with_replacement(dicts: Mapping, repeat: int = 2) -> Tuple:
-    """ """
+    """description"""
     yield from zip(
         itertools.combinations_with_replacement(dicts.keys(), repeat),
         itertools.combinations_with_replacement(dicts.values(), repeat),

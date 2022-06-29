@@ -25,19 +25,19 @@ def worker(i: Queue, output: Queue) -> None:
 
 
 def calculate(func: callable, args: Sequence) -> str:
-    """ """
+    """description"""
     result = func(*args)
     return f"{current_process().name} says that {func.__name__}{args} = {result}"
 
 
 def mul(a, b):
-    """ """
+    """description"""
     time.sleep(0.5 * random.random())
     return a * b
 
 
 def plus(a, b):
-    """ """
+    """description"""
     time.sleep(0.5 * random.random())
     return a + b
 

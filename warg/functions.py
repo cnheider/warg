@@ -48,7 +48,7 @@ def nop() -> None:
 
 
 def identity(a: Any) -> Any:
-    """ """
+    """description"""
     return a
 
 

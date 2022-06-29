@@ -13,7 +13,7 @@ __all__ = ["unzip", "unzipper"]
 
 
 def unzip(iterable: Iterable) -> Iterable:
-    """ """
+    """description"""
     return zip(*iterable)
 
 
@@ -27,7 +27,7 @@ def unzipper(iterable: Iterable[Iterable]) -> Iterable:
     :return:"""
 
     def check_next_iter(iterable: Any) -> Any:
-        """ """
+        """description"""
         if isinstance(iterable, Iterable):
             try:
                 a = next(iter(iterable))
@@ -53,7 +53,7 @@ def unzipper(iterable: Iterable[Iterable]) -> Iterable:
 if __name__ == "__main__":
 
     def recursive_eval(node: Any):
-        """ """
+        """description"""
         if isinstance(node, (Iterable, Generator, Iterator)):
             gather = []
             for i in node:

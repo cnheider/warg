@@ -14,7 +14,7 @@ from typing import Optional, Any
 
 
 class ArgIdentifier(ast.NodeVisitor):
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -86,7 +86,7 @@ class ArgIdentifier(ast.NodeVisitor):
 
 
 def get_arg_names(func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=1) -> Optional[str]:
-    """ """
+    """description"""
     import inspect
     import textwrap
     import ast
@@ -162,7 +162,7 @@ def cprintz(*v: Any, writer: callable = print) -> None:
 if __name__ == "__main__":
 
     def siajd():
-        """ """
+        """description"""
         s = ""
         aisjd = s
         sioj = 4

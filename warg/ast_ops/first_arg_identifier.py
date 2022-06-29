@@ -34,7 +34,7 @@ def recurse_first_args(args):
 
 
 class FirstArgIdentifier(ast.NodeVisitor):
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -113,7 +113,7 @@ class FirstArgIdentifier(ast.NodeVisitor):
 def get_first_arg_name(
     func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=-1  # recurse = -1
 ) -> Optional[str]:
-    """ """
+    """description"""
     import inspect
     import textwrap
     import ast
@@ -174,7 +174,7 @@ def cprint(v: Any, writer: callable = print, deliminator: str = ":") -> None:
 if __name__ == "__main__":
 
     def siajd():
-        """ """
+        """description"""
         s = ""
         cprint(s)
         cprint("")
@@ -192,7 +192,7 @@ if __name__ == "__main__":
         from warg import FirstArgIdentifier
 
         def some_func(a):
-            """ """
+            """description"""
             caller_frame = inspect.currentframe().f_back
             # caller_src_code_snippet = inspect.getsource(caller_frame) # Only gets scope
             caller_src_code_lines = inspect.getsourcelines(caller_frame)
@@ -231,7 +231,7 @@ if __name__ == "__main__":
         from warg import FirstArgIdentifier
 
         def some_func(a):
-            """ """
+            """description"""
             caller_frame = inspect.currentframe().f_back
             # caller_src_code_snippet = inspect.getsource(caller_frame) # Only gets scope
             caller_src_code_lines = inspect.getsourcelines(caller_frame)
@@ -256,7 +256,7 @@ if __name__ == "__main__":
         from typing import Any
 
         def some_func(a: Any) -> None:
-            """ """
+            """description"""
             print(get_first_arg_name("some_func", verbose=True))
 
         some_func(print(2, sep="-"))
@@ -269,7 +269,7 @@ if __name__ == "__main__":
         import warg
 
         def some_func(a: Any) -> None:
-            """ """
+            """description"""
             print(get_first_arg_name("some_func", verbose=True))
 
         some_func(warg.identity(2))
@@ -284,11 +284,11 @@ if __name__ == "__main__":
             class Bc:
                 @staticmethod
                 def c(d):
-                    """ """
+                    """description"""
                     pass
 
         def some_func(a: Any) -> None:
-            """ """
+            """description"""
             print(get_first_arg_name("some_func", verbose=True))
 
         some_func(Ac.Bc.c(2))

@@ -268,7 +268,7 @@ class AlsoDecorator:
 if __name__ == "__main__":
 
     class BaseClass:
-        """ """
+        """description"""
 
         def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs):
             self.arg0 = arg0
@@ -279,7 +279,7 @@ if __name__ == "__main__":
             self.__dict__.update(kwargs)
 
     class SubClass0(BaseClass):
-        """ """
+        """description"""
 
         @passes_kws_to(BaseClass.__init__)
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
@@ -290,7 +290,7 @@ if __name__ == "__main__":
 
     @super_init_pass_on_kws
     class SubClass1(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             super().__init__(arg0, *args, **kwargs)
@@ -300,7 +300,7 @@ if __name__ == "__main__":
 
     @super_init_pass_on_kws(super_base=BaseClass)
     class SubClass2(BaseClass):
-        """ """
+        """description"""
 
         def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
             super().__init__(arg0, *args, **kwargs)

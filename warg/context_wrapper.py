@@ -62,7 +62,7 @@ class ContextWrapper(contextlib.AbstractContextManager):
 if __name__ == "__main__":
 
     class SampleContextManager:
-        """ """
+        """description"""
 
         def __init__(self, message="Hello World"):
             self._message = message

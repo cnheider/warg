@@ -15,7 +15,7 @@ from warg import AlsoDecorator
 
 
 class IgnoreInterruptSignal(contextlib.AbstractContextManager, AlsoDecorator):
-    """ """
+    """description"""
 
     def __enter__(self) -> bool:
         signal.signal(signal.SIGINT, signal.SIG_IGN)

@@ -14,14 +14,14 @@ from typing import Iterable, MutableMapping, Union
 
 
 class NoData(Exception):
-    """ """
+    """description"""
 
     def __init__(self, msg: str = "No Data Available"):
         Exception.__init__(self, msg)
 
 
 class IncompatiblePackageVersions(Exception):
-    """ """
+    """description"""
 
     def __init__(self, *packages: Iterable[Union[str, object]], **versions: MutableMapping):
         str_o = ", "

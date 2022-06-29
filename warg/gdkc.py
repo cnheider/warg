@@ -82,7 +82,7 @@ if __name__ == "__main__":
         pass
 
     class A:
-        """ """
+        """description"""
 
         def __init__(self, *args, **kwargs):
             pass

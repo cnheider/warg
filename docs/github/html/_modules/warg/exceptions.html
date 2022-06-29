@@ -1,136 +1,89 @@
+
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>warg.exceptions &#8212; Warg 0.6.9 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css"/>
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css"/>
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css"/>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>warg.exceptions &#8212; Warg 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <link rel="canonical" href="warg.github.io/_modules/warg/exceptions.html"/>
-    <link rel="index" title="Index" href="../../genindex.html"/>
-    <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="canonical" href="pything.github.io/warg/_modules/warg/exceptions.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <link rel="stylesheet" href="../../_static/custom.css" type="text/css"/>
+  </head><body>
+  
 
-
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
-
-</head>
-<body>
-
-
-<div class="document">
-    <div class="documentwrapper">
+    <div class="document">
+      <div class="documentwrapper">
         <div class="bodywrapper">
+          
 
-
-            <div class="body" role="main">
-
-                <h1>Source code for warg.exceptions</h1>
-                <div class="highlight"><pre>
+          <div class="body" role="main">
+            
+  <h1>Source code for warg.exceptions</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
-<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span
-                        class="s2">&quot;&quot;&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
 
 <span class="s2">           Created on 02/03/2020</span>
 <span class="s2">           &quot;&quot;&quot;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span
-                        class="s2">&quot;NoData&quot;</span><span class="p">,</span> <span class="s2">&quot;IncompatiblePackageVersions&quot;</span><span
-                        class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NoData&quot;</span><span class="p">,</span> <span class="s2">&quot;IncompatiblePackageVersions&quot;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">types</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span
-                        class="n">Iterable</span><span class="p">,</span> <span class="n">MutableMapping</span><span
-                        class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">Union</span>
 
 
-<div class="viewcode-block" id="NoData"><a class="viewcode-back"
-                                           href="../../generated/warg.exceptions.NoData.html#warg.exceptions.NoData">[docs]</a><span
-        class="k">class</span> <span class="nc">NoData</span><span class="p">(</span><span
-        class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="NoData"><a class="viewcode-back" href="../../generated/warg.exceptions.NoData.html#warg.exceptions.NoData">[docs]</a><span class="k">class</span> <span class="nc">NoData</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span
-            class="o">=</span> <span class="s2">&quot;No Data Available&quot;</span><span class="p">):</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span
-            class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span
-            class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;No Data Available&quot;</span><span class="p">):</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="IncompatiblePackageVersions"><a class="viewcode-back"
-                                                                href="../../generated/warg.exceptions.IncompatiblePackageVersions.html#warg.exceptions.IncompatiblePackageVersions">[docs]</a><span
-        class="k">class</span> <span class="nc">IncompatiblePackageVersions</span><span class="p">(</span><span
-        class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="IncompatiblePackageVersions"><a class="viewcode-back" href="../../generated/warg.exceptions.IncompatiblePackageVersions.html#warg.exceptions.IncompatiblePackageVersions">[docs]</a><span class="k">class</span> <span class="nc">IncompatiblePackageVersions</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span
-            class="n">packages</span><span class="p">:</span> <span class="n">Iterable</span><span
-            class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span
-            class="p">,</span> <span class="nb">object</span><span class="p">]],</span> <span class="o">**</span><span
-            class="n">versions</span><span class="p">:</span> <span class="n">MutableMapping</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">packages</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]],</span> <span class="o">**</span><span class="n">versions</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">):</span>
         <span class="n">str_o</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span>
         <span class="n">str_l</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span
-            class="n">packages</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span
-            class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span
-            class="s2">&quot;(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span
-            class="s2">,&quot;</span>
-                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span
-            class="n">versions</span><span class="p">:</span>
-                    <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span
-            class="s2">&quot;</span><span class="si">{</span><span class="n">versions</span><span
-            class="p">[</span><span class="n">p</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">,&quot;</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">versions</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">versions</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;NotSpecified&quot;</span>
                 <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;)&quot;</span>
-                <span class="n">str_l</span><span class="o">.</span><span class="n">append</span><span
-            class="p">(</span><span class="n">s</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span
-            class="n">p</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span
-            class="n">ModuleType</span><span class="p">):</span>
-                <span class="n">str_l</span><span class="o">.</span><span class="n">append</span><span
-            class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span
-            class="n">p</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span
-            class="n">p</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span
-            class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">vk</span><span class="p">,</span> <span class="n">vv</span> <span
-            class="ow">in</span> <span class="n">versions</span><span class="o">.</span><span
-            class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">vk</span> <span class="ow">not</span> <span
-            class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
-                <span class="n">str_l</span><span class="o">.</span><span class="n">append</span><span
-            class="p">(</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span
-            class="n">vk</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span
-            class="n">vv</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                <span class="n">str_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">):</span>
+                <span class="n">str_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">vk</span><span class="p">,</span> <span class="n">vv</span> <span class="ow">in</span> <span class="n">versions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">vk</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
+                <span class="n">str_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">vk</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">vv</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
-        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span
-            class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span
-            class="s2">&quot;Packages </span><span class="si">{</span><span class="n">str_o</span><span
-            class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">str_l</span><span
-            class="p">)</span><span class="si">}</span><span class="s2"> are not compatible&quot;</span><span class="p">)</span></div>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Packages </span><span class="si">{</span><span class="n">str_o</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">str_l</span><span class="p">)</span><span class="si">}</span><span class="s2"> are not compatible&quot;</span><span class="p">)</span></div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span
-                        class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span
-                        class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :rtype: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -138,92 +91,88 @@
             <span class="s2">&quot;numpy&quot;</span><span class="p">,</span>
             <span class="s2">&quot;scipy&quot;</span><span class="p">,</span>
             <span class="s2">&quot;Something&quot;</span><span class="p">,</span>
-            <span class="n">numpy</span><span class="o">=</span><span class="s2">&quot;0.0.1&quot;</span><span
-                        class="p">,</span>
-            <span class="n">scipy</span><span class="o">=</span><span class="s2">&quot;0.0.2&quot;</span><span
-                        class="p">,</span>
-            <span class="n">some_other_packge</span><span class="o">=</span><span
-                        class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
+            <span class="n">numpy</span><span class="o">=</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+            <span class="n">scipy</span><span class="o">=</span><span class="s2">&quot;0.0.2&quot;</span><span class="p">,</span>
+            <span class="n">some_other_packge</span><span class="o">=</span><span class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">main2</span><span class="p">()</span> <span class="o">-&gt;</span> <span
-                        class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">main2</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :rtype: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">import</span> <span class="nn">numpy</span>
         <span class="kn">import</span> <span class="nn">scipy</span>
 
-        <span class="k">raise</span> <span class="n">IncompatiblePackageVersions</span><span class="p">(</span><span
-                        class="n">numpy</span><span class="p">,</span> <span class="n">scipy</span><span
-                        class="p">)</span>
+        <span class="k">raise</span> <span class="n">IncompatiblePackageVersions</span><span class="p">(</span><span class="n">numpy</span><span class="p">,</span> <span class="n">scipy</span><span class="p">)</span>
 
     <span class="n">main</span><span class="p">()</span>
-</pre>
-                </div>
+</pre></div>
 
-            </div>
-
+          </div>
+          
         </div>
-    </div>
-    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-            <h1 class="logo"><a href="../../index.html">Warg</a></h1>
+<h1 class="logo"><a href="../../index.html">Warg</a></h1>
 
 
-            <h3>Navigation</h3>
-            <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../generated/warg.html">warg</a></li>
-            </ul>
-            <p class="caption" role="heading"><span class="caption-text">Notes</span></p>
-            <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting
-                    Started</a></li>
-            </ul>
 
-            <div class="relations">
-                <h3>Related Topics</h3>
-                <ul>
-                    <li><a href="../../index.html">Documentation overview</a>
-                        <ul>
-                            <li><a href="../index.html">Module code</a>
-                                <ul>
-                                    <li><a href="../warg.html">warg</a>
-                                        <ul>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div id="searchbox" style="display: none" role="search">
-                <h3 id="searchlabel">Quick search</h3>
-                <div class="searchformwrapper">
-                    <form class="search" action="../../search.html" method="get">
-                        <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off"
-                               autocapitalize="off" spellcheck="false"/>
-                        <input type="submit" value="Go"/>
-                    </form>
-                </div>
-            </div>
-            <script>$('#searchbox').show(0);</script>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../warg.html">warg</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
 
 
         </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-    <div class="clearer"></div>
-</div>
-<div class="footer">
-    &copy;.
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
 
-    |
-    Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
-    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+    
 
-</div>
-
-
-</body>
+    
+  </body>
 </html>

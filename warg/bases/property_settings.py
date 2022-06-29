@@ -17,7 +17,7 @@ from warg import NOD
 class PropertySettings(
     # Mapping
 ):
-    """ """
+    """description"""
 
     # def __getitem__(self, k):
     #  return  self.__getattribute__(k)

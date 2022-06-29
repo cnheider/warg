@@ -93,7 +93,7 @@ else:
 
 
 def get_version(append_time: Any = DEVELOP) -> str:
-    """ """
+    """description"""
     import datetime
     import os
 

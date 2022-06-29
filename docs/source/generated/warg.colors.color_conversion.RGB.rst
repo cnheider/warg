@@ -1,4 +1,4 @@
-warg.colors.color\_conversion.rgb
+﻿warg.colors.color\_conversion.rgb
 =================================
 
 .. currentmodule:: warg.colors.color_conversion

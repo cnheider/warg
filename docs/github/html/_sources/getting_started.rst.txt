@@ -3,4 +3,4 @@
 Getting Started
 ================
 
-pip install warg -U
+pip install |PROJECT_NAME| -U

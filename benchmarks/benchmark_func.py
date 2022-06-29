@@ -7,7 +7,7 @@ import time
 
 
 def benchmark_func(func, times=100000):
-    """ """
+    """description"""
     start = time.time()
     result = None
     for _ in range(times):

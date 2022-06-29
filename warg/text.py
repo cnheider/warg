@@ -3,7 +3,7 @@
 
 __author__ = "Christian Heider Nielsen"
 
-__doc__ = """"""
+__doc__ = """description"""
 __all__ = ["to_british_english", "deamericanise"]
 
 from types import MappingProxyType

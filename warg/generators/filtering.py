@@ -28,7 +28,7 @@ def symbol_filter(
     *,
     exclusion_mode: FilterModeEnum = FilterModeEnum.exclude_postfix,
 ) -> Any:
-    """ """
+    """description"""
     if exclusion_mode == FilterModeEnum.exclude_fully:
         yield from filter(lambda s: symbol not in s, string_stream)
     elif exclusion_mode == FilterModeEnum.exclude_postfix or exclusion_mode == FilterModeEnum.exclude_prefix:

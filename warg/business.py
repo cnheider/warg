@@ -41,7 +41,7 @@ def busy_indicator(
 if __name__ == "__main__":
 
     def iasd():
-        """ """
+        """description"""
         import time
 
         for i in busy_indicator(indicator_interval=10):
