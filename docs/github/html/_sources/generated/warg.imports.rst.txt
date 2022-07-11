@@ -1,4 +1,4 @@
-﻿warg.imports
+warg.imports
 ============
 
 .. automodule:: warg.imports

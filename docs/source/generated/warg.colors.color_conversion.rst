@@ -1,4 +1,4 @@
-﻿warg.colors.color\_conversion
+warg.colors.color\_conversion
 =============================
 
 .. automodule:: warg.colors.color_conversion

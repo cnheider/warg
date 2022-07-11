@@ -1,4 +1,4 @@
-﻿warg.os.os\_platform
+warg.os.os\_platform
 ====================
 
 .. automodule:: warg.os.os_platform

@@ -39,7 +39,7 @@ def latest_file(
         if raise_on_failure:
             raise FileNotFoundError(msg)
         print(f"{msg}, returning None!")
-        return None
+        return
     return max(list_of_files, key=os.path.getctime)  # USES CREATION TIME
 
 

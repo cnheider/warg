@@ -87,7 +87,7 @@ def sink(*args, **kwargs) -> None:
     :param args:
     :param kwargs:
     :return:"""
-    return None
+    return
 
 
 def prod(iterable: Iterable[Number]) -> Number:

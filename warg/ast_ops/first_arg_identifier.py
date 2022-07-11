@@ -142,7 +142,7 @@ def get_first_arg_name(
             print(f"{func_name} was not found in {fai.result}")
     except Exception as e:
         print(e)
-    return None
+    return
 
 
 def get_first_arg_name_recurse() -> Optional[str]:

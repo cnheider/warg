@@ -1,4 +1,4 @@
-﻿warg.generators.cyclic\_generators
+warg.generators.cyclic\_generators
 ==================================
 
 .. automodule:: warg.generators.cyclic_generators

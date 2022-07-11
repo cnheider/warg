@@ -1,4 +1,4 @@
-﻿warg.replication
+warg.replication
 ================
 
 .. automodule:: warg.replication

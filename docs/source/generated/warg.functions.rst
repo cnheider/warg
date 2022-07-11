@@ -1,4 +1,4 @@
-﻿warg.functions
+warg.functions
 ==============
 
 .. automodule:: warg.functions

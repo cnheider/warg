@@ -39,7 +39,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;invert_mapping&quot;</span><span class="p">,</span> <span class="s2">&quot;invert_dict&quot;</span><span class="p">,</span> <span class="s2">&quot;AppendingDict&quot;</span><span class="p">,</span> <span class="s2">&quot;pivot_dict_object&quot;</span><span class="p">,</span> <span class="s2">&quot;pivot_dict&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="append_to_dict"><a class="viewcode-back" href="../../../generated/warg.data_structures.mappings.append_to_dict.html#warg.data_structures.mappings.append_to_dict">[docs]</a><span class="k">def</span> <span class="nf">append_to_dict</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">append_to_dict</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    :param d:</span>
@@ -52,7 +52,7 @@
 <span class="sd">    :rtype:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">d</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">d</span></div>
+    <span class="k">return</span> <span class="n">d</span>
 
 
 <div class="viewcode-block" id="AppendingDict"><a class="viewcode-back" href="../../../generated/warg.data_structures.mappings.AppendingDict.html#warg.data_structures.mappings.AppendingDict">[docs]</a><span class="k">class</span> <span class="nc">AppendingDict</span><span class="p">(</span><span class="n">Dict</span><span class="p">):</span>  <span class="c1"># appending_dict = collections.defaultdict(list)</span>
@@ -140,6 +140,9 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/warg.svg" alt="Logo"/>
+            </a></p>
 <h1 class="logo"><a href="../../../index.html">Warg</a></h1>
 
 
@@ -150,6 +153,9 @@
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/warg.html">warg</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>

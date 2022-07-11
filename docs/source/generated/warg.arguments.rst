@@ -1,4 +1,4 @@
-﻿warg.arguments
+warg.arguments
 ==============
 
 .. automodule:: warg.arguments

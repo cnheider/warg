@@ -1,4 +1,4 @@
-﻿warg.map\_itertools
+warg.map\_itertools
 ===================
 
 .. automodule:: warg.map_itertools

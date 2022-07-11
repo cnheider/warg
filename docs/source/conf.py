@@ -128,7 +128,12 @@ html_theme = "alabaster"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named 'default.css' will overwrite the builtin 'default.css'.
 # html_static_path = ["_static"]
-html_static_path = []
+html_static_path = ["../../.github/images"]
+html_logo = "../../.github/images/warg.svg"
+html_theme_options = {
+    # "logo_only": True,
+    # "display_version": False,
+}
 
 ORGANISATION = "pything"
 html_baseurl = f"{ORGANISATION}.github.io/{PROJECT_NAME}"

@@ -123,7 +123,7 @@
 <span class="sd">    :param args:</span>
 <span class="sd">    :param kwargs:</span>
 <span class="sd">    :return:&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="kc">None</span></div>
+    <span class="k">return</span></div>
 
 
 <div class="viewcode-block" id="prod"><a class="viewcode-back" href="../../generated/warg.functions.prod.html#warg.functions.prod">[docs]</a><span class="k">def</span> <span class="nf">prod</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Number</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Number</span><span class="p">:</span>
@@ -215,7 +215,7 @@
     <span class="k">return</span> <span class="n">m</span></div>
 
 
-<div class="viewcode-block" id="chain_filter"><a class="viewcode-back" href="../../generated/warg.functions.chain_filter.html#warg.functions.chain_filter">[docs]</a><span class="k">def</span> <span class="nf">chain_filter</span><span class="p">(</span><span class="n">it</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">*</span><span class="n">filters</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">chain_filter</span><span class="p">(</span><span class="n">it</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">*</span><span class="n">filters</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Apply a sequence of callables to an iterable through filter; filtering the iterable to the subset of a callable</span>
 <span class="sd">    returns</span>
@@ -233,10 +233,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">:</span>
         <span class="n">it</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">it</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">it</span></div>
+    <span class="k">return</span> <span class="n">it</span>
 
 
-<div class="viewcode-block" id="chain_apply"><a class="viewcode-back" href="../../generated/warg.functions.chain_apply.html#warg.functions.chain_apply">[docs]</a><span class="k">def</span> <span class="nf">chain_apply</span><span class="p">(</span><span class="n">it</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">*</span><span class="n">callables</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">chain_apply</span><span class="p">(</span><span class="n">it</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">*</span><span class="n">callables</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Apply a sequence of callables to an iterable; apply the iterable sequentially in callables order</span>
 
@@ -252,7 +252,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">callables</span><span class="p">:</span>
         <span class="n">it</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">it</span></div>
+    <span class="k">return</span> <span class="n">it</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -296,6 +296,9 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/warg.svg" alt="Logo"/>
+            </a></p>
 <h1 class="logo"><a href="../../index.html">Warg</a></h1>
 
 
@@ -306,6 +309,9 @@
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/warg.html">warg</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>

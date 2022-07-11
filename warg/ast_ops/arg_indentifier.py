@@ -115,7 +115,7 @@ def get_arg_names(func_name: str, *, verbose=False, max_num_intermediate_unnamed
             print(f"{func_name} was not found in {fai.result}")
     except Exception as e:
         print(e)
-    return None
+    return
 
 
 def ge_arg_names_recurse() -> Optional[str]:

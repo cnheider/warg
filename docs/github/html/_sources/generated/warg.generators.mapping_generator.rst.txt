@@ -1,4 +1,4 @@
-﻿warg.generators.mapping\_generator
+warg.generators.mapping\_generator
 ==================================
 
 .. automodule:: warg.generators.mapping_generator

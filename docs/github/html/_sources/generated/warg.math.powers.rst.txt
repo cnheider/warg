@@ -1,4 +1,4 @@
-﻿warg.math.powers
+warg.math.powers
 ================
 
 .. automodule:: warg.math.powers

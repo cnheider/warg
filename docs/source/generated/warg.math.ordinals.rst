@@ -1,4 +1,4 @@
-﻿warg.math.ordinals
+warg.math.ordinals
 ==================
 
 .. automodule:: warg.math.ordinals

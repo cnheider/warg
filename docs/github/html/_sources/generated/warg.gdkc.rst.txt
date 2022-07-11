@@ -1,4 +1,4 @@
-﻿warg.gdkc
+warg.gdkc
 =========
 
 .. automodule:: warg.gdkc

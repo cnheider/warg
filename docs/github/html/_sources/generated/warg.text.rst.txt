@@ -1,4 +1,4 @@
-﻿warg.text
+warg.text
 =========
 
 .. automodule:: warg.text

@@ -1,4 +1,4 @@
-﻿warg.decorators.kw\_passing
+warg.decorators.kw\_passing
 ===========================
 
 .. automodule:: warg.decorators.kw_passing

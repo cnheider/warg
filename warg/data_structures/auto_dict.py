@@ -45,7 +45,7 @@ def sanitise_auto_dict(d: Dict) -> Optional[Dict]:
     :rtype:"""
     if isinstance(d, defaultdict):
         if len(d.keys()) == 0:
-            return None
+            return
 
     out_dict = dict()
     for k, v in d.items():
@@ -58,7 +58,7 @@ def sanitise_auto_dict(d: Dict) -> Optional[Dict]:
             out_dict[k] = v
     if len(out_dict) > 0:
         return out_dict
-    return None
+    return
 
 
 autodict = AutoDict

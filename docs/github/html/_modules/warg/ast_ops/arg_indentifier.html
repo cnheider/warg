@@ -151,10 +151,10 @@
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">func_name</span><span class="si">}</span><span class="s2"> was not found in </span><span class="si">{</span><span class="n">fai</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">None</span></div>
+    <span class="k">return</span></div>
 
 
-<div class="viewcode-block" id="ge_arg_names_recurse"><a class="viewcode-back" href="../../../generated/warg.ast_ops.arg_indentifier.ge_arg_names_recurse.html#warg.ast_ops.arg_indentifier.ge_arg_names_recurse">[docs]</a><span class="k">def</span> <span class="nf">ge_arg_names_recurse</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">ge_arg_names_recurse</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    unpack chained generators to base iterator name</span>
 
@@ -162,7 +162,7 @@
 <span class="sd">    :rtype:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>  <span class="c1"># TODO: For e.g. description in progress_bar(range(_name_,_name2_))</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 
 <div class="viewcode-block" id="cprinta"><a class="viewcode-back" href="../../../generated/warg.ast_ops.arg_indentifier.cprinta.html#warg.ast_ops.arg_indentifier.cprinta">[docs]</a><span class="k">def</span> <span class="nf">cprinta</span><span class="p">(</span><span class="o">*</span><span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">writer</span><span class="p">:</span> <span class="n">callable</span> <span class="o">=</span> <span class="nb">print</span><span class="p">,</span> <span class="n">deliminator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -220,6 +220,9 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/warg.svg" alt="Logo"/>
+            </a></p>
 <h1 class="logo"><a href="../../../index.html">Warg</a></h1>
 
 
@@ -230,6 +233,9 @@
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/warg.html">warg</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>

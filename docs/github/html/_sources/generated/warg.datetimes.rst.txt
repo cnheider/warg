@@ -1,4 +1,4 @@
-﻿warg.datetimes
+warg.datetimes
 ==============
 
 .. automodule:: warg.datetimes
