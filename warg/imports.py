@@ -41,7 +41,9 @@ def import_warning(module_name: str) -> None:
     from sys import modules
 
     if module_name in modules:
-        warn(f"You have imported {module_name}")
+        warn(
+            f"You already {module_name} had imported, consider restructuring your code to avoid repeated imports"
+        )
 
 
 def reimported_warning(module_name: str) -> None:

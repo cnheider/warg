@@ -10,7 +10,7 @@ __doc__ = r"""
 import os
 from pathlib import Path
 
-__all__ = ["latest_file"]
+__all__ = ["latest_file", "exist_any_extension"]
 
 
 def latest_file(
@@ -43,5 +43,24 @@ def latest_file(
     return max(list_of_files, key=os.path.getctime)  # USES CREATION TIME
 
 
+def exist_any_extension(p: Path) -> bool:
+    """
+    If any file with that stem exist in parent directory, return True.
+
+    :param p:
+    :type p:
+    :return:
+    :rtype:
+    """
+    for _ in p.parent.glob(f"{p.stem}.*"):
+        return True
+    return False
+
+
 if __name__ == "__main__":
     print(latest_file(Path(__file__).parent, recurse=True))
+    print(exist_any_extension(Path(__file__)))
+    print(exist_any_extension(Path.cwd() / "__init__.py"))
+    print(exist_any_extension(Path.cwd() / "__init__"))
+    print(exist_any_extension(Path.cwd() / "__init__.test"))
+    print(exist_any_extension(Path.cwd() / "__init___.py"))

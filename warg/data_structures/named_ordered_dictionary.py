@@ -328,7 +328,7 @@ return nod
         print_str += ")"
         return print_str
 
-    def update(self, *args: Any, **kwargs: Any) -> T:
+    def update(self, *args: Sequence, **kwargs: MutableMapping) -> T:
         """
         Merge two attributes, overriding any repeated keys from
         the `items` parameter.

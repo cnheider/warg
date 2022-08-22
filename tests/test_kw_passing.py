@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import inspect
+from typing import Sequence, MutableMapping
 
 from warg.decorators.kw_passing import (
     drop_unused_kws,
@@ -324,7 +325,7 @@ def test_chaining_arbitrary_kwargs():
 
     @passes_kws_to(b)
     @passes_kws_to(l)
-    def a(e, *args, **kwargs):
+    def a(e, *args: Sequence, **kwargs: MutableMapping):
         """description"""
         b(1, 2, **kwargs)
         l(**kwargs)
@@ -344,7 +345,7 @@ def test_chaining_arbitrary_kwargs_keep():
 
     @passes_kws_to(b, keep_from_var_kw=True)
     @passes_kws_to(l, keep_from_var_kw=True)
-    def a(e, *args, **kwargs):
+    def a(e, *args: Sequence, **kwargs: MutableMapping):
         """description"""
         b(1, 2, **kwargs)
         l(**kwargs)
@@ -369,7 +370,7 @@ def test_chaining_no_keep():
 
     @passes_kws_to(b)
     @passes_kws_to(l)
-    def a1(e: int, *args, **kwargs):
+    def a1(e: int, *args: Sequence, **kwargs: MutableMapping):
         """
 
         :param e:
@@ -382,7 +383,7 @@ def test_chaining_no_keep():
     print("a1", inspect.signature(a1))
 
     @passes_kws_to(b, l)
-    def a(e: int, *args, **kwargs):
+    def a(e: int, *args: Sequence, **kwargs: MutableMapping):
         """description"""
         pass
         b(1, 2, **kwargs)
@@ -408,7 +409,7 @@ def test_chaining_no_keep_composed_drop_kws():
 
     @passes_kws_to(b)
     @passes_kws_to(l)
-    def a1(e: int, *args, **kwargs):
+    def a1(e: int, *args: Sequence, **kwargs: MutableMapping):
         """
 
         :param e:
@@ -422,7 +423,7 @@ def test_chaining_no_keep_composed_drop_kws():
 
     @drop_unused_kws
     @passes_kws_to(b, l)
-    def a(e: int, *args, **kwargs):
+    def a(e: int, *args: Sequence, **kwargs: MutableMapping):
         """description"""
         pass
         b(1, 2, **kwargs)
