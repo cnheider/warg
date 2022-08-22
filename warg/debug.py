@@ -9,12 +9,13 @@ __doc__ = r"""
 
 __all__ = ["evaluate_context"]
 
-from typing import Any, Callable, Iterable, MutableMapping, Tuple
+from typing import Any, Callable, Iterable, MutableMapping, Tuple, Sequence
 
 
-def evaluate_context(x: Any, *args: Iterable, **kwargs: MutableMapping) -> Tuple:
+def evaluate_context(x: Any, *args: Sequence, **kwargs: MutableMapping) -> Tuple:
     """
 
+    :rtype: Tuple
     :param x:
     :param args:
     :param kwargs:
@@ -30,4 +31,4 @@ def evaluate_context(x: Any, *args: Iterable, **kwargs: MutableMapping) -> Tuple
 
 
 if __name__ == "__main__":
-    print(evaluate_context(2, 2))
+    print(evaluate_context(print, 2, 2))

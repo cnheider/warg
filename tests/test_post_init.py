@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import Sequence, MutableMapping
+
 from warg import drop_unused_kws
 from warg.metas.post_init import PostInit
 
@@ -14,13 +16,13 @@ def test_post_init_class():
         class with the metaclass passed as an argument"""
 
         @drop_unused_kws
-        def __init__(self, *args, **kwargs):
+        def __init__(self, *args: Sequence, **kwargs: MutableMapping):
             print(kwargs)
 
-        def __post_init__(self, *args, **kwargs):
+        def __post_init__(self, *args: Sequence, **kwargs: MutableMapping):
             print(args, kwargs)
 
-        def __call__(self, *args, **kwargs):
+        def __call__(self, *args: Sequence, **kwargs: MutableMapping):
             print("a")
 
     a = MyTestingClass("asdc", kas=2)
@@ -41,7 +43,7 @@ def test_post_init_no_kws_class():
         def __post_init__(self, *args):
             print(args)
 
-        def __call__(self, *args, **kwargs):
+        def __call__(self, *args: Sequence, **kwargs: MutableMapping):
             print("a")
 
     a = MyTestingClass("asdc", kas=2)
@@ -57,7 +59,7 @@ def test_no_post_init_class():
         def __init__(self):
             print("Init class")
 
-        def __call__(self, *args, **kwargs):
+        def __call__(self, *args: Sequence, **kwargs: MutableMapping):
             print("a")
 
     a = MyTestingClass()

@@ -6,7 +6,7 @@ __doc__ = r"""
 
            Created on 18/03/2020
            """
-__all__ = ["default_datetime_repr"]
+__all__ = ["default_datetime_repr", "now_repr"]
 
 import datetime
 

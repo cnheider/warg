@@ -10,7 +10,7 @@ Generalised wrapper for delayed construction of class objects. Encapsulates kwar
 __all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
 
 import logging
-from typing import Any, Mapping, MutableMapping
+from typing import Any, Mapping, MutableMapping, Sequence
 
 
 class GeneralisedDelayedKwargConstruction(object):
@@ -19,7 +19,7 @@ class GeneralisedDelayedKwargConstruction(object):
     [constructor, args, kwargs]
     """
 
-    def __init__(self, constructor: callable, *args, **kwargs):
+    def __init__(self, constructor: callable, *args: Sequence, **kwargs: MutableMapping):
         """
         [constructor, args, kwargs]
         :param constructor:
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     class A:
         """description"""
 
-        def __init__(self, *args, **kwargs):
+        def __init__(self, *args: Sequence, **kwargs: MutableMapping):
             pass
 
     def stest_not_both() -> None:

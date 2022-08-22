@@ -9,7 +9,7 @@ __doc__ = r"""
            """
 
 from time import sleep, time
-from typing import Iterable, Mapping, Set, Tuple
+from typing import Iterable, Mapping, Set, Tuple, Sequence, MutableMapping
 
 from warg.decorators.hashing import make_hash
 
@@ -29,7 +29,7 @@ def add_lut(f: callable):
     return f
 
 
-def look_up(f, *args, **kwargs):
+def look_up(f, *args: Sequence, **kwargs: MutableMapping):
     """
 
     :param f:

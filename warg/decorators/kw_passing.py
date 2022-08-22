@@ -5,7 +5,7 @@ import inspect
 import types
 from functools import wraps
 from logging import warning
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Sequence, MutableMapping
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -250,7 +250,7 @@ def drop_unused_kws(f: callable):
 class AlsoDecorator:
     def __call__(self, func):
         @functools.wraps(func)
-        def decorate_func(*args, **kwargs):
+        def decorate_func(*args: Sequence, **kwargs: MutableMapping):
             """
 
             :param args:

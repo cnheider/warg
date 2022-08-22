@@ -15,6 +15,7 @@ import functools
 import time
 import typing
 from functools import wraps
+from typing import Sequence, MutableMapping
 
 
 def timeit(f: callable):
@@ -194,7 +195,7 @@ class StopWatch(contextlib.AbstractContextManager):
         :rtype:"""
 
         @functools.wraps(function)
-        def decorated(*args, **kwargs):
+        def decorated(*args: Sequence, **kwargs: MutableMapping):
             """description"""
             self.start_timer()
             values = function(*args, **kwargs)

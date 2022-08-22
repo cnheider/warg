@@ -12,7 +12,7 @@ __all__ = ["SingletonBase", "SingletonMeta", "key_singleton", "singleton"]
 
 import functools
 from functools import wraps
-from typing import Any
+from typing import Any, Sequence, MutableMapping
 
 
 class SingletonBase:
@@ -24,7 +24,7 @@ class SingletonBase:
 
     instance = None
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args: Sequence, **kwargs: MutableMapping):
         if cls.instance is None:
             cls.instance = super().__new__(cls, *args, **kwargs)
 
@@ -48,7 +48,7 @@ class SingletonMeta(type):
         super().__init__(name, bases, namespace)
         cls.instance = None
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, *args: Sequence, **kwargs: MutableMapping):
         if cls.instance is None:
             cls.instance = super().__call__(*args, **kwargs)
 
@@ -93,7 +93,7 @@ def key_singleton(cache_key: Any) -> callable:
         """description"""
 
         @wraps(fn)
-        def wrapper(self, *args, **kwargs):
+        def wrapper(self, *args: Sequence, **kwargs: MutableMapping):
             """description"""
             instance = getattr(self, cache_key)
             if instance is not None:

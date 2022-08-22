@@ -21,7 +21,7 @@ from pathlib import Path
 def read_reqs(file: str, path: Path) -> List[str]:
     """description"""
 
-    def readlines_ignore_comments(f):
+    def readlines_ignore_comments(f: IO):
         """description"""
         return [a_ for a_ in f.readlines() if "#" not in a_ and a_]
 
