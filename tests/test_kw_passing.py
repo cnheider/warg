@@ -59,7 +59,7 @@ def test_with_args_and_kwargs_on_subclasses():
     class BaseClass:
         """description"""
 
-        def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs):
+        def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs: MutableMapping):
             """
 
             :param arg0:
@@ -78,7 +78,7 @@ def test_with_args_and_kwargs_on_subclasses():
         """description"""
 
         @passes_kws_to(BaseClass.__init__)
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
+        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
             super().__init__(arg0, *args, **kwargs)
             self.arg1 = arg1
             self.arg2 = arg2
@@ -88,7 +88,7 @@ def test_with_args_and_kwargs_on_subclasses():
     class SubClass1(BaseClass):
         """description"""
 
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
+        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
             """
 
             :param arg0:
@@ -127,7 +127,7 @@ def test_subclass_with_kwargs():
         """description"""
 
         @passes_kws_to(BaseClass.__init__)
-        def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs):
+        def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs: MutableMapping):
             super().__init__(arg0, kwarg0=kwarg0)
             self.arg1 = arg1
             self.arg2 = arg2
@@ -137,7 +137,7 @@ def test_subclass_with_kwargs():
     class SubClass1(BaseClass):
         """description"""
 
-        def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs):
+        def __init__(self, arg0, arg1, arg2, kwarg0=0, kwarg2=None, **kwargs: MutableMapping):
             super().__init__(arg0, kwarg0=kwarg0)
             self.arg1 = arg1
             self.arg2 = arg2
@@ -195,7 +195,7 @@ def test_base_with_kwargs():
     class BaseClass:
         """description"""
 
-        def __init__(self, arg0, kwarg0=None, kwarg1=None, **kwargs):
+        def __init__(self, arg0, kwarg0=None, kwarg1=None, **kwargs: MutableMapping):
             """
 
             :param arg0:
@@ -315,11 +315,11 @@ def test_base_with_args_and_mock_empty_dict():
 
 
 def test_chaining_arbitrary_kwargs():
-    def b(c, f, *args, d=None, **kwargs):
+    def b(c, f, *args, d=None, **kwargs: MutableMapping):
         """description"""
         pass
 
-    def l(im_here=None, **kwargs):
+    def l(im_here=None, **kwargs: MutableMapping):
         """description"""
         pass
 
@@ -335,11 +335,11 @@ def test_chaining_arbitrary_kwargs():
 
 
 def test_chaining_arbitrary_kwargs_keep():
-    def b(c, f, *args, d=None, **kwargs):
+    def b(c, f, *args, d=None, **kwargs: MutableMapping):
         """description"""
         pass
 
-    def l(im_here=None, **kwargs):
+    def l(im_here=None, **kwargs: MutableMapping):
         """description"""
         pass
 
@@ -355,11 +355,11 @@ def test_chaining_arbitrary_kwargs_keep():
 
 
 def test_chaining_no_keep():
-    def b(c, f, *args, d: float = None, **kwargs):
+    def b(c, f, *args, d: float = None, **kwargs: MutableMapping):
         """description"""
         pass
 
-    def l(a, im_here: str = None, **kwargs):
+    def l(a, im_here: str = None, **kwargs: MutableMapping):
         """
 
         :param a:
@@ -394,11 +394,11 @@ def test_chaining_no_keep():
 
 
 def test_chaining_no_keep_composed_drop_kws():
-    def b(c, f, *args, d: float = None, **kwargs):
+    def b(c, f, *args, d: float = None, **kwargs: MutableMapping):
         """description"""
         pass
 
-    def l(a, im_here: str = None, **kwargs):
+    def l(a, im_here: str = None, **kwargs: MutableMapping):
         """
 
         :param a:

@@ -10,7 +10,7 @@ from draugr.multiprocessing_utilities.pooled_queue_processor import (
 
 
 class Zeroes(PooledQueueTask):
-    def call(self, batch_size, *args, tensor_size=(9, 9, 9, 9), **kwargs):
+    def call(self, batch_size, *args, tensor_size=(9, 9, 9, 9), **kwargs: MutableMapping):
         """description"""
         batch = [(numpy.zeros(tensor_size), i) for i in range(batch_size)]
         imgs = numpy.array([i[0] for i in batch], dtype=numpy.float32)

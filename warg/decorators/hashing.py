@@ -1,11 +1,12 @@
 import copy
+from typing import Any
 
 DictProxyType = type(object.__dict__)
 
 __all__ = ["make_hash"]
 
 
-def make_hash(o):
+def make_hash(o: Any) -> int:
     """
     Makes a hash from a dictionary, list, tuple or set to any level, that
     contains only other hashable types (including any lists, tuples, sets, and
