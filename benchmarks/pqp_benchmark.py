@@ -1,4 +1,5 @@
 import time
+from typing import MutableMapping
 
 import numpy
 from benchmarks.benchmark_func import benchmark_func

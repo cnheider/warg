@@ -17,7 +17,7 @@ from typing import Any, Sequence, MutableMapping
 
 class SingletonBase:
     """
-    A base class for creating singleton class where all subtypes(Deriavations) should also return the first
+    A base class for creating singleton class where all subtypes(Derivations) should also return the first
     and only
     instantiation of a particular singleton base type, if this property is not wanted consider using the
     SingletonMeta class instead."""
