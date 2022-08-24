@@ -1,6 +1,6 @@
-warg.colors.color\_conversion.rgb
+warg.colors.color\_conversion.RGB
 =================================
 
 .. currentmodule:: warg.colors.color_conversion
 
-.. autofunction:: rgb
+.. autofunction:: RGB

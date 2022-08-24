@@ -36,11 +36,11 @@ def test_post_init_no_kws_class():
         class with the metaclass passed as an argument"""
 
         @drop_unused_kws
-        def __init__(self, *args):
+        def __init__(self, *args: Sequence):
             print("Init class")
 
         @drop_unused_kws
-        def __post_init__(self, *args):
+        def __post_init__(self, *args: Sequence):
             print(args)
 
         def __call__(self, *args: Sequence, **kwargs: MutableMapping):

@@ -17,7 +17,7 @@ from typing import Any, Sequence, MutableMapping
 
 class SingletonBase:
     """
-    A base class for creating singleton class where all subtypes(Deriavations) should also return the first
+    A base class for creating singleton class where all subtypes(Derivations) should also return the first
     and only
     instantiation of a particular singleton base type, if this property is not wanted consider using the
     SingletonMeta class instead."""
@@ -61,20 +61,20 @@ def singleton(cls):
     cls.__new_original__ = cls.__new__
 
     @functools.wraps(cls.__new__)
-    def singleton_new(cls_, *args, **kw):
+    def singleton_new(cls_, *args: Sequence, **kwargs: MutableMapping):
         """
 
         :param cls_:
         :param args:
-        :param kw:
+        :param kwargs:
         :return:
         """
         it = cls_.__dict__.get("__it__")
         if it is not None:
             return it
 
-        cls_.__it__ = it = cls_.__new_original__(cls_, *args, **kw)
-        it.__init_original__(*args, **kw)
+        cls_.__it__ = it = cls_.__new_original__(cls_, *args, **kwargs)
+        it.__init_original__(*args, **kwargs)
         return it
 
     cls.__new__ = singleton_new

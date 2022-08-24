@@ -36,7 +36,7 @@ class IllegalAttributeKey(Exception):
     """
     An exception for when a deemed illegal attribute key was being overwritten"""
 
-    def __init__(self, key, type_: Type):
+    def __init__(self, key: Any, type_: Type):
         Exception.__init__(
             self,
             f'Overwriting of attribute "{key}" on type "{type_.__name__}" is not allowed',
@@ -402,7 +402,7 @@ return nod
     def __getstate__(self) -> dict:
         return self.__dict__
 
-    def __call__(self, *args) -> List:
+    def __call__(self, *args: Sequence) -> List:
         return [self.get(a) for a in args]
 
 

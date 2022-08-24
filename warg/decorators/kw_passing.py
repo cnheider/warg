@@ -153,7 +153,7 @@ def drop_args(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kws):
+    def wrapper(*args, **kwargs: MutableMapping):
         """
 
         :param args:
@@ -162,7 +162,7 @@ def drop_args(f: callable):
         :type kws:
         :return:
         :rtype:"""
-        return f(**kws)
+        return f(**kwargs)
 
     return wrapper
 
@@ -176,7 +176,7 @@ def drop_kws(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kws):
+    def wrapper(*args, **kwargs: MutableMapping):
         """
 
         :param args:
@@ -199,7 +199,7 @@ def drop_unused_args(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kws):
+    def wrapper(*args, **kwargs: MutableMapping):
         """
 
         :param args:
@@ -208,7 +208,7 @@ def drop_unused_args(f: callable):
         :type kws:
         :return:
         :rtype:"""
-        return f(**kws)
+        return f(**kwargs)
 
     return wrapper
 
@@ -222,7 +222,7 @@ def drop_unused_kws(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kws):
+    def wrapper(*args, **kwargs: MutableMapping):
         """
 
         :param args:
@@ -235,10 +235,10 @@ def drop_unused_kws(f: callable):
 
         for k, v in from_sig.parameters.items():
             if v.kind == inspect._ParameterKind.VAR_KEYWORD:
-                return f(*args, **kws)
+                return f(*args, **kwargs)
 
         kept = {}
-        for k, v in kws.items():
+        for k, v in kwargs.items():
             if k in from_sig.parameters.keys():
                 kept[k] = v
 
@@ -270,7 +270,7 @@ if __name__ == "__main__":
     class BaseClass:
         """description"""
 
-        def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs):
+        def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs: MutableMapping):
             self.arg0 = arg0
             for key, val in enumerate(args):
                 setattr(self, f"arg{key + 1}", val)
@@ -282,7 +282,7 @@ if __name__ == "__main__":
         """description"""
 
         @passes_kws_to(BaseClass.__init__)
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
+        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
             super().__init__(arg0, *args, **kwargs)
             self.arg1 = arg1
             self.arg2 = arg2
@@ -292,7 +292,7 @@ if __name__ == "__main__":
     class SubClass1(BaseClass):
         """description"""
 
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
+        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
             super().__init__(arg0, *args, **kwargs)
             self.arg1 = arg1
             self.arg2 = arg2
@@ -302,7 +302,7 @@ if __name__ == "__main__":
     class SubClass2(BaseClass):
         """description"""
 
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs):
+        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
             super().__init__(arg0, *args, **kwargs)
             self.arg1 = arg1
             self.arg2 = arg2
@@ -317,7 +317,7 @@ if __name__ == "__main__":
         print(a)
 
     @drop_unused_kws
-    def some_other_func(*, a, **kwargs):
+    def some_other_func(*, a, **kwargs: MutableMapping):
         """
 
         :param a:

@@ -15,6 +15,7 @@ warg.datetimes
       :toctree:
    
       default_datetime_repr
+      now_repr
    
    
 

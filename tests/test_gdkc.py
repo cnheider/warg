@@ -25,7 +25,7 @@ class A:
         """description"""
         print(self.kwargs_a)
 
-    def something_else(self, *args):
+    def something_else(self, *args: Sequence):
         """description"""
         print(args, self.kwargs_a)
 

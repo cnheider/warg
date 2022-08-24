@@ -15,6 +15,7 @@ warg.os.path\_utilities
       :toctree:
    
       latest_file
+      exist_any_extension
    
    
 

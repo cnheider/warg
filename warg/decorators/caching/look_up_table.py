@@ -9,7 +9,7 @@ __doc__ = r"""
            """
 
 from time import sleep, time
-from typing import Iterable, Mapping, Set, Tuple, Sequence, MutableMapping
+from typing import Iterable, Mapping, Set, Tuple, Sequence, MutableMapping, Any
 
 from warg.decorators.hashing import make_hash
 
@@ -18,7 +18,7 @@ global_table = {}
 __all__ = ["add_lut", "look_up", "look_up_args", "look_up_kws"]
 
 
-def add_lut(f: callable):
+def add_lut(f: callable) -> callable:
     """
 
     :param f:
@@ -29,7 +29,7 @@ def add_lut(f: callable):
     return f
 
 
-def look_up(f, *args: Sequence, **kwargs: MutableMapping):
+def look_up(f: callable, *args: Sequence, **kwargs: MutableMapping) -> Any:
     """
 
     :param f:
@@ -53,7 +53,7 @@ def look_up(f, *args: Sequence, **kwargs: MutableMapping):
     return res
 
 
-def look_up_args(f, *args):
+def look_up_args(f: callable, *args: Sequence) -> Any:
     """
 
     :param f:
@@ -74,7 +74,7 @@ def look_up_args(f, *args):
     return res
 
 
-def look_up_kws(f, **kws):
+def look_up_kws(f: callable, **kwargs: MutableMapping) -> Any:
     """
 
     :param f:
@@ -83,16 +83,16 @@ def look_up_kws(f, **kws):
     :type kws:
     :return:
     :rtype:"""
-    kw_hash = make_hash(kws)
+    kw_hash = make_hash(kwargs)
     if f in global_table:
         if kw_hash in global_table[f]:
             return global_table[f][kw_hash]
 
-        res = global_table[f][kw_hash] = f(**kws)
+        res = global_table[f][kw_hash] = f(**kwargs)
         return res
 
     global_table[f] = {}
-    res = global_table[f][kw_hash] = f(**kws)
+    res = global_table[f][kw_hash] = f(**kwargs)
     return res
 
 

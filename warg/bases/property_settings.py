@@ -9,7 +9,7 @@ __doc__ = r"""
 __all__ = ["PropertySettings"]
 
 from collections.abc import Mapping
-from typing import Dict
+from typing import Dict, MutableMapping, Any
 
 from warg import NOD
 
@@ -28,7 +28,7 @@ class PropertySettings(
     # raise_exception_on_none = False
     raise_exception_non_exist_property = True
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: MutableMapping):
         for k, v in kwargs.items():
             self.__setattr__(k, v)
 
@@ -44,7 +44,7 @@ class PropertySettings(
             if not setting.startswith("_"):
                 self.__setattr__(setting, None)
 
-    def __setattr__(self, key, value):
+    def __setattr__(self, key: str, value: Any):
         assert not key.startswith("_"), f"{key} is not allowed"
         if PropertySettings.raise_exception_non_exist_property and not hasattr(self, key):
             raise ValueError(f"Property setting {key} does not exist , available settings {self}")
@@ -70,7 +70,7 @@ class PropertySettings(
     def __str__(self) -> str:
         return self.__repr__()
 
-    def __contains__(self, item):
+    def __contains__(self, item: Any):
         return hasattr(self, item)
 
     # def __dir__(self) -> Iterable[str]:
@@ -95,7 +95,7 @@ class PropertySettings(
 
         return iter(available_settings)
 
-    def __getitem__(self, item):
+    def __getitem__(self, item: Any):
         return self.__getattr__(item)
 
     def __to_dict__(self) -> Dict:

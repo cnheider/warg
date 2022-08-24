@@ -10,6 +10,7 @@ __all__ = ["PlaybackShell", "ConfigShell"]
 
 import cmd
 from pathlib import Path
+from typing import MutableMapping, Optional
 
 from warg import passes_kws_to, PropertySettings
 
@@ -22,13 +23,13 @@ class PlaybackShell(cmd.Cmd):
     file = None
 
     # ----- record and playback -----
-    def do_record(self, file: Path):
+    def do_record(self, file: Path) -> None:
         """Save future commands to filename:  RECORD file.cmd"""
         if not file:
             file = self.default_file_path
         self.file = open(file, "w")
 
-    def do_playback(self, file: Path):
+    def do_playback(self, file: Path) -> None:
         """Playback commands from a file:  PLAYBACK file.cmd"""
         self.close()
         if not file:
@@ -36,7 +37,7 @@ class PlaybackShell(cmd.Cmd):
         with open(file) as f:
             self.cmdqueue.extend(f.read().splitlines())
 
-    def precmd(self, line):
+    def precmd(self, line: str) -> str:
         """
 
         :param line:
@@ -47,19 +48,19 @@ class PlaybackShell(cmd.Cmd):
             print(line, file=self.file)
         return line
 
-    def close(self):
-        """description"""
+    def close(self) -> None:
+        """Close file"""
         if self.file:
             self.file.close()
             self.file = None
 
-    def do_exit(self, arg):
+    def do_exit(self, arg) -> bool:
         """If recording, stop, close file, close window, and exit:"""
         print("Exiting")
         self.close()
         return True
 
-    def do_close(self, arg):
+    def do_close(self, arg) -> None:
         """If recording, stop, close file, close window, and exit:"""
         self.do_exit(arg)
 
@@ -90,11 +91,11 @@ class ConfigShell(PlaybackShell):
             return False  # don't stop
 
     @passes_kws_to(cmd.Cmd.__init__)
-    def __init__(self, name: str = "config", **kwargs):
+    def __init__(self, name: str = "config", **kwargs: MutableMapping):
         super().__init__(**kwargs)
         ConfigShell.prompt = f"({name}) "
 
-    def add_property_options(self, ps: PropertySettings):
+    def add_property_options(self, ps: PropertySettings) -> None:
         """
 
         :param ps:
@@ -114,7 +115,9 @@ class ConfigShell(PlaybackShell):
                     deleter = None
                 self.add_option(p, getter=getter, setter=setter, deleter=deleter)
 
-    def add_option(self, key, *, getter, setter, deleter=None):
+    def add_option(
+        self, key: str, *, getter: callable, setter: callable, deleter: Optional[callable] = None
+    ) -> None:
         """
 
         :param key:
@@ -131,7 +134,7 @@ class ConfigShell(PlaybackShell):
         if deleter:
             self.add_func(f"del_{key}", deleter)
 
-    def add_func(self, key, func):
+    def add_func(self, key: str, func: callable) -> None:
         """
 
         :param key:
