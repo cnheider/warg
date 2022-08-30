@@ -8,9 +8,44 @@ __doc__ = r"""
            """
 
 import os
+import subprocess
 from pathlib import Path
 
-__all__ = ["latest_file", "exist_any_extension"]
+__all__ = ["latest_file", "exist_any_extension", "system_open_path"]
+
+from warg.os.os_platform import is_windows, is_mac
+from warg.os.display import has_x_server
+
+
+def system_open_path(path: Path, *, verbose: bool = False) -> None:
+    """
+
+
+    :param path:
+    :type path:
+    :param verbose:
+    :type verbose:
+    :return:
+    :rtype:
+    """
+    if has_x_server():
+
+        directory = str(path)
+        if verbose:
+            print(f"Opening the directory ({directory}) using the systems default file manager")
+
+        if is_windows:
+            subprocess.Popen(["start", directory], shell=True)
+
+        elif is_mac:
+            subprocess.Popen(["open", directory])
+
+        else:
+            # try:
+            subprocess.Popen(["xdg-open", directory])
+            # except OSError:
+    else:
+        print("Target display not set")
 
 
 def latest_file(
