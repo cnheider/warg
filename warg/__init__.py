@@ -5,7 +5,6 @@ from warnings import warn
 
 import pkg_resources
 
-from apppath import AppPath
 
 __project__ = "Warg"
 __author__ = "Christian Heider Nielsen"
@@ -82,7 +81,8 @@ PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 
-PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
+# from apppath import AppPath # CAREFUL CIRCULAR DEPENDENCY WARNING!
+# PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR) # NOT USED!
 
 distributions = {v.key: v for v in pkg_resources.working_set}
 if PROJECT_NAME in distributions:

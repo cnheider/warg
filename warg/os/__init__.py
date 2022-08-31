@@ -16,3 +16,6 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from .os_platform import *
 from .path_utilities import *
+from .filtering import *
+from .platform_selection import *
+from .path_functions import *

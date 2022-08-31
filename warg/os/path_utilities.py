@@ -13,8 +13,7 @@ from pathlib import Path
 
 __all__ = ["latest_file", "exist_any_extension", "system_open_path"]
 
-from warg.os.os_platform import is_windows, is_mac
-from warg.os.display import has_x_server
+from warg.os.os_platform import is_windows, is_mac, has_x_server
 
 
 def system_open_path(path: Path, *, verbose: bool = False) -> None:

@@ -29,7 +29,7 @@ ___
 ## Only for use with Python 3.6+
 
 This package is a selection of generalised small utility classes for many use-cases in any python project, a brief
-description of each follow. No external dependencies, #pure-python.
+description of each follow. No external dependencies, #pure-python. Warg is strictly only using standard library functionality, hopefully forever..
 
 - A class for easing return of multiple values, implicit handling of args and kwargs and more. Neat access options to
   the underlying \_\_dict\_\_ of the class instance, supporting almost any variation that comes to mind.

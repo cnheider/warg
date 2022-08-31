@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os
 import sys
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
-          get os platform utilities 
+          get os platform path_utilities 
 
            Created on 13/06/2020
            """
@@ -56,3 +57,15 @@ def get_platform() -> str:
     :return:
     """
     return CUR_OS
+
+
+def has_x_server() -> bool:
+    """
+    test if display is available, if other than linux system atm it returns true
+
+    :return:
+    :rtype:
+    """
+    if is_nix():
+        return os.environ["DISPLAY"] != ""
+    return True
