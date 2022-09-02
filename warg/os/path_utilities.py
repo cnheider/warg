@@ -18,7 +18,7 @@ from warg.os.os_platform import is_windows, is_mac, has_x_server
 
 def system_open_path(path: Path, *, verbose: bool = False) -> None:
     """
-
+    Use system defaults for opening path/uris
 
     :param path:
     :type path:

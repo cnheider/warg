@@ -6,12 +6,23 @@ __doc__ = r"""
 
            Created on 09-02-2021
            """
-__all__ = ["IgnoreInterruptSignal"]
+__all__ = ["IgnoreInterruptSignal", "LambdaContext"]
 
 import contextlib
 import signal
 
 from warg import AlsoDecorator
+
+
+class LambdaContext(contextlib.AbstractContextManager):
+    def __init__(self, callable_):
+        self.callable_ = callable_
+
+    def __enter__(self):
+        return self.callable_
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        return
 
 
 class IgnoreInterruptSignal(contextlib.AbstractContextManager, AlsoDecorator):

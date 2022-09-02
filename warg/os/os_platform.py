@@ -10,7 +10,7 @@ __doc__ = r"""
            Created on 13/06/2020
            """
 
-__all__ = ["is_nix", "is_windows", "is_mac", "is_linux", "get_platform"]
+__all__ = ["is_nix", "is_windows", "is_mac", "is_linux", "get_platform", "has_x_server"]
 
 CUR_OS = sys.platform
 IS_WIN = any(CUR_OS.startswith(i) for i in ["win32", "cygwin"])
