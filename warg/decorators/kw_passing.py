@@ -5,7 +5,7 @@ import inspect
 import types
 from functools import wraps
 from logging import warning
-from typing import Dict, Tuple, Sequence, MutableMapping
+from typing import Dict, MutableMapping, Sequence, Tuple, Any
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -21,10 +21,15 @@ __all__ = [
     "drop_unused_args",
     "drop_kws",
     "drop_args",
+    "drop_args_and_kws",
+    "pack_args",
+    "pack_kws",
+    "pack_args_and_kws",
     "AlsoDecorator",
 ]
 
 
+# noinspection PyUnresolvedReferences
 def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
     """
 
@@ -37,6 +42,7 @@ def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
     return val
 
 
+# noinspection PyUnresolvedReferences
 def eval_sig_kw_params(
     passing_sig: inspect.Signature,
     receiver_func: callable,
@@ -106,8 +112,8 @@ def passes_kws_to(*receiver_funcs: callable, keep_from_var_kw: bool = False) -> 
 
     def _func(passing_func: callable) -> callable:
         passing_sig = inspect.signature(passing_func)
-        for receiver_func in receiver_funcs:
-            passing_sig, new_params = eval_sig_kw_params(passing_sig, receiver_func, keep_from_var_kw)
+        for rf in receiver_funcs:
+            passing_sig, new_params = eval_sig_kw_params(passing_sig, rf, keep_from_var_kw)
             passing_sig = passing_sig.replace(parameters=list(new_params.values()))
         passing_func.__signature__ = passing_sig
         return passing_func
@@ -125,7 +131,7 @@ def super_init_pass_on_kws(
     :param keep_from_var_kw:
     :return:"""
 
-    def _func(func):
+    def _func(func) -> callable:
         if super_base:
             to_func = super_base.__init__
         else:
@@ -144,7 +150,7 @@ def super_init_pass_on_kws(
     return _func
 
 
-def drop_args(f: callable):
+def drop_args(f: callable) -> callable:
     """
 
     :param f:
@@ -153,13 +159,11 @@ def drop_args(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kwargs: MutableMapping):
+    def wrapper(*args, **kwargs: MutableMapping) -> Any:
         """
 
         :param args:
         :type args:
-        :param kws:
-        :type kws:
         :return:
         :rtype:"""
         return f(**kwargs)
@@ -167,7 +171,7 @@ def drop_args(f: callable):
     return wrapper
 
 
-def drop_kws(f: callable):
+def drop_kws(f: callable) -> callable:
     """
 
     :param f:
@@ -176,13 +180,11 @@ def drop_kws(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kwargs: MutableMapping):
+    def wrapper(*args, **kwargs: MutableMapping) -> Any:
         """
 
         :param args:
         :type args:
-        :param kws:
-        :type kws:
         :return:
         :rtype:"""
         return f(*args)
@@ -190,7 +192,7 @@ def drop_kws(f: callable):
     return wrapper
 
 
-def drop_unused_args(f: callable):
+def drop_args_and_kws(f: callable) -> callable:
     """
 
     :param f:
@@ -199,13 +201,160 @@ def drop_unused_args(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kwargs: MutableMapping):
+    def wrapper(*args, **kwargs: MutableMapping) -> Any:
         """
 
         :param args:
         :type args:
-        :param kws:
-        :type kws:
+        :return:
+        :rtype:"""
+        return f()
+
+    return wrapper
+
+
+WRAPPER_NO_ANNOTATION = tuple(
+    set(functools.WRAPPER_ASSIGNMENTS)
+    - {
+        "__annotations__",
+    }
+)
+
+
+def pack_args(
+    f: callable, *, pack_name: str = "arg_pack", allow_passing: bool = True, verbose: bool = False
+) -> callable:
+    """
+
+    :param pack_name:
+    :type pack_name:
+    :param f:
+    :type f:
+    :return:
+    :rtype:"""
+
+    @wraps(
+        f,
+        # assigned=WRAPPER_NO_ANNOTATION,
+        # updated=("__annotations__",),
+    )
+    def wrapper(*args, **kwargs: MutableMapping) -> Any:
+        """
+
+        :param args:
+        :type args:
+        :return:
+        :rtype:"""
+        new_kwargs = kwargs.copy()
+        if not allow_passing:
+            assert pack_name not in kwargs, f"thou shall not pass {pack_name}"
+        else:
+            if pack_name in kwargs:
+                if verbose:
+                    print(f"{pack_name} was extended, careful!")
+                a = kwargs.pop(pack_name, None)
+                new_kwargs[pack_name] = (*a, *args)
+            else:
+                new_kwargs[pack_name] = args
+        return f(*args, **new_kwargs)
+
+    return wrapper
+
+
+def pack_kws(
+    f: callable, *, pack_name: str = "kw_pack", allow_passing: bool = True, verbose: bool = False
+) -> callable:
+    """
+
+    :param pack_name:
+    :type pack_name:
+    :param f:
+    :type f:
+    :return:
+    :rtype:"""
+
+    @wraps(
+        f,
+        # assigned=WRAPPER_NO_ANNOTATION, #TODO: Figure out if pack_name can be hidden from function signature
+        # updated=("__annotations__",),
+    )
+    def wrapper(*args, **kwargs: MutableMapping) -> Any:
+        """
+
+        :param args:
+        :type args:
+        :return:
+        :rtype:"""
+        new_kwargs = kwargs.copy()
+        if not allow_passing:
+            assert pack_name not in kwargs, f"thou shall not pass {pack_name}"
+        else:  # TODO: else keyword can be removed, but branch remain
+            if pack_name in kwargs:
+                if verbose:
+                    print(f"{pack_name} was extended, careful!")
+                k = kwargs.pop(pack_name, None)
+                new_kwargs[pack_name] = {**k, **kwargs}
+            else:
+                new_kwargs[pack_name] = kwargs
+        return f(*args, **new_kwargs)
+
+    return wrapper
+
+
+def pack_args_and_kws(
+    f: callable, *, pack_name: str = "arg_kw_pack", allow_passing: bool = True, verbose: bool = False
+) -> callable:
+    """
+
+    :param pack_name:
+    :type pack_name:
+    :param f:
+    :type f:
+    :return:
+    :rtype:"""
+
+    @wraps(
+        f,
+        # assigned=WRAPPER_NO_ANNOTATION,
+        # updated=("__annotations__",),
+    )
+    def wrapper(*args, **kwargs: MutableMapping) -> Any:
+        """
+
+        :param args:
+        :type args:
+        :return:
+        :rtype:"""
+        new_kwargs = kwargs.copy()
+        if not allow_passing:
+            assert pack_name not in kwargs, f"thou shall not pass {pack_name}"
+        else:  # TODO: else keyword can be removed, but branch remain
+            if pack_name in kwargs:
+                if verbose:
+                    print(f"{pack_name} was extended, careful!")
+                a, k = kwargs.pop(pack_name, None)
+                new_kwargs[pack_name] = ((*a, *args), {**k, **kwargs})
+            else:
+                new_kwargs[pack_name] = (args, kwargs)
+        return f(*args, **kwargs)
+
+    return wrapper
+
+
+def drop_unused_args(f: callable) -> callable:
+    """
+
+    :param f:
+    :type f:
+    :return:
+    :rtype:"""
+
+    @wraps(f)
+    def wrapper(*args, **kwargs: MutableMapping) -> Any:
+        """
+
+        :param args:
+        :type args:
         :return:
         :rtype:"""
         return f(**kwargs)
@@ -213,7 +362,8 @@ def drop_unused_args(f: callable):
     return wrapper
 
 
-def drop_unused_kws(f: callable):
+# noinspection PyUnresolvedReferences
+def drop_unused_kws(f: callable) -> callable:
     """
 
     :param f:
@@ -227,8 +377,6 @@ def drop_unused_kws(f: callable):
 
         :param args:
         :type args:
-        :param kws:
-        :type kws:
         :return:
         :rtype:"""
         from_sig = inspect.signature(f)
@@ -248,6 +396,10 @@ def drop_unused_kws(f: callable):
 
 
 class AlsoDecorator:
+    """
+    Lets you use a function as a decorator too
+    """
+
     def __call__(self, func):
         @functools.wraps(func)
         def decorate_func(*args: Sequence, **kwargs: MutableMapping):
@@ -267,86 +419,89 @@ class AlsoDecorator:
 
 if __name__ == "__main__":
 
-    class BaseClass:
-        """description"""
+    def _main():
+        class BaseClass:
+            """description"""
 
-        def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs: MutableMapping):
-            self.arg0 = arg0
-            for key, val in enumerate(args):
-                setattr(self, f"arg{key + 1}", val)
-            self.kwarg0 = kwarg0
-            self.kwarg1 = kwarg1
-            self.__dict__.update(kwargs)
+            def __init__(self, arg0, *args, kwarg0=None, kwarg1=None, **kwargs: MutableMapping):
+                self.arg0 = arg0
+                for key, val in enumerate(args):
+                    setattr(self, f"arg{key + 1}", val)
+                self.kwarg0 = kwarg0
+                self.kwarg1 = kwarg1
+                self.__dict__.update(kwargs)
 
-    class SubClass0(BaseClass):
-        """description"""
+        class SubClass0(BaseClass):
+            """description"""
 
-        @passes_kws_to(BaseClass.__init__)
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
-            super().__init__(arg0, *args, **kwargs)
-            self.arg1 = arg1
-            self.arg2 = arg2
-            self.kwarg2 = kwarg2
+            @passes_kws_to(BaseClass.__init__)
+            def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
+                super().__init__(arg0, *args, **kwargs)
+                self.arg1 = arg1
+                self.arg2 = arg2
+                self.kwarg2 = kwarg2
 
-    @super_init_pass_on_kws
-    class SubClass1(BaseClass):
-        """description"""
+        @super_init_pass_on_kws
+        class SubClass1(BaseClass):
+            """description"""
 
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
-            super().__init__(arg0, *args, **kwargs)
-            self.arg1 = arg1
-            self.arg2 = arg2
-            self.kwarg2 = kwarg2
+            def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
+                super().__init__(arg0, *args, **kwargs)
+                self.arg1 = arg1
+                self.arg2 = arg2
+                self.kwarg2 = kwarg2
 
-    @super_init_pass_on_kws(super_base=BaseClass)
-    class SubClass2(BaseClass):
-        """description"""
+        @super_init_pass_on_kws(super_base=BaseClass)
+        class SubClass2(BaseClass):
+            """description"""
 
-        def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
-            super().__init__(arg0, *args, **kwargs)
-            self.arg1 = arg1
-            self.arg2 = arg2
-            self.kwarg2 = kwarg2
+            def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
+                super().__init__(arg0, *args, **kwargs)
+                self.arg1 = arg1
+                self.arg2 = arg2
+                self.kwarg2 = kwarg2
 
-    @drop_unused_kws
-    def some_func(*, a):
-        """
+        @drop_unused_kws
+        def some_func(*, a):
+            """
 
-        :param a:
-        :type a:"""
-        print(a)
+            :param a:
+            :type a:"""
+            print(a)
 
-    @drop_unused_kws
-    def some_other_func(*, a, **kwargs: MutableMapping):
-        """
+        @drop_unused_kws
+        def some_other_func(*, a, **kwargs: MutableMapping):
+            """
 
-        :param a:
-        :type a:
-        :param kwargs:
-        :type kwargs:"""
-        print(a, kwargs)
+            :param a:
+            :type a:
+            :param kwargs:
+            :type kwargs:"""
+            print(a, kwargs)
 
-    @drop_unused_kws
-    def some_different_func(*, a, b):
-        """
+        @drop_unused_kws
+        def some_different_func(*, a, b):
+            """
 
-        :param a:
-        :type a:
-        :param b:
-        :type b:"""
-        print(a, b)
+            :param a:
+            :type a:
+            :param b:
+            :type b:"""
+            print(a, b)
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
-    print(inspect.signature(SubClass1.__init__))
+        print(inspect.signature(SubClass0.__init__))
+        print(inspect.signature(SubClass1.__init__))
+        print(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
-    print(vars(SubClass2(1, 1, 1, kwarg0=52)))
-    print(inspect.getmro(SubClass0))
+        print(vars(SubClass0(1, 1, 1, kwarg0=52)))
+        print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+        print(vars(SubClass2(1, 1, 1, kwarg0=52)))
+        print(inspect.getmro(SubClass0))
 
-    some_func(a=1, b=2, c=3)
+        some_func(a=1, b=2, c=3)
 
-    some_other_func(a=1, b=2)
+        some_other_func(a=1, b=2)
 
-    some_different_func(a=1, c=2, b="l")
+        some_different_func(a=1, c=2, b="l")
+
+    _main()

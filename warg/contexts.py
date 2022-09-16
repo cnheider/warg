@@ -24,6 +24,15 @@ class LambdaContext(contextlib.AbstractContextManager):
     def __exit__(self, exc_type, exc_val, exc_tb):
         return
 
+    def __getattr__(self, item):
+        return getattr(iter, self.callable_)
+
+    def __getitem__(self, item):
+        return self.callable_[item]
+
+    def __call__(self, *args, **kwargs):
+        return self.callable_
+
 
 class IgnoreInterruptSignal(contextlib.AbstractContextManager, AlsoDecorator):
     """description"""

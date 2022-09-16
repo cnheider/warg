@@ -123,6 +123,7 @@ logs/*.csv
 *[Ee]xclude.*
 *[Ee]xcluded*
 *[Ee]xclude*
+[Ee]xcluded*
 
 
 pip-wheel-metadata

@@ -1,9 +1,13 @@
+import itertools
 from math import sin, cos
 from typing import Iterable
 
 from warg import Number
 
-__all__ = ["sin_gen", "cos_gen"]
+__all__ = ["sin_gen", "cos_gen", "loop"]
+
+
+loop = itertools.cycle
 
 
 def sin_gen(iterable: Iterable[Number], magnitude: Number = 1) -> Iterable[Number]:

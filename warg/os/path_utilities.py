@@ -29,14 +29,15 @@ def system_open_path(path: Path, *, verbose: bool = False) -> None:
     """
     if has_x_server():
 
-        directory = str(path)
         if verbose:
-            print(f"Opening the directory ({directory}) using the systems default file manager")
+            print(f"Opening the directory ({path}) using the systems default file manager")
 
-        if is_windows:
+        directory = str(path)
+
+        if is_windows():
             subprocess.Popen(["start", directory], shell=True)
 
-        elif is_mac:
+        elif is_mac():
             subprocess.Popen(["open", directory])
 
         else:
