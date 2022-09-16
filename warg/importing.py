@@ -13,13 +13,31 @@ __all__ = [
     "reimported_warning",
     "ensure_in_sys_path",
     "clean_sys_path",
+    "import_file",
 ]
 
 import sys
 from importlib.util import find_spec
-from warnings import warn
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Any
+from warnings import warn
+
+
+def import_file(path: Path, from_list=None) -> Any:
+    """Import a module given its filename, works both on absolute and relative paths"""
+    if from_list is None:
+        from_list = {}
+    globals_ = {}  # globals() # determines package context
+    locals_ = {}  # locals() # Should not be used in import anyway
+
+    sys_path = sys.path  # Save original sys.path
+    try:
+        sys.path.insert(0, str(path.parent.absolute()))  # Temporarily add parent dir of path to parent
+        return __import__(
+            path.stem, globals=globals_, locals=locals_, fromlist=from_list, level=0
+        )  # Get the module name (no extension)
+    finally:
+        sys.path = sys_path  # Restore original sys.path
 
 
 def clean_sys_path() -> None:
@@ -144,7 +162,6 @@ if __name__ == "__main__":
         print(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
     def iajsd():
-
         from copy import deepcopy
 
         s = deepcopy(sys.path)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Any, Iterable
+from typing import Any, Iterable, Iterator, Mapping, Tuple, Sized
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -68,6 +68,43 @@ def kw_map(func: callable, kw: str, iterable: Iterable) -> Any:
         yield func(**{kw: a})
 
 
+def select_key(tuple_iterator: Iterable, *a) -> Tuple:
+    """
+    Yield keys from mapping if in a
+
+    :param tuple_iterator:
+    :type tuple_iterator:
+    :param a:
+    :type a:
+    :return:
+    :rtype:
+    """
+    for k, _ in tuple_iterator:
+        if k in a:
+            yield k, _
+
+
+def select_dict(mapping: Mapping, *a) -> Mapping:
+    """
+    Select keys from mapping if in a
+
+    Args:
+      mapping:
+      *a:
+
+    Returns:
+
+    """
+    return {k: v for k, v in select_key(mapping.items(), *a)}
+
+
 if __name__ == "__main__":
-    a = (2, 3)
-    # TODO
+
+    def uahsd():
+        agfas = (2, 3)
+        # TODO
+
+        sadd = {a: b for a, b in zip("abcdef", range(6))}
+        print(select_dict(sadd, "a", "d"))
+
+    uahsd()

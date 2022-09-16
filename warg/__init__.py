@@ -41,7 +41,7 @@ from .context_wrapper import *
 from .boolean_tests import *
 from .map_itertools import *
 from .ast_ops import *
-from .imports import *
+from .importing import *
 from .functions import *
 from .os import *
 from .generators import *
@@ -80,6 +80,7 @@ PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
 PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
+PROJECT_ORGANISATION = "pything"
 
 # from apppath import AppPath # CAREFUL CIRCULAR DEPENDENCY WARNING!
 # PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR) # NOT USED!
