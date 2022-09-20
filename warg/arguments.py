@@ -43,13 +43,14 @@ class ConfigObject(object):
     pass
 
 
-def to_lower_properties(C_dict: Mapping):
+def to_lower_properties(C_dict: Mapping) -> ConfigObject:
     """
 
     :param C_dict:
     :type C_dict:
     :return:
-    :rtype:"""
+    :rtype:ConfigObject
+    """
     if not isinstance(C_dict, dict):
         C_dict = config_to_mapping(C_dict)
 
@@ -235,21 +236,25 @@ def str_to_bool(s: str, truthies: Tuple[str, ...] = ("true", "1")) -> bool:
 str2bool = str_to_bool
 
 if __name__ == "__main__":
-    c = namedtuple("C", ("a", "b"))
 
-    def add2(a, b):
-        """
+    def _main():
+        c = namedtuple("C", ("a", "b"))
 
-        :param a:
-        :type a:
-        :param b:
-        :type b:
-        :return:
-        :rtype:"""
-        return a + b
+        def add2(a, b):
+            """
 
-    wq = add2(2, 4)
-    print(wq)
+            :param a:
+            :type a:
+            :param b:
+            :type b:
+            :return:
+            :rtype:"""
+            return a + b
 
-    wc = add2(*c(4, 3))
-    print(wc)
+        wq = add2(2, 4)
+        print(wq)
+
+        wc = add2(*c(4, 3))
+        print(wc)
+
+    _main()
