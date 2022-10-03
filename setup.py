@@ -69,6 +69,8 @@ with open(Path(__file__).parent / "warg" / "__init__.py", "r") as project_init_f
     version = re.search(rf"__version__ = {str_reg_exp}", content, re.M).group(1)
     project_name = re.search(rf"__project__ = {str_reg_exp}", content, re.M).group(1)
     author = re.search(rf"__author__ = {str_reg_exp}", content, re.M).group(1)
+    # url = re.search(rf"__url__ = {str_reg_exp}", content, re.M).group(1)
+
 __author__ = author
 
 
@@ -90,7 +92,7 @@ class WargPackage:
     @property
     def url(self) -> str:
         """description"""
-        return "https://github.com/aivclab/warg"
+        return "https://github.com/pything/warg"
 
     @property
     def download_url(self):
