@@ -1,4 +1,4 @@
-from typing import Mapping, Iterable, Hashable, Dict
+from typing import Mapping, Iterable, Hashable, Dict, MutableMapping
 
 __all__ = ["invert_mapping", "invert_dict", "AppendingDict", "pivot_dict_object", "pivot_dict"]
 
@@ -27,6 +27,13 @@ class AppendingDict(Dict):  # appending_dict = collections.defaultdict(list)
             self[key].append(value)
         else:
             super().__setitem__(key, [value])
+
+
+def recurse_mapping(a: Mapping, call: callable = print) -> None:
+    for k, v in a.items():
+        if isinstance(v, Mapping):
+            recurse_mapping(v)
+        call(v)
 
 
 def invert_mapping(m: Mapping) -> Mapping:

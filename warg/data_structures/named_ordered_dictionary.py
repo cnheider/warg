@@ -31,6 +31,18 @@ LOCALS = (
     "__setattr__",
 )
 
+RECURSE_MAPPING_CONVERSION = True
+
+
+def recurse_conversion(self, value):
+    if isinstance(value, MutableMapping) and not isinstance(value, self.__class__):
+        value = self.__class__(value)
+    elif isinstance(value, (list, tuple)):  # TODO: MAYBE KEEP?
+        value = type(value)(
+            self.__class__(x) if isinstance(x, MutableMapping) else recurse_conversion(self, x) for x in value
+        )
+    return value
+
 
 class IllegalAttributeKey(Exception):
     """
@@ -129,7 +141,8 @@ class NamedOrderedDictionary(MutableMapping):
                 args_dict[id(arg)] = arg
 
         args_dict.update(kwargs)
-        self.update(args_dict or {})
+        if len(args_dict) > 0:
+            self.update(args_dict)
 
     def as_list(self) -> list:
         """
@@ -210,11 +223,11 @@ NOD.dict_of(spam=spam, foo=x.foo, bar=y['bar'])
 nod = NamedOrderedDictionary()
 
 for arg, value in zip(frame_info.call.args[-len(args) :], args):
-  try:
-      arg_key = node_name(arg)
-      nod[arg_key] = value
-  except TypeError:
-      nod.add_unnamed_arg(value)
+try:
+    arg_key = node_name(arg)
+    nod[arg_key] = value
+except TypeError:
+    nod.add_unnamed_arg(value)
 
 nod.update(kwargs)
 
@@ -236,6 +249,8 @@ return nod
         if key == "__dict__":
             super().__setattr__(key, value)
         else:
+            if RECURSE_MAPPING_CONVERSION:
+                value = recurse_conversion(self, value)
             self.__dict__[key] = value
 
     def __getitem__(self, key: Any) -> Any:
@@ -269,9 +284,13 @@ return nod
                     value
                 ), f"number of keys {len(keys)} are not equal values {len(value)}"
                 for a, v in zip(keys, value):
+                    if RECURSE_MAPPING_CONVERSION:
+                        v = recurse_conversion(self, v)
                     self.__dict__[a] = v
             else:
                 for a in keys:
+                    if RECURSE_MAPPING_CONVERSION:
+                        value = recurse_conversion(self, value)
                     self.__dict__[a] = value
         elif isinstance(key, KeysView):
             # assert set(self.__dict__.keys()).issuperset(key)
@@ -280,11 +299,17 @@ return nod
             if isinstance(value, (Sequence, ValuesView)):
                 assert len(key) == len(value), f"number of keys {len(key)} are not equal values {len(value)}"
                 for a, v in zip(key, value):
+                    if RECURSE_MAPPING_CONVERSION:
+                        v = recurse_conversion(self, v)
                     self.__dict__[a] = v
             else:
                 for a in key:
+                    if RECURSE_MAPPING_CONVERSION:
+                        value = recurse_conversion(self, value)
                     self.__dict__[a] = value
         else:
+            if RECURSE_MAPPING_CONVERSION:
+                value = recurse_conversion(self, value)
             self.__dict__[key] = value
 
     def __delitem__(self, key) -> None:
@@ -339,11 +364,21 @@ return nod
         items (dict): Python dictionary containing updated values."""
 
         if len(args) == 1 and isinstance(args[0], dict):
-            args_dict = args[0]
+            a = args[0]
+            if RECURSE_MAPPING_CONVERSION and True:
+                l = {}
+                for k, v in a.items():
+                    l[k] = recurse_conversion(self, v)
+                a = l
+
+            args_dict = a
         else:
             args_dict = {}
             a = list(self.__dict__.keys())
             for arg, key in zip(args, a):
+                if RECURSE_MAPPING_CONVERSION and True:
+                    arg = recurse_conversion(self, arg)
+
                 args_dict[key] = arg
 
         args_dict.update(kwargs)
@@ -409,25 +444,158 @@ return nod
 NOD = NamedOrderedDictionary
 
 if __name__ == "__main__":
+    from itertools import count
+
+    ccc = count()
+
+    print(f"\n{next(ccc):#^9}")  # 0
     nodict = NamedOrderedDictionary()
     nodict.paramA = "str_parameter"
     nodict.paramB = 10
+    print(nodict)
     assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
     from copy import deepcopy, copy
 
+    print(f"\n{next(ccc):#^9}")  # 1
     b = copy(nodict)
     print(b)
     assert b.paramB == 10
     assert b.paramB == nodict.paramB
 
+    print(f"\n{next(ccc):#^9}")  # 2
     a = deepcopy(nodict)
     print(a)
     assert a.paramB == 10
     assert a.paramB == nodict.paramB
 
+    print(f"\n{next(ccc):#^9}")  # 3
     c = NOD()
     c[nodict.keys()] = nodict.values()
     print(c)
     d = deepcopy(c)
     print(d)
+
+    print(f"\n{next(ccc):#^9}")  # 4
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {"s": "str_parameter"}
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA.s)
+
+    print(f"\n{next(ccc):#^9}")  # 5
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {}
+    nodict.paramA["s"] = "str_parameter"
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA.s)
+
+    print(f"\n{next(ccc):#^9}")  # 6
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {}
+    nodict.paramA.s = "str_parameter"
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA.s)
+
+    print(f"\n{next(ccc):#^9}")  # 7
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {}
+    nodict.paramA["s"] = [{"sd": "str_parameter"}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA.s)
+
+    print(f"\n{next(ccc):#^9}")  # 8
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {}
+    nodict.paramA.s = [{"sd": "str_parameter"}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA.s)
+
+    print(f"\n{next(ccc):#^9}")  # 9
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = [{"s": {"sd": "str_parameter"}}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA)
+
+    print(f"\n{next(ccc):#^9}")  # 10
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = [{"s": ({"sd": "str_parameter"},)}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA)
+
+    print(f"\n{next(ccc):#^9}")  # 11
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = [{"sd": "str_parameter"}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA)
+
+    print(f"\n{next(ccc):#^9}")  # 12
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {}
+    nodict.paramA.a = [{"s": {"sd": "str_parameter"}}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA)
+
+    print(f"\n{next(ccc):#^9}")  # 13
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {}
+    nodict.paramA.a = [{"s": ({"sd": "str_parameter"},)}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA.a)
+
+    print(f"\n{next(ccc):#^9}")  # 14
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {}
+    nodict.paramA.a = [{"s": [{"sd": "str_parameter"}]}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA)
+
+    print(f"\n{next(ccc):#^9}")  # 15
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = [{"s": {"sd": "str_parameter"}}, {"sfd": 1}]
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA)
+
+    print(f"\n{next(ccc):#^9}")  # 16
+    nodict = NamedOrderedDictionary()
+    nodict.paramA = {"s": {"sd": {"sfd": 1}}}
+    nodict.paramB = 10
+    # assert nodict.paramA == "str_parameter"
+    assert nodict.paramB == 10
+    print(nodict)
+    print(nodict.paramA)

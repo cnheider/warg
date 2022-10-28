@@ -17,35 +17,36 @@ def unzip(iterable: Iterable) -> Iterable:
     return zip(*iterable)
 
 
-def unzipper(iterable: Iterable[Iterable]) -> Iterable:
+def unzipper(_iterable: Iterable[Iterable]) -> Iterable:
     """
     Unzips an iterable of an iterable
 
     Be carefully has undefined and expected behaviour
 
-    :param iterable:
-    :return:"""
+    :param _iterable:
+    :return:Iterable
+    """
 
-    def check_next_iter(iterable: Any) -> Any:
+    def check_next_iter(iterable_: Any) -> Any:
         """description"""
-        if isinstance(iterable, Iterable):
+        if isinstance(iterable_, Iterable):
             try:
-                a = next(iter(iterable))
+                a = next(iter(iterable_))
                 if isinstance(a, Iterable):
                     return a
             except StopIteration:
                 pass
 
-    if isinstance(iterable, Iterable):
-        check_a = check_next_iter(check_next_iter(deepcopy(iterable)))
+    if isinstance(_iterable, Iterable):
+        check_a = check_next_iter(check_next_iter(deepcopy(_iterable)))
         if check_next_iter(check_a):
-            for a in iterable:
+            for a in _iterable:
                 yield unzipper(a)
         elif check_a:
-            for a in iterable:
+            for a in _iterable:
                 yield unzip(a)
         else:
-            for i in iterable:
+            for i in _iterable:
                 yield i
     return
 

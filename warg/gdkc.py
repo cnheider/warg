@@ -19,7 +19,7 @@ class GeneralisedDelayedKwargConstruction(object):
     [constructor, args, kwargs]
     """
 
-    def __init__(self, constructor: callable, *args: Sequence, **kwargs: MutableMapping):
+    def __init__(self, constructor: callable, *args: Sequence, **kwargs: Any):
         """
         [constructor, args, kwargs]
         :param constructor:
