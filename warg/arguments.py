@@ -9,7 +9,12 @@ from warnings import warn
 from warg.data_structures.named_ordered_dictionary import NOD
 
 __author__ = "Christian Heider Nielsen"
+__doc__ = r"""
+Created on 27/04/2019
 
+@author: cnheider
+
+"""
 __all__ = [
     "to_lower_properties",
     "get_upper_case_vars_or_protected_of",

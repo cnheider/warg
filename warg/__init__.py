@@ -5,14 +5,15 @@ from warnings import warn
 
 import pkg_resources
 
-
 __project__ = "Warg"
+
 __author__ = "Christian Heider Nielsen"
 __version__ = "1.0.5"
 __doc__ = r"""
 Created on 27/04/2019
 
 @author: cnheider
+
 """
 
 from pathlib import Path
@@ -59,6 +60,7 @@ from .contexts import *
 from .config_shell import *
 from .colors import *
 
+
 # from .ode import * # Silly thing
 
 
@@ -80,6 +82,8 @@ PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_ORGANISATION = "pything"
+
+__url__ = f"https://github.com/{PROJECT_ORGANISATION}/{PROJECT_NAME}"
 
 # from apppath import AppPath # CAREFUL CIRCULAR DEPENDENCY WARNING!
 # PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR) # NOT USED!

@@ -20,15 +20,30 @@ __all__ = [
     "swap_mapping_order",
     "nop",
     "empty_str",
+    "list_keys",
+    "first_key",
+    "last_key",
 ]
 
 import operator
 from collections import defaultdict
 from copy import deepcopy
 from functools import reduce
-from typing import Any, Callable, Dict, Iterable, Iterator, Mapping, Sequence, Tuple
+from typing import Any, Callable, Dict, Iterable, Iterator, Mapping, Sequence, Tuple, List
 
 from warg import Number, drop_unused_kws
+
+
+def list_keys(d: Dict) -> List[Any]:
+    return list(d.keys())
+
+
+def first_key(d: Dict) -> Any:
+    return list_keys(d)[0]
+
+
+def last_key(d: Dict) -> Any:
+    return list_keys(d)[-1]
 
 
 def empty_str() -> str:

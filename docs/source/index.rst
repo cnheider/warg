@@ -1,6 +1,8 @@
 |project| Documentation
 =====================
 
+Github: |github_url|
+
 Document version:
 |version|
 |today|
