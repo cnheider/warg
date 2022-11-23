@@ -10,7 +10,13 @@ __doc__ = r"""
 import enum
 import sys
 
-__all__ = ["get_backend_module", "is_py3"]
+__all__ = [
+    "get_backend_module",
+    "is_py3",
+    "get_system",
+    # "set_system",
+    "SystemEnum",
+]
 
 from types import ModuleType
 
@@ -42,11 +48,21 @@ class SystemEnum(enum.Enum):
 
 
 def set_system(system: SystemEnum) -> None:
+    """
+
+    :param system:
+    :type system:
+    """
     global SYSTEM
     SYSTEM = system
 
 
 def get_system() -> SystemEnum:
+    """
+
+    :return:
+    :rtype:
+    """
     return SYSTEM
 
 
@@ -107,6 +123,11 @@ def get_backend_module(project_name: str, backend_name: str = sys.platform) -> M
 
 
 def is_py3():
+    """
+
+    :return:
+    :rtype:
+    """
     return sys.version_info[0] == 3
 
 

@@ -1,6 +1,12 @@
-from typing import Mapping, Iterable, Hashable, Dict, MutableMapping
+from typing import Mapping, Iterable, Hashable, Dict
 
-__all__ = ["invert_mapping", "invert_dict", "AppendingDict", "pivot_dict_object", "pivot_dict"]
+__all__ = [
+    "invert_mapping",
+    "invert_dict",
+    "AppendingDict",
+    "pivot_dict_object",
+    "pivot_dict",
+]
 
 
 def append_to_dict(d: Dict, key, value) -> Dict:

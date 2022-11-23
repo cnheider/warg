@@ -9,8 +9,8 @@ __doc__ = r"""
 
 from warg.data_structures.auto_dict import (
     AutoDict,
-    recursive_default_dict_print,
     sanitise_auto_dict,
+    recursive_default_dict_print,
 )
 
 
