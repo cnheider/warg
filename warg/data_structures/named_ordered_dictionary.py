@@ -13,6 +13,7 @@ from typing import (
     Type,
     TypeVar,
     ValuesView,
+    Mapping,
 )
 
 __author__ = "Christian Heider Nielsen"
@@ -363,7 +364,7 @@ return nod
         Args:
         items (dict): Python dictionary containing updated values."""
 
-        if len(args) == 1 and isinstance(args[0], dict):
+        if len(args) == 1 and isinstance(args[0], Mapping):
             a = args[0]
             if RECURSE_MAPPING_CONVERSION and True:
                 l = {}
@@ -372,14 +373,19 @@ return nod
                 a = l
 
             args_dict = a
-        else:
+        elif len(args):
             args_dict = {}
             a = list(self.__dict__.keys())
+            if True:  # be same length guard
+                assert len(a) == len(args)
             for arg, key in zip(args, a):
                 if RECURSE_MAPPING_CONVERSION and True:
                     arg = recurse_conversion(self, arg)
 
                 args_dict[key] = arg
+        else:
+            args_dict = {}
+            # print('no args where supplied')
 
         args_dict.update(kwargs)
 

@@ -8,32 +8,17 @@ __doc__ = r"""
            """
 
 from collections import defaultdict
-from typing import Dict, Optional
+from typing import Dict, Optional, Mapping
 
-__all__ = ["AutoDict", "recursive_default_dict_print", "sanitise_auto_dict"]
+__all__ = ["AutoDict", "sanitise_auto_dict", "recursive_default_dict_print"]
 
 
 def AutoDict() -> defaultdict:
     """
-
-    :return:
-    :rtype:"""
-    return defaultdict(autodict)
-
-
-def recursive_default_dict_print(d: Dict, depth: int = 1) -> None:
+    :return: Returns a defaultdict of autodict factory
+    :rtype: defaultdict
     """
-
-    :param d:
-    :type d:
-    :param depth:
-    :type depth:"""
-    for k, v in d.items():
-        print("-" * depth, k)
-        if type(v) is defaultdict:
-            recursive_default_dict_print(v, depth + 1)
-        else:
-            print("-" * (depth + 1), v)
+    return defaultdict(autodict)
 
 
 def sanitise_auto_dict(d: Dict) -> Optional[Dict]:
@@ -63,6 +48,23 @@ def sanitise_auto_dict(d: Dict) -> Optional[Dict]:
 
 autodict = AutoDict
 AD = AutoDict
+
+
+def recursive_default_dict_print(d: Mapping, depth: int = 1) -> None:
+    """
+
+    :param d:
+    :type d:
+    :param depth:
+    :type depth:
+    """
+    for k, v in d.items():
+        print("-" * depth, k)
+        if type(v) is defaultdict:
+            recursive_default_dict_print(v, depth + 1)
+        else:
+            print("-" * (depth + 1), v)
+
 
 if __name__ == "__main__":
     ad = AutoDict()

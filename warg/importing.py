@@ -19,7 +19,7 @@ __all__ = [
 import sys
 from importlib.util import find_spec
 from pathlib import Path
-from typing import Optional, Any
+from typing import Optional, Any, Union
 from warnings import warn
 
 
@@ -55,7 +55,7 @@ def clean_sys_path() -> None:
 
 
 def ensure_in_sys_path(
-    path: Path, position: Optional[int] = None, resolve: bool = False, absolute: bool = True
+    path: Union[str, Path], position: Optional[int] = None, resolve: bool = False, absolute: bool = True
 ) -> None:
     """
 
@@ -74,6 +74,7 @@ def ensure_in_sys_path(
     :return:
     :rtype:
     """
+    path = Path(path)
 
     if absolute:
         path = path.absolute()
@@ -93,6 +94,8 @@ def ensure_in_sys_path(
             sys.path.insert(position, str_path)
         else:
             sys.path.append(str_path)
+    else:
+        print(f"{path} is already in sys path")
 
 
 def is_module_available(module: str) -> bool:

@@ -42,11 +42,21 @@ class SystemEnum(enum.Enum):
 
 
 def set_system(system: SystemEnum) -> None:
+    """
+
+    :param system:
+    :type system:
+    """
     global SYSTEM
     SYSTEM = system
 
 
 def get_system() -> SystemEnum:
+    """
+
+    :return:
+    :rtype:
+    """
     return SYSTEM
 
 
@@ -107,6 +117,11 @@ def get_backend_module(project_name: str, backend_name: str = sys.platform) -> M
 
 
 def is_py3():
+    """
+
+    :return:
+    :rtype:
+    """
     return sys.version_info[0] == 3
 
 
