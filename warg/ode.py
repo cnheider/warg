@@ -11,6 +11,97 @@ __doc__ = r"""
 
 __all__ = []
 
+
+def this_is_barely_legal():
+    try:
+        try:
+            try:
+                try:
+                    try:
+                        try:
+                            try:
+                                try:
+                                    try:
+                                        try:
+                                            try:
+                                                try:
+                                                    try:
+                                                        try:
+                                                            try:
+                                                                try:
+                                                                    try:
+                                                                        try:
+                                                                            try:
+                                                                                try:
+                                                                                    """
+                                                                                    try:
+                                                                                        try:
+                                                                                            try:
+                                                                                                try:
+                                                                                                    try:
+                                                                                                        try:
+                                                                                                            try:
+                                                                                                                try:
+                                                                                                                    ...
+                                                                                                                except:
+                                                                                                                    ...
+                                                                                                            except:
+                                                                                                                ...
+                                                                                                        except:
+                                                                                                            ...
+                                                                                                    except:
+                                                                                                        ...
+                                                                                                except:
+                                                                                                    ...
+                                                                                            except:
+                                                                                                ...
+                                                                                        except:
+                                                                                            ...
+                                                                                    except:
+                                                                                        ...
+                                                                                    """
+                                                                                except:
+                                                                                    ...
+                                                                            except:
+                                                                                ...
+                                                                        except:
+                                                                            ...
+                                                                    except:
+                                                                        ...
+                                                                except:
+                                                                    ...
+                                                            except:
+                                                                ...
+                                                        except:
+                                                            ...
+                                                    except:
+                                                        ...
+                                                except:
+                                                    ...
+                                            except:
+                                                ...
+                                        except:
+                                            ...
+                                    except:
+                                        ...
+                                except:
+                                    ...
+                            except:
+                                ...
+                        except:
+                            ...
+                    except:
+                        ...
+                except:
+                    ...
+            except:
+                ...
+        except:
+            ...
+    except:
+        ...
+
+
 if __name__ == "__main__":
     # from __future__ import braces # TODO: Try disable comment
 
@@ -29,4 +120,6 @@ if __name__ == "__main__":
     print()
 
     # noinspection PyUnresolvedReferences
-    import that  # pip install that
+    # import that  # pip install that
+
+    this_is_barely_legal()
