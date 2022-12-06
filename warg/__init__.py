@@ -8,7 +8,7 @@ import pkg_resources
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.0.7"
+__version__ = "1.0.8"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -44,10 +44,10 @@ from .map_itertools import *
 from .ast_ops import *
 from .importing import *
 from .functions import *
-from .os import *
+from .os_utilities import *
 from .generators import *
 from .text import *
-from .math import *
+from .math_utilities import *
 from .business import *
 from .datetimes import *
 from .debug import *
