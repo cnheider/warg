@@ -44,10 +44,10 @@ from .map_itertools import *
 from .ast_ops import *
 from .importing import *
 from .functions import *
-from .os import *
+from .os_utilities import *
 from .generators import *
 from .text import *
-from .math import *
+from .math_utilities import *
 from .business import *
 from .datetimes import *
 from .debug import *
