@@ -14,13 +14,18 @@ __all__ = [
     "ensure_in_sys_path",
     "clean_sys_path",
     "import_file",
+    'find_ancestral_relatives',
+    'find_nearest_ancestral_relative',
+    'walk_up'
 ]
 
 import sys
 from importlib.util import find_spec
 from pathlib import Path
-from typing import Optional, Any, Union
+from typing import Optional, Any, Union, List
 from warnings import warn
+
+from warg import passes_kws_to
 
 
 def import_file(path: Path, from_list=None) -> Any:
@@ -40,6 +45,52 @@ def import_file(path: Path, from_list=None) -> Any:
         sys.path = sys_path  # Restore original sys.path
 
 
+def walk_up(path: Path, top: Path, max_level: int = None):
+    i = 0
+    while True:
+        yield path
+        i += 1
+        if max_level and max_level<i:
+            break
+        if path == top:
+            break
+        else:
+            path = path.parent
+
+
+def find_ancestral_relatives(target:Union[str,Path],
+                             context: Path = Path.cwd(),
+                             *,
+                             only_of_parents: bool = True,
+                             ancestrial_levels: int = None,
+                             descendant_levels: int = 0,
+                             top_level: Path = None,
+                             terminate_first: bool = False) -> List[Path]:
+    relatives = []
+
+    if top_level is None:
+        top_level = context.root
+
+    if only_of_parents:
+        context = context.parent
+
+    for p in walk_up(context, top_level, max_level=ancestrial_levels):
+        # for walk_down(descendant_level):
+        p /= target
+        if p.exists():
+            relatives.append(p)
+            if terminate_first:
+                break
+
+    return relatives
+
+
+@passes_kws_to(find_ancestral_relatives)
+def find_nearest_ancestral_relative(*args,**kwargs) -> Optional[Path]:
+    kwargs.update(terminate_first=True)
+    return find_ancestral_relatives(*args,**kwargs)[0]
+
+
 def clean_sys_path() -> None:
     """
     Clean the sys.path for dead paths or duplicates
@@ -55,7 +106,7 @@ def clean_sys_path() -> None:
 
 
 def ensure_in_sys_path(
-    path: Union[str, Path], position: Optional[int] = None, resolve: bool = False, absolute: bool = True
+        path: Union[str, Path], position: Optional[int] = None, resolve: bool = False, absolute: bool = True
 ) -> None:
     """
 
@@ -144,7 +195,6 @@ def reimported_warning(module_name: str) -> None:
 
 
 if __name__ == "__main__":
-
     def _main() -> None:
         """
         :rtype: None
@@ -156,6 +206,7 @@ if __name__ == "__main__":
         import_warning(mod)
         pyplot.figure()
 
+
     def aisjdi():
         from copy import deepcopy
 
@@ -164,6 +215,7 @@ if __name__ == "__main__":
         s2 = sys.path
         print(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
+
     def iajsd():
         from copy import deepcopy
 
@@ -171,6 +223,7 @@ if __name__ == "__main__":
         clean_sys_path()
         s2 = sys.path
         print(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
+
 
     # _main()
     # aisjdi()
