@@ -28,7 +28,6 @@ def system_open_path(path: Path, *, verbose: bool = False) -> None:
     :rtype:
     """
     if has_x_server():
-
         if verbose:
             print(f"Opening the directory ({path}) using the systems default file manager")
 

@@ -335,7 +335,6 @@ def test_recurse_conversion_of_dicts3():
 
 
 def test_recurse_conversion_of_dicts4():
-
     nodict = NOD()
     nodict.paramA = {}
     nodict.paramA["s"] = "str_parameter"

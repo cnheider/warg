@@ -18,6 +18,7 @@ from typing import Iterable, Union
 
 # from warg import passes_kws_to
 
+
 # @passes_kws_to(rmtree) Throws error due to import issues
 def path_rmtree(path: Path, **kwargs) -> None:
     """

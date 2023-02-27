@@ -30,7 +30,6 @@ class UpperAttrMetaclass(type):
     Upper case all attributes if not __private"""
 
     def __new__(mcs, clsname, bases, dct: dict):
-
         uppercase_attr = {}
         for name, val in dct.items():
             if not name.startswith("__"):
@@ -61,7 +60,7 @@ def to_lower_properties(C_dict: Mapping) -> ConfigObject:
 
     a = ConfigObject()
 
-    for (k, v) in C_dict.items():
+    for k, v in C_dict.items():
         assert isinstance(k, str)
         lowered = k.lower()
         if isinstance(v, (PosixPath, Path)):
@@ -80,7 +79,7 @@ def lower_dict(mapping: Mapping) -> Mapping:
     :return:
     :rtype:"""
     cop = {}
-    for (k, v) in mapping.items():
+    for k, v in mapping.items():
         assert isinstance(k, str)
         cop[k.lower()] = v
 
@@ -95,7 +94,7 @@ def upper_dict(mapping: Mapping) -> Mapping:
     :return:
     :rtype:"""
     cop = {}
-    for (k, v) in mapping.items():
+    for k, v in mapping.items():
         assert isinstance(k, str)
         cop[k.upper()] = v
 
@@ -203,7 +202,6 @@ def check_for_duplicates_in_args(**kwargs) -> None:
     :param kwargs:
     :type kwargs:"""
     for key, value in kwargs.items():
-
         occur = 0
 
         if kwargs.get(key) is not None:
