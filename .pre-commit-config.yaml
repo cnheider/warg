@@ -1,10 +1,10 @@
 fail_fast: true
 repos:
   - repo: https://github.com/ambv/black
-    rev: 22.6.0
+    rev: 23.1.0
     hooks:
       - id: black
-        language_version: python3.8
+        language_version: python3.10
   - repo: local
     hooks:
       - id: pytest-check
