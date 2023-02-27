@@ -21,10 +21,25 @@ def test_import():
 def test_find_nearest_ancestral_relative():
     from warg import find_nearest_ancestral_relative
 
-    assert find_nearest_ancestral_relative('scripts') == Path(__file__).parent.parent/'scripts'
+    assert (
+        find_nearest_ancestral_relative(
+            "scripts",
+            top_level=Path(__file__).parent.parent,
+            context=Path(__file__),
+            ancestral_levels=2,
+            descendant_levels=1,
+        )
+        == Path(__file__).parent.parent
+    )
 
 
 def test_find_ancestral_relatives():
     from warg import find_ancestral_relatives
 
-    assert find_ancestral_relatives('warg', top_level=Path(__file__).parent.parent) == [Path(__file__).parent.parent / 'warg']
+    assert find_ancestral_relatives(
+        "warg",
+        top_level=Path(__file__).parent.parent,
+        context=Path(__file__),
+        ancestral_levels=1,
+        descendant_levels=1,
+    ) == [Path(__file__).parent.parent]
