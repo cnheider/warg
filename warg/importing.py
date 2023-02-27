@@ -140,7 +140,10 @@ def clean_sys_path() -> None:
 
 
 def ensure_in_sys_path(
-    path: Union[str, Path], position: Optional[int] = None, resolve: bool = False, absolute: bool = True
+    path: Optional[Union[str, Path]],
+    position: Optional[int] = None,
+    resolve: bool = False,
+    absolute: bool = True,
 ) -> None:
     """
 
@@ -159,6 +162,10 @@ def ensure_in_sys_path(
     :return:
     :rtype:
     """
+    if path is None:  # may be the case if the supplied path is being solved programmatically
+        warn("No path was supplied")
+        return
+
     path = Path(path)
 
     if absolute:

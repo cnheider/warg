@@ -414,7 +414,6 @@ return nod
     def __sub__(self, other) -> T:
         cop = self.__dict__.copy()
         if isinstance(other, NamedOrderedDictionary):
-
             for k in other.keys():
                 if k in cop:
                     cop[k] -= other.__dict__[k]
