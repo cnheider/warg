@@ -45,12 +45,12 @@ def import_file(path: Path, from_list=None) -> Any:
         sys.path = sys_path  # Restore original sys.path
 
 
-def walk_up(path: Path, top: Path, max_level: int = None):
+def walk_up(path: Path, top: Path, max_ascent: int = None):
     i = 0
     while True:
         yield path
         i += 1
-        if max_level and max_level<i:
+        if max_ascent and max_ascent < i:
             break
         if path == top:
             break
@@ -58,12 +58,31 @@ def walk_up(path: Path, top: Path, max_level: int = None):
             path = path.parent
 
 
-def find_ancestral_relatives(target:Union[str,Path],
+def walk_down(path: Path, max_descent: int = None):
+    if max_descent == 0:
+        return
+
+    queue = []
+    for c in path.iterdir():
+        if c.is_dir():
+            print(c)
+            yield c
+            queue.append(c)
+
+    for q in queue:
+
+        try:
+            yield from walk_down(q, max_descent=max_descent - 1 if max_descent else None)
+        except:
+            yield
+
+
+def find_ancestral_relatives(target: Union[str, Path],
                              context: Path = Path.cwd(),
                              *,
-                             only_of_parents: bool = True,
-                             ancestrial_levels: int = None,
-                             descendant_levels: int = 0,
+                             from_parent_of_context: bool = True,
+                             ancestral_levels: int = 2,
+                             descendant_levels: int = 2,
                              top_level: Path = None,
                              terminate_first: bool = False) -> List[Path]:
     relatives = []
@@ -71,11 +90,15 @@ def find_ancestral_relatives(target:Union[str,Path],
     if top_level is None:
         top_level = context.root
 
-    if only_of_parents:
+    if from_parent_of_context:
         context = context.parent
 
-    for p in walk_up(context, top_level, max_level=ancestrial_levels):
-        # for walk_down(descendant_level):
+    for p in walk_up(context, top_level, max_ascent=ancestral_levels):
+        for wd in walk_down(p, max_descent=descendant_levels):
+            if target in wd.parts[-ancestral_levels:]:
+                relatives.append(wd.parent)
+                if terminate_first:
+                    break
         p /= target
         if p.exists():
             relatives.append(p)
@@ -86,9 +109,9 @@ def find_ancestral_relatives(target:Union[str,Path],
 
 
 @passes_kws_to(find_ancestral_relatives)
-def find_nearest_ancestral_relative(*args,**kwargs) -> Optional[Path]:
+def find_nearest_ancestral_relative(*args, **kwargs) -> Optional[Path]:
     kwargs.update(terminate_first=True)
-    return find_ancestral_relatives(*args,**kwargs)[0]
+    return find_ancestral_relatives(*args, **kwargs)[0]
 
 
 def clean_sys_path() -> None:
@@ -132,7 +155,6 @@ def ensure_in_sys_path(
 
     str_path = str(path)
     sys_path_snapshot = sys.path
-    inclusion_test = None
 
     if resolve:
         sys_path_snapshot = [Path(p).resolve() for p in sys_path_snapshot]
@@ -225,6 +247,10 @@ if __name__ == "__main__":
         print(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
 
+    def asuhdsaud():
+        print(find_ancestral_relatives('queues'))
+
     # _main()
     # aisjdi()
-    iajsd()
+    #iajsd()
+    asuhdsaud()
