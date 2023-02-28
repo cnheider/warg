@@ -13,6 +13,7 @@ __all__ = [
     "reimported_warning",
     "ensure_in_sys_path",
     "clean_sys_path",
+    "remove_from_sys_path",
     "import_file",
     "find_ancestral_relatives",
     "find_nearest_ancestral_relative",
@@ -133,6 +134,23 @@ def clean_sys_path() -> None:
     for path in sys.path:
         p = Path(path).resolve()
         if p.exists():
+            if p not in out:
+                out.append(p)
+
+    sys.path[:] = [str(o.absolute()) for o in out]
+
+
+def remove_from_sys_path(target: Path, missing_ok: bool = True):
+    """
+    Clean the sys.path for dead paths or duplicates
+    """
+    out = []
+
+    target = target.resolve()
+
+    for path in sys.path:
+        p = Path(path).resolve()
+        if p.exists() and target != p:
             if p not in out:
                 out.append(p)
 
