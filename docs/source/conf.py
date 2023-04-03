@@ -30,7 +30,6 @@ from warg import (
 # ones.
 
 extensions = [
-    "sphinxcontrib.programoutput",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",

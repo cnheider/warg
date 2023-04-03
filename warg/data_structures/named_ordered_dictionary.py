@@ -130,7 +130,7 @@ class NamedOrderedDictionary(MutableMapping):
 
     # _unnamed_arg_i = 0
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         # super().__init__(**kwargs)
         if len(args) == 1 and isinstance(args[0], dict):
             args_dict = args[0]
@@ -354,7 +354,7 @@ return nod
         print_str += ")"
         return print_str
 
-    def update(self, *args: Sequence, **kwargs: MutableMapping) -> T:
+    def update(self, *args: Any, **kwargs: Any) -> T:
         """
         Merge two attributes, overriding any repeated keys from
         the `items` parameter.
@@ -365,7 +365,7 @@ return nod
         items (dict): Python dictionary containing updated values."""
 
         if len(args) == 1 and isinstance(args[0], Mapping):
-            a = args[0]
+            a: Mapping = args[0]
             if RECURSE_MAPPING_CONVERSION and True:
                 l = {}
                 for k, v in a.items():
@@ -375,7 +375,7 @@ return nod
             args_dict = a
         elif len(args):
             args_dict = {}
-            a = list(self.__dict__.keys())
+            a: List = list(self.__dict__.keys())
             if True:  # be same length guard
                 assert len(a) == len(args)
             for arg, key in zip(args, a):
