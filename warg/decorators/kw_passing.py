@@ -59,7 +59,14 @@ def eval_sig_kw_params(
     :return:
     :rtype:"""
     passing_params: dict = dict(passing_sig.parameters)
-    receiver_params = inspect.signature(receiver_func).parameters
+    # if inspect.isfunction()
+    # if inspect.ismethod()
+    # arg_spec_sig = inspect.getfullargspec(receiver_func)[0]
+
+    receiver_params = inspect.signature(
+        receiver_func
+    ).parameters  # TODO: Sometime no signature is found resulting in
+    # a ValueError exception
 
     var_kw_key = None
     var_kw = None
