@@ -23,7 +23,11 @@ class FilterModeEnum(Enum):
 
     # exclude_postfix, exclude_prefix, exclude_fully = assigned_names()
     # TODO: Include variants
-    exclude_postfix, exclude_prefix, exclude_fully = "exclude_postfix", "exclude_prefix", "exclude_fully"
+    exclude_postfix, exclude_prefix, exclude_fully = (
+        "exclude_postfix",
+        "exclude_prefix",
+        "exclude_fully",
+    )
 
 
 def symbol_filter(

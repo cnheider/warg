@@ -59,7 +59,14 @@ def eval_sig_kw_params(
     :return:
     :rtype:"""
     passing_params: dict = dict(passing_sig.parameters)
-    receiver_params = inspect.signature(receiver_func).parameters
+    # if inspect.isfunction()
+    # if inspect.ismethod()
+    # arg_spec_sig = inspect.getfullargspec(receiver_func)[0]
+
+    receiver_params = inspect.signature(
+        receiver_func
+    ).parameters  # TODO: Sometime no signature is found resulting in
+    # a ValueError exception
 
     var_kw_key = None
     var_kw = None
@@ -222,7 +229,11 @@ WRAPPER_NO_ANNOTATION = tuple(
 
 
 def pack_args(
-    f: callable, *, pack_name: str = "arg_pack", allow_passing: bool = True, verbose: bool = False
+    f: callable,
+    *,
+    pack_name: str = "arg_pack",
+    allow_passing: bool = True,
+    verbose: bool = False,
 ) -> callable:
     """
 
@@ -262,7 +273,11 @@ def pack_args(
 
 
 def pack_kws(
-    f: callable, *, pack_name: str = "kw_pack", allow_passing: bool = True, verbose: bool = False
+    f: callable,
+    *,
+    pack_name: str = "kw_pack",
+    allow_passing: bool = True,
+    verbose: bool = False,
 ) -> callable:
     """
 
@@ -302,7 +317,11 @@ def pack_kws(
 
 
 def pack_args_and_kws(
-    f: callable, *, pack_name: str = "arg_kw_pack", allow_passing: bool = True, verbose: bool = False
+    f: callable,
+    *,
+    pack_name: str = "arg_kw_pack",
+    allow_passing: bool = True,
+    verbose: bool = False,
 ) -> callable:
     """
 

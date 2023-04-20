@@ -111,7 +111,10 @@ class FirstArgIdentifier(ast.NodeVisitor):
 
 
 def get_first_arg_name(
-    func_name: str, *, verbose=False, max_num_intermediate_unnamed_elements=-1  # recurse = -1
+    func_name: str,
+    *,
+    verbose=False,
+    max_num_intermediate_unnamed_elements=-1,  # recurse = -1
 ) -> Optional[str]:
     """description"""
     import inspect

@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 08/03/2020
            """
 
-__all__ = ["ensure_existence", "path_rmtree", "sanitise_path"]
+__all__ = ["ensure_existence", "path_rmtree", "sanitise_path", "path_join"]
 
 import os
 from itertools import cycle
@@ -15,18 +15,36 @@ from pathlib import Path
 from shutil import rmtree
 from typing import Iterable, Union
 
+from warg.decorators import passes_kws_to
 
-# from warg import passes_kws_to
+
+def path_join(*p: Union[Path, str]) -> Path:
+    """
+    drop-in replacement for os.path.join, returning a Path instead
+
+    :param p: Sequence of path components to be joined
+    :type p:  Union[Path,str]
+    :return: Joined path
+    :rtype: Path
+    """
+    p, *rest = p
+    p = Path(p)
+    for r in rest:
+        p /= r
+    return p
 
 
-# @passes_kws_to(rmtree) Throws error due to import issues
+@passes_kws_to(rmtree)
 def path_rmtree(path: Path, **kwargs) -> None:
     """
     asses_kws_to rmtree from shutil
     :param path:
-    :type path:
+    :type path: Path
     :param kwargs:
-    :type kwargs:"""
+    :type kwargs:
+    :return: None
+    :rtype: None
+    """
     rmtree(str(path), **kwargs)
 
 
