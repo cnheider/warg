@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import Sequence, MutableMapping
+
 import pytest
 
 from warg.gdkc import GeneralisedDelayedKwargConstruction
@@ -13,26 +15,26 @@ __doc__ = r"""
 
 
 class A:
-    """ """
+    """description"""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Sequence, **kwargs: MutableMapping):
         self.args_a = args
         self.kwargs_a = kwargs
 
     def something(self):
-        """ """
+        """description"""
         print(self.kwargs_a)
 
-    def something_else(self, *args):
-        """ """
+    def something_else(self, *args: Sequence):
+        """description"""
         print(args, self.kwargs_a)
 
-    def another(self, *args, **kwargs):
-        """ """
+    def another(self, *args: Sequence, **kwargs: MutableMapping):
+        """description"""
         print(args, self.kwargs_a, kwargs)
 
-    def clearly_something(self, *args, **kwargs):
-        """ """
+    def clearly_something(self, *args: Sequence, **kwargs: MutableMapping):
+        """description"""
         print(self.args_a, args, self.kwargs_a, kwargs)
 
 

@@ -102,6 +102,7 @@ ENV/
 
 # Spyder project settings
 .spyderproject
+*.out
 .spyproject
 
 # mkdocs documentation
@@ -122,8 +123,8 @@ logs/*.csv
 *[Ee]xclude.*
 *[Ee]xcluded*
 *[Ee]xclude*
+[Ee]xcluded*
 
 
 pip-wheel-metadata
-.pytest_cache
 build/

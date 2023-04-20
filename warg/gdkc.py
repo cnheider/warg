@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import logging
-from typing import Any, Mapping, MutableMapping
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
-
 Generalised wrapper for delayed construction of class objects. Encapsulates kwargs and callable constructor with the option of modifying construction arguments before construction is finally performed.
 
 """
 
 __all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
+
+import logging
+from typing import Any, Mapping, MutableMapping, Sequence
 
 
 class GeneralisedDelayedKwargConstruction(object):
@@ -19,7 +19,7 @@ class GeneralisedDelayedKwargConstruction(object):
     [constructor, args, kwargs]
     """
 
-    def __init__(self, constructor: callable, *args, **kwargs):
+    def __init__(self, constructor: callable, *args: Sequence, **kwargs: Any):
         """
         [constructor, args, kwargs]
         :param constructor:
@@ -82,24 +82,39 @@ if __name__ == "__main__":
         pass
 
     class A:
-        """ """
+        """description"""
 
-        def __init__(self, *args, **kwargs):
+        def __init__(self, *args: Sequence, **kwargs: MutableMapping):
             pass
 
-    def stest_not_both():
+    def stest_not_both() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, [1], a=2)
 
-    def stest_kw():
+    def stest_kw() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, a=2)
 
-    def stest_mapping():
+    def stest_mapping() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, {"a": 2})
 
-    def stest_mapping_and_args_fail():
+    def stest_mapping_and_args_fail() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, {"a": 2}, 1)
 
-    def stest_mapping_and_args_fail_inv():
+    def stest_mapping_and_args_fail_inv() -> None:
+        """
+        :rtype: None
+        """
         GeneralisedDelayedKwargConstruction(A, 1, {"a": 2})
 
     stest_kw()

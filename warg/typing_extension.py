@@ -7,9 +7,6 @@ __doc__ = r"""
            Created on 18/07/2020
            """
 
-import numbers
-from typing import Any, Sequence, Tuple, Union
-
 __all__ = [
     "Number",
     "Reals",
@@ -26,6 +23,9 @@ __all__ = [
     "QuintNumber",
     "StrictNumbers",
 ]
+
+import numbers
+from typing import Any, Sequence, Tuple, Union
 
 Number = Union[int, float]
 Reals = Sequence[Union[numbers.Real, "Reals"]]
@@ -46,8 +46,10 @@ QuintNumber = Tuple[Number, Number, Number, Number, Number]
 
 if __name__ == "__main__":
 
-    def stest():
-        """ """
+    def stest() -> None:
+        """
+        :rtype: None
+        """
         assert (
             isinstance(1, Number.__args__)
             and isinstance(1.1, Number.__args__)

@@ -1,8 +1,19 @@
-Warg Documentation
-==================
+|project| Documentation
+=====================
 
-.. automodule:: warg
-    :members:
+Github: |github_url|
+
+Document version:
+|version|
+|today|
+
+
+..  autosummary::
+    :toctree: generated
+    :template: custom_autosummary/module.rst
+    :recursive:
+
+    warg
 
 .. toctree::
     :glob:
@@ -11,14 +22,11 @@ Warg Documentation
     :caption: Notes
 
     getting_started
-    readme
 
 What's next?
 -------------
 
 Read the :ref:`Getting Started Guide <getting_started>`
-
-
 
 Indices and tables
 ==================

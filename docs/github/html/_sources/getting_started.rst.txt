@@ -3,7 +3,4 @@
 Getting Started
 ================
 
-
-
-
-
+pip install |PROJECT_NAME| -U

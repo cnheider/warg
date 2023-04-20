@@ -15,6 +15,7 @@ import functools
 import time
 import typing
 from functools import wraps
+from typing import Sequence, MutableMapping
 
 
 def timeit(f: callable):
@@ -104,10 +105,10 @@ class StopWatch(contextlib.AbstractContextManager):
         self.override_arithmetics()
 
     def override_arithmetics(self):
-        """ """
+        """description"""
 
         def make_func(name):
-            """ """
+            """description"""
             return lambda self, *args: getattr(self.since_start, name)(*args)
 
         arithmetics = (
@@ -141,14 +142,14 @@ class StopWatch(contextlib.AbstractContextManager):
             setattr(StopWatch, name, make_func(name))
 
     def start_timer(self):
-        """ """
+        """description"""
         self._started = True
         self.start_time = self._callable()
         self.new_time = self.start_time
         self.previous_time = self.start_time
 
     def stop_timer(self):
-        """ """
+        """description"""
         self.new_time = self._callable()
         self._stopped: bool = True
 
@@ -194,8 +195,8 @@ class StopWatch(contextlib.AbstractContextManager):
         :rtype:"""
 
         @functools.wraps(function)
-        def decorated(*args, **kwargs):
-            """ """
+        def decorated(*args: Sequence, **kwargs: MutableMapping):
+            """description"""
             self.start_timer()
             values = function(*args, **kwargs)
             self.stop_timer()
@@ -208,7 +209,7 @@ class StopWatch(contextlib.AbstractContextManager):
             self.start_timer()
         return self
 
-    def __exit__(self, *_, **__) -> None:
+    def __exit__(self, *_, **__) -> bool:
         if self._auto_stop_on_exit:
             self.stop_timer()
         return False
@@ -216,12 +217,11 @@ class StopWatch(contextlib.AbstractContextManager):
     def __str__(self) -> str:
         return str(self.__repr__())
 
-    def __repr__(self):
+    def __repr__(self) -> int:
         return self.since_start
 
 
 if __name__ == "__main__":
-
     a = StopWatch()
     print(f"Timer str rep: {a}")
     print(a.tick())
@@ -253,8 +253,10 @@ if __name__ == "__main__":
         print(timer2)
 
     @StopWatch()
-    def foo():
-        """ """
+    def foo() -> int:
+        """
+        :rtype: None
+        """
         return 42
 
     value, time = foo()

@@ -9,12 +9,14 @@ __doc__ = r"""
 
 __all__ = ["PostInit"]
 
+from typing import Sequence, MutableMapping
+
 
 class PostInit(type):
     """
     define a new metaclass which overrides the "__call__" function"""
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, *args: Sequence, **kwargs: MutableMapping):
         """
         Called when you call a class type constructor()"""
         obj = type.__call__(cls, *args, **kwargs)
@@ -26,13 +28,13 @@ class PostInit(type):
 if __name__ == "__main__":
 
     class SAD(metaclass=PostInit):
-        """ """
+        """description"""
 
         def __init__(self):
             print("init")
 
         def __post_init__(self):
-            """ """
+            """description"""
             print("post_init")
 
     SAD()

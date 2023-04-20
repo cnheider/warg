@@ -6,18 +6,21 @@ from pathlib import Path, PosixPath
 from typing import Mapping, Tuple
 from warnings import warn
 
-import wrapt
 from warg.data_structures.named_ordered_dictionary import NOD
 
 __author__ = "Christian Heider Nielsen"
+__doc__ = r"""
+Created on 27/04/2019
 
+@author: cnheider
+
+"""
 __all__ = [
     "to_lower_properties",
     "get_upper_case_vars_or_protected_of",
     "config_to_mapping",
     "add_bool_arg",
     "check_for_duplicates_in_args",
-    "wrap_args",
     "UpperAttrMetaclass",
 ]
 
@@ -27,7 +30,6 @@ class UpperAttrMetaclass(type):
     Upper case all attributes if not __private"""
 
     def __new__(mcs, clsname, bases, dct: dict):
-
         uppercase_attr = {}
         for name, val in dct.items():
             if not name.startswith("__"):
@@ -45,19 +47,20 @@ class ConfigObject(object):
     pass
 
 
-def to_lower_properties(C_dict: Mapping):
+def to_lower_properties(C_dict: Mapping) -> ConfigObject:
     """
 
     :param C_dict:
     :type C_dict:
     :return:
-    :rtype:"""
+    :rtype:ConfigObject
+    """
     if not isinstance(C_dict, dict):
         C_dict = config_to_mapping(C_dict)
 
     a = ConfigObject()
 
-    for (k, v) in C_dict.items():
+    for k, v in C_dict.items():
         assert isinstance(k, str)
         lowered = k.lower()
         if isinstance(v, (PosixPath, Path)):
@@ -68,30 +71,30 @@ def to_lower_properties(C_dict: Mapping):
     return a
 
 
-def lower_dict(map: Mapping) -> Mapping:
+def lower_dict(mapping: Mapping) -> Mapping:
     """
 
-    :param map:
-    :type map:
+    :param mapping:
+    :type mapping:
     :return:
     :rtype:"""
     cop = {}
-    for (k, v) in map.items():
+    for k, v in mapping.items():
         assert isinstance(k, str)
         cop[k.lower()] = v
 
     return cop
 
 
-def upper_dict(map: Mapping) -> Mapping:
+def upper_dict(mapping: Mapping) -> Mapping:
     """
 
-    :param map:
-    :type map:
+    :param mapping:
+    :type mapping:
     :return:
     :rtype:"""
     cop = {}
-    for (k, v) in map.items():
+    for k, v in mapping.items():
         assert isinstance(k, str)
         cop[k.upper()] = v
 
@@ -199,7 +202,6 @@ def check_for_duplicates_in_args(**kwargs) -> None:
     :param kwargs:
     :type kwargs:"""
     for key, value in kwargs.items():
-
         occur = 0
 
         if kwargs.get(key) is not None:
@@ -224,82 +226,38 @@ def check_for_duplicates_in_args(**kwargs) -> None:
             warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
 
 
-def wrap_args(n_tuple: namedtuple):
-    """
-
-    :param n_tuple:
-    :type n_tuple:
-    :return:
-    :rtype:"""
-
-    @wrapt.decorator(adapter=n_tuple)
-    def wrapper(wrapped, instance, args, kwargs):
-        """
-
-        :param wrapped:
-        :type wrapped:
-        :param instance:
-        :type instance:
-        :param args:
-        :type args:
-        :param kwargs:
-        :type kwargs:
-        :return:
-        :rtype:"""
-        if isinstance(args[0], n_tuple):
-            n = args[0]
-        else:
-            n = n_tuple(*args, **kwargs)
-        return wrapped(n)
-
-    return wrapper
-
-
-def str_to_bool(s: str, preds: Tuple[str, ...] = ("true", "1")) -> bool:
+def str_to_bool(s: str, truthies: Tuple[str, ...] = ("true", "1")) -> bool:
     """
 
 
-    :param preds:
+    :param truthies:
     :param s:
     :return:"""
-    return s.lower() in preds
+    return s.lower() in truthies
 
 
 str2bool = str_to_bool
 
 if __name__ == "__main__":
 
-    c = namedtuple("C", ("a", "b"))
+    def _main():
+        c = namedtuple("C", ("a", "b"))
 
-    @wrap_args(c)
-    def add(v):
-        """
+        def add2(a, b):
+            """
 
-        :param v:
-        :type v:
-        :return:
-        :rtype:"""
-        return v.a + v.b
+            :param a:
+            :type a:
+            :param b:
+            :type b:
+            :return:
+            :rtype:"""
+            return a + b
 
-    def add2(a, b):
-        """
+        wq = add2(2, 4)
+        print(wq)
 
-        :param a:
-        :type a:
-        :param b:
-        :type b:
-        :return:
-        :rtype:"""
-        return a + b
+        wc = add2(*c(4, 3))
+        print(wc)
 
-    h = add(2, 2)
-    print(h)
-
-    j = add(c(1, 4))
-    print(j)
-
-    wq = add2(2, 4)
-    print(wq)
-
-    wc = add2(*c(4, 3))
-    print(wc)
+    _main()

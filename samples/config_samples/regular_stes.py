@@ -9,8 +9,10 @@ __doc__ = r"""
 
 if __name__ == "__main__":
 
-    def f():
-        """ """
+    def f() -> None:
+        """
+        :rtype: None
+        """
         import config1
 
         print(config1.A_CONSTANT)

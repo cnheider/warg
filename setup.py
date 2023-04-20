@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import List, Sequence, Union
+from typing import List, Sequence, Union, TextIO
 
 
 def python_version_check(major: int = 3, minor: int = 7):
-    """ """
+    """description"""
     import sys
 
     assert sys.version_info.major == major and sys.version_info.minor >= minor, (
@@ -19,14 +19,14 @@ from pathlib import Path
 
 
 def read_reqs(file: str, path: Path) -> List[str]:
-    """ """
+    """description"""
 
-    def readlines_ignore_comments(f):
-        """ """
+    def readlines_ignore_comments(f: TextIO):
+        """description"""
         return [a_ for a_ in f.readlines() if "#" not in a_ and a_]
 
     def recursive_flatten_ignore_str(seq: Sequence) -> Sequence:
-        """ """
+        """description"""
         if not seq:  # is empty Sequence
             return seq
         if isinstance(seq[0], str):
@@ -39,7 +39,7 @@ def read_reqs(file: str, path: Path) -> List[str]:
         return (*seq[:1], *recursive_flatten_ignore_str(seq[1:]))
 
     def unroll_nested_reqs(req_str: str, base_path: Path):
-        """ """
+        """description"""
         if req_str.startswith("-r"):
             with open(base_path / req_str.strip("-r").strip()) as f:
                 return [unroll_nested_reqs(req.strip(), base_path) for req in readlines_ignore_comments(f)]
@@ -69,6 +69,8 @@ with open(Path(__file__).parent / "warg" / "__init__.py", "r") as project_init_f
     version = re.search(rf"__version__ = {str_reg_exp}", content, re.M).group(1)
     project_name = re.search(rf"__project__ = {str_reg_exp}", content, re.M).group(1)
     author = re.search(rf"__author__ = {str_reg_exp}", content, re.M).group(1)
+    # url = re.search(rf"__url__ = {str_reg_exp}", content, re.M).group(1)
+
 __author__ = author
 
 
@@ -79,32 +81,32 @@ class WargPackage:
 
     @property
     def setup_dependencies(self) -> list:
-        """ """
+        """description"""
         return read_reqs("requirements_setup.txt", Path(__file__).parent / "requirements")
 
     @property
     def package_name(self) -> str:
-        """ """
+        """description"""
         return project_name
 
     @property
     def url(self) -> str:
-        """ """
-        return "https://github.com/aivclab/warg"
+        """description"""
+        return "https://github.com/pything/warg"
 
     @property
     def download_url(self):
-        """ """
-        return self.url + "/releases"
+        """description"""
+        return f"{self.url}/releases"
 
     @property
     def readme_type(self):
-        """ """
+        """description"""
         return "text/markdown"
 
     @property
     def packages(self) -> List[Union[bytes, str]]:
-        """ """
+        """description"""
         return find_packages(
             exclude=[
                 # 'Path/To/Exclude'
@@ -113,27 +115,27 @@ class WargPackage:
 
     @property
     def author_name(self) -> str:
-        """ """
+        """description"""
         return author
 
     @property
     def author_email(self) -> str:
-        """ """
+        """description"""
         return "christian.heider@alexandra.dk"
 
     @property
     def maintainer_name(self) -> str:
-        """ """
+        """description"""
         return self.author_name
 
     @property
     def maintainer_email(self) -> str:
-        """ """
+        """description"""
         return self.author_email
 
     @property
     def package_data(self) -> dict:
-        """ """
+        """description"""
         # data = glob.glob('data/', recursive=True)
         return {
             # 'PackageName':[
@@ -143,7 +145,7 @@ class WargPackage:
 
     @property
     def entry_points(self) -> dict:
-        """ """
+        """description"""
         return {
             "console_scripts": [
                 # "name_of_executable = module.with:function_to_execute"
@@ -152,7 +154,7 @@ class WargPackage:
 
     @property
     def extras(self) -> dict:
-        """ """
+        """description"""
         these_extras = {
             # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
@@ -173,34 +175,34 @@ class WargPackage:
 
     @property
     def requirements(self) -> list:
-        """ """
+        """description"""
         return read_reqs("requirements.txt", Path(__file__).parent)
 
     @property
     def description(self) -> str:
-        """ """
+        """description"""
         return "A package for easing return of multiple values"
 
     @property
     def readme(self) -> str:
-        """ """
+        """description"""
         with open("README.md", encoding="utf8") as f:
             return f.read()
 
     @property
     def keyword(self) -> str:
-        """ """
+        """description"""
         with open("KEYWORDS.md") as f:
             return f.read()
 
     @property
     def license(self) -> str:
-        """ """
+        """description"""
         return "Apache License, Version 2.0"
 
     @property
     def classifiers(self) -> List[str]:
-        """ """
+        """description"""
         return [
             "Development Status :: 4 - Beta",
             "Environment :: Console",
@@ -219,14 +221,13 @@ class WargPackage:
 
     @property
     def version(self) -> str:
-        """ """
+        """description"""
         return version
 
 
 from setuptools import setup
 
 if __name__ == "__main__":
-
     pkg = WargPackage()
 
     setup(

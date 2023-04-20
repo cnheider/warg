@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>warg.decorators.timing.StopWatch &#8212; Warg 1.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/warg/generated/warg.decorators.timing.StopWatch.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="warg.exceptions" href="warg.exceptions.html" />
+    <link rel="prev" title="warg.decorators.timing.timeit" href="warg.decorators.timing.timeit.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="warg-decorators-timing-stopwatch">
+<h1>warg.decorators.timing.StopWatch<a class="headerlink" href="#warg-decorators-timing-stopwatch" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="warg.decorators.timing.StopWatch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">warg.decorators.timing.</span></span><span class="sig-name descname"><span class="pre">StopWatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">perf_counter&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_construction:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_enter:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_stop_on_exit:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/contextlib.html#contextlib.AbstractContextManager" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractContextManager</span></code></a></p>
+<p><strong>Measure execution time of function.</strong></p>
+<p>Can be used as context manager or function decorator, perform checkpoints
+or display absolute time from measurements beginning.</p>
+<p><strong>Used as context manager</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">timer</span><span class="p">:</span>
+    <span class="o">...</span> <span class="c1"># your operations</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span> <span class="c1"># __str__ calls timer.time() internally</span>
+    <span class="n">timer</span><span class="o">.</span><span class="n">checkpoint</span><span class="p">()</span> <span class="c1"># register checkpoint</span>
+    <span class="o">...</span> <span class="c1"># more operations</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">timer</span><span class="o">.</span><span class="n">checkpoint</span><span class="p">())</span> <span class="c1"># time since last timer.checkpoint() call</span>
+
+<span class="o">...</span> <span class="c1"># even more operations</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span> <span class="c1"># time taken for the block, will not be updated outside of it</span>
+</pre></div>
+</div>
+<p>When execution leaves the block, timer will be blocked. Last checkpoint and time taken
+to execute whole block will be returned by <cite>checkpoint()</cite> and <cite>time()</cite> methods respectively.</p>
+<p><strong>Used as function decorator</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@Timer</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">42</span>
+
+<span class="n">value</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">foo</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>function</strong> (<em>Callable</em><em>, </em><em>optional</em>) – No argument function used to measure time. Default: time.perf_counter</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">perf_counter&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_construction:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start_on_enter:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_stop_on_exit:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.__init__" title="warg.decorators.timing.StopWatch.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([function, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.override_arithmetics" title="warg.decorators.timing.StopWatch.override_arithmetics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">override_arithmetics</span></code></a>()</p></td>
+<td><p>description</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.start_timer" title="warg.decorators.timing.StopWatch.start_timer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_timer</span></code></a>()</p></td>
+<td><p>description</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.stop_timer" title="warg.decorators.timing.StopWatch.stop_timer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_timer</span></code></a>()</p></td>
+<td><p>description</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.tick" title="warg.decorators.timing.StopWatch.tick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tick</span></code></a>()</p></td>
+<td><p><strong>Time taken since last tick call.</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#warg.decorators.timing.StopWatch.since_start" title="warg.decorators.timing.StopWatch.since_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">since_start</span></code></a></p></td>
+<td><p><strong>Time taken since the start of timer (measurements beginning).</strong></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.override_arithmetics">
+<span class="sig-name descname"><span class="pre">override_arithmetics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch.override_arithmetics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch.override_arithmetics" title="Permalink to this definition">¶</a></dt>
+<dd><p>description</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.since_start">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">since_start</span></span><a class="headerlink" href="#warg.decorators.timing.StopWatch.since_start" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Time taken since the start of timer (measurements beginning).</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whatever <cite>self.function() - self.function()</cite> returns,
+usually fraction of seconds</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>time-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.start_timer">
+<span class="sig-name descname"><span class="pre">start_timer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch.start_timer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch.start_timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>description</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.stop_timer">
+<span class="sig-name descname"><span class="pre">stop_timer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch.stop_timer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch.stop_timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>description</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warg.decorators.timing.StopWatch.tick">
+<span class="sig-name descname"><span class="pre">tick</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/warg/decorators/timing.html#StopWatch.tick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#warg.decorators.timing.StopWatch.tick" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Time taken since last tick call.</strong></p>
+<p>If wasn’t called before, it is the same as as Timer creation time (first call returns
+the same thing as <cite>time()</cite>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whatever <cite>self.function() - self.function()</cite> returns,
+usually fraction of seconds</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>time-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/warg.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">Warg</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="warg.html">warg</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="warg.dist_is_editable.html">warg.dist_is_editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.get_version.html">warg.get_version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.arguments.html">warg.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.ast_ops.html">warg.ast_ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.bases.html">warg.bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.boolean_tests.html">warg.boolean_tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.business.html">warg.business</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.colors.html">warg.colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.config_shell.html">warg.config_shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.context_wrapper.html">warg.context_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.contexts.html">warg.contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.data_structures.html">warg.data_structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.datetimes.html">warg.datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.debug.html">warg.debug</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="warg.decorators.html">warg.decorators</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="warg.decorators.caching.html">warg.decorators.caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.decorators.hashing.html">warg.decorators.hashing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warg.decorators.kw_passing.html">warg.decorators.kw_passing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="warg.decorators.timing.html">warg.decorators.timing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="warg.decorators.timing.timeit.html">warg.decorators.timing.timeit</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">warg.decorators.timing.StopWatch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="warg.exceptions.html">warg.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.functions.html">warg.functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.gdkc.html">warg.gdkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.generators.html">warg.generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.imports.html">warg.imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.manipulation.html">warg.manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.map_itertools.html">warg.map_itertools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.math.html">warg.math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.metas.html">warg.metas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.mixins.html">warg.mixins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.ode.html">warg.ode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.os.html">warg.os</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.plugin.html">warg.plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.replication.html">warg.replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.strings.html">warg.strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.styling.html">warg.styling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.text.html">warg.text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="warg.typing_extension.html">warg.typing_extension</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="warg.html">warg</a><ul>
+  <li><a href="warg.decorators.html">warg.decorators</a><ul>
+  <li><a href="warg.decorators.timing.html">warg.decorators.timing</a><ul>
+      <li>Previous: <a href="warg.decorators.timing.timeit.html" title="previous chapter">warg.decorators.timing.timeit</a></li>
+      <li>Next: <a href="warg.exceptions.html" title="next chapter">warg.exceptions</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/generated/warg.decorators.timing.StopWatch.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

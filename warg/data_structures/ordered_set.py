@@ -219,10 +219,10 @@ class OrderedSet(MutableSet[T], Sequence[T]):
 
     @overload
     def index(self, key: T) -> int:
-        """ """
+        """description"""
         ...
 
-    def index(self, key: Sequence[T]) -> List[int]:
+    def index(self, key: Sequence[T]) -> int:
         """
         Get the index of a given entry, raising an IndexError if it's not
         present.
@@ -239,7 +239,7 @@ class OrderedSet(MutableSet[T], Sequence[T]):
             return [self.index(subkey) for subkey in key]
         return self.map[key]
 
-    # Provide some compatibility with pd.Index
+    # Provide some compatibility with pandas.Index
     get_loc = index
     get_indexer = index
 

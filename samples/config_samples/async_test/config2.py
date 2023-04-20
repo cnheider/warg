@@ -9,7 +9,7 @@ __doc__ = r"""
 
 from pathlib import Path
 
-from warg.imports import import_warning
+from warg import import_warning
 
 import_warning(Path(__file__).with_suffix("").name)
 

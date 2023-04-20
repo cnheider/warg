@@ -13,15 +13,27 @@ __all__ = [
     "is_none_or_zero_or_negative",
     "is_zero_or_mod_below",
     "is_none_or_zero_or_negative_or_mod_zero",
+    "xor",
+    "xnor",
+    "nand",
 ]
 
-from typing import Any
+import math
+from typing import Any, Optional
 
+from warg import Number
 from warg.decorators import drop_unused_kws, passes_kws_to
 
 
 @drop_unused_kws
-def is_positive_and_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_positive_and_mod_zero(
+    mod: Optional[Number],
+    counter: int,
+    *,
+    ret: Any = True,
+    alt: Any = False,
+    residual_printer: callable = None,
+) -> Any:
     """
 
     test if mod is positive
@@ -30,17 +42,36 @@ def is_positive_and_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: An
     else return alt
 
 
+    :param residual_printer:
+    :type residual_printer:
     :param mod:
     :param counter:
     :param ret:
     :param alt:
     :return:"""
 
-    return ret if (mod > 0 and (counter % mod == 0)) else alt
+    if mod == 0:
+        if residual_printer is not None:
+            residual_printer(math.inf)
+        return alt
+
+    m = counter % mod
+    if residual_printer is not None:
+        residual_printer(m)
+
+    return ret if (mod > 0 and (m == 0)) else alt
 
 
 @drop_unused_kws
-def is_zero_or_mod_below(mod: int, below: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_zero_or_mod_below(
+    mod: Optional[Number],
+    below: Number,
+    counter: int,
+    *,
+    ret: Any = True,
+    alt: Any = False,
+    residual_printer: callable = None,
+) -> Any:
     """
 
     test if mod is zero or if counter % mod is 0
@@ -48,6 +79,8 @@ def is_zero_or_mod_below(mod: int, below: int, counter: int, *, ret: Any = True,
     else return alt
 
 
+    :param residual_printer:
+    :type residual_printer:
     :param below:
     :type below:
     :param mod:
@@ -55,11 +88,27 @@ def is_zero_or_mod_below(mod: int, below: int, counter: int, *, ret: Any = True,
     :param ret:
     :param alt:
     :return:"""
-    return ret if (mod == 0 or (counter % mod < below)) else alt
+    if mod == 0:
+        if residual_printer is not None:
+            residual_printer(0)
+        return ret
+
+    m = counter % mod
+    if residual_printer is not None:
+        residual_printer(m - below)
+
+    return ret if (m < below) else alt
 
 
 @drop_unused_kws
-def is_zero_or_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = False) -> Any:
+def is_zero_or_mod_zero(
+    mod: Optional[Number],
+    counter: int,
+    *,
+    ret: Any = True,
+    alt: Any = False,
+    residual_printer: callable = None,
+) -> Any:
     """
 
     test if mod is zero or if counter % mod is 0
@@ -67,17 +116,32 @@ def is_zero_or_mod_zero(mod: int, counter: int, *, ret: Any = True, alt: Any = F
     else return alt
 
 
+    :param residual_printer:
+    :type residual_printer:
     :param mod:
     :param counter:
     :param ret:
     :param alt:
     :return:"""
-    return ret if (mod == 0 or (counter % mod == 0)) else alt
+
+    if mod == 0:
+        if residual_printer is not None:
+            residual_printer(0)
+        return ret
+
+    m = counter % mod
+    if residual_printer is not None:
+        residual_printer(m)
+
+    return ret if (m == 0) else alt
 
 
-def is_none_or_zero_or_negative(obj: Any) -> bool:
+@drop_unused_kws
+def is_none_or_zero_or_negative(obj: Optional[Number], residual_printer: callable = None) -> bool:
     """
 
+    :param residual_printer:
+    :type residual_printer:
     :param obj:
     :return:"""
     is_none = obj is None
@@ -85,18 +149,52 @@ def is_none_or_zero_or_negative(obj: Any) -> bool:
     if isinstance(obj, (int, float)):
         is_negative = obj <= 0
 
+    if is_none:
+        if residual_printer is not None:
+            residual_printer(0)
+    else:
+        if residual_printer is not None:
+            residual_printer(obj)
+
     return is_none or is_negative
 
 
 @passes_kws_to(is_zero_or_mod_zero)
-def is_none_or_zero_or_negative_or_mod_zero(mod: int, counter: int, **kwargs) -> bool:
+def is_none_or_zero_or_negative_or_mod_zero(mod: Optional[Number], counter: int, **kwargs) -> bool:
     """
 
     :param mod:
     :param counter:
     :param kwargs:
     :return:"""
-    return is_none_or_zero_or_negative(mod) or is_zero_or_mod_zero(mod, counter, **kwargs)
+    return is_none_or_zero_or_negative(mod, **kwargs) or is_zero_or_mod_zero(mod, counter, **kwargs)
+
+
+def xor(a: bool, b: bool) -> bool:
+    """
+
+    :param a:
+    :param b:
+    :return:"""
+    return a ^ b
+
+
+def xnor(a: bool, b: bool) -> bool:
+    """
+
+    :param a:
+    :param b:
+    :return:"""
+    return not xor(a, b)
+
+
+def nand(a: bool, b: bool) -> bool:
+    """
+
+    :param a:
+    :param b:
+    :return:"""
+    return not (a and b)
 
 
 if __name__ == "__main__":
@@ -109,4 +207,7 @@ if __name__ == "__main__":
 
     print()
     for i in range(8):
-        print(is_none_or_zero_or_negative_or_mod_zero(None, i))
+        print(is_none_or_zero_or_negative_or_mod_zero(None, i, residual_printer=print))
+
+    for i in range(8):
+        print(is_none_or_zero_or_negative_or_mod_zero(True, 4 - i, residual_printer=print))

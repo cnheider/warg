@@ -9,11 +9,12 @@ __doc__ = r"""
 
 __all__ = ["ContextWrapper", "NopContext"]
 
+import contextlib
 import inspect
-from typing import Sequence
+from typing import Callable, Sequence
 
 
-class NopContext:
+class NopContext(contextlib.AbstractContextManager):
     def __enter__(self):
         return
 
@@ -21,7 +22,7 @@ class NopContext:
         return
 
 
-class ContextWrapper:
+class ContextWrapper(contextlib.AbstractContextManager):
     """
     Allows for conditional application of contexts, if uninstantiated context manager classes are passed no arguments is supplied in construction.
     if disabled None is returned
@@ -44,12 +45,14 @@ class ContextWrapper:
 
     def __enter__(self):
         if self._enabled:
-            if inspect.isclass(self._context_manager):
+            if inspect.isclass(self._context_manager) or isinstance(self._context_manager, Callable):
                 self._context_manager = self._context_manager(
                     *self._construction_args, **self._construction_kwargs
                 )
-
-            return self._context_manager.__enter__()
+            if hasattr(self._context_manager, "__enter__"):
+                return self._context_manager.__enter__()
+            else:
+                raise NotImplementedError(f"{self._context_manager} does not implement __enter__")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self._enabled:
@@ -59,7 +62,7 @@ class ContextWrapper:
 if __name__ == "__main__":
 
     class SampleContextManager:
-        """ """
+        """description"""
 
         def __init__(self, message="Hello World"):
             self._message = message
@@ -70,8 +73,10 @@ if __name__ == "__main__":
         def __exit__(self, exc_type, exc_val, exc_tb):
             print(not self._message)  # False ;)
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         with ContextWrapper(SampleContextManager(), True):
             print("with enabled")
 

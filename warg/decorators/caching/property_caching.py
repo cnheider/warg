@@ -23,7 +23,7 @@ _NOT_FOUND = object()
 
 
 class cached_property:
-    """ """
+    """description"""
 
     def __init__(self, func):
         self.func = func

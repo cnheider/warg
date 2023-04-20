@@ -14,7 +14,7 @@ def test_ausdh3():
     from typing import Any
 
     def some_func(a: Any) -> None:
-        """ """
+        """description"""
         print(get_first_arg_name("some_func", verbose=True))
 
     some_func(print(2, sep="-"))
@@ -24,10 +24,21 @@ def test_ausd2h3():
     from typing import Any
 
     def some_func(a: Any) -> None:
-        """ """
+        """description"""
         print(get_first_arg_name("some_func", verbose=True))
 
     some_func(identity(2))
+
+
+def test_ausd2h34():
+    from typing import Any
+
+    def some_func(a: Any) -> None:
+        """description"""
+        print(get_first_arg_name("some_func", verbose=True))
+
+    asd = 2
+    some_func(identity(asd))
 
 
 def test_ausd2h3213():
@@ -37,11 +48,11 @@ def test_ausd2h3213():
         class Bc:
             @staticmethod
             def c(d):
-                """ """
+                """description"""
                 pass
 
     def some_func(a: Any) -> None:
-        """ """
+        """description"""
         print(get_first_arg_name("some_func", verbose=True))
 
     some_func(Ac.Bc.c(2))
