@@ -29,7 +29,17 @@ import operator
 from collections import defaultdict
 from copy import deepcopy
 from functools import reduce
-from typing import Any, Callable, Dict, Iterable, Iterator, Mapping, Sequence, Tuple, List
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    Iterator,
+    Mapping,
+    Sequence,
+    Tuple,
+    List,
+)
 
 from warg import Number, drop_unused_kws
 

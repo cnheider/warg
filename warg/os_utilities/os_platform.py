@@ -67,5 +67,6 @@ def has_x_server() -> bool:
     :rtype:
     """
     if is_nix():
-        return os.environ["DISPLAY"] != ""
+        return "DISPLAY" in os.environ and os.environ["DISPLAY"] != ""
+
     return True

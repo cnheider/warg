@@ -116,7 +116,12 @@ class ConfigShell(PlaybackShell):
                 self.add_option(p, getter=getter, setter=setter, deleter=deleter)
 
     def add_option(
-        self, key: str, *, getter: callable, setter: callable, deleter: Optional[callable] = None
+        self,
+        key: str,
+        *,
+        getter: callable,
+        setter: callable,
+        deleter: Optional[callable] = None,
     ) -> None:
         """
 

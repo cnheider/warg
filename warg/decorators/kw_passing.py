@@ -229,7 +229,11 @@ WRAPPER_NO_ANNOTATION = tuple(
 
 
 def pack_args(
-    f: callable, *, pack_name: str = "arg_pack", allow_passing: bool = True, verbose: bool = False
+    f: callable,
+    *,
+    pack_name: str = "arg_pack",
+    allow_passing: bool = True,
+    verbose: bool = False,
 ) -> callable:
     """
 
@@ -269,7 +273,11 @@ def pack_args(
 
 
 def pack_kws(
-    f: callable, *, pack_name: str = "kw_pack", allow_passing: bool = True, verbose: bool = False
+    f: callable,
+    *,
+    pack_name: str = "kw_pack",
+    allow_passing: bool = True,
+    verbose: bool = False,
 ) -> callable:
     """
 
@@ -309,7 +317,11 @@ def pack_kws(
 
 
 def pack_args_and_kws(
-    f: callable, *, pack_name: str = "arg_kw_pack", allow_passing: bool = True, verbose: bool = False
+    f: callable,
+    *,
+    pack_name: str = "arg_kw_pack",
+    allow_passing: bool = True,
+    verbose: bool = False,
 ) -> callable:
     """
 

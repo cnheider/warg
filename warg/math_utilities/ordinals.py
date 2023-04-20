@@ -109,5 +109,14 @@ if __name__ == "__main__":
 
     for a in numpy.arange(-1.0, 10.0, 0.5):
         cprint(a)
-        for f in (ceil_odd, ceil_even, floor_even, floor_odd, next_even, next_odd, prev_even, prev_odd):
+        for f in (
+            ceil_odd,
+            ceil_even,
+            floor_even,
+            floor_odd,
+            next_even,
+            next_odd,
+            prev_even,
+            prev_odd,
+        ):
             print(f.__name__, f(a))
