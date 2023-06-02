@@ -18,15 +18,31 @@ __all__ = [
     "find_ancestral_relatives",
     "find_nearest_ancestral_relative",
     "walk_up",
+    "reload_all_modules",
 ]
 
 import sys
+from importlib import reload
 from importlib.util import find_spec
 from pathlib import Path
 from typing import Optional, Any, Union, List
 from warnings import warn
 
 from warg import passes_kws_to
+
+
+def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> None:
+    try:
+        for mod in sys.modules.values():
+            reload(mod)
+    except Exception as e:
+        if verbose:
+            print(mod)
+        if catch_exceptions:
+            if verbose:
+                print(e)
+        else:
+            raise e
 
 
 def import_file(path: Path, from_list=None) -> Any:

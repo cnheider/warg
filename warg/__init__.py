@@ -30,36 +30,6 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from typing import Any
 
-from .data_structures import *
-from .arguments import *
-from .gdkc import *
-from .mixins import *
-from .decorators import *
-from .metas import *
-from .bases import *
-from .typing_extension import *
-from .context_wrapper import *
-from .boolean_tests import *
-from .map_itertools import *
-from .ast_ops import *
-from .importing import *
-from .functions import *
-from .os_utilities import *
-from .generators import *
-from .text import *
-from .math_utilities import *
-from .business import *
-from .datetimes import *
-from .debug import *
-from .exceptions import *
-from .manipulation import *
-from .replication import *
-from .styling import *
-from .strings import *
-from .contexts import *
-from .config_shell import *
-from .colors import *
-
 
 # from .ode import * # Silly thing
 

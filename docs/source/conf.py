@@ -77,7 +77,6 @@ copyright_text = f"{PROJECT_YEAR}, {PROJECT_AUTHOR}"
 version = PROJECT_VERSION
 release = version  # 'master'
 
-
 rst_prolog = f"""
 .. |project| replace:: {project}
 .. |PROJECT_NAME| replace:: {PROJECT_NAME}
