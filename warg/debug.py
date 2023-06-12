@@ -9,7 +9,7 @@ __doc__ = r"""
 
 __all__ = ["evaluate_context"]
 
-from typing import Any, Callable, Iterable, MutableMapping, Tuple, Sequence
+from typing import Any, Callable, MutableMapping, Tuple, Sequence
 
 
 def evaluate_context(x: Any, *args: Sequence, **kwargs: MutableMapping) -> Tuple:

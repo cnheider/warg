@@ -6,7 +6,6 @@ from warg import Number
 
 __all__ = ["sin_gen", "cos_gen", "loop"]
 
-
 loop = itertools.cycle
 
 

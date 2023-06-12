@@ -8,7 +8,7 @@ import pkg_resources
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.1.4"
+__version__ = "1.1.5"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -30,38 +30,46 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from typing import Any
 
-from .data_structures import *
-from .arguments import *
-from .gdkc import *
-from .mixins import *
-from .decorators import *
-from .metas import *
-from .bases import *
-from .typing_extension import *
-from .context_wrapper import *
-from .boolean_tests import *
-from .map_itertools import *
-from .ast_ops import *
-from .importing import *
-from .functions import *
-from .os_utilities import *
-from .generators import *
-from .text import *
-from .math_utilities import *
-from .business import *
-from .datetimes import *
-from .debug import *
-from .exceptions import *
-from .manipulation import *
-from .replication import *
-from .styling import *
-from .strings import *
-from .contexts import *
-from .config_shell import *
-from .colors import *
 
-
-# from .ode import * # Silly thing
+try:
+    # from .ode import * # Silly thing
+    from .data_structures import *
+    from .arguments import *
+    from .gdkc import *
+    from .mixins import *
+    from .decorators import *
+    from .metas import *
+    from .bases import *
+    from .typing_extension import *
+    from .context_wrapper import *
+    from .boolean_tests import *
+    from .map_itertools import *
+    from .ast_ops import *
+    from .importing import *
+    from .functions import *
+    from .os_utilities import *
+    from .generators import *
+    from .text import *
+    from .math_utilities import *
+    from .business import *
+    from .datetimes import *
+    from .debug import *
+    from .exceptions import *
+    from .manipulation import *
+    from .replication import *
+    from .styling import *
+    from .strings import *
+    from .contexts import *
+    from .config_shell import *
+    from .colors import *
+except ImportError as ix:
+    this_package_name = Path(__file__).parent.name
+    this_package_reqs = Path(__file__).parent.parent / f"requirements.txt"
+    if this_package_reqs.exists():
+        print(
+            f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
+        )  # TODO: PARSE WHAT is missing and print
+    raise ix
 
 
 def dist_is_editable(dist: Any) -> bool:

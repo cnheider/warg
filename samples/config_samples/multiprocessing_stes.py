@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 15-12-2020
            """
 
-
 if __name__ == "__main__":
 
     def _main():

@@ -21,7 +21,7 @@ import shutil
 from pathlib import Path
 from random import randint
 from time import time
-from typing import Any, Mapping, Union
+from typing import Any, Union
 
 import six
 
