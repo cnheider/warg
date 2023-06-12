@@ -19,8 +19,10 @@ __all__ = [
     "find_nearest_ancestral_relative",
     "walk_up",
     "reload_all_modules",
+    "reload_module",
 ]
 
+import importlib
 import sys
 from importlib import reload
 from importlib.util import find_spec
@@ -29,6 +31,47 @@ from typing import Optional, Any, Union, List
 from warnings import warn
 
 from warg import passes_kws_to
+
+
+"""
+PRELOADED_MODULES = set()
+def init():
+  # local imports to keep things neat
+  from sys import modules
+
+  global PRELOADED_MODULES
+
+  # sys and importlib are ignored here too
+  PRELOADED_MODULES = set(modules.values())
+
+
+def reload_all():
+  from sys import modules
+  import importlib
+
+  for module in set(modules.values()) - PRELOADED_MODULES:
+    try:
+      importlib.reload(module)
+    except:
+      # there are some problems that are swept under the rug here
+      pass
+init()
+"""
+
+
+def contain(q, s):
+    return q in s
+
+
+def reload_module(module_name: str, containment_test: callable = contain):
+    if module_name in sys.modules:
+        reload_set = {x for x in sys.modules if contain(module_name, x)}
+        for a in reload_set:
+            del sys.modules[a]
+            # importlib.reload(sys.modules[mod_str]) #DOES NOT WORK ON FROM IMPORTS...
+            sys.modules[a] = importlib.import_module(a)
+    else:
+        sys.modules[module_name] = importlib.import_module(module_name)
 
 
 def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> None:
