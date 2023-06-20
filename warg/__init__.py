@@ -30,7 +30,6 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from typing import Any
 
-
 try:
     # from .ode import * # Silly thing
     from .data_structures import *
@@ -62,6 +61,7 @@ try:
     from .contexts import *
     from .config_shell import *
     from .colors import *
+    from .packages import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = Path(__file__).parent.parent / f"requirements.txt"
@@ -70,20 +70,6 @@ except ImportError as ix:
             f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
         )  # TODO: PARSE WHAT is missing and print
     raise ix
-
-
-def dist_is_editable(dist: Any) -> bool:
-    """
-    Return True if given Distribution is an editable installation."""
-    import sys
-    from pathlib import Path
-
-    for path_item in sys.path:
-        egg_link = Path(path_item) / f"{dist.project_name}.egg-link"
-        if egg_link.is_file():
-            return True
-    return False
-
 
 PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
 PROJECT_VERSION = __version__
