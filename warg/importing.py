@@ -27,11 +27,12 @@ import sys
 from importlib import reload
 from importlib.util import find_spec
 from pathlib import Path
-from typing import Optional, Any, Union, List
+from typing import Optional, Any, Union, List, Iterable
 from warnings import warn
 
-from warg import passes_kws_to
+import pkg_resources
 
+from warg import passes_kws_to
 
 """
 PRELOADED_MODULES = set()
@@ -59,19 +60,25 @@ init()
 """
 
 
-def contain(q, s):
+def contain(q: Any, s: Iterable) -> bool:
     return q in s
 
 
-def reload_module(module_name: str, containment_test: callable = contain):
+def reload_module(module_name: str, containment_test: callable = contain) -> None:
     if module_name in sys.modules:
-        reload_set = {x for x in sys.modules if contain(module_name, x)}
+        reload_set = {x for x in sys.modules if containment_test(module_name, x)}
         for a in reload_set:
             del sys.modules[a]
             # importlib.reload(sys.modules[mod_str]) #DOES NOT WORK ON FROM IMPORTS...
             sys.modules[a] = importlib.import_module(a)
     else:
         sys.modules[module_name] = importlib.import_module(module_name)
+
+
+def reload_requirements(requirements_path: Path, containment_test: callable = contain) -> None:
+    with open(requirements_path) as f:
+        for r in pkg_resources.parse_requirements(f.readlines()):
+            reload_module(r.project_name, containment_test=containment_test)
 
 
 def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> None:

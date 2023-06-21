@@ -66,7 +66,6 @@ def get_system() -> SystemEnum:
     return SYSTEM
 
 
-# print(SYSTEM)
 if SYSTEM == "darwin":
     SYSTEM = SystemEnum.mac
 elif SYSTEM == "linux2" or SYSTEM == "linux":
