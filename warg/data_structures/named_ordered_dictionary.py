@@ -225,10 +225,10 @@ nod = NamedOrderedDictionary()
 
 for arg, value in zip(frame_info.call.args[-len(args) :], args):
 try:
-  arg_key = node_name(arg)
-  nod[arg_key] = value
+arg_key = node_name(arg)
+nod[arg_key] = value
 except TypeError:
-  nod.add_unnamed_arg(value)
+nod.add_unnamed_arg(value)
 
 nod.update(kwargs)
 
