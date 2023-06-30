@@ -10,7 +10,7 @@ __doc__ = r"""
 __all__ = ["FirstArgIdentifier", "get_first_arg_name", "cprint"]
 
 import ast
-from typing import Optional, Any
+from typing import Optional, Any, Callable
 
 
 def recurse_first_args(args):
@@ -159,7 +159,7 @@ def get_first_arg_name_recurse() -> Optional[str]:
     raise NotImplementedError
 
 
-def cprint(v: Any, writer: callable = print, deliminator: str = ":") -> None:
+def cprint(v: Any, writer: Callable = print, deliminator: str = ":") -> None:
     """
 
     :param v:

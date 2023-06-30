@@ -59,7 +59,7 @@ def negate(f: Callable) -> Callable:
     assert isinstance(f, Callable), "ensure you did not call the callable with parameters directly"
 
     @wraps(f)
-    def wrapper(*args: Sequence, **kwargs: MutableMapping) -> Any:
+    def wrapper(*args: Sequence[Any], **kwargs: MutableMapping[str, Any]) -> Any:
         """
 
         :param args:

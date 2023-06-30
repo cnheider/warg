@@ -20,6 +20,15 @@ __all__ = [
 
 from types import ModuleType
 
+
+class SystemEnum(enum.Enum):
+    """
+    Enum for the system type
+    """
+
+    windows, linux, mac, other = range(4)
+
+
 if sys.platform.startswith("java"):
     import platform
 
@@ -36,15 +45,14 @@ if sys.platform.startswith("java"):
 else:
     SYSTEM_ = sys.platform
 
-SYSTEM = SYSTEM_
+SYSTEM = SystemEnum.other
 
-
-class SystemEnum(enum.Enum):
-    """
-    Enum for the system type
-    """
-
-    windows, linux, mac, other = range(4)
+if SYSTEM_ == "darwin":
+    SYSTEM = SystemEnum.mac
+elif SYSTEM_ == "linux2" or SYSTEM_ == "linux":
+    SYSTEM = SystemEnum.linux
+elif SYSTEM_ == "win32":
+    SYSTEM = SystemEnum.windows
 
 
 def set_system(system: SystemEnum) -> None:
@@ -64,16 +72,6 @@ def get_system() -> SystemEnum:
     :rtype:
     """
     return SYSTEM
-
-
-if SYSTEM == "darwin":
-    SYSTEM = SystemEnum.mac
-elif SYSTEM == "linux2" or SYSTEM == "linux":
-    SYSTEM = SystemEnum.linux
-elif SYSTEM == "win32":
-    SYSTEM = SystemEnum.windows
-else:
-    SYSTEM = SystemEnum.other
 
 
 def get_backend_module(project_name: str, backend_name: str = sys.platform) -> ModuleType:
@@ -121,7 +119,7 @@ def get_backend_module(project_name: str, backend_name: str = sys.platform) -> M
     raise ImportError(f'{sys.platform} platform is not supported: {"; ".join(str(e) for e in errors)}')
 
 
-def is_py3():
+def is_py3() -> bool:
     """
 
     :return:

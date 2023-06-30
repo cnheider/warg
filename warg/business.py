@@ -8,15 +8,15 @@ __doc__ = r"""
            """
 
 from itertools import cycle
-from typing import Iterable
+from typing import Iterable, Callable
 
 
 def busy_indicator(
     *,
-    stream: callable = print,
+    stream: Callable = print,
     indicator_interval: int = 1,
     phases: Iterable[str] = ("◑", "◒", "◐", "◓"),
-) -> Iterable:
+) -> int:
     """
     You can choose arbitrary phases like ['|','/','-','\\']
 
@@ -40,7 +40,7 @@ def busy_indicator(
 
 if __name__ == "__main__":
 
-    def iasd():
+    def iasd() -> None:
         """description"""
         import time
 

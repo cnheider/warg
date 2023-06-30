@@ -15,10 +15,10 @@ import functools
 import time
 import typing
 from functools import wraps
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any, Any
 
 
-def timeit(f: callable):
+def timeit(f: typing.Callable) -> typing.Callable:
     """
 
     :param f:
@@ -27,7 +27,7 @@ def timeit(f: callable):
     :rtype:"""
 
     @wraps(f)
-    def wrapper(*args, **kwds):
+    def wrapper(*args, **kwds) -> typing.Tuple[float, Any]:
         """
 
         :param args:
@@ -195,7 +195,7 @@ class StopWatch(contextlib.AbstractContextManager):
         :rtype:"""
 
         @functools.wraps(function)
-        def decorated(*args: Sequence, **kwargs: MutableMapping):
+        def decorated(*args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
             """description"""
             self.start_timer()
             values = function(*args, **kwargs)

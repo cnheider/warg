@@ -5,7 +5,7 @@ import inspect
 import types
 from functools import wraps
 from logging import warning
-from typing import Dict, MutableMapping, Sequence, Tuple, Any
+from typing import Dict, MutableMapping, Sequence, Tuple, Any, Callable
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -45,7 +45,7 @@ def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
 # noinspection PyUnresolvedReferences
 def eval_sig_kw_params(
     passing_sig: inspect.Signature,
-    receiver_func: callable,
+    receiver_func: Callable,
     keep_from_var_kw: bool = False,
 ) -> Tuple[inspect.Signature, Dict[str, inspect.Parameter]]:
     """
@@ -104,7 +104,7 @@ def eval_sig_kw_params(
     return passing_sig, passing_params
 
 
-def passes_kws_to(*receiver_funcs: callable, keep_from_var_kw: bool = False) -> callable:
+def passes_kws_to(*receiver_funcs: Callable, keep_from_var_kw: bool = False) -> Callable:
     """
     A contract decorator, attaching this to a function you explicitly state that kws will be passed onward to
     a receiver function. No call graph checks if this actually enforces this yet. Also all receiver kwargs
@@ -117,7 +117,7 @@ def passes_kws_to(*receiver_funcs: callable, keep_from_var_kw: bool = False) -> 
         if isinstance(receiver_func, types.BuiltinFunctionType):
             raise AssertionError(f"'Built In Receiver' function: {receiver_func}, is not supported")
 
-    def _func(passing_func: callable) -> callable:
+    def _func(passing_func: Callable) -> Callable:
         passing_sig = inspect.signature(passing_func)
         for rf in receiver_funcs:
             passing_sig, new_params = eval_sig_kw_params(passing_sig, rf, keep_from_var_kw)
@@ -129,8 +129,8 @@ def passes_kws_to(*receiver_funcs: callable, keep_from_var_kw: bool = False) -> 
 
 
 def super_init_pass_on_kws(
-    f: callable = None, *, super_base: type = None, keep_from_var_kw: bool = False
-) -> callable:
+    f: Callable = None, *, super_base: type = None, keep_from_var_kw: bool = False
+) -> Callable:
     """
 
     :param f:
@@ -138,7 +138,7 @@ def super_init_pass_on_kws(
     :param keep_from_var_kw:
     :return:"""
 
-    def _func(func) -> callable:
+    def _func(func) -> Callable:
         if super_base:
             to_func = super_base.__init__
         else:
@@ -157,7 +157,7 @@ def super_init_pass_on_kws(
     return _func
 
 
-def drop_args(f: callable) -> callable:
+def drop_args(f: Callable) -> Callable:
     """
 
     :param f:
@@ -178,7 +178,7 @@ def drop_args(f: callable) -> callable:
     return wrapper
 
 
-def drop_kws(f: callable) -> callable:
+def drop_kws(f: Callable) -> Callable:
     """
 
     :param f:
@@ -199,7 +199,7 @@ def drop_kws(f: callable) -> callable:
     return wrapper
 
 
-def drop_args_and_kws(f: callable) -> callable:
+def drop_args_and_kws(f: Callable) -> Callable:
     """
 
     :param f:
@@ -229,7 +229,7 @@ WRAPPER_NO_ANNOTATION = tuple(
 
 
 def pack_args(
-    f: callable,
+    f: Callable,
     *,
     pack_name: str = "arg_pack",
     allow_passing: bool = True,
@@ -273,7 +273,7 @@ def pack_args(
 
 
 def pack_kws(
-    f: callable,
+    f: Callable,
     *,
     pack_name: str = "kw_pack",
     allow_passing: bool = True,
@@ -317,7 +317,7 @@ def pack_kws(
 
 
 def pack_args_and_kws(
-    f: callable,
+    f: Callable,
     *,
     pack_name: str = "arg_kw_pack",
     allow_passing: bool = True,
@@ -360,7 +360,7 @@ def pack_args_and_kws(
     return wrapper
 
 
-def drop_unused_args(f: callable) -> callable:
+def drop_unused_args(f: Callable) -> Callable:
     """
 
     :param f:
@@ -382,7 +382,7 @@ def drop_unused_args(f: callable) -> callable:
 
 
 # noinspection PyUnresolvedReferences
-def drop_unused_kws(f: callable) -> callable:
+def drop_unused_kws(f: Callable) -> Callable:
     """
 
     :param f:
@@ -421,7 +421,7 @@ class AlsoDecorator:
 
     def __call__(self, func):
         @functools.wraps(func)
-        def decorate_func(*args: Sequence, **kwargs: MutableMapping):
+        def decorate_func(*args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
             """
 
             :param args:

@@ -11,12 +11,14 @@ __all__ = [
     "IterDictValuesMixin",
 ]
 
+from typing import Any, Tuple
+
 
 class IterDictItemsMixin:
     """
     Mixin class for iterating kw pairs in a class instance __dict__"""
 
-    def __iter__(self):
+    def __iter__(self) -> Tuple[Any, Any]:
         for attr, value in self.__dict__.items():
             yield attr, value
 
@@ -25,7 +27,7 @@ class IterDictKeysMixin:
     """
     Mixin class for iterating only the keys of a class instance __dict__"""
 
-    def __iter__(self):
+    def __iter__(self) -> Any:
         for attr in self.__dict__.keys():
             yield attr
 
@@ -34,7 +36,7 @@ class IterDictValuesMixin:
     """
     Mixin class for iterating only the values of a class instance __dict__"""
 
-    def __iter__(self):
+    def __iter__(self) -> Any:
         for value in self.__dict__.values():
             yield value
 

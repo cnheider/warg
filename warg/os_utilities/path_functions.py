@@ -7,13 +7,14 @@ __doc__ = r"""
            Created on 08/03/2020
            """
 
-__all__ = ["ensure_existence", "path_rmtree", "sanitise_path", "path_join"]
+__all__ = ["ensure_existence", "path_rmtree", "sanitise_path", "path_join", "keep_last_n_modified"]
 
+import collections
 import os
 from itertools import cycle
 from pathlib import Path
 
-from typing import Iterable, Union
+from typing import Iterable, Union, Callable
 
 
 def path_join(*p: Union[Path, str]) -> Path:
@@ -100,7 +101,7 @@ def ensure_existence(
     overwrite_on_wrong_type: bool = False,
     force_overwrite: bool = False,
     verbose: bool = False,
-    sanitisation_func: callable = sanitise_path,
+    sanitisation_func: Callable = sanitise_path,
 ) -> Path:
     """
 
@@ -158,6 +159,31 @@ def ensure_existence(
     return out
 
 
+# @passes_kws_to(rmtree)
+def keep_last_n_modified(
+    directory: Union[Path, str], n: int, only_directories: bool = False, only_files: bool = False, **kwargs
+):
+    directory = Path(directory)
+    from shutil import rmtree
+
+    assert not (only_files and only_directories)  # Ensure that only of them is True or both are False
+
+    timeline = {}
+    for dir_entry in directory.iterdir():
+        if only_directories and not dir_entry.is_dir():
+            continue
+        if only_files and not dir_entry.is_file():
+            continue
+        timeline[os.path.getmtime(str(dir_entry))] = dir_entry
+
+    sorted_timeline = collections.OrderedDict(sorted(timeline.items()))
+    for _ in range(min(len(sorted_timeline), n)):  # Keep the last n versions of tiles
+        sorted_timeline.popitem()
+
+    for j in sorted_timeline.values():
+        rmtree(j, **kwargs)
+
+
 if __name__ == "__main__":
 
     def main():
@@ -194,6 +220,7 @@ if __name__ == "__main__":
 
         print(pa, sanitise_path(pa))
 
-    clean_naughty_file()
-    clean_naughty_dir()
+    # clean_naughty_file()
+    # clean_naughty_dir()
     # main()
+    keep_last_n_modified(Path("exclude"), 2)

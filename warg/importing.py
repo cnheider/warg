@@ -27,7 +27,7 @@ import sys
 from importlib import reload
 from importlib.util import find_spec
 from pathlib import Path
-from typing import Optional, Any, Union, List, Iterable
+from typing import Optional, Any, Union, List, Iterable, Callable
 from warnings import warn
 
 import pkg_resources
@@ -70,7 +70,7 @@ def contain(q: Any, s: Iterable) -> bool:
     return q in s
 
 
-def reload_module(module_name: str, containment_test: callable = contain) -> None:
+def reload_module(module_name: str, containment_test: Callable = contain) -> None:
     """
 
     :param module_name:
@@ -87,7 +87,7 @@ def reload_module(module_name: str, containment_test: callable = contain) -> Non
         sys.modules[module_name] = importlib.import_module(module_name)
 
 
-def reload_requirements(requirements_path: Path, containment_test: callable = contain) -> None:
+def reload_requirements(requirements_path: Path, containment_test: Callable = contain) -> None:
     """
 
     :param requirements_path:

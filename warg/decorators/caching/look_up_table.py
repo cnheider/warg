@@ -9,7 +9,7 @@ __doc__ = r"""
            """
 
 from time import sleep, time
-from typing import Iterable, Mapping, Set, Tuple, Sequence, MutableMapping, Any
+from typing import Iterable, Mapping, Set, Tuple, Sequence, MutableMapping, Any, Callable
 
 from warg.decorators.hashing import make_hash
 
@@ -18,7 +18,7 @@ global_table = {}
 __all__ = ["add_lut", "look_up", "look_up_args", "look_up_kws"]
 
 
-def add_lut(f: callable) -> callable:
+def add_lut(f: Callable) -> callable:
     """
 
     :param f:
@@ -29,7 +29,7 @@ def add_lut(f: callable) -> callable:
     return f
 
 
-def look_up(f: callable, *args: Sequence, **kwargs: MutableMapping) -> Any:
+def look_up(f: Callable, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]) -> Any:
     """
 
     :param f:
@@ -53,7 +53,7 @@ def look_up(f: callable, *args: Sequence, **kwargs: MutableMapping) -> Any:
     return res
 
 
-def look_up_args(f: callable, *args: Sequence) -> Any:
+def look_up_args(f: Callable, *args: Sequence) -> Any:
     """
 
     :param f:
@@ -74,7 +74,7 @@ def look_up_args(f: callable, *args: Sequence) -> Any:
     return res
 
 
-def look_up_kws(f: callable, **kwargs: MutableMapping) -> Any:
+def look_up_kws(f: Callable, **kwargs: MutableMapping) -> Any:
     """
 
     :param f:
@@ -96,7 +96,7 @@ def look_up_kws(f: callable, **kwargs: MutableMapping) -> Any:
     return res
 
 
-def precompute_lut(f: callable, arg_sets: Set[Tuple[Iterable, Mapping]], *, verbose=False) -> callable:
+def precompute_lut(f: Callable, arg_sets: Set[Tuple[Iterable, Mapping]], *, verbose=False) -> callable:
     """
 
     :param f:
@@ -114,7 +114,7 @@ def precompute_lut(f: callable, arg_sets: Set[Tuple[Iterable, Mapping]], *, verb
     return f
 
 
-def precompute_lut_args(f: callable, arg_sets: Set[Iterable], *, verbose=False) -> callable:
+def precompute_lut_args(f: Callable, arg_sets: Set[Iterable], *, verbose=False) -> callable:
     """
 
     :param f:
@@ -132,7 +132,7 @@ def precompute_lut_args(f: callable, arg_sets: Set[Iterable], *, verbose=False) 
     return f
 
 
-def precompute_lut_kws(f: callable, arg_sets: Set[Mapping], *, verbose=False) -> callable:
+def precompute_lut_kws(f: Callable, arg_sets: Set[Mapping], *, verbose=False) -> callable:
     """
 
     :param f:

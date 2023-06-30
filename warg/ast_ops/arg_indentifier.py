@@ -10,7 +10,7 @@ __doc__ = r"""
 __all__ = ["ArgIdentifier", "get_arg_names", "cprinta", "cprintz"]
 
 import ast
-from typing import Optional, Any
+from typing import Optional, Any, Callable
 
 
 class ArgIdentifier(ast.NodeVisitor):
@@ -129,7 +129,7 @@ def ge_arg_names_recurse() -> Optional[str]:
     raise NotImplementedError
 
 
-def cprinta(*v: Any, writer: callable = print, deliminator: str = ":") -> None:
+def cprinta(*v: Any, writer: Callable = print, deliminator: str = ":") -> None:
     """
 
     :param v:
@@ -144,7 +144,7 @@ def cprinta(*v: Any, writer: callable = print, deliminator: str = ":") -> None:
     writer(f"{get_arg_names('cprinta')}{deliminator}", v)
 
 
-def cprintz(*v: Any, writer: callable = print) -> None:
+def cprintz(*v: Any, writer: Callable = print) -> None:
     """
 
     :param v:

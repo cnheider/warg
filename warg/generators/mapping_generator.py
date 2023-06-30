@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Any, Iterable, Mapping, Tuple
+from typing import Any, Iterable, Mapping, Tuple, Callable
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -11,7 +11,7 @@ __doc__ = r"""
 __all__ = ["yield_and_map", "inner_map", "kw_map"]
 
 
-def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print) -> Any:
+def yield_and_map(iterable: Iterable[Any], level: int = 0, func: Callable = print) -> Any:
     """
 
     :param iterable:
@@ -37,7 +37,7 @@ def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print) ->
                     yield c
 
 
-def inner_map(func: callable, iterable: Iterable, aggregate_yield: bool = True) -> Any:
+def inner_map(func: Callable, iterable: Iterable[Any], aggregate_yield: bool = True) -> Any:
     """
 
     :param func:
@@ -55,7 +55,7 @@ def inner_map(func: callable, iterable: Iterable, aggregate_yield: bool = True) 
                 yield func(b)
 
 
-def kw_map(func: callable, kw: str, iterable: Iterable) -> Any:
+def kw_map(func: Callable, kw: str, iterable: Iterable[Any]) -> Any:
     """
 
     :param func:
@@ -68,9 +68,11 @@ def kw_map(func: callable, kw: str, iterable: Iterable) -> Any:
         yield func(**{kw: a})
 
 
-def select_key(tuple_iterator: Iterable, *a) -> Tuple:
+def select_key(tuple_iterator: Iterable[Any], *a) -> Tuple[Any, Any]:
     """
     Yield keys from mapping if in a
+
+    TODO: Why return the key itself?
 
     :param tuple_iterator:
     :type tuple_iterator:
@@ -84,7 +86,7 @@ def select_key(tuple_iterator: Iterable, *a) -> Tuple:
             yield k, _
 
 
-def select_dict(mapping: Mapping, *a) -> Mapping:
+def select_dict(mapping: Mapping[Any, Any], *a) -> Mapping[Any, Any]:
     """
     Select keys from mapping if in a
 
@@ -100,7 +102,7 @@ def select_dict(mapping: Mapping, *a) -> Mapping:
 
 if __name__ == "__main__":
 
-    def uahsd():
+    def uahsd() -> None:
         agfas = (2, 3)
         # TODO
 

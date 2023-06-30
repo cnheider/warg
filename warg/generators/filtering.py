@@ -31,7 +31,7 @@ class FilterModeEnum(Enum):
 
 
 def symbol_filter(
-    string_stream: Iterable,
+    string_stream: Iterable[str],
     symbol: str = "#",
     *,
     exclusion_mode: FilterModeEnum = FilterModeEnum.exclude_postfix,

@@ -10,9 +10,11 @@ __doc__ = r"""
 
 __all__ = ["pre_decorate", "post_decorate"]
 
+from typing import Callable
 
-def pre_decorate(method: callable, *callables: callable):
-    def pre_call_func(self: object = None, *args, **kwargs):
+
+def pre_decorate(method: Callable, *callables: Callable) -> callable:
+    def pre_call_func(self: object = None, *args, **kwargs) -> callable:
         for c in callables:
             c(self, *args, **kwargs)
         return method(self, *args, **kwargs)
@@ -20,8 +22,8 @@ def pre_decorate(method: callable, *callables: callable):
     return pre_call_func
 
 
-def post_decorate(method: callable, *callables: callable):
-    def post_call_func(self: object = None, *args, **kwargs):
+def post_decorate(method: Callable, *callables: Callable) -> callable:
+    def post_call_func(self: object = None, *args, **kwargs) -> callable:
         res = method(self, *args, **kwargs)
         for c in callables:
             c(self, *args, res=res, **kwargs)
@@ -32,7 +34,7 @@ def post_decorate(method: callable, *callables: callable):
 
 if __name__ == "__main__":
 
-    def juahsdu():
+    def juahsdu() -> None:
         def c(d):
             print(d)
             return f"c_{d}"

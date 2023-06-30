@@ -30,7 +30,7 @@ class ContextWrapper(contextlib.AbstractContextManager):
 
     def __init__(
         self,
-        context_manager: callable,
+        context_manager: Callable,
         enabled: bool,
         construction_args: Sequence = (),
         construction_kwargs=None,
