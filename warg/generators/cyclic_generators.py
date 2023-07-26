@@ -20,7 +20,7 @@ def sin_gen(iterable: Iterable[Number], magnitude: Number = 1) -> Iterable[Numbe
         yield sin(a) * magnitude
 
 
-def cos_gen(iterable: Iterable, magnitude: Number = 1) -> Iterable[Number]:
+def cos_gen(iterable: Iterable[Number], magnitude: Number = 1) -> Iterable[Number]:
     """
 
     :param magnitude:

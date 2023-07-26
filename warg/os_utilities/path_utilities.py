@@ -10,10 +10,11 @@ __doc__ = r"""
 import os
 import subprocess
 from pathlib import Path
-
-__all__ = ["latest_file", "exist_any_extension", "system_open_path"]
+from typing import Optional
 
 from warg.os_utilities.os_platform import is_windows, is_mac, has_x_server
+
+__all__ = ["latest_file", "exist_any_extension", "system_open_path"]
 
 
 def system_open_path(path: Path, *, verbose: bool = False) -> None:
@@ -53,7 +54,7 @@ def latest_file(
     *,
     recurse: bool = False,
     raise_on_failure: bool = True,
-) -> Path:
+) -> Optional[Path]:
     """
 
     :param directory:
@@ -79,7 +80,7 @@ def latest_file(
 
 def exist_any_extension(p: Path) -> bool:
     """
-    If any file with that stem exist in parent directory, return True.
+    If any file with that stem exists in the parent directory, return True.
 
     :param p:
     :type p:

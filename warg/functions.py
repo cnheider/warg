@@ -225,7 +225,7 @@ def chain_filter(it: Iterable, *filters: Callable) -> Iterator:
     return it
 
 
-def chain_apply(it: Iterable, *callables: Callable) -> Iterable:
+def chain_apply(it: Iterable, *callables: Callable) -> Iterable[Any]:
     """
     Apply a sequence of callables to an iterable; apply the iterable sequentially in callables order
 

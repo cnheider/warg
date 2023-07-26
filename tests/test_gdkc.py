@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any, Any
 
 import pytest
 
@@ -17,7 +17,7 @@ __doc__ = r"""
 class A:
     """description"""
 
-    def __init__(self, *args: Sequence, **kwargs: MutableMapping):
+    def __init__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         self.args_a = args
         self.kwargs_a = kwargs
 
@@ -29,11 +29,11 @@ class A:
         """description"""
         print(args, self.kwargs_a)
 
-    def another(self, *args: Sequence, **kwargs: MutableMapping):
+    def another(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """description"""
         print(args, self.kwargs_a, kwargs)
 
-    def clearly_something(self, *args: Sequence, **kwargs: MutableMapping):
+    def clearly_something(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """description"""
         print(self.args_a, args, self.kwargs_a, kwargs)
 

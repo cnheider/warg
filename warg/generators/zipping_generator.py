@@ -12,16 +12,16 @@ __doc__ = r"""
 __all__ = ["unzip", "unzipper"]
 
 
-def unzip(iterable: Iterable) -> Iterable:
+def unzip(iterable: Iterable[Any]) -> Iterable[Any]:
     """description"""
     return zip(*iterable)
 
 
-def unzipper(_iterable: Iterable[Iterable]) -> Iterable:
+def unzipper(_iterable: Iterable[Iterable[Any]]) -> Iterable[Any]:
     """
     Unzips an iterable of an iterable
 
-    Be carefully has undefined and expected behaviour
+    Be careful, functionality maybe have undefined and unexpected behaviour
 
     :param _iterable:
     :return:Iterable
@@ -48,7 +48,6 @@ def unzipper(_iterable: Iterable[Iterable]) -> Iterable:
         else:
             for i in _iterable:
                 yield i
-    return
 
 
 if __name__ == "__main__":

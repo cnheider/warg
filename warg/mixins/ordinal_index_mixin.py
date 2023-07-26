@@ -9,13 +9,15 @@ __all__ = [
     "OrdinalIndexingDictMixin",
 ]
 
+from typing import Union, Any
+
 
 class OrdinalIndexingDictMixin:
     """
     Mixin class for indexing a class instance __dict__ (SortedDict) with both integer (ordinal) indexing or
     key:str attributes (non-ordinal) access."""
 
-    def __getitem__(self, item):
+    def __getitem__(self, item: Union[int, Any]) -> Any:
         if isinstance(item, int):
             return list(self.__dict__.values())[item]
         else:

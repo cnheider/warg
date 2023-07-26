@@ -10,7 +10,7 @@ __all__ = ["PlaybackShell", "ConfigShell"]
 
 import cmd
 from pathlib import Path
-from typing import MutableMapping, Optional
+from typing import MutableMapping, Optional, Callable
 
 from warg import passes_kws_to, PropertySettings
 
@@ -119,8 +119,8 @@ class ConfigShell(PlaybackShell):
         self,
         key: str,
         *,
-        getter: callable,
-        setter: callable,
+        getter: Callable,
+        setter: Callable,
         deleter: Optional[callable] = None,
     ) -> None:
         """
@@ -139,7 +139,7 @@ class ConfigShell(PlaybackShell):
         if deleter:
             self.add_func(f"del_{key}", deleter)
 
-    def add_func(self, key: str, func: callable) -> None:
+    def add_func(self, key: str, func: Callable) -> None:
         """
 
         :param key:

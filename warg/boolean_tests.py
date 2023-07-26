@@ -19,7 +19,7 @@ __all__ = [
 ]
 
 import math
-from typing import Any, Optional
+from typing import Any, Optional, Callable
 
 from warg import Number
 from warg.decorators import drop_unused_kws, passes_kws_to
@@ -32,7 +32,7 @@ def is_positive_and_mod_zero(
     *,
     ret: Any = True,
     alt: Any = False,
-    residual_printer: callable = None,
+    residual_printer: Callable = None,
 ) -> Any:
     """
 
@@ -70,7 +70,7 @@ def is_zero_or_mod_below(
     *,
     ret: Any = True,
     alt: Any = False,
-    residual_printer: callable = None,
+    residual_printer: Callable = None,
 ) -> Any:
     """
 
@@ -107,7 +107,7 @@ def is_zero_or_mod_zero(
     *,
     ret: Any = True,
     alt: Any = False,
-    residual_printer: callable = None,
+    residual_printer: Callable = None,
 ) -> Any:
     """
 
@@ -137,7 +137,7 @@ def is_zero_or_mod_zero(
 
 
 @drop_unused_kws
-def is_none_or_zero_or_negative(obj: Optional[Number], residual_printer: callable = None) -> bool:
+def is_none_or_zero_or_negative(obj: Optional[Number], residual_printer: Callable = None) -> bool:
     """
 
     :param residual_printer:

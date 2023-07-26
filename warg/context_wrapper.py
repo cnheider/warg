@@ -11,7 +11,7 @@ __all__ = ["ContextWrapper", "NopContext"]
 
 import contextlib
 import inspect
-from typing import Callable, Sequence
+from typing import Callable, Sequence, Mapping, Optional
 
 
 class NopContext(contextlib.AbstractContextManager):
@@ -30,10 +30,10 @@ class ContextWrapper(contextlib.AbstractContextManager):
 
     def __init__(
         self,
-        context_manager: callable,
+        context_manager: Callable,
         enabled: bool,
         construction_args: Sequence = (),
-        construction_kwargs=None,
+        construction_kwargs: Optional[Mapping] = None,
     ):
         if construction_kwargs is None:
             construction_kwargs = {}

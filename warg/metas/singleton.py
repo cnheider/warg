@@ -12,7 +12,7 @@ __all__ = ["SingletonBase", "SingletonMeta", "key_singleton", "singleton"]
 
 import functools
 from functools import wraps
-from typing import Any, Sequence, MutableMapping
+from typing import Any, Sequence, MutableMapping, Callable
 
 
 class SingletonBase:
@@ -24,7 +24,7 @@ class SingletonBase:
 
     instance = None
 
-    def __new__(cls, *args: Sequence, **kwargs: MutableMapping):
+    def __new__(cls, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         if cls.instance is None:
             cls.instance = super().__new__(cls, *args, **kwargs)
 
@@ -48,7 +48,7 @@ class SingletonMeta(type):
         super().__init__(name, bases, namespace)
         cls.instance = None
 
-    def __call__(cls, *args: Sequence, **kwargs: MutableMapping):
+    def __call__(cls, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         if cls.instance is None:
             cls.instance = super().__call__(*args, **kwargs)
 
@@ -61,7 +61,7 @@ def singleton(cls):
     cls.__new_original__ = cls.__new__
 
     @functools.wraps(cls.__new__)
-    def singleton_new(cls_, *args: Sequence, **kwargs: MutableMapping):
+    def singleton_new(cls_, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """
 
         :param cls_:
@@ -84,16 +84,16 @@ def singleton(cls):
     return cls
 
 
-def key_singleton(cache_key: Any) -> callable:
+def key_singleton(cache_key: Any) -> Callable:
     """
     TODO: finish
     """
 
-    def inner_fn(fn: callable) -> Any:
+    def inner_fn(fn: Callable) -> Any:
         """description"""
 
         @wraps(fn)
-        def wrapper(self, *args: Sequence, **kwargs: MutableMapping):
+        def wrapper(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
             """description"""
             instance = getattr(self, cache_key)
             if instance is not None:

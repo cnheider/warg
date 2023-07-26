@@ -12,12 +12,17 @@ __doc__ = r"""
 
 __all__ = ["cached_property"]
 
+from typing import Any
+
 # cached_property = property
 
 ################################################################################
 ### cached_property() - computed once per instance, cached as attribute
 ################################################################################
-from _thread import RLock
+try:
+    from _thread import RLock
+except:
+    pass
 
 _NOT_FOUND = object()
 
@@ -40,7 +45,7 @@ class cached_property:
                 f"({self.attrname!r} and {name!r})."
             )
 
-    def __get__(self, instance, owner=None):
+    def __get__(self, instance, owner=None) -> Any:
         if instance is None:
             return self
         if self.attrname is None:

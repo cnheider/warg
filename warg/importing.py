@@ -27,7 +27,7 @@ import sys
 from importlib import reload
 from importlib.util import find_spec
 from pathlib import Path
-from typing import Optional, Any, Union, List, Iterable
+from typing import Optional, Any, Union, List, Iterable, Callable
 from warnings import warn
 
 import pkg_resources
@@ -61,10 +61,22 @@ init()
 
 
 def contain(q: Any, s: Iterable) -> bool:
+    """
+
+    :param q:
+    :param s:
+    :return:
+    """
     return q in s
 
 
-def reload_module(module_name: str, containment_test: callable = contain) -> None:
+def reload_module(module_name: str, containment_test: Callable = contain) -> None:
+    """
+
+    :param module_name:
+    :param containment_test:
+    :return:
+    """
     if module_name in sys.modules:
         reload_set = {x for x in sys.modules if containment_test(module_name, x)}
         for a in reload_set:
@@ -75,13 +87,25 @@ def reload_module(module_name: str, containment_test: callable = contain) -> Non
         sys.modules[module_name] = importlib.import_module(module_name)
 
 
-def reload_requirements(requirements_path: Path, containment_test: callable = contain) -> None:
+def reload_requirements(requirements_path: Path, containment_test: Callable = contain) -> None:
+    """
+
+    :param requirements_path:
+    :param containment_test:
+    :return:
+    """
     with open(requirements_path) as f:
         for r in pkg_resources.parse_requirements(f.readlines()):
             reload_module(r.project_name, containment_test=containment_test)
 
 
 def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> None:
+    """
+
+    :param catch_exceptions:
+    :param verbose:
+    :return:
+    """
     try:
         for mod in sys.modules.values():
             reload(mod)
@@ -96,7 +120,13 @@ def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> N
 
 
 def import_file(path: Path, from_list=None) -> Any:
-    """Import a module given its filename, works both on absolute and relative paths"""
+    """
+    Import a module given its filename, works both on absolute and relative paths
+
+    :param path:
+    :param from_list:
+    :return:
+    """
     if from_list is None:
         from_list = {}
     globals_ = {}  # globals() # determines package context
@@ -113,6 +143,13 @@ def import_file(path: Path, from_list=None) -> Any:
 
 
 def walk_up(path: Path, top: Path, max_ascent: int = None):
+    """
+
+    :param path:
+    :param top:
+    :param max_ascent:
+    :return:
+    """
     i = 0
     while True:
         yield path
@@ -126,6 +163,12 @@ def walk_up(path: Path, top: Path, max_ascent: int = None):
 
 
 def walk_down(path: Path, max_descent: int = None):
+    """
+
+    :param path:
+    :param max_descent:
+    :return:
+    """
     if max_descent == 0:
         return
 
@@ -144,7 +187,7 @@ def walk_down(path: Path, max_descent: int = None):
 
 def find_ancestral_relatives(
     target: Union[str, Path],
-    context: Path = Path.cwd(),
+    context: Path,  # = Path.cwd(),
     *,
     from_parent_of_context: bool = True,
     ancestral_levels: int = 2,
@@ -154,6 +197,19 @@ def find_ancestral_relatives(
     no_duplicates: bool = True,
     terminate_first: bool = False,
 ) -> List[Path]:
+    """
+
+    :param target:
+    :param context:
+    :param from_parent_of_context:
+    :param ancestral_levels:
+    :param descendant_levels:
+    :param top_level:
+    :param return_parent_of_target:
+    :param no_duplicates:
+    :param terminate_first:
+    :return:
+    """
     relatives = []
 
     if top_level is None:
@@ -186,6 +242,12 @@ def find_ancestral_relatives(
 
 @passes_kws_to(find_ancestral_relatives)
 def find_nearest_ancestral_relative(*args, **kwargs) -> Optional[Path]:
+    """
+
+    :param args:
+    :param kwargs:
+    :return:
+    """
     kwargs.update(terminate_first=True)
     result = find_ancestral_relatives(*args, **kwargs)
     if result:
@@ -194,7 +256,9 @@ def find_nearest_ancestral_relative(*args, **kwargs) -> Optional[Path]:
 
 def clean_sys_path() -> None:
     """
-    Clean the sys.path for dead paths or duplicates
+      Clean the sys.path for dead paths or duplicates
+
+    :return:
     """
     out = []
     for path in sys.path:
@@ -208,7 +272,11 @@ def clean_sys_path() -> None:
 
 def remove_from_sys_path(target: Path, missing_ok: bool = True):
     """
-    Clean the sys.path for dead paths or duplicates
+      Clean the sys.path for target path
+
+    :param target:
+    :param missing_ok:
+    :return:
     """
     out = []
 
@@ -228,6 +296,7 @@ def ensure_in_sys_path(
     position: Optional[int] = None,
     resolve: bool = False,
     absolute: bool = True,
+    verbose: bool = False,
 ) -> None:
     """
 
@@ -235,16 +304,18 @@ def ensure_in_sys_path(
     Can also resolve and absolute paths for duplication.
     Does not clean the existing paths in sys.path
 
-    :param path:
-    :type path:
-    :param position:
-    :type position:
-    :param resolve:
-    :type resolve:
-    :param absolute:
-    :type absolute:
-    :return:
-    :rtype:
+    :param verbose: Whether to print verbose info
+    :type verbose: bool
+    :param path: The path to be inserted
+    :type path: Optional[Union[str, Path]]
+    :param position: If not supplied, the path will be appended at the end of the existing sys.path
+    :type position: Optional[int]
+    :param resolve: Whether to resolve the absolute path
+    :type resolve: bool
+    :param absolute: Insert the absolute path
+    :type absolute: bool
+    :return: None
+    :rtype: None
     """
     if path is None:  # may be the case if the supplied path is being solved programmatically
         warn("No path was supplied")
@@ -270,28 +341,25 @@ def ensure_in_sys_path(
         else:
             sys.path.append(str_path)
     else:
-        print(f"{path} is already in sys path")
+        if verbose:
+            print(f"{path} is already in sys path")
 
 
 def is_module_available(module: str) -> bool:
-    """**Return True if module is available.**
+    """Returns True if module is available.
 
-    Parameters
-    ----------
-    module: str
-          Name of the module to be checked.
 
-    Returns
-    -------
-    bool
-          True if installed.
+    :param module: Name of the module to be checked.
+    :type module: str
+    :return:  True if installed.
+    :rtype: bool
     """
     return find_spec(module) is not None
 
 
 def import_warning(module_name: str) -> None:
     """
-    Inform the user that module has been imported,
+    Inform the user that a module has been imported,
     useful when repeated imports are heavy in the contexts of multiprocessing.
     Lets the user identify which file is reporting heavy loading and restructure code to avoid repeated importing
 
