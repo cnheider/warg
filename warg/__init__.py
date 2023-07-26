@@ -8,7 +8,7 @@ import pkg_resources
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.1.6"
+__version__ = "1.1.7"
 __doc__ = r"""
 Created on 27/04/2019
 
