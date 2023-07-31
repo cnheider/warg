@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+from importlib import resources
+from importlib.metadata import Distribution, PackageNotFoundError
 from warnings import warn
-
-import pkg_resources
 
 __project__ = "Warg"
 
@@ -17,6 +16,7 @@ Created on 27/04/2019
 """
 
 from pathlib import Path
+
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
@@ -44,7 +44,6 @@ try:
     from .boolean_tests import *
     from .map_itertools import *
     from .ast_ops import *
-    from .importing import *
     from .functions import *
     from .os_utilities import *
     from .generators import *
@@ -82,16 +81,20 @@ __url__ = f"https://github.com/{PROJECT_ORGANISATION}/{PROJECT_NAME}"
 # from apppath import AppPath # CAREFUL CIRCULAR DEPENDENCY WARNING!
 # PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR) # NOT USED!
 
-distributions = {v.key: v for v in pkg_resources.working_set}
-if PROJECT_NAME in distributions:
-    distribution = distributions[PROJECT_NAME]
-    DEVELOP = dist_is_editable(distribution)
-else:
+PACKAGE_DATA_PATH = resources.files(PROJECT_NAME) / "data"
+
+try:
+    DEVELOP = package_is_editable(PROJECT_NAME)
+except PackageNotFoundError as e:
     DEVELOP = True
 
 
 def get_version(append_time: Any = DEVELOP) -> str:
-    """description"""
+    """
+
+    :param append_time:
+    :return:
+    """
     import datetime
     import os
 
@@ -106,17 +109,17 @@ def get_version(append_time: Any = DEVELOP) -> str:
 
         if version:
             # Most git tags are prefixed with 'v' (example: v1.2.3) this is
-            # never desirable for artifact repositories, so we strip the
+            # never desirable for artefact repositories, so we strip the
             # leading 'v' if it's present.
             version = version[1:] if isinstance(version, str) and version.startswith("v") else version
         else:
-            # Default version is an ISO8601 compliant datetime. PyPI doesn't allow
+            # The Default version is an ISO8601 compliant datetime. PyPI doesn't allow
             # the colon ':' character in its versions, and time is required to allow
             # for multiple publications to master in one day. This datetime string
             # uses the 'basic' ISO8601 format for both its date and time components
             # to avoid issues with the colon character (ISO requires that date and
             # time components of a date-time string must be uniformly basic or
-            # extended, which is why the date component does not have dashes.
+            # extended, which is why the date component does not have dashes.)
             #
             # Publications using datetime versions should only be made from master
             # to represent the HEAD moving forward.
@@ -133,3 +136,7 @@ if __version__ is None:
     __version__ = get_version(append_time=True)
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
+
+
+if __name__ == "__main__":
+    print(__version__)
