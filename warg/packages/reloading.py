@@ -186,7 +186,7 @@ def walk_down(path: Path, max_descent: int = None):
 
 def find_ancestral_relatives(
     target: Union[str, Path],
-    context: Path,  # = Path.cwd(),
+    context: Path = Path.cwd(),
     *,
     from_parent_of_context: bool = True,
     ancestral_levels: int = 2,
