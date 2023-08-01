@@ -7,7 +7,13 @@ __doc__ = r"""
            Created on 08/03/2020
            """
 
-__all__ = ["ensure_existence", "path_rmtree", "sanitise_path", "path_join", "keep_last_n_modified"]
+__all__ = [
+    "ensure_existence",
+    "path_rmtree",
+    "sanitise_path",
+    "path_join",
+    "keep_last_n_modified",
+]
 
 import collections
 import os
@@ -161,7 +167,11 @@ def ensure_existence(
 
 # @passes_kws_to(rmtree)
 def keep_last_n_modified(
-    directory: Union[Path, str], n: int, only_directories: bool = False, only_files: bool = False, **kwargs
+    directory: Union[Path, str],
+    n: int,
+    only_directories: bool = False,
+    only_files: bool = False,
+    **kwargs,
 ):
     directory = Path(directory)
     from shutil import rmtree

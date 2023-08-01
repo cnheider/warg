@@ -30,9 +30,9 @@ from pathlib import Path
 from typing import Optional, Any, Union, List, Iterable, Callable
 from warnings import warn
 
-import pkg_resources
 
-from warg import passes_kws_to
+from warg.packages import get_requirements_from_file
+from warg.decorators import passes_kws_to
 
 """
 PRELOADED_MODULES = set()
@@ -94,9 +94,8 @@ def reload_requirements(requirements_path: Path, containment_test: Callable = co
     :param containment_test:
     :return:
     """
-    with open(requirements_path) as f:
-        for r in pkg_resources.parse_requirements(f.readlines()):
-            reload_module(r.project_name, containment_test=containment_test)
+    for r in get_requirements_from_file(requirements_path):
+        reload_module(r.name, containment_test=containment_test)
 
 
 def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> None:
@@ -187,7 +186,7 @@ def walk_down(path: Path, max_descent: int = None):
 
 def find_ancestral_relatives(
     target: Union[str, Path],
-    context: Path,  # = Path.cwd(),
+    context: Path = Path.cwd(),
     *,
     from_parent_of_context: bool = True,
     ancestral_levels: int = 2,
@@ -416,7 +415,7 @@ if __name__ == "__main__":
         print(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
     def asuhdsaud():
-        print(find_ancestral_relatives("queues"))
+        print(find_ancestral_relatives("queues", context=__file__))
 
     # _main()
     # aisjdi()

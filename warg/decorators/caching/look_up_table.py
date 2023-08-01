@@ -9,7 +9,16 @@ __doc__ = r"""
            """
 
 from time import sleep, time
-from typing import Iterable, Mapping, Set, Tuple, Sequence, MutableMapping, Any, Callable
+from typing import (
+    Iterable,
+    Mapping,
+    Set,
+    Tuple,
+    Sequence,
+    MutableMapping,
+    Any,
+    Callable,
+)
 
 from warg.decorators.hashing import make_hash
 
