@@ -14,6 +14,9 @@ from pathlib import Path
 def dist_is_editable(dist: Distribution) -> bool:
     """
     Return True if given Distribution is an editable installation.
+
+    This function might still change alot
+
     """
     top_level = dist.read_text("top_level.txt")
 
@@ -22,7 +25,8 @@ def dist_is_editable(dist: Distribution) -> bool:
         top_level_name = top_level.split("\n")[0].strip()
     else:  # assume top level namespace is the same as dist
         if isinstance(dist, PathDistribution):
-            top_level_name = dist._normalized_name
+            if hasattr(dist, "_normalized_name"):  # This is wacky...
+                top_level_name = dist._normalized_name
         elif isinstance(dist, Distribution):
             if hasattr(dist, "name"):
                 top_level_name = dist.name
