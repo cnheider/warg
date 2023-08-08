@@ -7,8 +7,15 @@ __doc__ = r"""
            Created on 13/06/2020
            """
 
-from importlib.metadata import entry_points, EntryPoint
-from typing import Tuple, Any, Generator, Union
+import sys
+
+if sys.version_info[:2] >= (3, 10):
+    # pylint: disable=no-name-in-module
+    from importlib.metadata import entry_points, EntryPoint
+else:
+    from importlib_metadata import entry_points, EntryPoint
+
+from typing import Tuple, Generator, Any
 
 __all__ = ["get_plugins", "get_static_plugins", "get_dynamic_plugins"]
 
@@ -42,7 +49,7 @@ def get_static_plugins(package_name: str) -> Tuple:
 
 def get_dynamic_plugins(
     package_name: str,
-) -> Generator[Union[str, EntryPoint], Any, None]:
+) -> Generator[EntryPoint, Any, None]:
     """Returns a list specifying dynamically loaded plugins.
 
     Returns:
@@ -51,11 +58,12 @@ def get_dynamic_plugins(
     [1]: https://packaging.python.org/specifications/entry-points/
     """
 
-    # .load() method to import and load that entry point (module or object).
-    # from importlib import metadata # new method!
-    # return [      entry_point.load()      for entry_point in metadata.entry_points()[f'{package_name}_plugins']      ]
-    return (entry_point for entry_point in entry_points(group="console_scripts", name=package_name))
+    return (
+        entry_point.load() for entry_point in entry_points(group=f"{package_name}_plugins", name=package_name)
+    )
 
 
 if __name__ == "__main__":
     print(get_plugins("warg"))
+
+    print(entry_points())

@@ -1,5 +1,5 @@
 import json
-from importlib.metadata import Distribution
+from importlib.metadata import Distribution, PackageNotFoundError
 
 __all__ = [
     "dist_is_editable",
@@ -15,8 +15,12 @@ def dist_is_editable(dist: Distribution) -> bool:
     """
     Return True if given Distribution is an editable installation.
     """
+    top_level = dist.read_text("top_level.txt")
 
-    top_level_name = dist.read_text("top_level.txt").split("\n")[0].strip()
+    if top_level:
+        top_level_name = top_level.split("\n")[0].strip()
+    else:  # assume top level namespace is the same as dist
+        top_level_name = dist.name
 
     if dist._read_files_egginfo() is not None:
         if top_level_name == dist._path.parent.stem:
@@ -37,13 +41,21 @@ def package_is_editable(package_name: str) -> bool:
     """
     Return True if given Package is an editable installation.
     """
-    return dist_is_editable(Distribution.from_name(package_name))
+    try:
+        dist = Distribution.from_name(package_name)
+
+        return dist_is_editable(dist)
+    except PackageNotFoundError as p:
+        print(p)
 
 
 def get_package_location(package_name: str) -> Path:
-    dist = Distribution.from_name(package_name)
-    if dist:
-        return get_dist_package_location(dist)
+    try:
+        dist = Distribution.from_name(package_name)
+        if dist:
+            return get_dist_package_location(dist)
+    except PackageNotFoundError as p:
+        print(p)
 
 
 def get_dist_package_location(dist: Distribution) -> Path:
