@@ -77,20 +77,33 @@ def get_dist_package_location(dist: Distribution) -> Path:
     :param dist:
     :return:
     """
+    top_level = dist.read_text("top_level.txt")
 
-    top_level_name = dist.read_text("top_level.txt").split("\n")[0].strip()
+    top_level_name = None
+    if top_level:
+        top_level_name = top_level.split("\n")[0].strip()
+    else:  # assume top level namespace is the same as dist
+        if isinstance(dist, PathDistribution):
+            if hasattr(dist, "_normalized_name"):  # This is wacky...
+                top_level_name = dist._normalized_name
+        elif isinstance(dist, Distribution):
+            if hasattr(dist, "name"):
+                top_level_name = dist.name
 
-    if dist._read_files_egginfo() is not None:
-        if top_level_name == dist._path.parent.stem:
-            return dist._path.parent
+    if top_level_name:
+        if hasattr(dist, "_read_files_egginfo"):
+            if dist._read_files_egginfo() is not None:
+                if top_level_name == dist._path.parent.stem:
+                    return dist._path.parent
 
-    if dist._read_files_distinfo() is not None:
-        direct_url_str = dist.read_text("direct_url.json")
-        if direct_url_str is not None:
-            direct_url_json = json.loads(direct_url_str)
-            if "dir_info" in direct_url_json:
-                if "editable" in direct_url_json["dir_info"]:
-                    return Path(direct_url_json["url"])
+    if hasattr(dist, "_read_files_distinfo"):
+        if dist._read_files_distinfo() is not None:
+            direct_url_str = dist.read_text("direct_url.json")
+            if direct_url_str is not None:
+                direct_url_json = json.loads(direct_url_str)
+                if "dir_info" in direct_url_json:
+                    if "editable" in direct_url_json["dir_info"]:
+                        return Path(direct_url_json["url"])
 
     if top_level_name:
         package_location = dist._path.parent / top_level_name
