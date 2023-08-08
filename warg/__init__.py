@@ -7,7 +7,7 @@ from warnings import warn
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.1.8"
+__version__ = "1.1.9"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -61,6 +61,7 @@ try:
     from .config_shell import *
     from .colors import *
     from .packages import *
+    from .iteration import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = Path(__file__).parent.parent / f"requirements.txt"

@@ -14,6 +14,15 @@ __all__ = ["get_requirements_from_file"]
 
 
 def get_reqed(req: ParsedRequirement) -> Requirement:
+    """
+    https://packaging.python.org/en/latest/specifications/direct-url/#example-pip-commands-and-their-effect-on-direct-url-json
+
+    :param req:
+    :type req: ParsedRequirement
+    :return:
+    :rtype: Requirement
+    """
+
     req_ = req.requirement
     if req.is_editable:  # parse out egg=... fragment from VCS URL
         parsed = urlparse(req_)
