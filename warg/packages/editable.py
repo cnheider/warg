@@ -1,5 +1,5 @@
 import json
-from importlib.metadata import Distribution, PackageNotFoundError
+from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
 
 __all__ = [
     "dist_is_editable",
@@ -17,14 +17,19 @@ def dist_is_editable(dist: Distribution) -> bool:
     """
     top_level = dist.read_text("top_level.txt")
 
+    top_level_name = None
     if top_level:
         top_level_name = top_level.split("\n")[0].strip()
     else:  # assume top level namespace is the same as dist
-        top_level_name = dist.name
+        if isinstance(dist, Distribution):
+            top_level_name = dist.name
+        elif isinstance(dist, PathDistribution):
+            top_level_name = dist._normalized_name
 
-    if dist._read_files_egginfo() is not None:
-        if top_level_name == dist._path.parent.stem:
-            return True
+    if top_level_name:
+        if dist._read_files_egginfo() is not None:
+            if top_level_name == dist._path.parent.stem:
+                return True
 
     if dist._read_files_distinfo() is not None:
         direct_url_str = dist.read_text("direct_url.json")
