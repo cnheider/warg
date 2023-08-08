@@ -21,23 +21,26 @@ def dist_is_editable(dist: Distribution) -> bool:
     if top_level:
         top_level_name = top_level.split("\n")[0].strip()
     else:  # assume top level namespace is the same as dist
-        if isinstance(dist, Distribution):
-            top_level_name = dist.name
-        elif isinstance(dist, PathDistribution):
+        if isinstance(dist, PathDistribution):
             top_level_name = dist._normalized_name
+        elif isinstance(dist, Distribution):
+            if hasattr(dist, "name"):
+                top_level_name = dist.name
 
     if top_level_name:
-        if dist._read_files_egginfo() is not None:
-            if top_level_name == dist._path.parent.stem:
-                return True
+        if hasattr(dist, "_read_files_egginfo"):
+            if dist._read_files_egginfo() is not None:
+                if top_level_name == dist._path.parent.stem:
+                    return True
 
-    if dist._read_files_distinfo() is not None:
-        direct_url_str = dist.read_text("direct_url.json")
-        if direct_url_str is not None:
-            direct_url_json = json.loads(direct_url_str)
-            if "dir_info" in direct_url_json:
-                if "editable" in direct_url_json["dir_info"]:
-                    return direct_url_json["dir_info"]["editable"]
+    if hasattr(dist, "_read_files_distinfo"):
+        if dist._read_files_distinfo() is not None:
+            direct_url_str = dist.read_text("direct_url.json")
+            if direct_url_str is not None:
+                direct_url_json = json.loads(direct_url_str)
+                if "dir_info" in direct_url_json:
+                    if "editable" in direct_url_json["dir_info"]:
+                        return direct_url_json["dir_info"]["editable"]
 
     return False
 
