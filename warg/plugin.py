@@ -11,8 +11,10 @@ import sys
 
 if sys.version_info[:2] >= (3, 10):
     # pylint: disable=no-name-in-module
+    # noinspection PyProtectedMember
     from importlib.metadata import entry_points, EntryPoint
 else:
+    # noinspection PyProtectedMember
     from importlib_metadata import entry_points, EntryPoint
 
 from typing import Tuple, Generator, Any

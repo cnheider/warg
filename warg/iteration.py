@@ -11,7 +11,7 @@ def pairs(s: Sequence) -> Tuple[Any, Any]:
         lst = [4, 7, 11, 2]
         pairs(lst) yields (4, 7), (7, 11), (11, 2)
 
-    http://stackoverflow.com/questions/1257413/1257446#1257446
+    https://stackoverflow.com/questions/1257413/1257446#1257446
 
 
     :param s: An iterable/list

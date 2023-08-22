@@ -31,9 +31,9 @@ def unzipper(_iterable: Iterable[Iterable[Any]]) -> Iterable[Any]:
         """description"""
         if isinstance(iterable_, Iterable):
             try:
-                a = next(iter(iterable_))
-                if isinstance(a, Iterable):
-                    return a
+                a_ = next(iter(iterable_))
+                if isinstance(a_, Iterable):
+                    return a_
             except StopIteration:
                 pass
 

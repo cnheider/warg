@@ -2,9 +2,17 @@ from pathlib import Path
 from typing import List, Union
 
 from packaging.requirements import Requirement
+
+# noinspection PyProtectedMember
 from pip._internal.network.session import PipSession
+
+# noinspection PyProtectedMember
 from pip._internal.req import parse_requirements
+
+# noinspection PyProtectedMember
 from pip._internal.req.req_file import ParsedRequirement
+
+# noinspection PyProtectedMember
 from pip._internal.utils.packaging import get_requirement
 
 

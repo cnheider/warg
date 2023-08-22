@@ -1,12 +1,12 @@
 import random
-from typing import Iterable, Tuple, Callable
+from typing import Iterable, Tuple, Callable, List
 
 from warg import Number
 
 __all__ = ["n_uint_mix", "n_uint_mix_generator_builder", "n_uint_mix_generator"]
 
 
-def n_uint_mix(mix: Iterable[Number]) -> Tuple[Number, ...]:
+def n_uint_mix(mix: Iterable[Number]) -> List[Number]:
     return [random.randrange(0, m) for m in mix]
 
 

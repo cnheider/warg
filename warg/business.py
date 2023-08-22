@@ -16,7 +16,7 @@ def busy_indicator(
     stream: Callable = print,
     indicator_interval: int = 1,
     phases: Iterable[str] = ("◑", "◒", "◐", "◓"),
-) -> int:
+) -> Iterable[int]:
     """
     You can choose arbitrary phases like ['|','/','-','\\']
 
