@@ -10,6 +10,8 @@ __doc__ = r"""
 __all__ = ["NoData", "IncompatiblePackageVersions"]
 
 import types
+import typing
+from importlib.resources import Package
 from typing import Iterable, MutableMapping, Union
 
 
@@ -23,7 +25,7 @@ class NoData(Exception):
 class IncompatiblePackageVersions(Exception):
     """description"""
 
-    def __init__(self, *packages: Iterable[Union[str, object]], **versions: MutableMapping):
+    def __init__(self, *packages: Iterable[Union[str, types.ModuleType]], **versions):
         str_o = ", "
         str_l = []
 
@@ -69,4 +71,5 @@ if __name__ == "__main__":
 
         raise IncompatiblePackageVersions(numpy, scipy)
 
-    main()
+    # main()
+    main2()

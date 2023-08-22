@@ -23,6 +23,8 @@ __all__ = [
     "list_keys",
     "first_key",
     "last_key",
+    "to_list",
+    "to_tuple",
 ]
 
 import operator
@@ -39,6 +41,7 @@ from typing import (
     Sequence,
     Tuple,
     List,
+    Union,
 )
 
 from warg import Number, drop_unused_kws
@@ -117,7 +120,7 @@ def sink(*args, **kwargs) -> None:
 
 def prod(iterable: Iterable[Number]) -> Number:
     """
-    Calculate the product of the a Iterable of int or floats
+    Calculate the product of an Iterable, of int or floats
     :param iterable:
     :return:"""
     return reduce(operator.mul, iterable, 1)
@@ -244,6 +247,34 @@ def chain_apply(it: Iterable, *callables: Callable) -> Iterable[Any]:
     return it
 
 
+def to_list(x: Union[Iterable, Any]) -> Union[List, Any]:
+    if False:
+        if x is None:
+            return []
+    if not isinstance(x, Iterable):
+        return x
+    i = iter(x)
+    try:
+        val = next(i)
+    except StopIteration:
+        return []
+    return [to_list(val)] + to_list(i)
+
+
+def to_tuple(x: Union[Iterable, Any]) -> Union[Tuple, Any]:
+    if False:
+        if x is None:
+            return ()
+    if not isinstance(x, Iterable):
+        return x
+    i = iter(x)
+    try:
+        val = next(i)
+    except StopIteration:
+        return ()
+    return (to_tuple(val), *to_tuple(i))
+
+
 if __name__ == "__main__":
 
     def asud() -> None:
@@ -274,6 +305,16 @@ if __name__ == "__main__":
         result = swap_mapping_order(test_dict, [2, 0, 1])
         print(result)
 
+    def i8jsadij():
+        ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
+        print(to_list(ij))
+
+    def i8jsadi2j():
+        ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
+        print(to_tuple(ij))
+
+    i8jsadij()
+    i8jsadi2j()
     # asud()
-    asidj()
+    # asidj()
     # asjdnasid()

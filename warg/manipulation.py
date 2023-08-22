@@ -9,10 +9,10 @@ __doc__ = r"""
 
 __all__ = ["recursive_flatten"]
 
-from typing import Sequence
+from typing import Sequence, Iterable
 
 
-def recursive_flatten(seq: Sequence) -> Sequence:
+def recursive_flatten_seq(seq: Sequence) -> Sequence:
     """Depth first flatten"""
     if not seq:  # is empty Sequence
         return seq
@@ -21,6 +21,26 @@ def recursive_flatten(seq: Sequence) -> Sequence:
     return (*seq[:1], *recursive_flatten(seq[1:]))
 
 
+def recursive_flatten(sequence: Iterable) -> Iterable:
+    """
+    Depth first flatten iterable
+
+    >>> list(recursive_flatten([1, [2], 3]))
+    [1, 2, 3]
+    >>> list(recursive_flatten([1, [2], [3, [4]]]))
+    [1, 2, 3, 4]
+    >>> list(recursive_flatten((([[None]], 2), (2,), 2)))
+    [None, 2, 2, 2]
+    """
+    for element in sequence:
+        if isinstance(element, Iterable):
+            yield from recursive_flatten(element)
+        else:
+            yield element
+
+
 if __name__ == "__main__":
-    print(recursive_flatten((((2,), 2), (2,), 2)))
-    print(recursive_flatten((([[None]], 2), (2,), 2)))
+    print(list(recursive_flatten((((2,), 2), (2,), 2))))
+    print(list(recursive_flatten((([[None]], 2), (2,), 2))))
+
+    print(list(recursive_flatten((([[None]], 2), (2,), 2))))

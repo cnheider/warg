@@ -1,4 +1,6 @@
 import json
+
+# noinspection PyProtectedMember
 from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
 
 __all__ = [
@@ -9,8 +11,10 @@ __all__ = [
 ]
 
 from pathlib import Path
+from typing import Optional
 
 
+# noinspection PyProtectedMember
 def dist_is_editable(dist: Distribution) -> bool:
     """
     Return True if given Distribution is an editable installation.
@@ -70,7 +74,8 @@ def get_package_location(package_name: str) -> Path:
         print(p)
 
 
-def get_dist_package_location(dist: Distribution) -> Path:
+# noinspection PyProtectedMember
+def get_dist_package_location(dist: Distribution) -> Optional[Path]:
     """
     FULL OF ASSUMPTIONS!
 
