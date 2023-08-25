@@ -1,7 +1,10 @@
 import json
 
 # noinspection PyProtectedMember
-from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
+try:
+    from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
+except:
+    from importlib_metadata import Distribution, PackageNotFoundError, PathDistribution
 
 __all__ = [
     "dist_is_editable",
