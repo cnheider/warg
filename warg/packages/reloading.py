@@ -26,12 +26,12 @@ import importlib
 import sys
 from importlib import reload
 from importlib.util import find_spec
+
 from pathlib import Path
 from typing import Optional, Any, Union, List, Iterable, Callable
 from warnings import warn
 
 
-from warg.packages import get_requirements_from_file
 from warg.decorators import passes_kws_to
 
 """
@@ -94,6 +94,8 @@ def reload_requirements(requirements_path: Path, containment_test: Callable = co
     :param containment_test:
     :return:
     """
+    from warg.packages.pip_parsing import get_requirements_from_file
+
     for r in get_requirements_from_file(requirements_path):
         reload_module(r.name, containment_test=containment_test)
 
