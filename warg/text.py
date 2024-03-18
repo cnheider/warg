@@ -14,7 +14,7 @@ default_rules = MappingProxyType(
         "ize": "ise",
         "yze": "yse",
         "iza": "isa",
-        "aluminum": "aluminium"
+        "aluminum": "aluminium",
         # 'se': 'ce',
         # 'og': 'ogue',
     }
