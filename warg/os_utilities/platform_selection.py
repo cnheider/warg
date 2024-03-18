@@ -107,7 +107,7 @@ def get_backend_module(project_name: str, backend_name: str = sys.platform) -> M
             "appindicator",
             "gtk",
             "xorg",
-            "gtk_dbus"
+            "gtk_dbus",
             # "unity", "kde", "gnome", "fallback",
         ]
 
