@@ -4,7 +4,7 @@ twine>=1.13.0
 black>=18.9b0
 pytest>=4.3.0
 pytest-cov>=2.6.1
-coveralls>=1.6.0
+coveralls>=4.0.1
 tox
 -r ../requirements.txt
 -r requirements_docs.txt
