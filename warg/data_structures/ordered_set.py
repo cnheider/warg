@@ -91,12 +91,10 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         return len(self.items)
 
     @overload
-    def __getitem__(self, index: Sequence[int]) -> List[T]:
-        ...
+    def __getitem__(self, index: Sequence[int]) -> List[T]: ...
 
     @overload
-    def __getitem__(self, index: slice) -> "OrderedSet[T]":
-        ...
+    def __getitem__(self, index: slice) -> "OrderedSet[T]": ...
 
     def __getitem__(self, index: int) -> T:
         """
