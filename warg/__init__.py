@@ -60,7 +60,6 @@ from .contexts import *
 from .config_shell import *
 from .colors import *
 
-
 # from .ode import * # Silly thing
 
 
